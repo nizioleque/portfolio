@@ -2,12 +2,9 @@ import '../src/index.css';
 import type { AppProps } from 'next/app';
 import { CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { theme } from '../src/theme';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: 'Montserrat',
-  },
-});
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

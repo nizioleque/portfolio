@@ -1,5 +1,18 @@
+:root {
+  color-scheme: dark;
+}
+
 html,
 body,
 #__next {
   height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
 }

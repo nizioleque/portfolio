@@ -1,7 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import { Theme, useTheme } from '@mui/material/styles';
 import { styled } from '@mui/system';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Section = styled(Box)({
   height: '100vh',
@@ -11,6 +13,8 @@ const Section = styled(Box)({
 });
 
 const Home: NextPage = () => {
+  const theme = useTheme();
+
   return (
     <div>
       <Head>
@@ -19,47 +23,72 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Section
-        sx={{
-          background: '#463db9',
-        }}
-      >
+      <Section sx={{ background: theme.palette.primary.main }}>
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            px: 8,
-            py: 4,
+            textShadow: '0 0 5px rgba(0,0,0,0.5)',
+            px: 12,
           }}
         >
-          <Box
-            sx={{
-              fontWeight: 900,
-              fontSize: 50,
-              color: '#eda439',
-              textShadow: '0 0 5px rgba(0,0,0,0.5)',
-            }}
-          >
-            <Box sx={{ fontSize: '3vw', fontWeight: 700 }}>
+          <Box>
+            <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
               Hello, my name is
             </Box>
             <Box
               sx={{
-                fontSize: '7vw',
+                fontSize: '8rem',
                 fontWeight: 800,
+                color: theme.palette.secondary.main,
               }}
             >
               Norbert Niziolek
             </Box>
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <h3>about me</h3>
-            <h3>projects</h3>
-            <h3>extensions</h3>
-            <h3>autohotkey</h3>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: '1.8rem',
+              '& > a': {
+                transition: 'color 0.1s ease-in',
+                '&:hover': {
+                  color: theme.palette.secondary.main,
+                },
+              },
+            }}
+          >
+            <Link href='#about-me'>
+              <a>about me</a>
+            </Link>
+            <Link href='#projects'>
+              <a>projects</a>
+            </Link>
+            <Link href='#extensions'>
+              <a>extensions</a>
+            </Link>
+            <Link href='#autohotkey'>
+              <a>autohotkey</a>
+            </Link>
           </Box>
         </Box>
+      </Section>
+      <Section sx={{ background: theme.palette.secondary.main }} id='about-me'>
+        <h1>about me</h1>
+      </Section>
+      <Section sx={{ background: '#285a92' }} id='projects'>
+        <h1>projects</h1>
+      </Section>
+      <Section
+        sx={{ background: theme.palette.secondary.main }}
+        id='extensions'
+      >
+        <h1>extensions</h1>
+      </Section>
+      <Section sx={{ background: '#285a92' }} id='autohotkey'>
+        <h1>autohotkey</h1>
       </Section>
     </div>
   );
