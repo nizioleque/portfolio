@@ -1,6 +1,14 @@
 import { Box, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+
+const Section = styled(Box)({
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+});
 
 const Home: NextPage = () => {
   return (
@@ -11,13 +19,8 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Box
+      <Section
         sx={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          // background: 'linear-gradient(45deg, red, blue)',
           background: '#463db9',
         }}
       >
@@ -26,8 +29,6 @@ const Home: NextPage = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            // background: 'white',
-            // boxShadow: '0 0 30px rgba(0, 0, 0, 0.3)',
             px: 8,
             py: 4,
           }}
@@ -36,33 +37,17 @@ const Home: NextPage = () => {
             sx={{
               fontWeight: 900,
               fontSize: 50,
-              background: 'linear-gradient(45deg, red, blue)',
-              backgroundSize: '100vw',
-              backgroundClip: 'text',
-              // color: 'transparent',
-              fontFamily: 'Montserrat',
-              // textShadow: '0 0 20px black',
-              filter: 'drop-shadow(0 0 0.2vw rgba(0,0,0,0.3))',
               color: '#eda439',
+              textShadow: '0 0 5px rgba(0,0,0,0.5)',
             }}
           >
-            <Box
-              component='span'
-              sx={{ fontSize: '3vw', fontWeight: 700, lineHeight: 1 }}
-            >
-              Hello,{' '}
-            </Box>
-            <Box
-              component='span'
-              sx={{ fontSize: '2vw', fontWeight: 400, lineHeight: 1.3 }}
-            >
-              my name is
+            <Box sx={{ fontSize: '3vw', fontWeight: 700 }}>
+              Hello, my name is
             </Box>
             <Box
               sx={{
                 fontSize: '7vw',
                 fontWeight: 800,
-                lineHeight: 1,
               }}
             >
               Norbert Niziolek
@@ -75,7 +60,7 @@ const Home: NextPage = () => {
             <h3>autohotkey</h3>
           </Box>
         </Box>
-      </Box>
+      </Section>
     </div>
   );
 };
