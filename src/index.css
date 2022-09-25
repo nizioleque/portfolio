@@ -2,10 +2,8 @@
   color-scheme: dark;
 }
 
-html,
-body,
-#__next {
-  height: 100%;
+html {
+  scroll-snap-type: y mandatory;
 }
 
 a {

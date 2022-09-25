@@ -1,19 +1,23 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 import { styled } from '@mui/system';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import Section from '../components/Section';
 
-const Section = styled(Box)({
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-});
+export const navWidth = 200;
 
 const Home: NextPage = () => {
   const theme = useTheme();
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      'scroll-snap-type',
+      'y mandatory'
+    );
+  }, []);
 
   return (
     <div>
@@ -23,73 +27,206 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Section sx={{ background: theme.palette.primary.main }}>
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+
+          width: navWidth,
+          // bottom: '3vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          outline: '2px solid lime',
+        }}
+      >
         <Box
+          component='nav'
           sx={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            flexDirection: 'column',
+            fontSize: '1.5rem',
+            '& > a': {
+              transition: 'color 0.1s ease-in',
+              '&:hover': {
+                color: theme.palette.secondary.main,
+              },
+            },
+          }}
+        >
+          <Link href='#home'>
+            <a>home</a>
+          </Link>
+          <Link href='#about-me'>
+            <a>about me</a>
+          </Link>
+          <Link href='#projects'>
+            <a>projects</a>
+          </Link>
+          <Link href='#extensions'>
+            <a>extensions</a>
+          </Link>
+          <Link href='#autohotkey'>
+            <a>autohotkey</a>
+          </Link>
+        </Box>
+      </Box>
+
+      {/* <Box
+        sx={{
+          scrollSnapType: 'y mandatory',
+          '& > *': {
+            scrollSnapAlign: 'center',
+          },
+        }}
+      > */}
+      <Section
+        sx={{ background: theme.palette.primary.main, height: '100vh' }}
+        id='home'
+      >
+        <Box
+          sx={{
             textShadow: '0 0 5px rgba(0,0,0,0.5)',
             px: 12,
           }}
         >
-          <Box>
-            <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
-              Hello, my name is
-            </Box>
-            <Box
-              sx={{
-                fontSize: '8rem',
-                fontWeight: 800,
-                color: theme.palette.secondary.main,
-              }}
-            >
-              Norbert Niziolek
-            </Box>
+          <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
+            Hello, my name is
           </Box>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              fontSize: '1.8rem',
-              '& > a': {
-                transition: 'color 0.1s ease-in',
-                '&:hover': {
-                  color: theme.palette.secondary.main,
-                },
-              },
+              fontSize: '1rem',
+              fontWeight: 800,
+              color: theme.palette.secondary.main,
             }}
           >
-            <Link href='#about-me'>
-              <a>about me</a>
-            </Link>
-            <Link href='#projects'>
-              <a>projects</a>
-            </Link>
-            <Link href='#extensions'>
-              <a>extensions</a>
-            </Link>
-            <Link href='#autohotkey'>
-              <a>autohotkey</a>
-            </Link>
+            Janusz Kowalski
           </Box>
         </Box>
       </Section>
+      {/* <Box sx={{ height: '3vh', bgcolor: theme.palette.secondary.main }} /> */}
       <Section sx={{ background: theme.palette.secondary.main }} id='about-me'>
-        <h1>about me</h1>
+        <Typography variant='h1'>about me</Typography>
       </Section>
       <Section sx={{ background: '#285a92' }} id='projects'>
-        <h1>projects</h1>
+        <Typography variant='h2'>Projects</Typography>
+        <Typography></Typography>
       </Section>
       <Section
-        sx={{ background: theme.palette.secondary.main }}
+        sx={{
+          background: '#285a92',
+          overflowY: 'auto',
+          overflowX: 'visible',
+        }}
         id='extensions'
       >
-        <h1>extensions</h1>
+        <Box sx={{ flexGrow: 2 }} />
+
+        <Typography variant='h2'>Extensions</Typography>
+        <Box sx={{ flexGrow: 1 }} />
+        <Typography sx={{ pt: 2 }} textAlign='justify'>
+          Here are some extensions I've made. Magna pariatur irure ut laborum
+          labore ipsum proident do. Eu do nulla esse laboris. Esse anim amet
+          amet officia deserunt. Ipsum cillum aute consectetur adipisicing
+          veniam proident magna esse duis. Pariatur commodo enim duis in cillum
+          aute ipsum. Fugiat aliquip anim nisi culpa nulla amet elit mollit non
+          occaecat ipsum sint. Excepteur excepteur eiusmod excepteur ad dolore
+          occaecat aute veniam. Tempor cillum adipisicing labore veniam
+          adipisicing exercitation ipsum nostrud. Ipsum voluptate nisi eu aliqua
+          labore fugiat aute ea veniam laboris pariatur amet. Veniam sint eu
+          incididunt non consequat ullamco. In et anim irure incididunt proident
+          sint voluptate eiusmod sint cillum non ut. Dolor magna ad deserunt in
+          quis excepteur. Excepteur elit labore ipsum do ullamco Lorem ex qui
+          veniam sit ad. Enim fugiat veniam anim proident ut officia dolore
+          Lorem labore dolor voluptate ullamco. Aute dolore ullamco adipisicing
+          elit voluptate id. Cupidatat enim anim consequat aliqua. Est velit
+          culpa veniam sint. Officia mollit ut ad culpa non ut incididunt eu
+          labore laboris nostrud tempor dolore esse. Laborum ad reprehenderit
+          aute mollit elit. Consectetur est laborum irure magna magna ullamco
+          non nisi irure ex. Nulla exercitation exercitation ad dolore fugiat
+          non ea aliquip dolor elit Lorem aute elit. Magna ea fugiat est anim
+          officia nisi consequat magna voluptate quis. Minim Lorem labore
+          incididunt ipsum culpa non est ex ea id ea fugiat. Qui id eiusmod eu
+          nostrud veniam anim. Do pariatur ea ea est laboris ea ad. Adipisicing
+          occaecat magna non irure quis consequat laboris cillum cillum irure.
+          Nulla non adipisicing id ad eu.
+        </Typography>
+        <Box sx={{ flexGrow: 1 }} />
+        <Box
+          className='card-container'
+          sx={{
+            display: 'flex',
+            gap: 2,
+            overflowX: 'scroll', //shadow not visible!!!
+            position: 'relative',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+          }}
+        >
+          <Card sx={{ width: 400, flexShrink: 0 }}>
+            <CardContent>
+              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
+              sunt qui incididunt laboris enim minim minim culpa id amet
+              incididunt mollit nisi.
+            </CardContent>
+          </Card>
+          <Card sx={{ width: 400, flexShrink: 0 }}>
+            <CardContent>
+              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
+              sunt qui incididunt laboris enim minim minim culpa id amet
+              incididunt mollit nisi. Nostrud excepteur magna reprehenderit sunt
+              incididunt excepteur voluptate excepteur exercitation culpa eu eu.
+              Dolor incididunt elit commodo consectetur officia in. Cillum velit
+              excepteur aliqua eu enim.
+            </CardContent>
+          </Card>
+          <Card sx={{ width: 400, flexShrink: 0 }}>
+            <CardContent>
+              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
+              sunt qui incididunt laboris enim minim minim culpa id amet
+              incididunt mollit nisi.
+            </CardContent>
+          </Card>
+          <Card sx={{ width: 400, flexShrink: 0 }}>
+            <CardContent>
+              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
+              sunt qui incididunt laboris enim minim minim culpa id amet
+              incididunt mollit nisi.
+            </CardContent>
+          </Card>
+          <Card sx={{ width: 400, flexShrink: 0 }}>
+            <CardContent>
+              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
+              sunt qui incididunt laboris enim minim minim culpa id amet
+              incididunt mollit nisi.
+            </CardContent>
+          </Card>
+          <Box
+            sx={{
+              position: 'absolute',
+              right: 0,
+              height: '100%',
+              width: 200,
+              backgroundColor: 'red',
+              background:
+                'linear-gradient(90deg, rgba(255,0,0,0.2), rgba(255,0,0,1))',
+            }}
+          />
+        </Box>
+        <Box sx={{ flexGrow: 2 }} />
       </Section>
       <Section sx={{ background: '#285a92' }} id='autohotkey'>
         <h1>autohotkey</h1>
       </Section>
+      {/* </Box> */}
     </div>
   );
 };
