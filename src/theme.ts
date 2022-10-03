@@ -15,5 +15,8 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
+    body1: {
+      fontSize: '1.3rem',
+    },
   },
 });

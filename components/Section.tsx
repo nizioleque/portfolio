@@ -1,56 +1,55 @@
-import { Box, BoxProps, SxProps } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box } from '@mui/material';
+import { createContext, ForwardedRef, forwardRef, ReactNode } from 'react';
 import { navWidth } from '../pages';
 
-interface SectionProps {
-  title: string;
-  description: string;
+interface SectionContext {
+  backgroundColor: string;
 }
 
-function Section({ children, ...props }: BoxProps & SectionProps) {
-  return (
-    <Box
-      {...props}
-      sx={{
-        height: '100vh',
-        // position: 'relative',
-        scrollSnapAlign: 'start',
-        scrollSnapStop: 'always',
-        paddingRight: navWidth + 'px',
-        '& > *': {
-          flexShrink: 0,
-        },
-        ...props.sx,
-      }}
-    >
-      <Box
-        sx={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          '& > *:not(.card-container)': {
-            mx: 5,
-          },
+export const SectionContext = createContext<SectionContext>({
+  backgroundColor: '#000000',
+});
 
-          '& > .card-container': {
-            ml: 5,
+interface SectionProps {
+  children: ReactNode;
+  backgroundColor: string;
+  id: string;
+  fullscreen?: boolean;
+}
+
+function Section(
+  { children, backgroundColor, id, fullscreen }: SectionProps,
+  ref: ForwardedRef<HTMLElement | undefined>
+) {
+  return (
+    <SectionContext.Provider value={{ backgroundColor }}>
+      <Box
+        id={id}
+        ref={ref}
+        sx={{
+          height: '100vh',
+          scrollSnapAlign: 'start',
+          scrollSnapStop: 'always',
+          marginRight: !fullscreen ? navWidth + 'px' : undefined,
+          paddingRight: fullscreen ? navWidth + 'px' : undefined,
+          // backgroundColor: !fullscreen ? backgroundColor : undefined,
+          backgroundColor,
+          borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+          my: '5vh',
+          overflowY: 'auto',
+          overflowX: 'visible',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          '& > *': {
+            flexShrink: 0,
           },
         }}
       >
         {children}
       </Box>
-      {/* <Box
-        sx={{
-          width: 200,
-          bgcolor: 'red',
-          position: 'absolute',
-          right: navWidth,
-          height: '100%',
-          opacity: 0.5,
-        }}
-      /> */}
-    </Box>
+    </SectionContext.Provider>
   );
 }
 
-export default Section;
+export default forwardRef(Section);
