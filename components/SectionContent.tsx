@@ -1,7 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { ReactNode, useContext } from 'react';
-import { easeInOutGradient } from '../src/utils';
-import { SectionContext } from './Section';
+import { ReactNode } from 'react';
 
 interface SectionContentProps {
   title: string;
@@ -12,7 +10,6 @@ interface SectionContentProps {
 const gradientWidth = 100;
 
 function SectionContent({ title, description, cards }: SectionContentProps) {
-  //   const { backgroundColor } = useContext(SectionContext);
 
   return (
     <Box
@@ -67,50 +64,7 @@ function SectionContent({ title, description, cards }: SectionContentProps) {
               >
                 {cards}
               </Box>
-              {/* <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  height: '100%',
-                  width: gradientWidth,
-                  pointerEvents: 'none',
-                  background: easeInOutGradient('-90deg', backgroundColor),
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  height: '100%',
-                  width: gradientWidth,
-                  pointerEvents: 'none',
-                  background: easeInOutGradient('90deg', backgroundColor),
-                }}
-              /> */}
-              {/* <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  height: '100%',
-                  width: 10,
-                  pointerEvents: 'none',
-                  background: backgroundColor,
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  height: '100%',
-                  width: 10,
-                  pointerEvents: 'none',
-                  background: backgroundColor,
-                }}
-              /> */}
+
             </Box>
           </>
         )}
