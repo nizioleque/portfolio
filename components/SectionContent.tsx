@@ -5,12 +5,15 @@ interface SectionContentProps {
   title: string;
   description: string;
   cards?: ReactNode;
+  children?: ReactNode;
 }
 
-const gradientWidth = 100;
-
-function SectionContent({ title, description, cards }: SectionContentProps) {
-
+function SectionContent({
+  title,
+  description,
+  cards,
+  children,
+}: SectionContentProps) {
   return (
     <Box
       sx={{
@@ -28,15 +31,14 @@ function SectionContent({ title, description, cards }: SectionContentProps) {
           flexDirection: 'column',
           //   px: 10,
           '& > :not(.card-container)': {
-            mx: 10,
+            mx: '8vw',
           },
           '& > .card-container': {
             // mr: 8,
           },
 
-          '& > .card-container > :first-child': {
-            pl: 10,
-            pr: `${gradientWidth}px`,
+          '& > .card-container > div:first-of-type': {
+            px: '8vw',
           },
         }}
       >
@@ -51,12 +53,12 @@ function SectionContent({ title, description, cards }: SectionContentProps) {
         {cards && (
           <>
             <Box sx={{ flexGrow: 0.2 }} />
-            <Box position='relative' className='card-container' mt={5}>
+            <Box className='card-container' mt={5}>
               <Box
                 sx={{
                   display: 'flex',
                   gap: 2,
-                  overflowX: 'scroll', // TODO: shadow not visible!!!
+                  overflowX: 'scroll', // TODO: add vertical padding to avoid cropping shadow
                   '&::-webkit-scrollbar': {
                     display: 'none',
                   },
@@ -64,10 +66,10 @@ function SectionContent({ title, description, cards }: SectionContentProps) {
               >
                 {cards}
               </Box>
-
             </Box>
           </>
         )}
+        {children && <Box>{children}</Box>}
 
         <Box sx={{ flexGrow: 1 }} />
       </Box>

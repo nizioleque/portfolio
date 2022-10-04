@@ -1,14 +1,37 @@
-import { Box, Card, CardContent } from '@mui/material';
+import {
+  Favorite,
+  Instagram,
+  SentimentVeryDissatisfied,
+  Telegram,
+} from '@mui/icons-material';
+import {
+  Box,
+  Card,
+  CardContent,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import Section from '../components/Section';
 import SectionContent from '../components/SectionContent';
 
 export const navWidth = 250;
 export const htmlBackgroundColor = '#1a1a1a';
+
+const Li = ({ icon, text }) => (
+  <ListItem sx={{ py: 0, '& > .MuiListItemIcon-root': { minWidth: 48 } }}>
+    <ListItemIcon>{icon}</ListItemIcon>
+    <ListItemText primary={text} />
+  </ListItem>
+);
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -99,16 +122,70 @@ const Home: NextPage = () => {
             </Box>
           </Box>
         </Section>
-        {offset !== 0 &&
-          offset /
-            (document.documentElement.scrollTop +
-              firstSlideRef.current?.getBoundingClientRect().top!)}
         <Section backgroundColor='#363082' id='about-me' ref={firstSlideRef}>
           <SectionContent
             title='About me'
-            description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life. What I Like: blah blah blah, What I hate: Polskie Koleje Państwowe, Narodowy Fundusz Zdrowia. If you disagree, click here to quarrel. IG etc
-          '
-          />
+            description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
+          >
+            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+              <Box sx={{ mr: 10, mt: 4 }}>
+                <Typography variant='h4'>What I like</Typography>
+                <Box mb={0}>
+                  <List>
+                    <Li icon={<Favorite />} text='learning languages' />
+                    <Li icon={<Favorite />} text='cycling' />
+                    <Li icon={<Favorite />} text='vegan food' />
+                  </List>
+                </Box>
+              </Box>
+              <Box sx={{ mt: 4 }}>
+                <Typography variant='h4'>What I hate</Typography>
+                <List>
+                  <Li
+                    icon={<SentimentVeryDissatisfied />}
+                    text='Polskie Koleje Państwowe'
+                  />
+                  <Li icon={<SentimentVeryDissatisfied />} text='Apple' />
+                  <Li
+                    icon={<SentimentVeryDissatisfied />}
+                    text='dinosaur-powered vehicles'
+                  />
+                </List>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                mt: 4,
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                columnGap: 1,
+              }}
+            >
+              <Typography>If you disagree, we can quarell here</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  columnGap: 1,
+                  '& a': { display: 'block' },
+                }}
+              >
+                <Instagram
+                  fontSize='large'
+                  component='a'
+                  href='https://instagram.com/nizioleque'
+                  target='_blank'
+                />
+                <Telegram
+                  fontSize='large'
+                  component='a'
+                  href='https://t.me/pedalarz'
+                  target='_blank'
+                />
+              </Box>
+            </Box>
+          </SectionContent>
         </Section>
         <Section backgroundColor='#1E5171' id='projects'>
           <SectionContent
