@@ -1,4 +1,15 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, SxProps } from '@mui/material/styles';
+import { CSSProperties } from 'react';
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    menu: CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    menu?: CSSProperties;
+  }
+}
 
 export const theme = createTheme({
   palette: {
@@ -9,18 +20,32 @@ export const theme = createTheme({
     secondary: {
       main: '#eda439',
     },
-    // text: {
-    //   primary: '#ffffff',
-    // },
   },
   typography: {
-    fontFamily: 'Montserrat',
+    fontFamily: 'Space Mono',
     body1: {
       fontSize: '1.3rem',
+    },
+    h2: {
+      textTransform: 'uppercase',
+      fontSize: '4rem',
+      fontWeight: 600,
     },
     h4: {
       fontSize: '1.6rem',
       fontWeight: 600,
     },
+    menu: {
+      fontSize: '1.5rem',
+      // letterSpacing: -0.5,
+    },
   },
 });
+
+export const sectionColors: { [key: string]: string } = {
+  home: '#582847',
+  'about-me': '#3F3A88',
+  projects: '#1E5171',
+  extensions: '#1F5B5A',
+  autohotkey: '#1F5B3C',
+};
