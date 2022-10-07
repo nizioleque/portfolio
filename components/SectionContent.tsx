@@ -29,24 +29,31 @@ function SectionContent({
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          //   px: 10,
+
           '& > :not(.card-container)': {
             mx: '8vw',
+            // '&:not(.section-title)': {
+            //   ml: 'calc(8vw + 48px)',
+            // },
           },
-          '& > .card-container': {
-            // mr: 8,
-          },
-
           '& > .card-container > div:first-of-type': {
+            // px: 'calc(8vw + 48px)',
             px: '8vw',
           },
         }}
       >
         <Box sx={{ flexGrow: 1 }} />
 
-        <Typography variant='h2'>{title}</Typography>
+        <Typography
+          variant='h2'
+          sx={{
+            // fontFamily: "'Cascadia Code'",
+          }}
+        >
+          {title}
+        </Typography>
 
-        <Typography sx={{ mt: 2, maxWidth: 1000 }} textAlign='justify'>
+        <Typography sx={{ mt: 3 }} textAlign='justify'>
           {description}
         </Typography>
 

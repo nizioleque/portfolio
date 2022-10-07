@@ -1,18 +1,25 @@
 import { Box } from '@mui/material';
-import { ForwardedRef, forwardRef, ReactNode } from 'react';
-import { navWidth } from '../pages';
+import { ReactNode, useContext, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { IndexContext } from '../pages';
+import { navWidth } from '../src/constants';
+import { sectionColors } from '../src/theme';
 
 interface SectionProps {
   children: ReactNode;
-  backgroundColor: string;
   id: string;
   fullscreen?: boolean;
 }
 
-function Section(
-  { children, backgroundColor, id, fullscreen }: SectionProps,
-  ref: ForwardedRef<HTMLElement | undefined>
-) {
+function Section({ children, id, fullscreen }: SectionProps) {
+  const backgroundColor = sectionColors[id];
+  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { setCurrentSection } = useContext(IndexContext);
+
+  useEffect(() => {
+    if (inView) setCurrentSection(id);
+  }, [inView]);
+
   return (
     <Box
       id={id}
@@ -42,4 +49,4 @@ function Section(
   );
 }
 
-export default forwardRef(Section);
+export default Section;

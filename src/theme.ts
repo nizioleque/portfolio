@@ -36,8 +36,8 @@ export const theme = createTheme({
       fontWeight: 600,
     },
     menu: {
-      fontSize: '1.5rem',
-      // letterSpacing: -0.5,
+      fontSize: '1.6rem',
+      letterSpacing: -0.5,
     },
   },
 });

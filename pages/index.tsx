@@ -1,14 +1,15 @@
 import {
-  Favorite,
   Instagram,
+  MailOutline,
   SentimentVeryDissatisfied,
   Telegram,
+  ThumbUpOutlined,
 } from '@mui/icons-material';
 import {
   Box,
   Card,
   CardContent,
-  Grid,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
@@ -18,34 +19,34 @@ import {
 import { useTheme } from '@mui/material/styles';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import Navigation from '../components/Navigation';
 import Section from '../components/Section';
 import SectionContent from '../components/SectionContent';
+import { htmlBackgroundColor } from '../src/constants';
 
-export const navWidth = 250;
-export const htmlBackgroundColor = '#1a1a1a';
-
-const Li = ({ icon, text }) => (
+const Li = ({ icon, text }: any) => (
   <ListItem sx={{ py: 0, '& > .MuiListItemIcon-root': { minWidth: 48 } }}>
     <ListItemIcon>{icon}</ListItemIcon>
     <ListItemText primary={text} />
   </ListItem>
 );
 
+interface IndexContext {
+  currentSection: string;
+  setCurrentSection: Dispatch<SetStateAction<string>>;
+}
+
+const indexContextDefaultValue: IndexContext = {
+  currentSection: '',
+  setCurrentSection: () => {},
+};
+
+export const IndexContext = createContext<IndexContext>(indexContextDefaultValue);
+
 const Home: NextPage = () => {
   const theme = useTheme();
-  const [offset, setOffset] = useState<number>(0);
-  const firstSlideRef = useRef<HTMLElement>();
-
-  useEffect(() => {
-    document.documentElement.style.backgroundColor = htmlBackgroundColor;
-
-    const onScroll = () => setOffset(window.pageYOffset);
-    window.removeEventListener('scroll', onScroll);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const [currentSection, setCurrentSection] = useState<string>('home');
 
   return (
     <>
@@ -55,206 +56,177 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: navWidth,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+      <IndexContext.Provider
+        value={{
+          currentSection,
+          setCurrentSection,
         }}
       >
-        <Box
-          component='nav'
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            fontSize: '1.5rem',
+        <Navigation />
 
-            '& > a': {
-              transition: 'color 0.1s ease-in',
-              '&:hover': {
-                color: theme.palette.secondary.main,
-              },
-            },
-          }}
-        >
-          <Link href='#home'>
-            <a>home</a>
-          </Link>
-          <Link href='#about-me'>
-            <a>about me</a>
-          </Link>
-          <Link href='#projects'>
-            <a>projects</a>
-          </Link>
-          <Link href='#extensions'>
-            <a>extensions</a>
-          </Link>
-          <Link href='#autohotkey'>
-            <a>autohotkey</a>
-          </Link>
-        </Box>
-      </Box>
-
-      <Box sx={{ backgroundColor: htmlBackgroundColor }}>
-        <Section backgroundColor='#4F214E' id='home' fullscreen>
-          <Box
-            sx={{
-              textShadow: '0 0 5px rgba(0,0,0,0.5)',
-              px: 12,
-            }}
-          >
-            <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
-              Hello, my name is
-            </Box>
+        <Box sx={{ backgroundColor: htmlBackgroundColor }}>
+          <Section id='home' fullscreen>
             <Box
               sx={{
-                fontSize: '1rem',
-                fontWeight: 800,
-                color: theme.palette.secondary.main,
+                textShadow: '0 0 5px rgba(0,0,0,0.5)',
+                px: 12,
               }}
             >
-              Janusz Kowalski
+              <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
+                Hello, my name is
+              </Box>
+              <Box
+                sx={{
+                  fontSize: '1rem',
+                  fontWeight: 800,
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                Janusz Kowalski
+              </Box>
             </Box>
-          </Box>
-        </Section>
-        <Section backgroundColor='#363082' id='about-me' ref={firstSlideRef}>
-          <SectionContent
-            title='About me'
-            description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
-          >
-            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-              <Box sx={{ mr: 10, mt: 4 }}>
-                <Typography variant='h4'>What I like</Typography>
-                <Box mb={0}>
+          </Section>
+          <Section id='about-me'>
+            <SectionContent
+              title='About me'
+              description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
+            >
+              <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                <Box sx={{ mr: 10, mt: 4 }}>
+                  <Typography variant='h4'>what I love</Typography>
+                  <Box mb={0}>
+                    <List>
+                      <Li
+                        icon={<ThumbUpOutlined />}
+                        text='learning languages'
+                      />
+                      <Li icon={<ThumbUpOutlined />} text='cycling' />
+                      <Li icon={<ThumbUpOutlined />} text='vegan junk food' />
+                    </List>
+                  </Box>
+                </Box>
+                <Box sx={{ mt: 4 }}>
+                  <Typography variant='h4'>what I hate</Typography>
                   <List>
-                    <Li icon={<Favorite />} text='learning languages' />
-                    <Li icon={<Favorite />} text='cycling' />
-                    <Li icon={<Favorite />} text='vegan food' />
+                    <Li
+                      icon={<SentimentVeryDissatisfied />}
+                      text='Polskie Koleje Państwowe'
+                    />
+                    <Li icon={<SentimentVeryDissatisfied />} text='Apple' />
+                    <Li
+                      icon={<SentimentVeryDissatisfied />}
+                      text='vehicles (except trains)'
+                    />
                   </List>
                 </Box>
               </Box>
-              <Box sx={{ mt: 4 }}>
-                <Typography variant='h4'>What I hate</Typography>
-                <List>
-                  <Li
-                    icon={<SentimentVeryDissatisfied />}
-                    text='Polskie Koleje Państwowe'
-                  />
-                  <Li icon={<SentimentVeryDissatisfied />} text='Apple' />
-                  <Li
-                    icon={<SentimentVeryDissatisfied />}
-                    text='dinosaur-powered vehicles'
-                  />
-                </List>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                mt: 4,
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                columnGap: 1,
-              }}
-            >
-              <Typography>If you disagree, we can quarell here</Typography>
               <Box
                 sx={{
+                  mt: 2,
                   display: 'flex',
+                  flexWrap: 'wrap',
                   alignItems: 'center',
                   columnGap: 1,
-                  '& a': { display: 'block' },
                 }}
               >
-                <Instagram
-                  fontSize='large'
-                  component='a'
-                  href='https://instagram.com/nizioleque'
-                  target='_blank'
-                />
-                <Telegram
-                  fontSize='large'
-                  component='a'
-                  href='https://t.me/pedalarz'
-                  target='_blank'
-                />
+                <Typography>If you disagree, insult me here:</Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: 2,
+                    ml: 1,
+                    // mt: 1,
+                  }}
+                >
+                  <IconButton
+                    href='https://instagram.com/nizioleque'
+                    target='_blank'
+                  >
+                    <Instagram fontSize='large' />
+                  </IconButton>
+                  <IconButton href='https://t.me/pedalarz' target='_blank'>
+                    <Telegram fontSize='large' />
+                  </IconButton>
+                  <IconButton
+                    href='mailto:nizioleque@gmail.com'
+                    target='_blank'
+                  >
+                    <MailOutline fontSize='large' />
+                  </IconButton>
+                </Box>
               </Box>
-            </Box>
-          </SectionContent>
-        </Section>
-        <Section backgroundColor='#1E5171' id='projects'>
-          <SectionContent
-            title='Projects'
-            description='Whenever I come up with a new programming project, I rush to actualize it. My attention span never exceeds thirty minutes, so I give up after a couple of lines of code. And then I forget about it for the rest of my life. This page is the ideal place to store those discarded scraps of code.'
-          />
-        </Section>
-        <Section backgroundColor='#1F5B5A' id='extensions'>
-          <SectionContent
-            title='Browser extensions'
-            description='Since I comprehended the immense potential of browser extensions at 13 years old, I have created a lengthy list of ideas. Surprisingly, I managed to turn a couple of them into functional products.'
-            cards={
-              <>
-                <Card sx={{ width: 800, flexShrink: 0 }}>
-                  <CardContent>
-                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
-                    tempor sunt qui incididunt laboris enim minim minim culpa id
-                    amet incididunt mollit nisi.
-                  </CardContent>
-                </Card>
-                <Card sx={{ width: 800, flexShrink: 0 }}>
-                  <CardContent>
-                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
-                    tempor sunt qui incididunt laboris enim minim minim culpa id
-                    amet incididunt mollit nisi. Nostrud excepteur magna
-                    reprehenderit sunt incididunt excepteur voluptate excepteur
-                    exercitation culpa eu eu. Dolor incididunt elit commodo
-                    consectetur officia in. Cillum velit excepteur aliqua eu
-                    enim.
-                  </CardContent>
-                </Card>
-                <Card sx={{ width: 400, flexShrink: 0 }}>
-                  <CardContent>
-                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
-                    tempor sunt qui incididunt laboris enim minim minim culpa id
-                    amet incididunt mollit nisi.
-                  </CardContent>
-                </Card>
-                <Card sx={{ width: 400, flexShrink: 0 }}>
-                  <CardContent>
-                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
-                    tempor sunt qui incididunt laboris enim minim minim culpa id
-                    amet incididunt mollit nisi.
-                  </CardContent>
-                </Card>
-                <Card sx={{ width: 400, flexShrink: 0 }}>
-                  <CardContent>
-                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
-                    tempor sunt qui incididunt laboris enim minim minim culpa id
-                    amet incididunt mollit nisi.
-                  </CardContent>
-                </Card>
-              </>
-            }
-          />
-        </Section>
+            </SectionContent>
+          </Section>
+          <Section id='projects'>
+            <SectionContent
+              title='Projects'
+              description='Whenever I come up with a new programming project, I rush to actualize it. My attention span never exceeds thirty minutes, so I give up after a couple of lines of code. And then I forget about it for the rest of my life. This page is the ideal place to store those discarded scraps of code.'
+            />
+          </Section>
+          <Section id='extensions'>
+            <SectionContent
+              title='Browser extensions'
+              description='Since I comprehended the immense potential of browser extensions at 13 years old, I have created a lengthy list of ideas. Surprisingly, I managed to turn a couple of them into functional products.'
+              cards={
+                <>
+                  <Card sx={{ width: 800, flexShrink: 0 }}>
+                    <CardContent>
+                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
+                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
+                      Officia tempor sunt qui incididunt laboris enim minim
+                      minim culpa id amet incididunt mollit nisi.
+                    </CardContent>
+                  </Card>
+                  <Card sx={{ width: 800, flexShrink: 0 }}>
+                    <CardContent>
+                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
+                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
+                      Officia tempor sunt qui incididunt laboris enim minim
+                      minim culpa id amet incididunt mollit nisi. Nostrud
+                      excepteur magna reprehenderit sunt incididunt excepteur
+                      voluptate excepteur exercitation culpa eu eu. Dolor
+                      incididunt elit commodo consectetur officia in. Cillum
+                      velit excepteur aliqua eu enim.
+                    </CardContent>
+                  </Card>
+                  <Card sx={{ width: 400, flexShrink: 0 }}>
+                    <CardContent>
+                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
+                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
+                      Officia tempor sunt qui incididunt laboris enim minim
+                      minim culpa id amet incididunt mollit nisi.
+                    </CardContent>
+                  </Card>
+                  <Card sx={{ width: 400, flexShrink: 0 }}>
+                    <CardContent>
+                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
+                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
+                      Officia tempor sunt qui incididunt laboris enim minim
+                      minim culpa id amet incididunt mollit nisi.
+                    </CardContent>
+                  </Card>
+                  <Card sx={{ width: 400, flexShrink: 0 }}>
+                    <CardContent>
+                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
+                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
+                      Officia tempor sunt qui incididunt laboris enim minim
+                      minim culpa id amet incididunt mollit nisi.
+                    </CardContent>
+                  </Card>
+                </>
+              }
+            />
+          </Section>
 
-        <Section backgroundColor='#225D39' id='autohotkey'>
-          <SectionContent
-            title='AutoHotkey'
-            description='I refuse to put up with the limitations of the OS. When I am annoyed by the lack of functionality, I add it by myself. To achieve this goal I have chosen AutoHotkey and AutoIt — two incomprehensible and obsolete languages'
-          />
-        </Section>
-      </Box>
+          <Section id='autohotkey'>
+            <SectionContent
+              title='AutoHotkey'
+              description='I refuse to put up with the limitations of the OS. When I am annoyed by the lack of functionality, I add it by myself. To achieve this goal I have chosen AutoHotkey and AutoIt — two incomprehensible and obsolete languages.'
+            />
+          </Section>
+        </Box>
+      </IndexContext.Provider>
     </>
   );
 };
