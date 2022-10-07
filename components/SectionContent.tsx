@@ -1,5 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
+
+const horizontalMargin = 'max(13vw, 40px)';
 
 interface SectionContentProps {
   title: string;
@@ -14,6 +16,8 @@ function SectionContent({
   cards,
   children,
 }: SectionContentProps) {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -29,38 +33,25 @@ function SectionContent({
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-
+          gap: theme.gap,
           '& > :not(.card-container)': {
-            mx: '8vw',
-            // '&:not(.section-title)': {
-            //   ml: 'calc(8vw + 48px)',
-            // },
+            mx: horizontalMargin,
           },
           '& > .card-container > div:first-of-type': {
-            // px: 'calc(8vw + 48px)',
-            px: '8vw',
+            px: horizontalMargin,
           },
         }}
       >
         <Box sx={{ flexGrow: 1 }} />
 
-        <Typography
-          variant='h2'
-          sx={{
-            // fontFamily: "'Cascadia Code'",
-          }}
-        >
-          {title}
-        </Typography>
+        <Typography variant='h2'>{title}</Typography>
 
-        <Typography sx={{ mt: 3 }} textAlign='justify'>
-          {description}
-        </Typography>
+        <Typography textAlign='justify'>{description}</Typography>
 
         {cards && (
           <>
             <Box sx={{ flexGrow: 0.2 }} />
-            <Box className='card-container' mt={5}>
+            <Box className='card-container'>
               <Box
                 sx={{
                   display: 'flex',
@@ -76,7 +67,7 @@ function SectionContent({
             </Box>
           </>
         )}
-        {children && <Box>{children}</Box>}
+        {children && <>{children}</>}
 
         <Box sx={{ flexGrow: 1 }} />
       </Box>

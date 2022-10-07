@@ -19,11 +19,12 @@ import {
 import { useTheme } from '@mui/material/styles';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Section from '../components/Section';
 import SectionContent from '../components/SectionContent';
 import { htmlBackgroundColor } from '../src/constants';
+import { IndexContext } from '../src/context/IndexContext';
 
 const Li = ({ icon, text }: any) => (
   <ListItem sx={{ py: 0, '& > .MuiListItemIcon-root': { minWidth: 48 } }}>
@@ -31,18 +32,6 @@ const Li = ({ icon, text }: any) => (
     <ListItemText primary={text} />
   </ListItem>
 );
-
-interface IndexContext {
-  currentSection: string;
-  setCurrentSection: Dispatch<SetStateAction<string>>;
-}
-
-const indexContextDefaultValue: IndexContext = {
-  currentSection: '',
-  setCurrentSection: () => {},
-};
-
-export const IndexContext = createContext<IndexContext>(indexContextDefaultValue);
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -91,10 +80,17 @@ const Home: NextPage = () => {
               title='About me'
               description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
             >
-              <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <Box sx={{ mr: 10, mt: 4 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  columnGap: 8,
+                  rowGap: theme.gap,
+                }}
+              >
+                <Box>
                   <Typography variant='h4'>what I love</Typography>
-                  <Box mb={0}>
+                  <Box>
                     <List>
                       <Li
                         icon={<ThumbUpOutlined />}
@@ -105,7 +101,7 @@ const Home: NextPage = () => {
                     </List>
                   </Box>
                 </Box>
-                <Box sx={{ mt: 4 }}>
+                <Box>
                   <Typography variant='h4'>what I hate</Typography>
                   <List>
                     <Li
@@ -122,11 +118,11 @@ const Home: NextPage = () => {
               </Box>
               <Box
                 sx={{
-                  mt: 2,
                   display: 'flex',
                   flexWrap: 'wrap',
                   alignItems: 'center',
                   columnGap: 1,
+                  rowGap: 2,
                 }}
               >
                 <Typography>If you disagree, insult me here:</Typography>
@@ -134,9 +130,7 @@ const Home: NextPage = () => {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    columnGap: 2,
-                    ml: 1,
-                    // mt: 1,
+                    columnGap: 1,
                   }}
                 >
                   <IconButton

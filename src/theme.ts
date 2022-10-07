@@ -1,4 +1,4 @@
-import { createTheme, SxProps } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
@@ -8,6 +8,13 @@ declare module '@mui/material/styles' {
 
   interface TypographyVariantsOptions {
     menu?: CSSProperties;
+  }
+
+  interface Theme {
+    gap: number;
+  }
+  interface ThemeOptions {
+    gap?: number;
   }
 }
 
@@ -40,6 +47,7 @@ export const theme = createTheme({
       letterSpacing: -0.5,
     },
   },
+  gap: 4,
 });
 
 export const sectionColors: { [key: string]: string } = {

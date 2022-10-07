@@ -1,10 +1,7 @@
 import { Box } from '@mui/material';
 import Link from 'next/link';
 import {
-  createContext,
-  Dispatch,
   ReactNode,
-  SetStateAction,
   useContext,
   useEffect,
   useRef,
@@ -12,7 +9,8 @@ import {
 } from 'react';
 import { sectionColors } from '../src/theme';
 import { navWidth } from '../src/constants';
-import { IndexContext } from '../pages';
+import { IndexContext } from '../src/context/IndexContext';
+import { NavigationContext } from '../src/context/NavigationContext';
 
 interface MenuLinkProps {
   id: string;
@@ -38,7 +36,7 @@ const MenuLink = ({ id, children }: MenuLinkProps) => {
       ref={ref}
       sx={{
         '& a': {
-          transition: 'all 0.1s ease-in',
+          transition: 'all 0.15s ease-in',
           py: 1,
           px: 2,
           display: 'block',
@@ -60,18 +58,6 @@ const MenuLink = ({ id, children }: MenuLinkProps) => {
     </Box>
   );
 };
-
-interface NavigationContext {
-  hoveredLink: string | undefined;
-  setHoveredLink: Dispatch<SetStateAction<string | undefined>>;
-}
-
-const navigationContextDefaultValue: NavigationContext = {
-  hoveredLink: undefined,
-  setHoveredLink: () => {},
-};
-
-const NavigationContext = createContext(navigationContextDefaultValue);
 
 function Navigation() {
   const [hoveredLink, setHoveredLink] = useState<string | undefined>();
