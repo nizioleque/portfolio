@@ -34,11 +34,8 @@ function SectionContent({
           display: 'flex',
           flexDirection: 'column',
           gap: theme.gap,
-          '& > :not(.card-container)': {
+          '& > *': {
             mx: horizontalMargin,
-          },
-          '& > .card-container > div:first-of-type': {
-            px: horizontalMargin,
           },
         }}
       >
@@ -51,12 +48,14 @@ function SectionContent({
         {cards && (
           <>
             <Box sx={{ flexGrow: 0.2 }} />
-            <Box className='card-container'>
+            <Box sx={{ mx: 0 }}>
               <Box
                 sx={{
                   display: 'flex',
                   gap: 2,
-                  overflowX: 'scroll', // TODO: add vertical padding to avoid cropping shadow
+                  overflowX: 'scroll',
+                  py: 2,
+                  px: horizontalMargin,
                   '&::-webkit-scrollbar': {
                     display: 'none',
                   },
