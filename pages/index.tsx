@@ -20,11 +20,12 @@ import { useTheme } from '@mui/material/styles';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
+import ExpandableCard from '../components/ExpandableCard';
 import Navigation from '../components/Navigation';
 import Section from '../components/Section';
 import SectionContent from '../components/SectionContent';
 import { htmlBackgroundColor } from '../src/constants';
-import { IndexContext } from '../src/context/IndexContext';
+import { IndexContext } from '../src/contexts/IndexContext';
 
 const Li = ({ icon, text }: any) => (
   <ListItem sx={{ py: 0, '& > .MuiListItemIcon-root': { minWidth: 48 } }}>
@@ -164,14 +165,12 @@ const Home: NextPage = () => {
               description='Since I comprehended the immense potential of browser extensions at 13 years old, I have created a lengthy list of ideas. Surprisingly, I managed to turn a couple of them into functional products.'
               cards={
                 <>
-                  <Card sx={{ width: 800, flexShrink: 0 }}>
-                    <CardContent>
-                      Ea minim mollit eiusmod magna ad voluptate. Ut minim
-                      dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
-                      Officia tempor sunt qui incididunt laboris enim minim
-                      minim culpa id amet incididunt mollit nisi.
-                    </CardContent>
-                  </Card>
+                  <ExpandableCard>
+                    Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
+                    deserunt ea. Enim et eu adipisicing ipsum sit in. Officia
+                    tempor sunt qui incididunt laboris enim minim minim culpa id
+                    amet incididunt mollit nisi.
+                  </ExpandableCard>
                   <Card sx={{ width: 800, flexShrink: 0 }}>
                     <CardContent>
                       Ea minim mollit eiusmod magna ad voluptate. Ut minim
