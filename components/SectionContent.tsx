@@ -67,7 +67,7 @@ function SectionContent({
                   {cards}
                 </Box>
               </Box>
-              {/* <Box ref={portalContainer} /> */}
+              <Box ref={portalContainer} />
             </>
           )}
           {children && <>{children}</>}

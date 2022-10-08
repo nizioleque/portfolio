@@ -1,31 +1,20 @@
 import { Box, Card, CardContent, CardProps, Portal } from '@mui/material';
-import useHover from '@react-hook/hover';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext } from 'react';
 import { SectionContentContext } from '../src/contexts/SectionContentContext';
+import useHover from '../src/hooks/useHover';
 
 function ExpandableCard(props: CardProps) {
-  const hoverRef = useRef(null);
-  const isHovered = useHover(hoverRef);
+  // const hoverRef = useRef(null);
+  const [hoverRef, isHovered] = useHover();
 
   const { portalContainer } = useContext(SectionContentContext);
 
-  //   useEffect(() => {
-  //     const aaa = setInterval(() => {
-  //       console.log(hoverRef.current);
-  //     }, 1000);
-  //     return () => clearInterval(aaa);
-  //   }, []);
-
-  //   useEffect(() => {
-  //     console.log('aaa', isHovered);
-  //   }, [isHovered]);
-
-  //   if (isHovered)
-  //     return (
-  //       <Portal container={portalContainer.current}>
-  //         <Box ref={hoverRef}>Aaaaaa!</Box>
-  //       </Portal>
-  //     );
+  // if (isHovered)
+  //   return (
+  //     <Portal container={portalContainer.current}>
+  //       <Box ref={hoverRef}>Aaaaaa!</Box>
+  //     </Portal>
+  //   );
 
   return (
     <Box ref={hoverRef}>
@@ -48,11 +37,11 @@ function ExpandableCard(props: CardProps) {
       >
         <CardContent>{props.children}</CardContent>
       </Card>
-      {/* {isHovered && (
+      {isHovered && (
         <Portal container={portalContainer.current}>
           <Box>Aaaaaa!</Box>
         </Portal>
-      )} */}
+      )}
     </Box>
   );
 }

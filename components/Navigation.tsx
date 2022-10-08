@@ -4,13 +4,13 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import { sectionColors } from '../src/theme';
 import { navWidth } from '../src/constants';
-import { IndexContext } from '../src/context/IndexContext';
-import { NavigationContext } from '../src/context/NavigationContext';
+import useHover from '../src/hooks/useHover';
+import { NavigationContext } from '../src/contexts/NavigationContext';
+import { IndexContext } from '../src/contexts/IndexContext';
 
 interface MenuLinkProps {
   id: string;
@@ -20,9 +20,7 @@ interface MenuLinkProps {
 const MenuLink = ({ id, children }: MenuLinkProps) => {
   const isActive = useContext(IndexContext).currentSection === id;
   const { hoveredLink, setHoveredLink } = useContext(NavigationContext);
-
-  const ref = useRef(null);
-  const isHovered = useHover(ref);
+  const [hoverRef, isHovered] = useHover();
 
   useEffect(() => {
     if (isHovered) setHoveredLink(id);
@@ -33,7 +31,7 @@ const MenuLink = ({ id, children }: MenuLinkProps) => {
 
   return (
     <Box
-      ref={ref}
+      ref={hoverRef}
       sx={{
         '& a': {
           transition: 'all 0.15s ease-in',
