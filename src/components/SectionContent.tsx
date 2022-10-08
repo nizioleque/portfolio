@@ -22,9 +22,19 @@ function SectionContent({
   const cardContainerRef = useRef<HTMLElement>();
 
   const [cardScrollLeft, setCardScrollLeft] = useState<number>(0);
-
-  const scrollCardContainer = (offset: number) => {
+  const scrollCardContainer = (offset: number): void => {
     cardContainerRef.current?.scrollBy(offset, 0);
+  };
+
+  // const [cardZIndex, setCardZIndex] = useState<number>(1);
+  // const getCardZIndex = (): number => {
+  //   const oldZIndex = cardZIndex;
+  //   setCardZIndex(cardZIndex + 1);
+  //   return oldZIndex;
+  // };
+  const cardZIndex = useRef<number>(1);
+  const getCardZIndex = (): number => {
+    return cardZIndex.current++;
   };
 
   return (
@@ -33,6 +43,7 @@ function SectionContent({
         portalContainer,
         cardScrollLeft,
         scrollCardContainer,
+        getCardZIndex,
       }}
     >
       <Box

@@ -1,21 +1,27 @@
 import { Box, Card, CardContent, CardProps, Portal } from '@mui/material';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { SectionContentContext } from '../contexts/SectionContentContext';
 import useHover from 'react-use-hover';
 
-const transitionTime = 500;
+const transitionTime = 300;
 
 function ExpandableCard(props: CardProps) {
   const placeholderRef = useRef<HTMLDivElement>(null);
-  const { portalContainer, cardScrollLeft, scrollCardContainer } = useContext(
-    SectionContentContext
-  );
+  const {
+    portalContainer,
+    cardScrollLeft,
+    scrollCardContainer,
+    getCardZIndex,
+  } = useContext(SectionContentContext);
 
   const [isHovering, hoverProps] = useHover({
     mouseLeaveDelayMS: transitionTime,
   });
 
-  if (isHovering)
+  const [cardZIndex, setCardZIndex] = useState<number>(getCardZIndex());
+  const updateCardZIndex = () => setCardZIndex(getCardZIndex());
+
+  if (isHovering) {
     return (
       <>
         <Box
@@ -24,8 +30,11 @@ function ExpandableCard(props: CardProps) {
         />
         <Portal container={portalContainer.current}>
           <Card
-            onWheel={(e) => scrollCardContainer(e.deltaX)}
-            onMouseEnter={hoverProps.onMouseEnter}
+            onWheel={(event) => scrollCardContainer(event.deltaX)}
+            onMouseEnter={(event) => {
+              updateCardZIndex();
+              hoverProps.onMouseEnter?.(event);
+            }}
             onMouseLeave={hoverProps.onMouseLeave}
             sx={{
               position: 'absolute',
@@ -44,6 +53,7 @@ function ExpandableCard(props: CardProps) {
                   height: 600,
                 }),
               },
+              zIndex: cardZIndex,
             }}
           >
             <CardContent>{props.children}</CardContent>
@@ -51,6 +61,7 @@ function ExpandableCard(props: CardProps) {
         </Portal>
       </>
     );
+  }
 
   return (
     <>
