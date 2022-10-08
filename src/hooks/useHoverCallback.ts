@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 
 // Adapted from https://gist.github.com/mbelsky/72c1117a63489daf8e6067049d4532d0
 
-const useHover = <T extends HTMLElement>(): [
+const useHoverCallback = <T extends HTMLElement>(): [
   (node?: T | null) => void,
   boolean
 ] => {
@@ -29,4 +29,4 @@ const useHover = <T extends HTMLElement>(): [
   return [callbackRef, value];
 };
 
-export default useHover;
+export default useHoverCallback;

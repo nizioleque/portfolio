@@ -171,7 +171,7 @@ const Home: NextPage = () => {
                     tempor sunt qui incididunt laboris enim minim minim culpa id
                     amet incididunt mollit nisi.
                   </ExpandableCard>
-                  <Card sx={{ width: 800, flexShrink: 0 }}>
+                  <ExpandableCard>
                     <CardContent>
                       Ea minim mollit eiusmod magna ad voluptate. Ut minim
                       dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
@@ -182,15 +182,15 @@ const Home: NextPage = () => {
                       incididunt elit commodo consectetur officia in. Cillum
                       velit excepteur aliqua eu enim.
                     </CardContent>
-                  </Card>
-                  <Card sx={{ width: 400, flexShrink: 0 }}>
+                  </ExpandableCard>
+                  <ExpandableCard>
                     <CardContent>
                       Ea minim mollit eiusmod magna ad voluptate. Ut minim
                       dolore deserunt ea. Enim et eu adipisicing ipsum sit in.
                       Officia tempor sunt qui incididunt laboris enim minim
                       minim culpa id amet incididunt mollit nisi.
                     </CardContent>
-                  </Card>
+                  </ExpandableCard>
                   <Card sx={{ width: 400, flexShrink: 0 }}>
                     <CardContent>
                       Ea minim mollit eiusmod magna ad voluptate. Ut minim

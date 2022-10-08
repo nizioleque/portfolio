@@ -1,48 +1,71 @@
 import { Box, Card, CardContent, CardProps, Portal } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { SectionContentContext } from '../src/contexts/SectionContentContext';
-import useHover from '../src/hooks/useHover';
+import useHover from 'react-use-hover';
+
+const transitionTime = 500;
 
 function ExpandableCard(props: CardProps) {
-  // const hoverRef = useRef(null);
-  const [hoverRef, isHovered] = useHover();
+  const placeholderRef = useRef<HTMLDivElement>(null);
+  const { portalContainer, cardScrollLeft, scrollCardContainer } = useContext(
+    SectionContentContext
+  );
 
-  const { portalContainer } = useContext(SectionContentContext);
+  const [isHovering, hoverProps] = useHover({
+    mouseLeaveDelayMS: transitionTime,
+  });
 
-  // if (isHovered)
-  //   return (
-  //     <Portal container={portalContainer.current}>
-  //       <Box ref={hoverRef}>Aaaaaa!</Box>
-  //     </Portal>
-  //   );
+  if (isHovering)
+    return (
+      <>
+        <Box
+          sx={{ width: 800, height: 400, flexShrink: 0 }}
+          ref={placeholderRef}
+        />
+        <Portal container={portalContainer.current}>
+          <Card
+            onWheel={(e) => scrollCardContainer(e.deltaX)}
+            onMouseEnter={hoverProps.onMouseEnter}
+            onMouseLeave={hoverProps.onMouseLeave}
+            sx={{
+              position: 'absolute',
+              transition: `${transitionTime}ms ease-in-out`,
+              transitionProperty: 'inset, width, height',
+              top: placeholderRef.current?.offsetTop,
+              left: placeholderRef.current?.offsetLeft,
+              transform: `translateX(${-cardScrollLeft}px)`,
+              width: 800,
+              height: 400,
+              '&:hover': {
+                ...(placeholderRef.current && {
+                  top: placeholderRef.current.offsetTop - 100,
+                  left: placeholderRef.current.offsetLeft - 100,
+                  width: 1000,
+                  height: 600,
+                }),
+              },
+            }}
+          >
+            <CardContent>{props.children}</CardContent>
+          </Card>
+        </Portal>
+      </>
+    );
 
   return (
-    <Box ref={hoverRef}>
+    <>
       <Card
+        onMouseEnter={hoverProps.onMouseEnter}
+        ref={placeholderRef}
         sx={{
-          transition: 'all 0.1s linear',
           width: 800,
           height: 400,
           flexShrink: 0,
-          top: 0,
-          left: 0,
-          position: 'relative',
-          //   '&:hover': {
-          //     top: -100,
-          //     left: -100,
-          //     width: 1000,
-          //     height: 600,
-          //   },
         }}
       >
         <CardContent>{props.children}</CardContent>
       </Card>
-      {isHovered && (
-        <Portal container={portalContainer.current}>
-          <Box>Aaaaaa!</Box>
-        </Portal>
-      )}
-    </Box>
+    </>
   );
 }
 

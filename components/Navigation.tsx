@@ -8,9 +8,9 @@ import {
 } from 'react';
 import { sectionColors } from '../src/theme';
 import { navWidth } from '../src/constants';
-import useHover from '../src/hooks/useHover';
-import { NavigationContext } from '../src/contexts/NavigationContext';
 import { IndexContext } from '../src/contexts/IndexContext';
+import { NavigationContext } from '../src/contexts/NavigationContext';
+import useHoverCallback from '../src/hooks/useHoverCallback';
 
 interface MenuLinkProps {
   id: string;
@@ -20,14 +20,14 @@ interface MenuLinkProps {
 const MenuLink = ({ id, children }: MenuLinkProps) => {
   const isActive = useContext(IndexContext).currentSection === id;
   const { hoveredLink, setHoveredLink } = useContext(NavigationContext);
-  const [hoverRef, isHovered] = useHover();
+  const [hoverRef, isHovering] = useHoverCallback();
 
   useEffect(() => {
-    if (isHovered) setHoveredLink(id);
+    if (isHovering) setHoveredLink(id);
     return () => setHoveredLink(undefined);
-  }, [isHovered]);
+  }, [isHovering]);
 
-  const showHoverStyle = isHovered || (isActive && hoveredLink === undefined);
+  const showHoverStyle = isHovering || (isActive && hoveredLink === undefined);
 
   return (
     <Box
