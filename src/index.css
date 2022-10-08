@@ -11,3 +11,7 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+* {
+  font-variant-ligatures: none;
+}

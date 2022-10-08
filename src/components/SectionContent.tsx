@@ -26,12 +26,6 @@ function SectionContent({
     cardContainerRef.current?.scrollBy(offset, 0);
   };
 
-  // const [cardZIndex, setCardZIndex] = useState<number>(1);
-  // const getCardZIndex = (): number => {
-  //   const oldZIndex = cardZIndex;
-  //   setCardZIndex(cardZIndex + 1);
-  //   return oldZIndex;
-  // };
   const cardZIndex = useRef<number>(1);
   const getCardZIndex = (): number => {
     return cardZIndex.current++;

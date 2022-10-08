@@ -1,7 +1,10 @@
-import { CardContent, Card } from '@mui/material';
-import ExpandableCard from '../ExpandableCard';
 import Section from '../Section';
 import SectionContent from '../SectionContent';
+import mousePinchToZoomIcon from '../../assets/extensionIcons/mousePinchToZoomIcon.png';
+import ytCustomSpeedIcon from '../../assets/extensionIcons/ytCustomSpeedIcon.png';
+import ytDistractionKillerIcon from '../../assets/extensionIcons/ytDistractionKillerIcon.png';
+import searchShortcutIcon from '../../assets/extensionIcons/searchShortcutIcon.png';
+import ExtensionCard from '../ExtensionCard';
 
 function Extensions() {
   return (
@@ -11,47 +14,35 @@ function Extensions() {
         description='Since I comprehended the immense potential of browser extensions at 13 years old, I have created a lengthy list of ideas. Surprisingly, I managed to turn a couple of them into functional products.'
         cards={
           <>
-            <ExpandableCard>
-              Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-              deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
-              sunt qui incididunt laboris enim minim minim culpa id amet
-              incididunt mollit nisi.
-            </ExpandableCard>
-            <ExpandableCard>
-              <CardContent>
-                Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
-                sunt qui incididunt laboris enim minim minim culpa id amet
-                incididunt mollit nisi. Nostrud excepteur magna reprehenderit
-                sunt incididunt excepteur voluptate excepteur exercitation culpa
-                eu eu. Dolor incididunt elit commodo consectetur officia in.
-                Cillum velit excepteur aliqua eu enim.
-              </CardContent>
-            </ExpandableCard>
-            <ExpandableCard>
-              <CardContent>
-                Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
-                sunt qui incididunt laboris enim minim minim culpa id amet
-                incididunt mollit nisi.
-              </CardContent>
-            </ExpandableCard>
-            <Card sx={{ width: 400, flexShrink: 0 }}>
-              <CardContent>
-                Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
-                sunt qui incididunt laboris enim minim minim culpa id amet
-                incididunt mollit nisi.
-              </CardContent>
-            </Card>
-            <Card sx={{ width: 400, flexShrink: 0 }}>
-              <CardContent>
-                Ea minim mollit eiusmod magna ad voluptate. Ut minim dolore
-                deserunt ea. Enim et eu adipisicing ipsum sit in. Officia tempor
-                sunt qui incididunt laboris enim minim minim culpa id amet
-                incididunt mollit nisi.
-              </CardContent>
-            </Card>
+            <ExtensionCard
+              icon={mousePinchToZoomIcon}
+              name='Mouse Pinch-To-Zoom'
+              description='Zoom in on a specific part of the website, like you would with a
+                touchpad gesture!'
+              storeUrl='https://chrome.google.com/webstore/detail/mouse-pinch-to-zoom/pffiadlahfhoniddbipeiiohjnlongfi'
+              githubUrl='https://github.com/nizioleque/mouse-pinch-to-zoom'
+            />
+            <ExtensionCard
+              icon={ytCustomSpeedIcon}
+              name='YouTube Custom Speed'
+              description='Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!'
+              storeUrl='https://chrome.google.com/webstore/detail/youtube-custom-speed/kmfcinojnfabkpndlgomnfjllgeppegb'
+              githubUrl='https://github.com/nizioleque/youtube-custom-speed'
+            />
+            <ExtensionCard
+              icon={ytDistractionKillerIcon}
+              name='YT Distraction Killer'
+              description="Remove distracting elements from YouTube's layout!"
+              storeUrl='https://chrome.google.com/webstore/detail/youtube-distraction-kille/pahjidceabkifggkmokpmlmhoaiflaeh'
+              githubUrl='https://github.com/nizioleque/youtube-distraction-killer'
+            />
+            <ExtensionCard
+              icon={searchShortcutIcon}
+              name='Search Shortcut'
+              description='Activate search boxes with a keyboard shortcut!'
+              storeUrl='https://chrome.google.com/webstore/detail/search-shortcut/nnnejpimaidlnnhnfnkjanmkjigdamgm'
+              githubUrl='https://github.com/nizioleque/search-shortcut'
+            />
           </>
         }
       />
