@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import { ReactNode, useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { navWidth } from '../src/constants';
-import { IndexContext } from '../src/contexts/IndexContext';
-import { sectionColors } from '../src/theme';
+import { navWidth } from '../constants';
+import { IndexContext } from '../contexts/IndexContext';
+import { sectionColors } from '../theme';
 
 interface SectionProps {
   children: ReactNode;

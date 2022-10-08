@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from '@mui/material';
 import { ReactNode, useRef, useState } from 'react';
-import { SectionContentContext } from '../src/contexts/SectionContentContext';
+import { SectionContentContext } from '../contexts/SectionContentContext';
 
 const horizontalMargin = 'max(13vw, 40px)';
 

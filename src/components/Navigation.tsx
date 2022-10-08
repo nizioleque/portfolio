@@ -6,11 +6,11 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { sectionColors } from '../src/theme';
-import { navWidth } from '../src/constants';
-import { IndexContext } from '../src/contexts/IndexContext';
-import { NavigationContext } from '../src/contexts/NavigationContext';
-import useHoverCallback from '../src/hooks/useHoverCallback';
+import { sectionColors } from '../theme';
+import { navWidth } from '../constants';
+import { IndexContext } from '../contexts/IndexContext';
+import { NavigationContext } from '../contexts/NavigationContext';
+import useHoverCallback from '../hooks/useHoverCallback';
 
 interface MenuLinkProps {
   id: string;

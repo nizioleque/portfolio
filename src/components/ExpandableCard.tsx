@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, CardProps, Portal } from '@mui/material';
 import { useContext, useRef } from 'react';
-import { SectionContentContext } from '../src/contexts/SectionContentContext';
+import { SectionContentContext } from '../contexts/SectionContentContext';
 import useHover from 'react-use-hover';
 
 const transitionTime = 500;
