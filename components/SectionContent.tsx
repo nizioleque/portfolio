@@ -37,7 +37,7 @@ function SectionContent({
             display: 'flex',
             flexDirection: 'column',
             gap: theme.gap,
-            '& > *': {
+            '& > :not(.card-container)': {
               mx: horizontalMargin,
             },
           }}
@@ -51,7 +51,7 @@ function SectionContent({
           {cards && (
             <>
               <Box sx={{ flexGrow: 0.2 }} />
-              <Box sx={{ mx: 0 }}>
+              <Box className='card-container'>
                 <Box
                   sx={{
                     display: 'flex',
