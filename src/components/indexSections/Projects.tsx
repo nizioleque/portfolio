@@ -2,7 +2,7 @@ import CardContent from '../CardContent';
 import Section from '../Section';
 import SectionContent from '../SectionContent';
 import nagasakiIcon from '../../assets/projectIcons/nagasakiIcon.png';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 
 function Projects() {
@@ -87,7 +87,14 @@ function Projects() {
             </CardContent>
           </>
         }
-      />
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant='bodyLarge'>
+            You'll find these and more on my{' '}
+            <Button startIcon={<GitHub />}>Github</Button> !
+          </Typography>
+        </Box>
+      </SectionContent>
     </Section>
   );
 }
