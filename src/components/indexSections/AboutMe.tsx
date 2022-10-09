@@ -65,6 +65,7 @@ function AboutMe() {
             alignItems: 'center',
             columnGap: 2,
             rowGap: 2,
+            mt: '-12px',
           }}
         >
           <Typography variant='bodyLarge'>

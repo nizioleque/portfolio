@@ -13,7 +13,7 @@ const AutoHotkeyCard = ({
   ...cardContentProps
 }: AutoHotkeyCardProps) => {
   return (
-    <CardContent {...cardContentProps}>
+    <CardContent height={300} heightExpanded={380} {...cardContentProps}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Typography>Code & downloads on GitHub</Typography>
         <IconButton href={githubUrl} target='_blank'>
@@ -52,13 +52,14 @@ function AutoHotkey() {
               description='Pin a window to stay always on top of other windows. You can even make it semi-transparent and customize the keyboard shortcut!'
               descriptionExpanded='Recently Microsoft added this functionality to their PowerToys – you might want to use that instead…'
               githubUrl='https://github.com/nizioleque/AutoHotkey/blob/master/Always%20on%20Top'
-              heightExpanded={400}
+              heightExpanded={480}
             />
             <AutoHotkeyCard
               name='Music Hotkeys'
               description='Created for my old laptop with no media keys. Maps Play/Pause, Previous/Next track keys to Home/End/PgUp/PgDn'
               descriptionExpanded="My new laptop also doesn't have proper media keys, so expect an updated version soon!"
               githubUrl='https://github.com/nizioleque/AutoHotkey/blob/master/Music%20Hotkeys'
+              heightExpanded={410}
             />
           </>
         }
