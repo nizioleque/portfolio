@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme } from '@mui/material';
-import { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useContext, useRef, useState } from 'react';
 import { SectionContentContext } from '../contexts/SectionContentContext';
+import { SectionContext } from '../contexts/SectionContext';
 
 const horizontalMargin = 'max(13vw, 40px)';
 
@@ -30,6 +31,8 @@ function SectionContent({
   const getCardZIndex = (): number => {
     return cardZIndex.current++;
   };
+
+  const { inView } = useContext(SectionContext);
 
   return (
     <SectionContentContext.Provider
@@ -63,7 +66,16 @@ function SectionContent({
         >
           <Box sx={{ flexGrow: 1 }} />
 
-          <Typography variant='h2'>{title}</Typography>
+          <Typography
+            variant='h2'
+            sx={{
+              transition:
+                'letter-spacing 1000ms 50ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+              letterSpacing: inView ? 8 : -2,
+            }}
+          >
+            {title}
+          </Typography>
 
           <Typography variant='bodyLarge' textAlign='justify'>
             {description}

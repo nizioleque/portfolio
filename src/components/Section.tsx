@@ -3,6 +3,7 @@ import { ReactNode, useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { navWidth } from '../constants';
 import { IndexContext } from '../contexts/IndexContext';
+import { SectionContext } from '../contexts/SectionContext';
 import { sectionColors } from '../theme';
 
 interface SectionProps {
@@ -21,31 +22,33 @@ function Section({ children, id, fullscreen }: SectionProps) {
   }, [inView]);
 
   return (
-    <Box
-      id={id}
-      ref={ref}
-      sx={{
-        height: '100vh',
-        scrollSnapAlign: 'start',
-        scrollSnapStop: 'always',
-        marginRight: !fullscreen ? navWidth + 'px' : undefined,
-        paddingRight: fullscreen ? navWidth + 'px' : undefined,
-        // backgroundColor: !fullscreen ? backgroundColor : undefined,
-        backgroundColor,
-        borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
-        my: '5vh',
-        overflowY: 'auto',
-        overflowX: 'visible',
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-        '& > *': {
-          flexShrink: 0,
-        },
-      }}
-    >
-      {children}
-    </Box>
+    <SectionContext.Provider value={{ inView }}>
+      <Box
+        id={id}
+        ref={ref}
+        sx={{
+          height: '100vh',
+          scrollSnapAlign: 'start',
+          scrollSnapStop: 'always',
+          marginRight: !fullscreen ? navWidth + 'px' : undefined,
+          paddingRight: fullscreen ? navWidth + 'px' : undefined,
+          // backgroundColor: !fullscreen ? backgroundColor : undefined,
+          backgroundColor,
+          borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+          my: '5vh',
+          overflowY: 'auto',
+          overflowX: 'visible',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          '& > *': {
+            flexShrink: 0,
+          },
+        }}
+      >
+        {children}
+      </Box>
+    </SectionContext.Provider>
   );
 }
 
