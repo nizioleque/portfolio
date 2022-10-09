@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import Section from '../Section';
 
 function HomeSection() {
@@ -22,8 +22,9 @@ function HomeSection() {
             color: theme.palette.secondary.main,
           }}
         >
-          Janusz Kowalski
+          Bob Bob Bob
         </Box>
+        <Typography>Homepage content coming soon, scroll down!</Typography>
       </Box>
     </Section>
   );

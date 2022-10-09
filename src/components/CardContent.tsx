@@ -6,7 +6,7 @@ import Image, { StaticImageData } from 'next/image';
 export type CardContentProps = Partial<ExpandableCardProps> & {
   icon?: StaticImageData;
   name: string;
-  description: string;
+  description?: string;
   descriptionExpanded?: string;
   children?: ReactNode;
 };
@@ -36,7 +36,7 @@ function CardContent({
             {icon && <Image src={icon} height={90} width={90} />}
             <Typography variant='h3'>{name}</Typography>
           </Box>
-          <Typography>{description}</Typography>
+          {description && <Typography>{description}</Typography>}
         </>
       }
       contentExpanded={

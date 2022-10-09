@@ -63,11 +63,13 @@ function AboutMe() {
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
-            columnGap: 1,
+            columnGap: 2,
             rowGap: 2,
           }}
         >
-          <Typography>If you disagree, insult me here:</Typography>
+          <Typography variant='bodyLarge'>
+            If you disagree, insult me here:
+          </Typography>
           <Box
             sx={{
               display: 'flex',
@@ -75,13 +77,25 @@ function AboutMe() {
               columnGap: 1,
             }}
           >
-            <IconButton href='https://instagram.com/nizioleque' target='_blank'>
+            <IconButton
+              href='https://instagram.com/nizioleque'
+              target='_blank'
+              size='large'
+            >
               <Instagram fontSize='large' />
             </IconButton>
-            <IconButton href='https://t.me/pedalarz' target='_blank'>
+            <IconButton
+              href='https://t.me/pedalarz'
+              target='_blank'
+              size='large'
+            >
               <Telegram fontSize='large' />
             </IconButton>
-            <IconButton href='mailto:nizioleque@gmail.com' target='_blank'>
+            <IconButton
+              href='mailto:nizioleque@gmail.com'
+              target='_blank'
+              size='large'
+            >
               <MailOutline fontSize='large' />
             </IconButton>
           </Box>
