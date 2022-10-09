@@ -5,6 +5,7 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  background-color: #1a1a1a;
 }
 
 a {

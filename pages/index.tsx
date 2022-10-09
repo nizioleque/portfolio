@@ -8,7 +8,7 @@ import Extensions from '../src/components/indexSections/Extensions';
 import HomeSection from '../src/components/indexSections/HomeSection';
 import Projects from '../src/components/indexSections/Projects';
 import Navigation from '../src/components/Navigation';
-import { htmlBackgroundColor } from '../src/constants';
+import { htmlBackgroundColor } from '../src/theme';
 import { IndexContext } from '../src/contexts/IndexContext';
 
 const Home: NextPage = () => {

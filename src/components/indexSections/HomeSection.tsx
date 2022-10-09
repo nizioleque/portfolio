@@ -2,7 +2,7 @@ import { GitHub, MailOutline } from '@mui/icons-material';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { horizontalMargin } from '../../constants';
-import { transitionTimingFunction } from '../../theme';
+import { shadowStrong, transitionTimingFunction } from '../../theme';
 import Section from '../Section';
 
 const transitionTime = 200;
@@ -16,8 +16,6 @@ const texts: string[] = [
 ];
 
 function HomeSection() {
-  const theme = useTheme();
-
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
   const [isTextHidden, setIsTextHidden] = useState<boolean>(false);
   const nextText = () => {
@@ -50,7 +48,12 @@ function HomeSection() {
       >
         <Box>
           <Typography
-            sx={{ fontSize: '2.6rem', letterSpacing: -1, color: '#ffffffcf' }}
+            sx={{
+              fontSize: '2.6rem',
+              letterSpacing: -1,
+              color: '#ffffffcf',
+              textShadow: shadowStrong,
+            }}
           >
             Hello, I'm
           </Typography>
@@ -71,6 +74,7 @@ function HomeSection() {
         <Typography
           sx={{
             fontSize: '2.2rem',
+            textShadow: shadowStrong,
           }}
         >
           I do{' '}
@@ -85,8 +89,12 @@ function HomeSection() {
           </Box>
         </Typography>
         <Box sx={{ display: 'flex', gap: 4 }}>
-          <Button startIcon={<GitHub />}>Github</Button>
-          <Button startIcon={<MailOutline />}>Mail</Button>
+          <Button variant='strong' startIcon={<GitHub />}>
+            Github
+          </Button>
+          <Button variant='strong' startIcon={<MailOutline />}>
+            Mail
+          </Button>
         </Box>
       </Box>
     </Section>
