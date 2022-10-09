@@ -1,11 +1,11 @@
-import { Box, Card, CardProps, Portal, SxProps } from '@mui/material';
+import { Box, Card, Portal, SxProps } from '@mui/material';
 import { ReactNode, useContext, useRef, useState } from 'react';
 import { SectionContentContext } from '../contexts/SectionContentContext';
 import useHover from 'react-use-hover';
 
 const transitionTime = 300;
 
-interface ExpandableCardProps {
+export interface ExpandableCardProps {
   width?: number;
   height: number;
   heightExpanded: number;
