@@ -5,7 +5,7 @@ import {
   Telegram,
   MailOutline,
 } from '@mui/icons-material';
-import { Box, Typography, List, IconButton, useTheme } from '@mui/material';
+import { Box, Typography, List, useTheme, Button } from '@mui/material';
 import IconListItem from '../IconListItem';
 import Section from '../Section';
 import SectionContent from '../SectionContent';
@@ -63,7 +63,7 @@ function AboutMe() {
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
-            columnGap: 2,
+            columnGap: 3,
             rowGap: 2,
             mt: '-12px',
           }}
@@ -75,30 +75,33 @@ function AboutMe() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              columnGap: 1,
+              columnGap: 3,
             }}
           >
-            <IconButton
+            <Button
               href='https://instagram.com/nizioleque'
               target='_blank'
               size='large'
+              startIcon={<Instagram />}
             >
-              <Instagram fontSize='large' />
-            </IconButton>
-            <IconButton
+              Instagram
+            </Button>
+            <Button
               href='https://t.me/pedalarz'
               target='_blank'
               size='large'
+              startIcon={<Telegram />}
             >
-              <Telegram fontSize='large' />
-            </IconButton>
-            <IconButton
+              Telegram
+            </Button>
+            <Button
               href='mailto:nizioleque@gmail.com'
               target='_blank'
               size='large'
+              startIcon={<MailOutline />}
             >
-              <MailOutline fontSize='large' />
-            </IconButton>
+              Mail
+            </Button>
           </Box>
         </Box>
       </SectionContent>
