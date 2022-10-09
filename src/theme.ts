@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, experimental_sx as sx } from '@mui/material/styles';
 import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
@@ -38,12 +38,17 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Space Mono',
+    allVariants: {
+      fontFamily: 'Space Mono',
+      textShadow: '6px 6px 4px rgba(0, 0, 0, 0.8)',
+    },
     bodyLarge: {
       fontSize: '1.3rem',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.6)',
     },
     body1: {
       fontSize: '1.1rem',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.6)',
     },
     h2: {
       textTransform: 'uppercase',
@@ -64,11 +69,30 @@ export const theme = createTheme({
       letterSpacing: -0.5,
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: sx({
+          // color: 'white',
+          border: '3px white solid',
+          fontSize: '1.2rem',
+          // fontWeight: 'bold',
+          // py: 1,
+          px: 2,
+          borderRadius: 100,
+          textShadow: '6px 6px 4px rgba(0, 0, 0, 0.8)',
+          boxShadow: '6px 6px 4px rgba(0, 0, 0, 0.8)',
+          color: '#ffffffcf',
+          borderColor: '#ffffffcf',
+        }),
+      },
+    },
+  },
   gap: 4,
 });
 
 export const sectionColors: { [key: string]: string } = {
-  home: '#582847',
+  home: '#492669',
   'about-me': '#3F3A88',
   projects: '#1E5171',
   extensions: '#1F5B5A',
