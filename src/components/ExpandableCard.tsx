@@ -2,8 +2,7 @@ import { Box, Card, Portal, SxProps } from '@mui/material';
 import { ReactNode, useContext, useRef, useState } from 'react';
 import { SectionContentContext } from '../contexts/SectionContentContext';
 import useHover from 'react-use-hover';
-
-const transitionTime = 300;
+import { transitionTime, transitionTimingFunction } from '../theme';
 
 export interface ExpandableCardProps {
   width?: number;
@@ -60,7 +59,7 @@ function ExpandableCard({
             sx={{
               ...cardStyle,
               position: 'absolute',
-              transition: `${transitionTime}ms ease-in-out`,
+              transition: `${transitionTime}ms ${transitionTimingFunction}`,
               transitionProperty: 'inset, width, height',
               top: placeholderRef.current?.offsetTop,
               left: placeholderRef.current?.offsetLeft,
@@ -84,7 +83,7 @@ function ExpandableCard({
               className='card-content-expanded'
               ref={expandedContentRef}
               sx={{
-                transition: `opacity ${transitionTime}ms ease-in-out`,
+                transition: `opacity ${transitionTime}ms ${transitionTimingFunction}`,
                 opacity: 0,
               }}
             >

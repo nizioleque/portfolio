@@ -74,3 +74,6 @@ export const sectionColors: { [key: string]: string } = {
   extensions: '#1F5B5A',
   autohotkey: '#1F5B3C',
 };
+
+export const transitionTime = 300;
+export const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
