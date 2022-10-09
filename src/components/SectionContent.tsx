@@ -65,7 +65,9 @@ function SectionContent({
 
           <Typography variant='h2'>{title}</Typography>
 
-          <Typography textAlign='justify'>{description}</Typography>
+          <Typography variant='bodyLarge' textAlign='justify'>
+            {description}
+          </Typography>
 
           {cards && (
             <>

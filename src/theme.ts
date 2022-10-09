@@ -4,10 +4,12 @@ import { CSSProperties } from 'react';
 declare module '@mui/material/styles' {
   interface TypographyVariants {
     menu: CSSProperties;
+    bodyLarge: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     menu?: CSSProperties;
+    bodyLarge?: CSSProperties;
   }
 
   interface Theme {
@@ -15,6 +17,13 @@ declare module '@mui/material/styles' {
   }
   interface ThemeOptions {
     gap?: number;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    bodyLarge: true;
+    menu: true;
   }
 }
 
@@ -30,13 +39,21 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Space Mono',
-    body1: {
+    bodyLarge: {
       fontSize: '1.3rem',
+    },
+    body1: {
+      fontSize: '1.1rem',
     },
     h2: {
       textTransform: 'uppercase',
       fontSize: '4rem',
       fontWeight: 600,
+    },
+    h3: {
+      fontSize: '1.8rem',
+      fontWeight: 'bold',
+      letterSpacing: -0.5,
     },
     h4: {
       fontSize: '1.6rem',
