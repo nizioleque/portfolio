@@ -90,7 +90,7 @@ function Projects() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant='bodyLarge'>
-            You'll find these and more on my{' '}
+            {"You'll find these and more on my "}
             <Button startIcon={<GitHub />}>Github</Button> !
           </Typography>
         </Box>

@@ -1,5 +1,5 @@
 import { GitHub, MailOutline } from '@mui/icons-material';
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { horizontalMargin } from '../../constants';
 import { shadowStrong, transitionTimingFunction } from '../../theme';
@@ -55,7 +55,7 @@ function HomeSection() {
               textShadow: shadowStrong,
             }}
           >
-            Hello, I'm
+            {"Hello, I'm"}
           </Typography>
           <Typography
             variant='h1'
