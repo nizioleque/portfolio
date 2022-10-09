@@ -1,15 +1,9 @@
 import { Box } from '@mui/material';
 import Link from 'next/link';
-import {
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { ReactNode, useContext } from 'react';
 import { sectionColors } from '../theme';
 import { navWidth } from '../constants';
 import { IndexContext } from '../contexts/IndexContext';
-import { NavigationContext } from '../contexts/NavigationContext';
 import useHoverCallback from '../hooks/useHoverCallback';
 
 interface MenuLinkProps {
@@ -19,15 +13,7 @@ interface MenuLinkProps {
 
 const MenuLink = ({ id, children }: MenuLinkProps) => {
   const isActive = useContext(IndexContext).currentSection === id;
-  const { hoveredLink, setHoveredLink } = useContext(NavigationContext);
   const [hoverRef, isHovering] = useHoverCallback();
-
-  useEffect(() => {
-    if (isHovering) setHoveredLink(id);
-    return () => setHoveredLink(undefined);
-  }, [isHovering]);
-
-  const showHoverStyle = isHovering || (isActive && hoveredLink === undefined);
 
   return (
     <Box
@@ -40,7 +26,7 @@ const MenuLink = ({ id, children }: MenuLinkProps) => {
           display: 'block',
           borderRadius: '100px 0 0 100px',
           width: 240,
-          ...(showHoverStyle && {
+          ...((isActive || isHovering) && {
             backgroundColor: sectionColors[id],
             ...(isActive && {
               fontWeight: 'bold',
@@ -58,38 +44,34 @@ const MenuLink = ({ id, children }: MenuLinkProps) => {
 };
 
 function Navigation() {
-  const [hoveredLink, setHoveredLink] = useState<string | undefined>();
-
   return (
-    <NavigationContext.Provider value={{ hoveredLink, setHoveredLink }}>
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        width: navWidth,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+      }}
+    >
       <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: navWidth,
+        component='nav'
+        sx={(theme) => ({
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-        }}
+          flexDirection: 'column',
+          ...theme.typography.menu,
+        })}
       >
-        <Box
-          component='nav'
-          sx={(theme) => ({
-            display: 'flex',
-            flexDirection: 'column',
-            ...theme.typography.menu,
-          })}
-        >
-          <MenuLink id='home'>home</MenuLink>
-          <MenuLink id='about-me'>about me</MenuLink>
-          <MenuLink id='projects'>projects</MenuLink>
-          <MenuLink id='extensions'>extensions</MenuLink>
-          <MenuLink id='autohotkey'>autohotkey</MenuLink>
-        </Box>
+        <MenuLink id='home'>home</MenuLink>
+        <MenuLink id='about-me'>about me</MenuLink>
+        <MenuLink id='projects'>projects</MenuLink>
+        <MenuLink id='extensions'>extensions</MenuLink>
+        <MenuLink id='autohotkey'>autohotkey</MenuLink>
       </Box>
-    </NavigationContext.Provider>
+    </Box>
   );
 }
 
