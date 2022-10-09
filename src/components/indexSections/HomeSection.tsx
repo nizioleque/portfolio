@@ -1,30 +1,93 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { GitHub, MailOutline } from '@mui/icons-material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { horizontalMargin } from '../../constants';
+import { transitionTimingFunction } from '../../theme';
 import Section from '../Section';
+
+const transitionTime = 200;
+
+const texts: string[] = [
+  'web development',
+  'Duolingo lessons',
+  'drink beer',
+  'university bullshit',
+  'break traffic laws while cycling',
+];
 
 function HomeSection() {
   const theme = useTheme();
+
+  const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+  const [isTextHidden, setIsTextHidden] = useState<boolean>(false);
+  const nextText = () => {
+    setIsTextHidden(true);
+    setTimeout(() => {
+      setCurrentTextIndex(
+        (currentIndex: number) => (currentIndex + 1) % texts.length
+      );
+      setIsTextHidden(false);
+    }, transitionTime);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => nextText(), 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Section id='home' fullscreen>
       <Box
         sx={{
-          textShadow: '0 0 5px rgba(0,0,0,0.5)',
-          px: 12,
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: 6,
+          px: horizontalMargin,
+          textShadow: '6px 6px 4px rgba(0, 0, 0, 0.8)',
         }}
       >
-        <Box sx={{ fontSize: '2.5rem', fontWeight: 700 }}>
-          Hello, my name is
+        <Box>
+          <Typography
+            sx={{ fontSize: '2.6rem', letterSpacing: -1, color: '#ffffffcf' }}
+          >
+            Hello, I'm
+          </Typography>
+          <Typography
+            variant='h1'
+            sx={{
+              fontSize: '7.5rem',
+              fontWeight: 'bold',
+              letterSpacing: -5,
+              fontStyle: 'italic',
+              color: 'hsl(43deg 100% 50%)',
+              lineHeight: '100%',
+            }}
+          >
+            Norbert Niziołek
+          </Typography>
         </Box>
-        <Box
+        <Typography
           sx={{
-            fontSize: '1rem',
-            fontWeight: 800,
-            color: theme.palette.secondary.main,
+            fontSize: '2.2rem',
           }}
         >
-          Bob Bob Bob
+          I do{' '}
+          <Box
+            component='span'
+            sx={{
+              transition: `opacity ${transitionTime}ms ${transitionTimingFunction}`,
+              opacity: isTextHidden ? 0 : 1,
+            }}
+          >
+            {texts[currentTextIndex]}.
+          </Box>
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 4 }}>
+          <Button startIcon={<GitHub />}>Github</Button>
+          <Button startIcon={<MailOutline />}>Mail</Button>
         </Box>
-        <Typography>Homepage content coming soon, scroll down!</Typography>
       </Box>
     </Section>
   );

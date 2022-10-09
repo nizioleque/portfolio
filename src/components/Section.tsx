@@ -32,7 +32,6 @@ function Section({ children, id, fullscreen }: SectionProps) {
           scrollSnapStop: 'always',
           marginRight: !fullscreen ? navWidth + 'px' : undefined,
           paddingRight: fullscreen ? navWidth + 'px' : undefined,
-          // backgroundColor: !fullscreen ? backgroundColor : undefined,
           backgroundColor,
           borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
           my: '5vh',
