@@ -18,8 +18,7 @@
     "react": "18.2.0",
     "react-animate-height": "^3.0.4",
     "react-dom": "18.2.0",
-    "react-intersection-observer": "^9.4.0",
-    "react-use-hover": "^2.0.0"
+    "react-intersection-observer": "^9.4.0"
   },
   "devDependencies": {
     "@types/color-convert": "^2.0.0",

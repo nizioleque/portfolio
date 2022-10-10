@@ -1,9 +1,8 @@
 import { Box, Card, Portal, SxProps } from '@mui/material';
 import { ReactNode, useContext, useRef, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
-import useHover from 'react-use-hover';
 import { transitionTime, transitionTimingFunction } from '../theme';
-import AnimateHeight from 'react-animate-height';
+import AnimateHeight, { Height } from 'react-animate-height';
 
 export interface ExpandableCardProps {
   width?: number;
@@ -16,7 +15,6 @@ function ExpandableCard({
   content,
   contentExpanded,
 }: ExpandableCardProps) {
-  const placeholderRef = useRef<HTMLDivElement>(null);
   const {
     portalContainer,
     cardScrollLeft,
@@ -24,9 +22,32 @@ function ExpandableCard({
     getCardZIndex,
   } = useContext(CardContainerContext);
 
-  const [isHovering, hoverProps] = useHover({
-    mouseLeaveDelayMS: transitionTime,
-  });
+  const placeholderRef = useRef<HTMLDivElement>(null);
+
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const [isHiding, setIsHiding] = useState<boolean>(false);
+  const mouseEnter = () => {
+    if (!isMouseOver) {
+      updateCardZIndex();
+      setIsHovering(true);
+      setIsMouseOver(true);
+      setIsHiding(false);
+    }
+  };
+  const mouseLeave = () => {
+    setIsMouseOver(false);
+    hide();
+  };
+  const hide = () => {
+    setIsHiding(true);
+  };
+  const animationEnd = (newHeight: Height) => {
+    if (newHeight === 0) {
+      setIsHiding(false);
+      setIsHovering(false);
+    }
+  };
 
   const [cardZIndex, setCardZIndex] = useState<number>(getCardZIndex());
   const updateCardZIndex = () => setCardZIndex(getCardZIndex());
@@ -54,15 +75,12 @@ function ExpandableCard({
           }}
         >
           <Card
-            onWheel={(event) =>
-              event.deltaX !== -0 && scrollCardContainer(event.deltaX)
-            }
-            onMouseEnter={(event) => {
-              updateCardZIndex();
-              hoverProps.onMouseEnter?.(event);
+            onWheel={(event) => {
+              hide();
+              event.deltaX !== -0 && scrollCardContainer(event.deltaX);
             }}
-            onMouseLeave={hoverProps.onMouseLeave}
-            elevation={10}
+            onMouseEnter={mouseEnter}
+            onMouseLeave={mouseLeave}
             sx={{
               ...cardStyle,
               minHeight: placeholderRef.current?.offsetHeight,
@@ -73,8 +91,9 @@ function ExpandableCard({
             <AnimateHeight
               duration={transitionTime}
               easing={transitionTimingFunction}
-              height={isHovering ? 'auto' : 0}
+              height={isHovering && !isHiding ? 'auto' : 0}
               animateOpacity
+              onHeightAnimationEnd={animationEnd}
             >
               <Box>{contentExpanded}</Box>
             </AnimateHeight>
@@ -82,7 +101,7 @@ function ExpandableCard({
         </Box>
       </Portal>
       <Card
-        onMouseEnter={hoverProps.onMouseEnter}
+        onMouseEnter={mouseEnter}
         ref={placeholderRef}
         sx={{
           ...cardStyle,

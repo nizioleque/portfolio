@@ -44,7 +44,6 @@ function Projects() {
             <CardContent
               name='Typing Challenge'
               description='How fast can you type? A simple web game created for my classes for Ukrainian refugees.'
-              heightExpanded={380}
             >
               <Typography
                 component='a'
