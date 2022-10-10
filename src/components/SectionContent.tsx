@@ -9,6 +9,7 @@ interface SectionContentProps {
   description: string;
   cards?: ReactNode;
   children?: ReactNode;
+  footer?: ReactNode;
 }
 
 function SectionContent({
@@ -16,6 +17,7 @@ function SectionContent({
   description,
   cards,
   children,
+  footer,
 }: SectionContentProps) {
   const theme = useTheme();
 
@@ -67,6 +69,12 @@ function SectionContent({
           </>
         )}
         {children && <>{children}</>}
+        {footer && (
+          <>
+            <Box sx={{ flexGrow: 0.2 }} />
+            <>{footer}</>
+          </>
+        )}
 
         <Box sx={{ flexGrow: 1 }} />
       </Box>

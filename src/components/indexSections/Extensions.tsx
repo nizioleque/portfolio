@@ -5,6 +5,9 @@ import ytCustomSpeedIcon from '../../assets/extensionIcons/ytCustomSpeedIcon.png
 import ytDistractionKillerIcon from '../../assets/extensionIcons/ytDistractionKillerIcon.png';
 import searchShortcutIcon from '../../assets/extensionIcons/searchShortcutIcon.png';
 import ExtensionCard from '../ExtensionCard';
+import { Button, Typography } from '@mui/material';
+import BoxFlex from '../BoxFlex';
+import { Euro } from '@mui/icons-material';
 
 function Extensions() {
   return (
@@ -44,6 +47,22 @@ function Extensions() {
               githubUrl='https://github.com/nizioleque/search-shortcut'
             />
           </>
+        }
+        footer={
+          <BoxFlex>
+            <Typography variant='bodyLarge'>
+              {'If you find my extensions helpful, please consider '}
+              <Button
+                startIcon={<Euro />}
+                component='a'
+                href='https://www.buymeacoffee.com/nizioleque'
+                target='_blank'
+              >
+                Supporting me
+              </Button>{' '}
+              !
+            </Typography>
+          </BoxFlex>
         }
       />
     </Section>

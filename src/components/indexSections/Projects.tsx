@@ -4,6 +4,7 @@ import SectionContent from '../SectionContent';
 import nagasakiIcon from '../../assets/projectIcons/nagasakiIcon.png';
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
+import BoxFlex from '../BoxFlex';
 
 function Projects() {
   return (
@@ -86,14 +87,23 @@ function Projects() {
             </CardContent>
           </>
         }
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography variant='bodyLarge'>
-            {"You'll find these and more on my "}
-            <Button startIcon={<GitHub />}>Github</Button> !
-          </Typography>
-        </Box>
-      </SectionContent>
+        footer={
+          <BoxFlex>
+            <Typography variant='bodyLarge'>
+              {"You'll find these and more on my "}
+              <Button
+                startIcon={<GitHub />}
+                component='a'
+                href='https://github.com/nizioleque'
+                target='_blank'
+              >
+                Github
+              </Button>{' '}
+              !
+            </Typography>
+          </BoxFlex>
+        }
+      ></SectionContent>
     </Section>
   );
 }

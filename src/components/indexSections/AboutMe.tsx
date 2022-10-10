@@ -74,8 +74,10 @@ function AboutMe() {
           <Box
             sx={{
               display: 'flex',
+              flexWrap: 'wrap',
               alignItems: 'center',
               columnGap: 3,
+              rowGap: 2,
             }}
           >
             <Button
