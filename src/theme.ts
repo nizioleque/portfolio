@@ -121,6 +121,9 @@ export const theme = createTheme({
           textShadow: shadowWeak,
           boxShadow: shadowWeak,
           color: 'white',
+          '&:hover': {
+            backgroundColor: '#ffffff3a',
+          },
         }),
       },
     },
