@@ -2,7 +2,11 @@ import { GitHub, MailOutline } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { horizontalMargin } from '../../constants';
-import { shadowStrong, transitionTimingFunction } from '../../theme';
+import {
+  shadowStrong,
+  transitionTimingFunction,
+  dynamicFontSize,
+} from '../../theme';
 import Section from '../Section';
 
 const transitionTime = 200;
@@ -49,7 +53,7 @@ function HomeSection() {
         <Box>
           <Typography
             sx={{
-              fontSize: '2.6rem',
+              fontSize: dynamicFontSize(2.6),
               letterSpacing: -1,
               color: '#ffffffcf',
               textShadow: shadowStrong,
@@ -60,7 +64,7 @@ function HomeSection() {
           <Typography
             variant='h1'
             sx={{
-              fontSize: '7.5rem',
+              fontSize: dynamicFontSize(7.5),
               fontWeight: 'bold',
               letterSpacing: -5,
               fontStyle: 'italic',
@@ -73,7 +77,7 @@ function HomeSection() {
         </Box>
         <Typography
           sx={{
-            fontSize: '2.2rem',
+            fontSize: dynamicFontSize(2.2),
             textShadow: shadowStrong,
           }}
         >

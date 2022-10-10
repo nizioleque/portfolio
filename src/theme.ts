@@ -36,6 +36,21 @@ declare module '@mui/material/Button' {
 export const shadowStrong = '6px 6px 4px rgba(0, 0, 0, 0.8)';
 export const shadowWeak = '2px 2px 4px rgba(0, 0, 0, 0.6)';
 
+export const sectionColors: { [key: string]: string } = {
+  home: '#492669',
+  'about-me': '#3F3A88',
+  projects: '#1E5171',
+  extensions: '#1F5B5A',
+  autohotkey: '#1F5B3C',
+};
+
+export const transitionTime = 300;
+export const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+export const htmlBackgroundColor = '#1a1a1a';
+
+export const dynamicFontSize = (max: number) =>
+  `clamp(${max * 0.91}rem, ${max * 1.346}vw, ${max}rem)`;
+
 export const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -52,34 +67,34 @@ export const theme = createTheme({
       textShadow: shadowWeak,
     },
     bodyLarge: {
-      fontSize: '1.3rem',
+      fontSize: dynamicFontSize(1.3),
     },
     body1: {
-      fontSize: '1.1rem',
+      fontSize: dynamicFontSize(1.1),
     },
     h1: {
       textShadow: shadowStrong,
     },
     h2: {
       textTransform: 'uppercase',
-      fontSize: '4rem',
+      fontSize: dynamicFontSize(4),
       fontWeight: 600,
       textShadow: shadowStrong,
       fontStyle: 'italic',
     },
     h3: {
-      fontSize: '1.8rem',
+      fontSize: dynamicFontSize(1.8),
       fontWeight: 'bold',
       letterSpacing: -0.5,
       textShadow: shadowStrong,
     },
     h4: {
-      fontSize: '1.6rem',
+      fontSize: dynamicFontSize(1.6),
       fontWeight: 600,
       textShadow: shadowStrong,
     },
     menu: {
-      fontSize: '1.6rem',
+      fontSize: dynamicFontSize(1.6),
       letterSpacing: -0.5,
       textShadow: shadowStrong,
     },
@@ -92,14 +107,14 @@ export const theme = createTheme({
           style: {
             textShadow: shadowStrong,
             boxShadow: shadowStrong,
-            fontSize: '1.2rem',
+            fontSize: dynamicFontSize(1.2),
           },
         },
       ],
       styleOverrides: {
         root: sx({
           border: '2px white solid',
-          fontSize: '1.1rem',
+          fontSize: dynamicFontSize(1.1),
           py: 0.5,
           px: 2,
           borderRadius: 100,
@@ -112,15 +127,3 @@ export const theme = createTheme({
   },
   gap: 4,
 });
-
-export const sectionColors: { [key: string]: string } = {
-  home: '#492669',
-  'about-me': '#3F3A88',
-  projects: '#1E5171',
-  extensions: '#1F5B5A',
-  autohotkey: '#1F5B3C',
-};
-
-export const transitionTime = 300;
-export const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-export const htmlBackgroundColor = '#1a1a1a';
