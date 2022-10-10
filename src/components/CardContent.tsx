@@ -21,8 +21,6 @@ function CardContent({
 }: CardContentProps) {
   return (
     <ExpandableCard
-      height={250}
-      heightExpanded={350}
       content={
         <>
           <Box

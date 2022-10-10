@@ -65,6 +65,7 @@ export const theme = createTheme({
       fontSize: '4rem',
       fontWeight: 600,
       textShadow: shadowStrong,
+      fontStyle: 'italic',
     },
     h3: {
       fontSize: '1.8rem',

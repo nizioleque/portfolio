@@ -3,19 +3,16 @@ import { ReactNode, useContext, useRef, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 import useHover from 'react-use-hover';
 import { transitionTime, transitionTimingFunction } from '../theme';
+import AnimateHeight from 'react-animate-height';
 
 export interface ExpandableCardProps {
   width?: number;
-  height: number;
-  heightExpanded: number;
   content: ReactNode;
   contentExpanded: ReactNode;
 }
 
 function ExpandableCard({
   width = 550,
-  height,
-  heightExpanded,
   content,
   contentExpanded,
 }: ExpandableCardProps) {
@@ -34,21 +31,28 @@ function ExpandableCard({
   const [cardZIndex, setCardZIndex] = useState<number>(getCardZIndex());
   const updateCardZIndex = () => setCardZIndex(getCardZIndex());
 
-  const expandedContentRef = useRef<HTMLDivElement>(null);
-  expandedContentRef.current && getComputedStyle(expandedContentRef.current);
-
   const cardStyle: SxProps = {
     p: 4,
     width,
-    height,
     flexShrink: 0,
   };
 
-  if (isHovering) {
-    return (
-      <>
-        <Box sx={{ ...cardStyle }} ref={placeholderRef} />
-        <Portal container={portalContainer.current}>
+  return (
+    <>
+      <Portal container={portalContainer.current}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: placeholderRef.current?.offsetTop,
+            left: placeholderRef.current?.offsetLeft,
+            height: placeholderRef.current?.offsetHeight,
+            zIndex: cardZIndex,
+
+            display: !isHovering ? 'none' : 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
           <Card
             onWheel={(event) =>
               event.deltaX !== -0 && scrollCardContainer(event.deltaX)
@@ -58,52 +62,31 @@ function ExpandableCard({
               hoverProps.onMouseEnter?.(event);
             }}
             onMouseLeave={hoverProps.onMouseLeave}
+            elevation={10}
             sx={{
               ...cardStyle,
-              position: 'absolute',
-              transition: `${transitionTime}ms ${transitionTimingFunction}`,
-              transitionProperty: 'inset, width, height',
-              top: placeholderRef.current?.offsetTop,
-              left: placeholderRef.current?.offsetLeft,
+              minHeight: placeholderRef.current?.offsetHeight,
               transform: `translateX(${-cardScrollLeft}px)`,
-              '&:hover': {
-                ...(placeholderRef.current && {
-                  top:
-                    placeholderRef.current.offsetTop -
-                    (heightExpanded - height) / 2,
-                  height: heightExpanded,
-                }),
-                '& .card-content-expanded': {
-                  opacity: 1,
-                },
-              },
-              zIndex: cardZIndex,
             }}
           >
             {content}
-            <Box
-              className='card-content-expanded'
-              ref={expandedContentRef}
-              sx={{
-                transition: `opacity ${transitionTime}ms ${transitionTimingFunction}`,
-                opacity: 0,
-              }}
+            <AnimateHeight
+              duration={transitionTime}
+              easing={transitionTimingFunction}
+              height={isHovering ? 'auto' : 0}
+              animateOpacity
             >
-              {contentExpanded}
-            </Box>
+              <Box>{contentExpanded}</Box>
+            </AnimateHeight>
           </Card>
-        </Portal>
-      </>
-    );
-  }
-
-  return (
-    <>
+        </Box>
+      </Portal>
       <Card
         onMouseEnter={hoverProps.onMouseEnter}
         ref={placeholderRef}
         sx={{
           ...cardStyle,
+          visibility: isHovering ? 'hidden' : undefined,
         }}
       >
         {content}
