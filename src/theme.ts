@@ -91,6 +91,7 @@ export const theme = createTheme({
           style: {
             textShadow: shadowStrong,
             boxShadow: shadowStrong,
+            fontSize: '1.2rem',
           },
         },
       ],
@@ -103,8 +104,7 @@ export const theme = createTheme({
           borderRadius: 100,
           textShadow: shadowWeak,
           boxShadow: shadowWeak,
-          color: '#ffffffcf',
-          borderColor: '#ffffffcf',
+          color: 'white',
         }),
       },
     },
@@ -123,4 +123,3 @@ export const sectionColors: { [key: string]: string } = {
 export const transitionTime = 300;
 export const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 export const htmlBackgroundColor = '#1a1a1a';
-

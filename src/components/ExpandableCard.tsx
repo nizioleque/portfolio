@@ -1,6 +1,6 @@
 import { Box, Card, Portal, SxProps } from '@mui/material';
 import { ReactNode, useContext, useRef, useState } from 'react';
-import { SectionContentContext } from '../contexts/SectionContentContext';
+import { CardContainerContext } from '../contexts/CardContainerContext';
 import useHover from 'react-use-hover';
 import { transitionTime, transitionTimingFunction } from '../theme';
 
@@ -25,7 +25,7 @@ function ExpandableCard({
     cardScrollLeft,
     scrollCardContainer,
     getCardZIndex,
-  } = useContext(SectionContentContext);
+  } = useContext(CardContainerContext);
 
   const [isHovering, hoverProps] = useHover({
     mouseLeaveDelayMS: transitionTime,
@@ -50,7 +50,9 @@ function ExpandableCard({
         <Box sx={{ ...cardStyle }} ref={placeholderRef} />
         <Portal container={portalContainer.current}>
           <Card
-            onWheel={(event) => scrollCardContainer(event.deltaX)}
+            onWheel={(event) =>
+              event.deltaX !== -0 && scrollCardContainer(event.deltaX)
+            }
             onMouseEnter={(event) => {
               updateCardZIndex();
               hoverProps.onMouseEnter?.(event);

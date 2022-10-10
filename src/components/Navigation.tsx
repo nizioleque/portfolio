@@ -41,7 +41,7 @@ const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
               fontWeight: undefined,
               letterSpacing: undefined,
               opacity: 0,
-              marginTop: '-27px',
+              marginTop: '-54.4px',
             }),
         },
       }}

@@ -1,6 +1,6 @@
 import { createContext, MutableRefObject } from 'react';
 
-interface SectionContentContext {
+interface CardContainerContext {
   portalContainer: MutableRefObject<HTMLElement | undefined>;
   cardScrollLeft: number;
   scrollCardContainer: (offset: number) => void;
@@ -9,7 +9,7 @@ interface SectionContentContext {
   getCardZIndex: () => number;
 }
 
-const sectionContentContextDefaultValue: SectionContentContext = {
+const cardContainerContextDefaultValue: CardContainerContext = {
   portalContainer: { current: undefined },
   cardScrollLeft: 0,
   scrollCardContainer: () => {},
@@ -18,6 +18,6 @@ const sectionContentContextDefaultValue: SectionContentContext = {
   getCardZIndex: () => 0,
 };
 
-export const SectionContentContext = createContext(
-  sectionContentContextDefaultValue
+export const CardContainerContext = createContext(
+  cardContainerContextDefaultValue
 );

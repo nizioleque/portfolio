@@ -47,7 +47,7 @@ function CardContainer({ cards }: CardContainerProps) {
   };
 
   return (
-    <SectionContentContext.Provider
+    <CardContainerContext.Provider
       value={{
         portalContainer,
         cardScrollLeft,
@@ -80,7 +80,7 @@ function CardContainer({ cards }: CardContainerProps) {
         <ArrowButton direction='right' />
         <Box ref={portalContainer} />
       </Box>
-    </SectionContentContext.Provider>
+    </CardContainerContext.Provider>
   );
 }
 

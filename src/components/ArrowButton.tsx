@@ -1,7 +1,7 @@
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { Box, Grow, IconButton } from '@mui/material';
 import { useContext } from 'react';
-import { SectionContentContext } from '../contexts/SectionContentContext';
+import { CardContainerContext } from '../contexts/CardContainerContext';
 
 interface ArrowButtonProps {
   direction: 'left' | 'right';
@@ -9,7 +9,7 @@ interface ArrowButtonProps {
 
 function ArrowButton({ direction }: ArrowButtonProps) {
   const { scrollCardContainerByChild, isCardContainerScrolledToEnd } =
-    useContext(SectionContentContext);
+    useContext(CardContainerContext);
   return (
     <Box
       sx={{
@@ -21,6 +21,7 @@ function ArrowButton({ direction }: ArrowButtonProps) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        pointerEvents: 'none',
       }}
     >
       <Grow in={!isCardContainerScrolledToEnd(direction)}>
@@ -34,6 +35,7 @@ function ArrowButton({ direction }: ArrowButtonProps) {
             boxShadow: 5,
             zIndex: 9999,
             backgroundColor: '#dddddd',
+            pointerEvents: 'initial',
             '&:hover': {
               backgroundColor: '#aaaaaa',
             },
