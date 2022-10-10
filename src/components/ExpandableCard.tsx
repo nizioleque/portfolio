@@ -54,6 +54,7 @@ function ExpandableCard({
 
   const cardStyle: SxProps = {
     p: 4,
+    pb: 0,
     width,
     flexShrink: 0,
   };
@@ -88,6 +89,7 @@ function ExpandableCard({
             }}
           >
             {content}
+
             <AnimateHeight
               duration={transitionTime}
               easing={transitionTimingFunction}
@@ -96,6 +98,7 @@ function ExpandableCard({
               onHeightAnimationEnd={animationEnd}
             >
               <Box>{contentExpanded}</Box>
+              <Box height={32} />
             </AnimateHeight>
           </Card>
         </Box>
@@ -109,6 +112,7 @@ function ExpandableCard({
         }}
       >
         {content}
+        <Box height={32} />
       </Card>
     </>
   );
