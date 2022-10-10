@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { ReactNode, useRef, useState } from 'react';
 import { horizontalMargin } from '../constants';
-import { SectionContentContext } from '../contexts/SectionContentContext';
 import ArrowButton from './ArrowButton';
+import CardContainerContext from '../contexts/CardContainerContext';
 
 interface CardContainerProps {
   cards: ReactNode;

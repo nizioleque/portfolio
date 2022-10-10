@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ReactNode, useContext } from 'react';
 import { sectionColors } from '../theme';
 import { navWidth } from '../constants';
-import { IndexContext } from '../contexts/IndexContext';
+import IndexContext from '../contexts/IndexContext';
 import useHoverCallback from '../hooks/useHoverCallback';
 
 interface MenuLinkProps {

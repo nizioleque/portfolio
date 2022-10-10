@@ -8,4 +8,6 @@ const sectionContentDefaultValue: SectionContext = {
   inView: false,
 };
 
-export const SectionContext = createContext(sectionContentDefaultValue);
+const SectionContext = createContext(sectionContentDefaultValue);
+
+export default SectionContext;

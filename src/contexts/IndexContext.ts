@@ -10,6 +10,6 @@ const indexContextDefaultValue: IndexContext = {
   setCurrentSection: () => {},
 };
 
-export const IndexContext = createContext<IndexContext>(
-  indexContextDefaultValue
-);
+const IndexContext = createContext<IndexContext>(indexContextDefaultValue);
+
+export default IndexContext;

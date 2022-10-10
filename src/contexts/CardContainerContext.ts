@@ -18,6 +18,6 @@ const cardContainerContextDefaultValue: CardContainerContext = {
   getCardZIndex: () => 0,
 };
 
-export const CardContainerContext = createContext(
-  cardContainerContextDefaultValue
-);
+const CardContainerContext = createContext(cardContainerContextDefaultValue);
+
+export default CardContainerContext;

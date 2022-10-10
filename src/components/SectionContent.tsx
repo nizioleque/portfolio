@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from '@mui/material';
 import { ReactNode, useContext } from 'react';
 import { horizontalMargin } from '../constants';
-import { SectionContext } from '../contexts/SectionContext';
+import SectionContext from '../contexts/SectionContext';
 import CardContainer from './CardContainer';
 
 interface SectionContentProps {

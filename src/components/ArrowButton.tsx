@@ -1,7 +1,7 @@
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { Box, Grow, IconButton } from '@mui/material';
 import { useContext } from 'react';
-import { CardContainerContext } from '../contexts/CardContainerContext';
+import CardContainerContext from '../contexts/CardContainerContext';
 
 interface ArrowButtonProps {
   direction: 'left' | 'right';

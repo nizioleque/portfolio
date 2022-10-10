@@ -9,7 +9,7 @@ import HomeSection from '../src/components/indexSections/HomeSection';
 import Projects from '../src/components/indexSections/Projects';
 import Navigation from '../src/components/Navigation';
 import { htmlBackgroundColor } from '../src/theme';
-import { IndexContext } from '../src/contexts/IndexContext';
+import IndexContext from '../src/contexts/IndexContext';
 
 const Home: NextPage = () => {
   const [currentSection, setCurrentSection] = useState<string>('home');

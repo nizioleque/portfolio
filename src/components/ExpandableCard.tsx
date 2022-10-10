@@ -1,6 +1,6 @@
 import { Box, Card, Portal, SxProps } from '@mui/material';
 import { ReactNode, useContext, useRef, useState } from 'react';
-import { CardContainerContext } from '../contexts/CardContainerContext';
+import CardContainerContext from '../contexts/CardContainerContext';
 import useHover from 'react-use-hover';
 import { transitionTime, transitionTimingFunction } from '../theme';
 
