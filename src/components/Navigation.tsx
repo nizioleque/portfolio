@@ -23,13 +23,14 @@ const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
         '& a': {
           transition: 'all 150ms ease-in',
           py: 1,
-          px: 2,
+          px: 2, // TODO: rem
           display: 'block',
           borderRadius: '100px 0 0 100px',
-          width: 240,
+          width: 240, // TODO: rem
           opacity: 1,
           ...((isActive || isHovering) && {
             backgroundColor: sectionColors[id],
+            boxShadow: 4,
           }),
           ...(isActive && {
             fontWeight: 'bold',
@@ -41,7 +42,7 @@ const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
               fontWeight: undefined,
               letterSpacing: undefined,
               opacity: 0,
-              marginTop: '-54.4px',
+              marginTop: '-54.4px', // TODO: rem
             }),
         },
       }}

@@ -33,6 +33,7 @@ function Section({ children, id, fullscreen }: SectionProps) {
           marginRight: !fullscreen ? navWidth + 'px' : undefined,
           paddingRight: fullscreen ? navWidth + 'px' : undefined,
           backgroundColor,
+          boxShadow: !fullscreen ? 14 : undefined,
           borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
           my: '5vh',
           overflowY: 'auto',
