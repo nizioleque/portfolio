@@ -5,8 +5,8 @@ import SectionContext from '../contexts/SectionContext';
 import CardContainer from './CardContainer';
 
 interface SectionContentProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   cards?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
@@ -46,21 +46,24 @@ function SectionContent({
         }}
       >
         <Box sx={{ flexGrow: 1 }} />
+        {title && (
+          <Typography
+            variant='h2'
+            sx={{
+              transition:
+                'letter-spacing 1000ms 50ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+              letterSpacing: inView ? 8 : -2,
+            }}
+          >
+            {title}
+          </Typography>
+        )}
 
-        <Typography
-          variant='h2'
-          sx={{
-            transition:
-              'letter-spacing 1000ms 50ms cubic-bezier(0.22, 0.61, 0.36, 1)',
-            letterSpacing: inView ? 8 : -2,
-          }}
-        >
-          {title}
-        </Typography>
-
-        <Typography variant='bodyLarge' textAlign='justify'>
-          {description}
-        </Typography>
+        {description && (
+          <Typography variant='bodyLarge' textAlign='justify'>
+            {description}
+          </Typography>
+        )}
 
         {cards && (
           <>

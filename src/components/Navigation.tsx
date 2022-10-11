@@ -6,7 +6,7 @@ import {
   transitionTime,
   transitionTimingFunction,
 } from '../theme';
-import { navWidth } from '../constants';
+import { desktopNavWidth, mobileNavHeight } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import useHoverCallback from '../hooks/useHoverCallback';
 
@@ -72,7 +72,7 @@ const NavigationDesktop = () => {
         top: 0,
         right: 0,
         bottom: 0,
-        width: navWidth,
+        width: desktopNavWidth,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
@@ -100,7 +100,18 @@ const NavigationDesktop = () => {
 
 const NavigationMobile = () => {
   return (
-    <Box sx={{ backgroundColor: 'lime', display: 'none' }}>Nav mobile</Box>
+    <Box
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: mobileNavHeight,
+        border: '1px red solid',
+      }}
+    >
+      NAVIGATION PLACEHOLDER (SWIPE -&gt;&gt;&gt;&gt;&gt;)
+    </Box>
   );
 };
 

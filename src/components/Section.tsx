@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactNode, useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { navWidth } from '../constants';
+import { desktopNavWidth, mobileNavHeight } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import SectionContext from '../contexts/SectionContext';
 import { sectionColors } from '../theme';
@@ -21,42 +21,58 @@ function Section({ children, id, fullscreen }: SectionProps) {
     if (inView) setCurrentSection(id);
   }, [inView]);
 
+  const sectionInner = (
+    <Box
+      id={id}
+      ref={ref}
+      sx={{
+        overflowY: 'auto',
+        backgroundColor,
+        // '&::-webkit-scrollbar': {
+        //   display: 'none',
+        // },
+        ...(!mobileLayout && {
+          mr: !fullscreen ? desktopNavWidth + 'px' : undefined,
+          pr: fullscreen ? desktopNavWidth + 'px' : undefined,
+          my: '5vh',
+          '&:first-of-type': { mt: 0 },
+          '&:last-of-type': { mb: 0 },
+          boxShadow: !fullscreen ? 14 : undefined,
+          borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+          height: '100vh',
+          scrollSnapAlign: 'start',
+          scrollSnapStop: 'always',
+        }),
+        ...(mobileLayout && {
+          width: '100vw',
+          height: '100%',
+          borderRadius: !fullscreen ? '0 0 5vw 5vw' : undefined,
+          pb: fullscreen ? `${mobileNavHeight}px` : undefined,
+        }),
+      }}
+    >
+      {children}
+    </Box>
+  );
+
   return (
     <SectionContext.Provider value={{ inView }}>
-      <Box
-        id={id}
-        ref={ref}
-        sx={{
-          overflowY: 'auto',
-          backgroundColor,
-          // '&::-webkit-scrollbar': {
-          //   display: 'none',
-          // },
-          ...(!mobileLayout && {
-            scrollSnapAlign: 'start',
-            scrollSnapStop: 'always',
-            mr: !fullscreen ? navWidth + 'px' : undefined,
-            pr: fullscreen ? navWidth + 'px' : undefined,
-            my: '5vh',
-            '&:first-of-type': { mt: 0 },
-            '&:last-of-type': { mb: 0 },
-            boxShadow: !fullscreen ? 14 : undefined,
-            borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+      {mobileLayout ? (
+        <Box
+          sx={{
             height: '100vh',
-          }),
-          ...(mobileLayout && {
+            overflowY: 'scroll',
             flexShrink: 0,
-            width: '100vw',
-            height: '100%',
-            borderRadius: '0 0 5vw 5vw',
+            pb: !fullscreen ? `${mobileNavHeight}px` : undefined,
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
-            overflowX: 'hidden', // crop when text is to large
-          }),
-        }}
-      >
-        {children}
-      </Box>
+          }}
+        >
+          {sectionInner}
+        </Box>
+      ) : (
+        <>{sectionInner}</>
+      )}
     </SectionContext.Provider>
   );
 }

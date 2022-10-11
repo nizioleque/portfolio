@@ -19,11 +19,11 @@ const Home: NextPage = () => {
   const mobileLayout = useMediaQuery(theme.breakpoints.down('md'));
 
   const sections: ReactNode[] = [
-    <HomeSection />,
-    <AboutMe />,
-    <Projects />,
-    <Extensions />,
-    <AutoHotkey />,
+    <HomeSection key='home' />,
+    <AboutMe key='about-me' />,
+    <Projects key='projects' />,
+    <Extensions key='extensions' />,
+    <AutoHotkey key='autohotkey' />,
   ];
 
   return (
@@ -82,18 +82,15 @@ interface LayoutMobileProps {
 
 const LayoutMobile = ({ sections }: LayoutMobileProps) => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          flex: 1,
-          overflowX: 'auto',
-          scrollSnapType: 'x mandatory',
-        }}
-      >
-        {sections}
-      </Box>
-      <Box sx={{ height: 100, flexShrink: 0 }}>NAVIGATION</Box>
+    <Box
+      sx={{
+        display: 'flex',
+        flex: 1,
+        overflowY: 'scroll',
+        scrollSnapType: 'x mandatory',
+      }}
+    >
+      {sections}
     </Box>
   );
 };
