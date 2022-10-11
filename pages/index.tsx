@@ -81,7 +81,21 @@ interface LayoutMobileProps {
 }
 
 const LayoutMobile = ({ sections }: LayoutMobileProps) => {
-  return <Box sx={{ display: 'flex', overflowX: 'visible' }}>{sections}</Box>;
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flex: 1,
+          overflowX: 'auto',
+          scrollSnapType: 'x mandatory',
+        }}
+      >
+        {sections}
+      </Box>
+      <Box sx={{ height: 100, flexShrink: 0 }}>NAVIGATION</Box>
+    </Box>
+  );
 };
 
 export default Home;

@@ -69,9 +69,9 @@ function CardContainer({ cards }: CardContainerProps) {
             overflowX: 'scroll',
             py: 2,
             px: horizontalMargin,
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
+            // '&::-webkit-scrollbar': {
+            //   display: 'none',
+            // },
           }}
         >
           {cards}

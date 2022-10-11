@@ -27,17 +27,11 @@ function Section({ children, id, fullscreen }: SectionProps) {
         id={id}
         ref={ref}
         sx={{
-          height: '100vh',
-          backgroundColor,
-          boxShadow: !fullscreen ? 14 : undefined,
-          borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
           overflowY: 'auto',
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-          '& > *': {
-            flexShrink: 0,
-          },
+          backgroundColor,
+          // '&::-webkit-scrollbar': {
+          //   display: 'none',
+          // },
           ...(!mobileLayout && {
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
@@ -46,14 +40,18 @@ function Section({ children, id, fullscreen }: SectionProps) {
             my: '5vh',
             '&:first-of-type': { mt: 0 },
             '&:last-of-type': { mb: 0 },
+            boxShadow: !fullscreen ? 14 : undefined,
+            borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+            height: '100vh',
           }),
           ...(mobileLayout && {
-            m: 0,
-            // p: 0,
             flexShrink: 0,
             width: '100vw',
-            borderRadius: 0,
-            boxShadow: 0,
+            height: '100%',
+            borderRadius: '0 0 5vw 5vw',
+            scrollSnapAlign: 'start',
+            scrollSnapStop: 'always',
+            overflowX: 'hidden', // crop when text is to large
           }),
         }}
       >
