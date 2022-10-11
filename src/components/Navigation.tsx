@@ -59,6 +59,12 @@ const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
 };
 
 function Navigation() {
+  const { mobileLayout } = useContext(IndexContext);
+
+  return <>{mobileLayout ? <NavigationMobile /> : <NavigationDesktop />}</>;
+}
+
+const NavigationDesktop = () => {
   return (
     <Box
       sx={{
@@ -90,6 +96,12 @@ function Navigation() {
       </Box>
     </Box>
   );
-}
+};
+
+const NavigationMobile = () => {
+  return (
+    <Box sx={{ backgroundColor: 'lime', display: 'none' }}>Nav mobile</Box>
+  );
+};
 
 export default Navigation;

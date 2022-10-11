@@ -15,7 +15,7 @@ interface SectionProps {
 function Section({ children, id, fullscreen }: SectionProps) {
   const backgroundColor = sectionColors[id];
   const { ref, inView } = useInView({ threshold: 0.5 });
-  const { setCurrentSection } = useContext(IndexContext);
+  const { setCurrentSection, mobileLayout } = useContext(IndexContext);
 
   useEffect(() => {
     if (inView) setCurrentSection(id);
@@ -28,24 +28,33 @@ function Section({ children, id, fullscreen }: SectionProps) {
         ref={ref}
         sx={{
           height: '100vh',
-          scrollSnapAlign: 'start',
-          scrollSnapStop: 'always',
-          marginRight: !fullscreen ? navWidth + 'px' : undefined,
-          paddingRight: fullscreen ? navWidth + 'px' : undefined,
           backgroundColor,
           boxShadow: !fullscreen ? 14 : undefined,
           borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
-          my: '5vh',
-          '&:first-of-type': { mt: 0 },
-          '&:last-of-type': { mb: 0 },
           overflowY: 'auto',
-          overflowX: 'visible',
           '&::-webkit-scrollbar': {
             display: 'none',
           },
           '& > *': {
             flexShrink: 0,
           },
+          ...(!mobileLayout && {
+            scrollSnapAlign: 'start',
+            scrollSnapStop: 'always',
+            mr: !fullscreen ? navWidth + 'px' : undefined,
+            pr: fullscreen ? navWidth + 'px' : undefined,
+            my: '5vh',
+            '&:first-of-type': { mt: 0 },
+            '&:last-of-type': { mb: 0 },
+          }),
+          ...(mobileLayout && {
+            m: 0,
+            // p: 0,
+            flexShrink: 0,
+            width: '100vw',
+            borderRadius: 0,
+            boxShadow: 0,
+          }),
         }}
       >
         {children}
