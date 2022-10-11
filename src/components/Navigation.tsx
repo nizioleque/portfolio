@@ -1,7 +1,11 @@
 import { Box } from '@mui/material';
 import Link from 'next/link';
 import { ReactNode, useContext } from 'react';
-import { sectionColors } from '../theme';
+import {
+  sectionColors,
+  transitionTime,
+  transitionTimingFunction,
+} from '../theme';
 import { navWidth } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import useHoverCallback from '../hooks/useHoverCallback';
@@ -21,7 +25,7 @@ const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
       ref={hoverRef}
       sx={{
         '& a': {
-          transition: 'all 150ms ease-in',
+          transition: `all ${transitionTime}ms ${transitionTimingFunction}`,
           py: 1,
           px: 2, // TODO: rem
           display: 'block',

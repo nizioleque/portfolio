@@ -36,6 +36,8 @@ function Section({ children, id, fullscreen }: SectionProps) {
           boxShadow: !fullscreen ? 14 : undefined,
           borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
           my: '5vh',
+          '&:first-of-type': { mt: 0 },
+          '&:last-of-type': { mb: 0 },
           overflowY: 'auto',
           overflowX: 'visible',
           '&::-webkit-scrollbar': {
