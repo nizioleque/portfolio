@@ -15,6 +15,10 @@ const Home: NextPage = () => {
   const theme = useTheme();
 
   const [currentSection, setCurrentSection] = useState<string>('home');
+  const [mobileNavHeight, setMobileNavHeight] = useState<number | undefined>(
+    undefined
+  );
+  const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(0);
 
   const mobileLayout = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -46,6 +50,10 @@ const Home: NextPage = () => {
           currentSection,
           setCurrentSection,
           mobileLayout,
+          mobileNavHeight,
+          setMobileNavHeight,
+          mobileMenuHeight,
+          setMobileMenuHeight,
         }}
       >
         <Navigation />
@@ -56,12 +64,6 @@ const Home: NextPage = () => {
           ) : (
             <LayoutDesktop sections={sections} />
           )}
-        </Box>
-
-        <Box
-          sx={{ position: 'fixed', top: 0, left: 0, backgroundColor: 'red' }}
-        >
-          {mobileLayout.toString()}
         </Box>
       </IndexContext.Provider>
     </>

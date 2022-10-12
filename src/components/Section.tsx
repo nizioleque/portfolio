@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
 import { ReactNode, useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { desktopNavWidth, mobileNavHeight } from '../constants';
+import { desktopNavWidth } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import SectionContext from '../contexts/SectionContext';
-import { sectionColors } from '../theme';
+import { sectionColors, transitionTime, transitionTimingFunction } from '../theme';
 
 interface SectionProps {
   children: ReactNode;
@@ -15,7 +15,8 @@ interface SectionProps {
 function Section({ children, id, fullscreen }: SectionProps) {
   const backgroundColor = sectionColors[id];
   const { ref, inView } = useInView({ threshold: 0.5 });
-  const { setCurrentSection, mobileLayout } = useContext(IndexContext);
+  const { setCurrentSection, mobileLayout, mobileNavHeight, mobileMenuHeight } =
+    useContext(IndexContext);
 
   useEffect(() => {
     if (inView) setCurrentSection(id);
@@ -66,6 +67,8 @@ function Section({ children, id, fullscreen }: SectionProps) {
             pb: !fullscreen ? `${mobileNavHeight}px` : undefined,
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
+            transform: `translateY(-${mobileMenuHeight}px)`,
+            transition: `transform ${transitionTime}ms ${transitionTimingFunction}`,
           }}
         >
           {sectionInner}
