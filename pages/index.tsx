@@ -58,13 +58,11 @@ const Home: NextPage = () => {
       >
         <Navigation />
 
-        <Box sx={{ backgroundColor: htmlBackgroundColor }}>
-          {mobileLayout ? (
-            <LayoutMobile sections={sections} />
-          ) : (
-            <LayoutDesktop sections={sections} />
-          )}
-        </Box>
+        {mobileLayout ? (
+          <LayoutMobile sections={sections} />
+        ) : (
+          <LayoutDesktop sections={sections} />
+        )}
       </IndexContext.Provider>
     </>
   );
@@ -75,7 +73,15 @@ interface LayoutDesktopProps {
 }
 
 const LayoutDesktop = ({ sections }: LayoutDesktopProps) => {
-  return <>{sections}</>;
+  return (
+    <Box
+      sx={{
+        backgroundColor: htmlBackgroundColor,
+      }}
+    >
+      {sections}
+    </Box>
+  );
 };
 
 interface LayoutMobileProps {
@@ -86,10 +92,12 @@ const LayoutMobile = ({ sections }: LayoutMobileProps) => {
   return (
     <Box
       sx={{
+        backgroundColor: htmlBackgroundColor,
         display: 'flex',
         flex: 1,
         overflowY: 'scroll',
         scrollSnapType: 'x mandatory',
+        height: '100%',
       }}
     >
       {sections}

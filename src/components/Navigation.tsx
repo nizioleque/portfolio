@@ -119,8 +119,6 @@ const NavigationMobile = () => {
     return () => setMobileNavHeight(undefined);
   }, []);
 
-  console.log('navmobile rerender');
-
   return (
     <Box
       ref={navContainerRef}
@@ -129,10 +127,7 @@ const NavigationMobile = () => {
         bottom: 0,
         left: 0,
         right: 0,
-        // height: mobileNavHeight,
         px: 1,
-        zIndex: 1000,
-        // outline: '2px red solid',
       }}
     >
       <Box
@@ -142,19 +137,11 @@ const NavigationMobile = () => {
         }}
       >
         {menuOpen ? (
-          <IconButton
-            size='large'
-            onClick={hideMenu}
-            // onTouchStart={hideMenu}
-          >
+          <IconButton size='large' onClick={hideMenu}>
             <Close fontSize='large' />
           </IconButton>
         ) : (
-          <IconButton
-            size='large'
-            onClick={showMenu}
-            // onTouchStart={showMenu}
-          >
+          <IconButton size='large' onClick={showMenu}>
             <Menu fontSize='large' />
           </IconButton>
         )}
@@ -179,7 +166,6 @@ const NavigationMobile = () => {
             width: '80vw',
             height: 200,
             backgroundColor: 'red',
-            // outline: '3px lime solid',
           }}
         ></Box>
       </AnimateHeight>

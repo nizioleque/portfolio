@@ -4,7 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import { desktopNavWidth } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import SectionContext from '../contexts/SectionContext';
-import { sectionColors, transitionTime, transitionTimingFunction } from '../theme';
+import {
+  sectionColors,
+  transitionTime,
+  transitionTimingFunction,
+} from '../theme';
 
 interface SectionProps {
   children: ReactNode;
@@ -46,9 +50,8 @@ function Section({ children, id, fullscreen }: SectionProps) {
         }),
         ...(mobileLayout && {
           width: '100vw',
+          borderRadius: '0 0 5vw 5vw',
           height: '100%',
-          borderRadius: !fullscreen ? '0 0 5vw 5vw' : undefined,
-          pb: fullscreen ? `${mobileNavHeight}px` : undefined,
         }),
       }}
     >
@@ -61,17 +64,23 @@ function Section({ children, id, fullscreen }: SectionProps) {
       {mobileLayout ? (
         <Box
           sx={{
-            height: '100vh',
             overflowY: 'scroll',
             flexShrink: 0,
-            pb: !fullscreen ? `${mobileNavHeight}px` : undefined,
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
             transform: `translateY(-${mobileMenuHeight}px)`,
             transition: `transform ${transitionTime}ms ${transitionTimingFunction}`,
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           {sectionInner}
+          <Box
+            sx={{
+              flexShrink: 0,
+              flexBasis: `${mobileNavHeight}px`,
+            }}
+          ></Box>
         </Box>
       ) : (
         <>{sectionInner}</>

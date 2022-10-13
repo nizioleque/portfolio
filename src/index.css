@@ -2,17 +2,26 @@
   color-scheme: dark;
 }
 
+* {
+  font-variant-ligatures: none;
+}
+
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   background-color: #1a1a1a;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
 }
 
 a {
   color: inherit;
   text-decoration: inherit;
-}
-
-* {
-  font-variant-ligatures: none;
 }
