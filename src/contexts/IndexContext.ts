@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { Dispatch, SetStateAction, createContext, RefObject } from 'react';
 
 interface IndexContext {
   currentSection: string;
@@ -8,6 +8,7 @@ interface IndexContext {
   setMobileNavHeight: Dispatch<SetStateAction<number | undefined>>;
   mobileMenuHeight: number;
   setMobileMenuHeight: Dispatch<SetStateAction<number>>;
+  scrollContainerMobile: RefObject<HTMLDivElement>;
 }
 
 const indexContextDefaultValue: IndexContext = {
@@ -18,6 +19,7 @@ const indexContextDefaultValue: IndexContext = {
   setMobileNavHeight: () => {},
   mobileMenuHeight: 0,
   setMobileMenuHeight: () => {},
+  scrollContainerMobile: { current: null },
 };
 
 const IndexContext = createContext<IndexContext>(indexContextDefaultValue);

@@ -1,64 +1,11 @@
 import { Box, IconButton, Typography } from '@mui/material';
-import Link from 'next/link';
-import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
-import {
-  sectionColors,
-  transitionTime,
-  transitionTimingFunction,
-} from '../theme';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { transitionTime, transitionTimingFunction } from '../theme';
 import { desktopNavWidth, sectionNames } from '../constants';
 import IndexContext from '../contexts/IndexContext';
-import useHoverCallback from '../hooks/useHoverCallback';
 import { ArrowForwardIos, Close, Menu } from '@mui/icons-material';
 import AnimateHeight, { Height } from 'react-animate-height';
-
-interface MenuLinkProps {
-  id: string;
-  children: ReactNode;
-  hideOnActive?: boolean;
-}
-
-const MenuLink = ({ id, children, hideOnActive = false }: MenuLinkProps) => {
-  const isActive = useContext(IndexContext).currentSection === id;
-  const [hoverRef, isHovering] = useHoverCallback();
-
-  return (
-    <Box
-      ref={hoverRef}
-      sx={{
-        '& a': {
-          transition: `all ${transitionTime}ms ${transitionTimingFunction}`,
-          py: 1,
-          px: 2, // TODO: rem
-          display: 'block',
-          borderRadius: '100px 0 0 100px',
-          width: 240, // TODO: rem
-          opacity: 1,
-          ...((isActive || isHovering) && {
-            backgroundColor: sectionColors[id],
-            boxShadow: 4,
-          }),
-          ...(isActive && {
-            fontWeight: 'bold',
-            letterSpacing: 2,
-          }),
-          ...(isActive &&
-            hideOnActive && {
-              backgroundColor: undefined,
-              fontWeight: undefined,
-              letterSpacing: undefined,
-              opacity: 0,
-              marginTop: '-54.4px', // TODO: rem, use actual height
-            }),
-        },
-      }}
-    >
-      <Link href={`#${id}`}>
-        <a>{children}</a>
-      </Link>
-    </Box>
-  );
-};
+import { MenuLink, MenuLinkMobile } from './MenuLink';
 
 function Navigation() {
   const { mobileLayout } = useContext(IndexContext);
@@ -101,14 +48,17 @@ const NavigationDesktop = () => {
 };
 
 const NavigationMobile = () => {
-  const { currentSection, setMobileNavHeight, setMobileMenuHeight } =
-    useContext(IndexContext);
+  const {
+    currentSection,
+    setMobileNavHeight,
+    setMobileMenuHeight,
+    scrollContainerMobile,
+  } = useContext(IndexContext);
 
   const sectionIndex = Object.keys(sectionNames).indexOf(currentSection);
   const nextSectionName = Object.values(sectionNames)[sectionIndex + 1];
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  // const toggleMenuOpen = () => setMenuOpen((oldValue) => !oldValue);
   const showMenu = () => setMenuOpen(true);
   const hideMenu = () => setMenuOpen(false);
 
@@ -127,11 +77,12 @@ const NavigationMobile = () => {
         bottom: 0,
         left: 0,
         right: 0,
-        px: 1,
+        zIndex: 2,
       }}
     >
       <Box
         sx={{
+          px: 1,
           display: 'flex',
           alignItems: 'center',
         }}
@@ -146,7 +97,17 @@ const NavigationMobile = () => {
           </IconButton>
         )}
         {nextSectionName && !menuOpen && (
-          <IconButton size='large' edge='start' sx={{ ml: 'auto' }}>
+          <IconButton
+            size='large'
+            edge='start'
+            sx={{ ml: 'auto' }}
+            onClick={() => {
+              scrollContainerMobile.current?.scrollBy(
+                document.body.clientWidth,
+                0
+              );
+            }}
+          >
             <Typography>{nextSectionName}</Typography>
             <ArrowForwardIos fontSize='large' />
           </IconButton>
@@ -163,11 +124,20 @@ const NavigationMobile = () => {
       >
         <Box
           sx={{
-            width: '80vw',
-            height: 200,
-            backgroundColor: 'red',
+            height: 'auto',
+            width: '100vw',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mb: 1,
           }}
-        ></Box>
+        >
+          <MenuLinkMobile id='home'>home</MenuLinkMobile>
+          <MenuLinkMobile id='about-me'>about me</MenuLinkMobile>
+          <MenuLinkMobile id='projects'>projects</MenuLinkMobile>
+          <MenuLinkMobile id='extensions'>extensions</MenuLinkMobile>
+          <MenuLinkMobile id='autohotkey'>autohotkey</MenuLinkMobile>
+        </Box>
       </AnimateHeight>
     </Box>
   );

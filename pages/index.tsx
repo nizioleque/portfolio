@@ -1,7 +1,7 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useContext, useRef, useState } from 'react';
 import AboutMe from '../src/components/indexSections/AboutMe';
 import AutoHotkey from '../src/components/indexSections/AutoHotkey';
 import Extensions from '../src/components/indexSections/Extensions';
@@ -19,6 +19,8 @@ const Home: NextPage = () => {
     undefined
   );
   const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(0);
+
+  const scrollContainerMobile = useRef<HTMLDivElement>(null);
 
   const mobileLayout = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -54,6 +56,7 @@ const Home: NextPage = () => {
           setMobileNavHeight,
           mobileMenuHeight,
           setMobileMenuHeight,
+          scrollContainerMobile,
         }}
       >
         <Navigation />
@@ -89,13 +92,17 @@ interface LayoutMobileProps {
 }
 
 const LayoutMobile = ({ sections }: LayoutMobileProps) => {
+  const { scrollContainerMobile } = useContext(IndexContext);
+
   return (
     <Box
+      ref={scrollContainerMobile}
       sx={{
         backgroundColor: htmlBackgroundColor,
         display: 'flex',
         flex: 1,
         overflowY: 'scroll',
+        scrollBehavior: 'smooth',
         scrollSnapType: 'x mandatory',
         height: '100%',
       }}
