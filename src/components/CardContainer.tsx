@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import { ReactNode, useRef, useState } from 'react';
-import { horizontalMargin } from '../constants';
 import ArrowButton from './ArrowButton';
 import CardContainerContext from '../contexts/CardContainerContext';
 
@@ -63,16 +62,16 @@ function CardContainer({ cards }: CardContainerProps) {
           onScroll={() => {
             setCardScrollLeft(cardContainerRef.current?.scrollLeft ?? 0);
           }}
-          sx={{
+          sx={ theme => ({
             display: 'flex',
             gap: 2,
             overflowX: 'scroll',
             py: 2,
-            px: horizontalMargin,
+            px: theme.horizontalMargin,
             // '&::-webkit-scrollbar': {
             //   display: 'none',
             // },
-          }}
+          })}
         >
           {cards}
         </Box>

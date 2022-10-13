@@ -1,6 +1,7 @@
 import { GitHub, MailOutline } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import IndexContext from '../../contexts/IndexContext';
 import {
   shadowStrong,
   transitionTimingFunction,
@@ -8,6 +9,7 @@ import {
 } from '../../theme';
 import Section from '../Section';
 import SectionContent from '../SectionContent';
+import { Textfit } from 'react-textfit';
 
 const transitionTime = 200;
 
@@ -32,6 +34,8 @@ function HomeSection() {
     }, transitionTime);
   };
 
+  const { mobileLayout } = useContext(IndexContext);
+
   useEffect(() => {
     const interval = setInterval(() => nextText(), 2000);
     return () => clearInterval(interval);
@@ -47,13 +51,12 @@ function HomeSection() {
             flexDirection: 'column',
             justifyContent: 'center',
             gap: 6,
-            textShadow: '6px 6px 4px rgba(0, 0, 0, 0.8)',
           }}
         >
           <Box>
             <Typography
               sx={{
-                fontSize: dynamicFontSize(2.6),
+                ...dynamicFontSize(2.6),
                 letterSpacing: -1,
                 color: '#ffffffcf',
                 textShadow: shadowStrong,
@@ -64,15 +67,22 @@ function HomeSection() {
             <Typography
               variant='h1'
               sx={{
-                fontSize: dynamicFontSize(7.5),
+                ...dynamicFontSize(7.5),
                 fontWeight: 'bold',
                 letterSpacing: -5,
                 fontStyle: 'italic',
                 color: 'hsl(43deg 100% 50%)',
-                lineHeight: '100%',
+                lineHeight: !mobileLayout ? '100%' : undefined,
               }}
             >
-              Norbert Niziołek
+              {mobileLayout ? (
+                <Box>
+                  <Textfit mode='single'>Norbert</Textfit>
+                  <Textfit mode='single'>Niziołek</Textfit>
+                </Box>
+              ) : (
+                <>{'Norbert Niziołek'}</>
+              )}
             </Typography>
           </Box>
           <Typography

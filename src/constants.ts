@@ -1,9 +1,7 @@
-export const desktopNavWidth = 280;
-export const horizontalMargin = 'max(13vw, 40px)';
-export const sectionNames = {
-  home: 'home',
-  'about-me': 'about me',
-  projects: 'projects',
-  extensions: 'extensions',
-  autohotkey: 'autohotkey',
-};
+export const sections = [
+  { id: 'home', name: 'home' },
+  { id: 'about-me', name: 'about me' },
+  { id: 'projects', name: 'projects' },
+  { id: 'extensions', name: 'extensions' },
+  { id: 'autohotkey', name: 'autohotkey' },
+];

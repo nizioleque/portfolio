@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactNode, useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { desktopNavWidth } from '../constants';
+import { desktopNavWidth } from '../theme';
 import IndexContext from '../contexts/IndexContext';
 import SectionContext from '../contexts/SectionContext';
 import {

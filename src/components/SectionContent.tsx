@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from '@mui/material';
 import { ReactNode, useContext } from 'react';
-import { horizontalMargin } from '../constants';
+import IndexContext from '../contexts/IndexContext';
 import SectionContext from '../contexts/SectionContext';
 import CardContainer from './CardContainer';
 
@@ -22,6 +22,7 @@ function SectionContent({
   const theme = useTheme();
 
   const { inView } = useContext(SectionContext);
+  const { mobileLayout } = useContext(IndexContext);
 
   return (
     <Box
@@ -41,7 +42,7 @@ function SectionContent({
           gap: theme.gap,
           contain: 'content',
           '& > :not(.card-container)': {
-            mx: horizontalMargin,
+            mx: theme.horizontalMargin,
           },
         }}
       >
@@ -52,7 +53,7 @@ function SectionContent({
             sx={{
               transition:
                 'letter-spacing 1000ms 50ms cubic-bezier(0.22, 0.61, 0.36, 1)',
-              letterSpacing: inView ? 8 : -2,
+              letterSpacing: inView && !mobileLayout ? 8 : -2,
             }}
           >
             {title}

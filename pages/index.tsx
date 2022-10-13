@@ -1,4 +1,4 @@
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { ReactNode, useContext, useRef, useState } from 'react';
@@ -8,12 +8,10 @@ import Extensions from '../src/components/indexSections/Extensions';
 import HomeSection from '../src/components/indexSections/HomeSection';
 import Projects from '../src/components/indexSections/Projects';
 import Navigation from '../src/components/Navigation';
-import { htmlBackgroundColor } from '../src/theme';
+import { htmlBackgroundColor, mobileLayoutQuery } from '../src/theme';
 import IndexContext from '../src/contexts/IndexContext';
 
 const Home: NextPage = () => {
-  const theme = useTheme();
-
   const [currentSection, setCurrentSection] = useState<string>('home');
   const [mobileNavHeight, setMobileNavHeight] = useState<number | undefined>(
     undefined
@@ -22,7 +20,7 @@ const Home: NextPage = () => {
 
   const scrollContainerMobile = useRef<HTMLDivElement>(null);
 
-  const mobileLayout = useMediaQuery(theme.breakpoints.down('md'));
+  const mobileLayout = useMediaQuery(mobileLayoutQuery);
 
   const sections: ReactNode[] = [
     <HomeSection key='home' />,
