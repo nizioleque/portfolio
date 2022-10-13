@@ -61,13 +61,18 @@ export const MenuLink = ({
   );
 };
 
+interface MenuLinkMobileProps {
+  id: string;
+  children: ReactNode;
+  onClick: (id: string) => void;
+}
+
 export const MenuLinkMobile = ({
   id,
   children,
-  hideOnActive = false,
-}: MenuLinkProps) => {
+  onClick,
+}: MenuLinkMobileProps) => {
   const isActive = useContext(IndexContext).currentSection === id;
-
   return (
     <Box
       sx={{
@@ -75,7 +80,7 @@ export const MenuLinkMobile = ({
         '& a': {
           transition: `all ${transitionTime}ms ${transitionTimingFunction}`,
           px: 2,
-          py: 1,
+          py: 0.5,
           display: 'block',
           borderRadius: 100,
           opacity: 1,
@@ -84,12 +89,12 @@ export const MenuLinkMobile = ({
             fontWeight: 'bold',
             letterSpacing: 2,
           }),
+          fontSize: '1.4rem',
         },
       }}
+      onClick={() => onClick(id)}
     >
-      <Link href={`#${id}`}>
-        <a>{children}</a>
-      </Link>
+      <a>{children}</a>
     </Box>
   );
 };

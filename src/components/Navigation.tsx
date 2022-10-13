@@ -1,7 +1,11 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { transitionTime, transitionTimingFunction } from '../theme';
-import { desktopNavWidth, sectionNames } from '../constants';
+import {
+  desktopNavWidth,
+  transitionTime,
+  transitionTimingFunction,
+} from '../theme';
+import { sections } from '../constants';
 import IndexContext from '../contexts/IndexContext';
 import { ArrowForwardIos, Close, Menu } from '@mui/icons-material';
 import AnimateHeight, { Height } from 'react-animate-height';
@@ -35,13 +39,15 @@ const NavigationDesktop = () => {
           ...theme.typography.menu,
         })}
       >
-        <MenuLink id='home' hideOnActive>
-          home
-        </MenuLink>
-        <MenuLink id='about-me'>about me</MenuLink>
-        <MenuLink id='projects'>projects</MenuLink>
-        <MenuLink id='extensions'>extensions</MenuLink>
-        <MenuLink id='autohotkey'>autohotkey</MenuLink>
+        {sections.map((section) => (
+          <MenuLink
+            key={section.id}
+            id={section.id}
+            hideOnActive={section.id === 'home'}
+          >
+            {section.name}
+          </MenuLink>
+        ))}
       </Box>
     </Box>
   );
@@ -55,8 +61,10 @@ const NavigationMobile = () => {
     scrollContainerMobile,
   } = useContext(IndexContext);
 
-  const sectionIndex = Object.keys(sectionNames).indexOf(currentSection);
-  const nextSectionName = Object.values(sectionNames)[sectionIndex + 1];
+  const currentSectionIndex = sections.findIndex(
+    (section) => section.id === currentSection
+  );
+  const nextSection = sections[currentSectionIndex + 1];
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const showMenu = () => setMenuOpen(true);
@@ -68,6 +76,20 @@ const NavigationMobile = () => {
     setMobileNavHeight(navContainerRef.current?.offsetHeight);
     return () => setMobileNavHeight(undefined);
   }, []);
+
+  const scrollToSection = (id: string) => {
+    const indexCurrent = sections.findIndex(
+      (section) => section.id === currentSection
+    );
+    const indexNew = sections.findIndex((section) => section.id === id);
+    const diff = indexNew - indexCurrent;
+    console.log(currentSection, indexCurrent, id, indexNew, diff);
+    scrollContainerMobile.current?.scrollTo(
+      scrollContainerMobile.current!.scrollLeft +
+        diff * document.body.clientWidth,
+      0
+    );
+  };
 
   return (
     <Box
@@ -96,21 +118,18 @@ const NavigationMobile = () => {
             <Menu fontSize='large' />
           </IconButton>
         )}
-        {nextSectionName && !menuOpen && (
-          <IconButton
-            size='large'
-            edge='start'
-            sx={{ ml: 'auto' }}
-            onClick={() => {
-              scrollContainerMobile.current?.scrollBy(
-                document.body.clientWidth,
-                0
-              );
-            }}
+        {nextSection && !menuOpen && (
+          <Box
+            onClick={() => scrollToSection(nextSection.id)}
+            sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}
           >
-            <Typography>{nextSectionName}</Typography>
-            <ArrowForwardIos fontSize='large' />
-          </IconButton>
+            <Typography variant='mobileMenuButton'>
+              {nextSection.name}
+            </Typography>
+            <IconButton size='large' edge='start'>
+              <ArrowForwardIos fontSize='large' />
+            </IconButton>
+          </Box>
         )}
       </Box>
       <AnimateHeight
@@ -132,11 +151,15 @@ const NavigationMobile = () => {
             mb: 1,
           }}
         >
-          <MenuLinkMobile id='home'>home</MenuLinkMobile>
-          <MenuLinkMobile id='about-me'>about me</MenuLinkMobile>
-          <MenuLinkMobile id='projects'>projects</MenuLinkMobile>
-          <MenuLinkMobile id='extensions'>extensions</MenuLinkMobile>
-          <MenuLinkMobile id='autohotkey'>autohotkey</MenuLinkMobile>
+          {sections.map((section) => (
+            <MenuLinkMobile
+              key={section.id}
+              id={section.id}
+              onClick={scrollToSection}
+            >
+              {section.name}
+            </MenuLinkMobile>
+          ))}
         </Box>
       </AnimateHeight>
     </Box>
