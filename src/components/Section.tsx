@@ -1,14 +1,21 @@
 import { Box } from '@mui/material';
-import { ReactNode, useContext, useEffect } from 'react';
+import {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useInView } from 'react-intersection-observer';
 import { desktopNavWidth } from '../theme';
 import IndexContext from '../contexts/IndexContext';
-import SectionContext from '../contexts/SectionContext';
 import {
   sectionColors,
   transitionTime,
   transitionTimingFunction,
 } from '../theme';
+import SectionContext from '../contexts/SectionContext';
 
 interface SectionProps {
   children: ReactNode;
@@ -16,20 +23,88 @@ interface SectionProps {
   fullscreen?: boolean;
 }
 
+interface ScrollData {
+  direction: 'up' | 'down';
+  lastChangePosition: number;
+  previousPosition: number;
+}
+
 function Section({ children, id, fullscreen }: SectionProps) {
   const backgroundColor = sectionColors[id];
   const { ref, inView } = useInView({ threshold: 0.5 });
-  const { setCurrentSection, mobileLayout, mobileNavHeight, mobileMenuHeight } =
-    useContext(IndexContext);
+  const {
+    currentSection,
+    setCurrentSection,
+    mobileLayout,
+    mobileNavHeight,
+    mobileMenuHeight,
+    hideMenu,
+    setHideMenu,
+  } = useContext(IndexContext);
 
   useEffect(() => {
     if (inView) setCurrentSection(id);
-  }, [inView]);
+  }, [inView, setCurrentSection, id]);
+
+  const [scrollData, setScrollData] = useState<ScrollData>({
+    direction: 'down',
+    lastChangePosition: 0,
+    previousPosition: 0,
+  });
+  const scrollContainerVerticalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    scrollContainerVerticalRef.current?.scrollTo({
+      top: -scrollContainerVerticalRef.current?.scrollHeight,
+    });
+  }, []);
+
+  const scrollCallback = useCallback(() => {
+    if (currentSection !== id) return;
+
+    const container = scrollContainerVerticalRef.current!;
+    const currentScrollTop = container.scrollTop ?? 0;
+
+    const currentDirection =
+      currentScrollTop > scrollData.previousPosition ? 'down' : 'up';
+
+    const scrolledToBottom =
+      Math.abs(container.scrollTop) - (!hideMenu ? mobileMenuHeight : 0) < 5;
+
+    if (scrolledToBottom) {
+      setHideMenu(false);
+    } else if (currentDirection === scrollData.direction) {
+      if (Math.abs(currentScrollTop - scrollData.lastChangePosition) > 30) {
+        const newHideMenu = currentDirection === 'down';
+        newHideMenu !== hideMenu && setHideMenu(newHideMenu);
+      }
+    } else {
+      setScrollData((previousValue) => ({
+        ...previousValue,
+        direction: currentDirection,
+        lastChangePosition: currentScrollTop,
+      }));
+    }
+
+    setScrollData((previousValue) => ({
+      ...previousValue,
+      previousPosition: currentScrollTop,
+    }));
+  }, [currentSection, hideMenu, id, mobileMenuHeight, scrollData, setHideMenu]);
+
+  useEffect(() => {
+    const container = scrollContainerVerticalRef.current;
+    container?.addEventListener('scroll', scrollCallback);
+    return () => container?.removeEventListener('scroll', scrollCallback);
+  }, [scrollCallback, currentSection]);
 
   const sectionInner = (
     <Box
       id={id}
-      ref={ref}
+      ref={(newRef: HTMLDivElement) => {
+        ref(newRef);
+        scrollContainerVerticalRef.current = newRef;
+      }}
       sx={{
         overflowY: 'auto',
         backgroundColor,
@@ -51,7 +126,11 @@ function Section({ children, id, fullscreen }: SectionProps) {
         ...(mobileLayout && {
           width: '100vw',
           borderRadius: '0 0 5vw 5vw',
-          height: '100%',
+          flex: 1,
+
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          '& > *': { flexShrink: 0 },
         }),
       }}
     >
@@ -64,7 +143,6 @@ function Section({ children, id, fullscreen }: SectionProps) {
       {mobileLayout ? (
         <Box
           sx={{
-            overflowY: 'scroll',
             flexShrink: 0,
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
@@ -78,7 +156,8 @@ function Section({ children, id, fullscreen }: SectionProps) {
           <Box
             sx={{
               flexShrink: 0,
-              flexBasis: `${mobileNavHeight}px`,
+              flexBasis: hideMenu ? 0 : `${mobileNavHeight}px`,
+              transition: `flex-basis ${transitionTime}ms ${transitionTimingFunction}`,
             }}
           ></Box>
         </Box>

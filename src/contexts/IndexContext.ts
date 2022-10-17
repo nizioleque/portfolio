@@ -9,6 +9,8 @@ interface IndexContext {
   mobileMenuHeight: number;
   setMobileMenuHeight: Dispatch<SetStateAction<number>>;
   scrollContainerMobile: RefObject<HTMLDivElement>;
+  hideMenu: boolean;
+  setHideMenu: Dispatch<SetStateAction<boolean>>;
 }
 
 const indexContextDefaultValue: IndexContext = {
@@ -20,6 +22,8 @@ const indexContextDefaultValue: IndexContext = {
   mobileMenuHeight: 0,
   setMobileMenuHeight: () => {},
   scrollContainerMobile: { current: null },
+  hideMenu: false,
+  setHideMenu: () => {},
 };
 
 const IndexContext = createContext<IndexContext>(indexContextDefaultValue);

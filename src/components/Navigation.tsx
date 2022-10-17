@@ -59,6 +59,7 @@ const NavigationMobile = () => {
     setMobileNavHeight,
     setMobileMenuHeight,
     scrollContainerMobile,
+    hideMenu,
   } = useContext(IndexContext);
 
   const currentSectionIndex = sections.findIndex(
@@ -68,14 +69,14 @@ const NavigationMobile = () => {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const showMenu = () => setMenuOpen(true);
-  const hideMenu = () => setMenuOpen(false);
+  const closeMenu = () => setMenuOpen(false);
 
   const navContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileNavHeight(navContainerRef.current?.offsetHeight);
     return () => setMobileNavHeight(undefined);
-  }, []);
+  }, [setMobileNavHeight]);
 
   const scrollToSection = (id: string) => {
     const indexCurrent = sections.findIndex(
@@ -83,7 +84,6 @@ const NavigationMobile = () => {
     );
     const indexNew = sections.findIndex((section) => section.id === id);
     const diff = indexNew - indexCurrent;
-    console.log(currentSection, indexCurrent, id, indexNew, diff);
     scrollContainerMobile.current?.scrollTo(
       scrollContainerMobile.current!.scrollLeft +
         diff * document.body.clientWidth,
@@ -100,6 +100,8 @@ const NavigationMobile = () => {
         left: 0,
         right: 0,
         zIndex: 2,
+        transform: `translateY(${hideMenu ? '100' : '0'}%)`,
+        transition: `transform ${transitionTime}ms ${transitionTimingFunction}`,
       }}
     >
       <Box
@@ -110,7 +112,7 @@ const NavigationMobile = () => {
         }}
       >
         {menuOpen ? (
-          <IconButton size='large' onClick={hideMenu}>
+          <IconButton size='large' onClick={closeMenu}>
             <Close fontSize='large' />
           </IconButton>
         ) : (
@@ -137,7 +139,6 @@ const NavigationMobile = () => {
         duration={transitionTime}
         easing={transitionTimingFunction}
         onHeightAnimationStart={(newHeight: Height) => {
-          console.log(newHeight);
           setMobileMenuHeight(newHeight as number);
         }}
       >

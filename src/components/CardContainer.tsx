@@ -16,10 +16,10 @@ function CardContainer({ cards }: CardContainerProps) {
     offset: number,
     smooth: boolean = false
   ): void => {
-    if (!cardContainerRef.current) return;
-    if (smooth) cardContainerRef.current.style.scrollBehavior = 'smooth';
-    cardContainerRef.current?.scrollBy(offset, 0);
-    if (smooth) cardContainerRef.current.style.scrollBehavior = '';
+    cardContainerRef.current?.scrollBy({
+      left: offset,
+      behavior: smooth ? 'smooth' : undefined,
+    });
   };
 
   const scrollCardContainerByChild = (offset: number): void => {
@@ -62,7 +62,7 @@ function CardContainer({ cards }: CardContainerProps) {
           onScroll={() => {
             setCardScrollLeft(cardContainerRef.current?.scrollLeft ?? 0);
           }}
-          sx={ theme => ({
+          sx={(theme) => ({
             display: 'flex',
             gap: 2,
             overflowX: 'scroll',

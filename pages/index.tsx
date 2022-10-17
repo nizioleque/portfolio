@@ -17,6 +17,7 @@ const Home: NextPage = () => {
     undefined
   );
   const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(0);
+  const [hideMenu, setHideMenu] = useState<boolean>(false);
 
   const scrollContainerMobile = useRef<HTMLDivElement>(null);
 
@@ -55,6 +56,8 @@ const Home: NextPage = () => {
           mobileMenuHeight,
           setMobileMenuHeight,
           scrollContainerMobile,
+          hideMenu,
+          setHideMenu,
         }}
       >
         <Navigation />
