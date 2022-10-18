@@ -85,28 +85,60 @@ function HomeSection() {
               )}
             </Typography>
           </Box>
-          <Typography
+          <Box
             sx={{
-              fontSize: dynamicFontSize(2.2),
-              textShadow: shadowStrong,
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gridTemplateRows: '1fr',
+              '& > *': { gridColumn: '1 / 1', gridRow: '1 / 1' },
             }}
           >
-            I do{' '}
-            <Box
-              component='span'
+            <Typography
               sx={{
-                transition: `opacity ${transitionTime}ms ${transitionTimingFunction}`,
-                opacity: isTextHidden ? 0 : 1,
+                fontSize: dynamicFontSize(2.2),
+                textShadow: shadowStrong,
               }}
             >
-              {texts[currentTextIndex]}.
-            </Box>
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 4 }}>
-            <Button variant='strong' startIcon={<GitHub />}>
+              I do{' '}
+              <Box
+                component='span'
+                sx={{
+                  transition: `opacity ${transitionTime}ms ${transitionTimingFunction}`,
+                  opacity: isTextHidden ? 0 : 1,
+                }}
+              >
+                {texts[currentTextIndex]}.
+              </Box>
+            </Typography>
+            {texts.map((text) => (
+              <Typography
+                key={text}
+                sx={{
+                  fontSize: dynamicFontSize(2.2),
+                  visibility: 'hidden',
+                }}
+              >
+                I do <Box component='span'>{text}.</Box>
+              </Typography>
+            ))}
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+            <Button
+              variant='strong'
+              startIcon={<GitHub />}
+              component='a'
+              href='https://github.com/nizioleque'
+              target='_blank'
+            >
               Github
             </Button>
-            <Button variant='strong' startIcon={<MailOutline />}>
+            <Button
+              variant='strong'
+              startIcon={<MailOutline />}
+              component='a'
+              href='mailto:nizioleque@gmail.com'
+              target='_blank'
+            >
               Mail
             </Button>
           </Box>
