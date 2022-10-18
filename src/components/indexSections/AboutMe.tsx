@@ -97,7 +97,7 @@ function AboutMe() {
               Telegram
             </Button>
             <Button
-              href='mailto:nizioleque@gmail.com'
+              href='mailto:norbert@niziolek.dev'
               target='_blank'
               size='large'
               startIcon={<MailOutline />}

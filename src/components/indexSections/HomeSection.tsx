@@ -136,7 +136,7 @@ function HomeSection() {
               variant='strong'
               startIcon={<MailOutline />}
               component='a'
-              href='mailto:nizioleque@gmail.com'
+              href='mailto:norbert@niziolek.dev'
               target='_blank'
             >
               Mail
