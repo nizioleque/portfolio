@@ -1,5 +1,5 @@
 import { Box, Card, Portal, SxProps } from '@mui/material';
-import { ReactNode, useContext, useRef, useState } from 'react';
+import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 import { transitionTime, transitionTimingFunction } from '../theme';
 import AnimateHeight, { Height } from 'react-animate-height';
@@ -23,10 +23,13 @@ function ExpandableCard({
   } = useContext(CardContainerContext);
 
   const placeholderRef = useRef<HTMLDivElement>(null);
+  const expandedCardRef = useRef<HTMLDivElement>(null);
 
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [isHiding, setIsHiding] = useState<boolean>(false);
+  const [_, setTouchStartX] = useState<number>(0);
+
   const mouseEnter = () => {
     if (!isMouseOver) {
       updateCardZIndex();
@@ -59,6 +62,19 @@ function ExpandableCard({
     flexShrink: 0,
   };
 
+
+  useEffect(() => {
+    const handler = (event: WheelEvent) => {
+      hide();
+      event.preventDefault();
+      event.deltaX !== -0 && scrollCardContainer(event.deltaX);
+    };
+    const container = expandedCardRef.current;
+    if (!container) return;
+    container.addEventListener('wheel', handler, { passive: false });
+    return () => container.removeEventListener('wheel', handler);
+  }, [scrollCardContainer]);
+
   return (
     <>
       <Portal container={portalContainer.current}>
@@ -76,16 +92,27 @@ function ExpandableCard({
           }}
         >
           <Card
-            onWheel={(event) => {
-              hide();
-              event.deltaX !== -0 && scrollCardContainer(event.deltaX);
+            ref={expandedCardRef}
+            onTouchStart={(event) => {
+              setTouchStartX(event.changedTouches[0].screenX);
+            }}
+            onTouchMove={(event) => {
+              mouseLeave();
+              setTouchStartX((previousX) => {
+                const currentX = event.changedTouches[0].screenX;
+                const deltaX = previousX - currentX;
+                scrollCardContainer(deltaX);
+                return currentX;
+              });
             }}
             onMouseEnter={mouseEnter}
             onMouseLeave={mouseLeave}
             sx={{
               ...cardStyle,
               minHeight: placeholderRef.current?.offsetHeight,
+              width: placeholderRef.current?.offsetWidth,
               transform: `translateX(${-cardScrollLeft}px)`,
+              touchAction: 'none',
             }}
           >
             {content}
@@ -105,10 +132,12 @@ function ExpandableCard({
       </Portal>
       <Card
         onMouseEnter={mouseEnter}
+        onClick={mouseEnter}
         ref={placeholderRef}
         sx={{
           ...cardStyle,
           visibility: isHovering ? 'hidden' : undefined,
+          maxWidth: '100%',
         }}
       >
         {content}
