@@ -108,9 +108,9 @@ function Section({ children, id, fullscreen }: SectionProps) {
       sx={{
         overflowY: 'auto',
         backgroundColor,
-        // '&::-webkit-scrollbar': {
-        //   display: 'none',
-        // },
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
         ...(!mobileLayout && {
           mr: !fullscreen ? desktopNavWidth + 'px' : undefined,
           pr: fullscreen ? desktopNavWidth + 'px' : undefined,

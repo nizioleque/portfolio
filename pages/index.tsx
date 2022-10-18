@@ -106,6 +106,9 @@ const LayoutMobile = ({ sections }: LayoutMobileProps) => {
         scrollBehavior: 'smooth',
         scrollSnapType: 'x mandatory',
         height: '100%',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       }}
     >
       {sections}
