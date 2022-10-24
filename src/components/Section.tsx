@@ -8,7 +8,11 @@ import {
   useState,
 } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { desktopNavWidth } from '../theme';
+import {
+  desktopLayoutQuery,
+  desktopNavWidth,
+  mobileLayoutQuery,
+} from '../theme';
 import IndexContext from '../contexts/IndexContext';
 import {
   sectionColors,
@@ -35,7 +39,6 @@ function Section({ children, id, fullscreen }: SectionProps) {
   const {
     currentSection,
     setCurrentSection,
-    mobileLayout,
     mobileNavHeight,
     mobileMenuHeight,
     hideMenu,
@@ -98,51 +101,11 @@ function Section({ children, id, fullscreen }: SectionProps) {
     return () => container?.removeEventListener('scroll', scrollCallback);
   }, [scrollCallback, currentSection]);
 
-  const sectionInner = (
-    <Box
-      id={id}
-      ref={(newRef: HTMLDivElement) => {
-        ref(newRef);
-        scrollContainerVerticalRef.current = newRef;
-      }}
-      sx={{
-        overflowY: 'auto',
-        backgroundColor,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-        ...(!mobileLayout && {
-          mr: !fullscreen ? desktopNavWidth + 'px' : undefined,
-          pr: fullscreen ? desktopNavWidth + 'px' : undefined,
-          my: '5vh',
-          '&:first-of-type': { mt: 0 },
-          '&:last-of-type': { mb: 0 },
-          boxShadow: !fullscreen ? 14 : undefined,
-          borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
-          height: '100vh',
-          scrollSnapAlign: 'start',
-          scrollSnapStop: 'always',
-        }),
-        ...(mobileLayout && {
-          width: '100vw',
-          borderRadius: '0 0 5vw 5vw',
-          flex: 1,
-
-          display: 'flex',
-          flexDirection: 'column-reverse',
-          '& > *': { flexShrink: 0 },
-        }),
-      }}
-    >
-      {children}
-    </Box>
-  );
-
   return (
     <SectionContext.Provider value={{ inView }}>
-      {mobileLayout ? (
-        <Box
-          sx={{
+      <Box
+        sx={{
+          [mobileLayoutQuery]: {
             flexShrink: 0,
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
@@ -150,20 +113,57 @@ function Section({ children, id, fullscreen }: SectionProps) {
             transition: `transform ${transitionTime}ms ${transitionTimingFunction}`,
             display: 'flex',
             flexDirection: 'column',
+          },
+        }}
+      >
+        <Box
+          id={id}
+          ref={(newRef: HTMLDivElement) => {
+            ref(newRef);
+            scrollContainerVerticalRef.current = newRef;
+          }}
+          sx={{
+            overflowY: 'auto',
+            backgroundColor,
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+            [desktopLayoutQuery]: {
+              mr: !fullscreen ? desktopNavWidth + 'px' : undefined,
+              pr: fullscreen ? desktopNavWidth + 'px' : undefined,
+              my: '5vh',
+              '&:first-of-type': { mt: 0 },
+              '&:last-of-type': { mb: 0 },
+              boxShadow: !fullscreen ? 14 : undefined,
+              borderRadius: !fullscreen ? '0 5vh 5vh 0' : undefined,
+              height: '100vh',
+              scrollSnapAlign: 'start',
+              scrollSnapStop: 'always',
+            },
+            [mobileLayoutQuery]: {
+              width: '100vw',
+              borderRadius: '0 0 5vw 5vw',
+              flex: 1,
+
+              display: 'flex',
+              flexDirection: 'column-reverse',
+              '& > *': { flexShrink: 0 },
+            },
           }}
         >
-          {sectionInner}
-          <Box
-            sx={{
+          {children}
+        </Box>
+
+        <Box
+          sx={{
+            [mobileLayoutQuery]: {
               flexShrink: 0,
               flexBasis: hideMenu ? 0 : `${mobileNavHeight}px`,
               transition: `flex-basis ${transitionTime}ms ${transitionTimingFunction}`,
-            }}
-          ></Box>
-        </Box>
-      ) : (
-        <>{sectionInner}</>
-      )}
+            },
+          }}
+        ></Box>
+      </Box>
     </SectionContext.Provider>
   );
 }

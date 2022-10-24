@@ -2,7 +2,7 @@ import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { Box, Grow, IconButton } from '@mui/material';
 import { useContext } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
-import IndexContext from '../contexts/IndexContext';
+import { mobileLayoutQuery } from '../theme';
 
 interface ArrowButtonProps {
   direction: 'left' | 'right';
@@ -12,16 +12,17 @@ function ArrowButton({ direction }: ArrowButtonProps) {
   const { scrollCardContainerByChild, isCardContainerScrolledToEnd } =
     useContext(CardContainerContext);
 
-  const { mobileLayout } = useContext(IndexContext);
-
-  const spacing = mobileLayout ? -18 : 24;
   return (
     <Box
       sx={{
         position: 'absolute',
         top: 0,
-        left: direction === 'left' ? spacing : undefined,
-        right: direction === 'right' ? spacing : undefined,
+        left: direction === 'left' ? 24 : undefined,
+        right: direction === 'right' ? 24 : undefined,
+        [mobileLayoutQuery]: {
+          left: direction === 'left' ? -18 : undefined,
+          right: direction === 'right' ? -18 : undefined,
+        },
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -41,10 +42,10 @@ function ArrowButton({ direction }: ArrowButtonProps) {
             zIndex: 9999,
             backgroundColor: '#dddddd',
             pointerEvents: 'initial',
-            paddingLeft:
-              mobileLayout && direction === 'right' ? '3px' : undefined,
-            paddingRight:
-              mobileLayout && direction === 'left' ? '3px' : undefined,
+            [mobileLayoutQuery]: {
+              paddingLeft: direction === 'right' ? '3px' : undefined,
+              paddingRight: direction === 'left' ? '3px' : undefined,
+            },
             '&:hover': {
               backgroundColor: '#aaaaaa',
             },

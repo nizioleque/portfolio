@@ -2,6 +2,7 @@ import { Box, IconButton, Typography } from '@mui/material';
 import { useContext, useEffect, useRef, useState } from 'react';
 import {
   desktopNavWidth,
+  mobileLayoutQuery,
   transitionTime,
   transitionTimingFunction,
 } from '../theme';
@@ -12,15 +13,20 @@ import AnimateHeight, { Height } from 'react-animate-height';
 import { MenuLink, MenuLinkMobile } from './MenuLink';
 
 function Navigation() {
-  const { mobileLayout } = useContext(IndexContext);
-
-  return <>{mobileLayout ? <NavigationMobile /> : <NavigationDesktop />}</>;
+  return (
+    <>
+      <NavigationMobile /> <NavigationDesktop />
+    </>
+  );
 }
 
 const NavigationDesktop = () => {
   return (
     <Box
       sx={{
+        [mobileLayoutQuery]: {
+          display: 'none',
+        },
         position: 'fixed',
         top: 0,
         right: 0,
@@ -95,6 +101,10 @@ const NavigationMobile = () => {
     <Box
       ref={navContainerRef}
       sx={{
+        display: 'none',
+        [mobileLayoutQuery]: {
+          display: 'unset',
+        },
         position: 'fixed',
         bottom: 0,
         left: 0,

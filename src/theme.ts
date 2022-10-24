@@ -86,6 +86,7 @@ const themeBase = createTheme({
 });
 
 export const mobileLayoutQuery = themeBase.breakpoints.down('desktop');
+export const desktopLayoutQuery = themeBase.breakpoints.up('desktop');
 
 export const dynamicFontSize = (max: number) => ({
   fontSize: `clamp(${max * 0.91}rem, ${max * 1.346}vw, ${max}rem)`,

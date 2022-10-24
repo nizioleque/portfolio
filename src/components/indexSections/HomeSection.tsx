@@ -6,6 +6,7 @@ import {
   shadowStrong,
   transitionTimingFunction,
   dynamicFontSize,
+  desktopLayoutQuery,
 } from '../../theme';
 import Section from '../Section';
 import SectionContent from '../SectionContent';
@@ -72,7 +73,9 @@ function HomeSection() {
                 letterSpacing: -5,
                 fontStyle: 'italic',
                 color: 'hsl(43deg 100% 50%)',
-                lineHeight: !mobileLayout ? '100%' : undefined,
+                [desktopLayoutQuery]: {
+                  lineHeight: '100%',
+                },
               }}
             >
               {mobileLayout ? (

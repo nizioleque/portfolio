@@ -53,7 +53,7 @@ function SectionContent({
             sx={{
               transition:
                 'letter-spacing 1000ms 50ms cubic-bezier(0.22, 0.61, 0.36, 1)',
-              letterSpacing: inView && !mobileLayout ? 8 : -2,
+              letterSpacing: inView && !mobileLayout ? 8 : -2, // TODO: fix letter spacing animation on mobile
             }}
           >
             {title}
