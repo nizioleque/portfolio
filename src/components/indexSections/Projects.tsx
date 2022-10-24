@@ -15,6 +15,33 @@ function Projects() {
         cards={
           <>
             <CardContent
+              name='Polygon Paint'
+              description='Draw polygons on a canvas and make them dance! University project, but cool.'
+            >
+              <Typography
+                component='a'
+                href='https://polygon-paint.niziolek.dev/'
+                target='_blank'
+                sx={{
+                  textDecoration: 'underline',
+                  '&:hover': {
+                    fontWeight: 'bold',
+                  },
+                }}
+              >
+                Check out here
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Typography>Code on GitHub</Typography>
+                <IconButton
+                  href='https://github.com/nizioleque/gk-lab/'
+                  target='_blank'
+                >
+                  <GitHub fontSize='large' />
+                </IconButton>
+              </Box>
+            </CardContent>
+            <CardContent
               icon={nagasakiIcon}
               name='Nagasaki Minesweeper'
               description='Bombs go boom. Created in Flutter by the Spicy Nachos team.'
