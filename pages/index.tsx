@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ReactNode, useContext, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import AboutMe from '../src/components/indexSections/AboutMe';
 import AutoHotkey from '../src/components/indexSections/AutoHotkey';
 import Extensions from '../src/components/indexSections/Extensions';
@@ -10,6 +10,7 @@ import Projects from '../src/components/indexSections/Projects';
 import Navigation from '../src/components/Navigation';
 import { htmlBackgroundColor, mobileLayoutQuery } from '../src/theme';
 import IndexContext from '../src/contexts/IndexContext';
+import { sections as sectionData } from '../src/constants';
 
 const Home: NextPage = () => {
   const [currentSection, setCurrentSection] = useState<string>('home');
@@ -22,6 +23,25 @@ const Home: NextPage = () => {
   const scrollContainerMobile = useRef<HTMLDivElement>(null);
 
   const mobileLayout = useMediaQuery(mobileLayoutQuery);
+
+  useEffect(() => {
+    const index = sectionData.findIndex(
+      (section) => section.id === currentSection
+    );
+    if (mobileLayout) {
+      scrollContainerMobile.current?.scrollTo({
+        left: index * document.body.clientWidth,
+        behavior: 'auto',
+      });
+    } else {
+      document.documentElement.style.scrollBehavior = 'initial';
+      document.documentElement.scrollTo({
+        top: index * document.body.clientHeight,
+        behavior: 'auto',
+      });
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
+  }, [mobileLayout]);
 
   const sections: ReactNode[] = [
     <HomeSection key='home' />,
@@ -62,57 +82,26 @@ const Home: NextPage = () => {
       >
         <Navigation />
 
-        {mobileLayout ? (
-          <LayoutMobile sections={sections} />
-        ) : (
-          <LayoutDesktop sections={sections} />
-        )}
+        <Box
+          ref={scrollContainerMobile}
+          sx={{
+            backgroundColor: htmlBackgroundColor,
+            [mobileLayoutQuery]: {
+              display: 'flex',
+              flex: 1,
+              overflowY: 'scroll',
+              scrollSnapType: 'x mandatory',
+              height: '100%',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+            },
+          }}
+        >
+          {sections}
+        </Box>
       </IndexContext.Provider>
     </>
-  );
-};
-
-interface LayoutDesktopProps {
-  sections: ReactNode[];
-}
-
-const LayoutDesktop = ({ sections }: LayoutDesktopProps) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: htmlBackgroundColor,
-      }}
-    >
-      {sections}
-    </Box>
-  );
-};
-
-interface LayoutMobileProps {
-  sections: ReactNode[];
-}
-
-const LayoutMobile = ({ sections }: LayoutMobileProps) => {
-  const { scrollContainerMobile } = useContext(IndexContext);
-
-  return (
-    <Box
-      ref={scrollContainerMobile}
-      sx={{
-        backgroundColor: htmlBackgroundColor,
-        display: 'flex',
-        flex: 1,
-        overflowY: 'scroll',
-        scrollBehavior: 'smooth',
-        scrollSnapType: 'x mandatory',
-        height: '100%',
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      }}
-    >
-      {sections}
-    </Box>
   );
 };
 

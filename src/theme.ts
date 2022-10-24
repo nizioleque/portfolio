@@ -97,9 +97,6 @@ export const dynamicFontSize = (max: number) => ({
 
 export const theme = createTheme(themeBase, {
   horizontalMargin: { mobile: 4, desktop: 'max(13vw, 40px)' },
-  // [mobileLayoutQuery]: {
-  // horizontalMargin: '10px',
-  // },
   typography: {
     bodyLarge: {
       ...dynamicFontSize(1.3),

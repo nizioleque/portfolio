@@ -43,6 +43,7 @@ function Section({ children, id, fullscreen }: SectionProps) {
     mobileMenuHeight,
     hideMenu,
     setHideMenu,
+    mobileLayout,
   } = useContext(IndexContext);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ function Section({ children, id, fullscreen }: SectionProps) {
     scrollContainerVerticalRef.current?.scrollTo({
       top: -scrollContainerVerticalRef.current?.scrollHeight,
     });
-  }, []);
+  }, [mobileLayout]);
 
   const scrollCallback = useCallback(() => {
     if (currentSection !== id) return;

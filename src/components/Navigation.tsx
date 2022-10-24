@@ -66,6 +66,7 @@ const NavigationMobile = () => {
     setMobileMenuHeight,
     scrollContainerMobile,
     hideMenu,
+    mobileLayout,
   } = useContext(IndexContext);
 
   const currentSectionIndex = sections.findIndex(
@@ -82,7 +83,7 @@ const NavigationMobile = () => {
   useEffect(() => {
     setMobileNavHeight(navContainerRef.current?.offsetHeight);
     return () => setMobileNavHeight(undefined);
-  }, [setMobileNavHeight]);
+  }, [setMobileNavHeight, mobileLayout]);
 
   const scrollToSection = (id: string) => {
     const indexCurrent = sections.findIndex(
@@ -90,11 +91,12 @@ const NavigationMobile = () => {
     );
     const indexNew = sections.findIndex((section) => section.id === id);
     const diff = indexNew - indexCurrent;
-    scrollContainerMobile.current?.scrollTo(
-      scrollContainerMobile.current!.scrollLeft +
+    scrollContainerMobile.current?.scrollTo({
+      left:
+        scrollContainerMobile.current!.scrollLeft +
         diff * document.body.clientWidth,
-      0
-    );
+      behavior: 'smooth',
+    });
   };
 
   return (
