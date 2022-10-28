@@ -15,6 +15,33 @@ function Projects() {
         cards={
           <>
             <CardContent
+              name='Splitsmart'
+              description='Split expenses with friends, with ease. Work in progress.'
+            >
+              <Typography
+                component='a'
+                href='https://splitsmart.niziolek.dev/'
+                target='_blank'
+                sx={{
+                  textDecoration: 'underline',
+                  '&:hover': {
+                    fontWeight: 'bold',
+                  },
+                }}
+              >
+                Check out here
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Typography>Code on GitHub</Typography>
+                <IconButton
+                  href='https://github.com/nizioleque/splitsmart/'
+                  target='_blank'
+                >
+                  <GitHub fontSize='large' />
+                </IconButton>
+              </Box>
+            </CardContent>
+            <CardContent
               name='Polygon Paint'
               description='Draw polygons on a canvas and make them dance! University project, but cool.'
             >
