@@ -17,7 +17,7 @@ function AboutMe() {
     <Section id='about-me'>
       <SectionContent
         title='About me'
-        description='I am Norbert Niziołek, a student-debil based in Warsaw, Poland. Every day I drink piwo and strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
+        description='I am Norbert Niziołek, a student based in Warsaw, Poland. Every day I strive to use technology to my advantage. Programming enables me to craft tools that aid my daily life.'
       >
         <Box
           sx={{
@@ -69,7 +69,7 @@ function AboutMe() {
           }}
         >
           <Typography variant='bodyLarge'>
-            If you disagree, insult me here:
+            {"If you disagree, let's a have a conversation here:"}
           </Typography>
           <Box
             sx={{

@@ -17,8 +17,7 @@ const transitionTime = 200;
 const texts: string[] = [
   'web development',
   'Duolingo lessons',
-  'drink beer',
-  'university bullshit',
+  'university assignments',
   'break traffic laws while cycling',
 ];
 
