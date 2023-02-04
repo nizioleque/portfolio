@@ -68,7 +68,7 @@ export const sectionColors: { [key: string]: string } = {
 
 const themeBase = createTheme({
   palette: {
-    mode: 'dark',
+    // mode: 'dark',
   },
   typography: {
     allVariants: {

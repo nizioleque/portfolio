@@ -1,10 +1,11 @@
-import { Box, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import { mobileLayoutQuery } from '../src/theme';
 import IndexContext from '../src/contexts/IndexContext';
 import { sections as sectionData } from '../src/constants';
+import ProjecsCards from '../src/components/indexCards/ProjectsCards';
 
 const Home: NextPage = () => {
   const [currentSection, setCurrentSection] = useState<string>('home');
@@ -66,7 +67,44 @@ const Home: NextPage = () => {
           setHideMenu,
         }}
       >
-        {/* <Box sx={{ display: 'grid' }}></Box> */}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'auto auto',
+            height: '100%',
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'grid',
+              placeItems: 'center',
+            }}
+          >
+            <Typography
+              variant='h1'
+              sx={{
+                fontWeight: 'bold',
+                letterSpacing: -5,
+                fontStyle: 'italic',
+              }}
+            >
+              Norbert
+              <br />
+              Niziołek
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: 'grid',
+              justifyContent: 'center',
+              gridTemplateColumns: '300px 300px',
+              gap: 5,
+            }}
+          >
+            <ProjecsCards />
+          </Box>
+        </Box>
       </IndexContext.Provider>
     </>
   );
