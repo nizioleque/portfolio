@@ -1,14 +1,8 @@
 import { Box, useMediaQuery } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import AboutMe from '../src/components/indexSections/AboutMe';
-import AutoHotkey from '../src/components/indexSections/AutoHotkey';
-import Extensions from '../src/components/indexSections/Extensions';
-import HomeSection from '../src/components/indexSections/HomeSection';
-import Projects from '../src/components/indexSections/Projects';
-import Navigation from '../src/components/Navigation';
-import { htmlBackgroundColor, mobileLayoutQuery } from '../src/theme';
+import { useEffect, useRef, useState } from 'react';
+import { mobileLayoutQuery } from '../src/theme';
 import IndexContext from '../src/contexts/IndexContext';
 import { sections as sectionData } from '../src/constants';
 
@@ -43,14 +37,6 @@ const Home: NextPage = () => {
     }
   }, [mobileLayout]);
 
-  const sections: ReactNode[] = [
-    <HomeSection key='home' />,
-    <AboutMe key='about-me' />,
-    <Projects key='projects' />,
-    <Extensions key='extensions' />,
-    <AutoHotkey key='autohotkey' />,
-  ];
-
   return (
     <>
       <Head>
@@ -80,26 +66,7 @@ const Home: NextPage = () => {
           setHideMenu,
         }}
       >
-        <Navigation />
-
-        <Box
-          ref={scrollContainerMobile}
-          sx={{
-            backgroundColor: htmlBackgroundColor,
-            [mobileLayoutQuery]: {
-              display: 'flex',
-              flex: 1,
-              overflowY: 'scroll',
-              scrollSnapType: 'x mandatory',
-              height: '100%',
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-            },
-          }}
-        >
-          {sections}
-        </Box>
+        {/* <Box sx={{ display: 'grid' }}></Box> */}
       </IndexContext.Provider>
     </>
   );
