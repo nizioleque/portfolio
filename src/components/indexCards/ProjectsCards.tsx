@@ -4,7 +4,7 @@ import { Typography, Box, IconButton } from '@mui/material';
 import CardContent from '../CardContent';
 import nagasakiIcon from '../../assets/projectIcons/nagasakiIcon.png';
 
-function ProjecsCards() {
+function ProjectsCards() {
   return (
     <>
       <CardContent
@@ -136,4 +136,4 @@ function ProjecsCards() {
   );
 }
 
-export default ProjecsCards;
+export default ProjectsCards;

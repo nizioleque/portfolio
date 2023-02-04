@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { mobileLayoutQuery } from '../src/theme';
 import IndexContext from '../src/contexts/IndexContext';
 import { sections as sectionData } from '../src/constants';
-import ProjecsCards from '../src/components/indexCards/ProjectsCards';
+import ProjectsCards from '../src/components/indexCards/ProjectsCards';
+import ExtensionsCards from '../src/components/indexCards/ExtensionsCards';
+import AutoHotkeyCards from '../src/components/indexCards/AutoHotkeyCards';
 
 const Home: NextPage = () => {
   const [currentSection, setCurrentSection] = useState<string>('home');
@@ -73,6 +75,7 @@ const Home: NextPage = () => {
             gridTemplateColumns: 'auto auto',
             height: '100%',
             alignItems: 'center',
+            // overflowY: 'hidden',
           }}
         >
           <Box
@@ -94,15 +97,25 @@ const Home: NextPage = () => {
               Niziołek
             </Typography>
           </Box>
-          <Box
-            sx={{
-              display: 'grid',
-              justifyContent: 'center',
-              gridTemplateColumns: '300px 300px',
-              gap: 5,
-            }}
-          >
-            <ProjecsCards />
+          <Box sx={{ overflowY: 'scroll', height: '100%' }}>
+            <Box
+              sx={{
+                display: 'grid',
+                justifyContent: 'center',
+                gridTemplateColumns: '350px 350px',
+                gap: 5,
+                '& > :nth-child(even)': {
+                  backgroundColor: 'red',
+                  position: 'relative',
+                  top: '50%',
+                },
+                // overflowY: 'visible',
+              }}
+            >
+              <ProjectsCards />
+              <ExtensionsCards />
+              <AutoHotkeyCards />
+            </Box>
           </Box>
         </Box>
       </IndexContext.Provider>
