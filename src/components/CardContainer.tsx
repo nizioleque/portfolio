@@ -3,6 +3,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 
 const CONTENT_REPETITIONS = 3;
+const SCROLL_DIVIDER = 15;
 
 interface CardContainerProps {
   children: ReactNode;
@@ -11,6 +12,7 @@ interface CardContainerProps {
 function CardContainer({ children }: CardContainerProps) {
   const scrollContainer = useRef<HTMLElement>();
   const scrollContent = useRef<HTMLElement>();
+  const autoScroll = useRef<boolean>(true);
 
   const cardZIndex = useRef<number>(1);
   const getCardZIndex = (): number => {
@@ -45,6 +47,34 @@ function CardContainer({ children }: CardContainerProps) {
     scrollContainer.current.scrollTo({ top: contentHeight + 1 });
   }, []);
 
+  useEffect(() => {
+    let handle: number | undefined;
+    let lastTimestamp = performance.now();
+
+    const scroll = (timestamp: DOMHighResTimeStamp) => {
+      if (autoScroll.current === false) {
+        lastTimestamp = timestamp;
+        handle = requestAnimationFrame(scroll);
+        return;
+      }
+
+      const timeDiff = timestamp - lastTimestamp;
+      if (timeDiff / SCROLL_DIVIDER >= 1) {
+        lastTimestamp = timestamp;
+        scrollContainer.current?.scrollBy({
+          top: 1,
+        });
+      }
+      handle = requestAnimationFrame(scroll);
+    };
+
+    handle = requestAnimationFrame(scroll);
+
+    return () => {
+      if (handle) cancelAnimationFrame(handle);
+    };
+  }, []);
+
   return (
     <CardContainerContext.Provider
       value={{
@@ -64,6 +94,8 @@ function CardContainer({ children }: CardContainerProps) {
       >
         <Box
           ref={scrollContent}
+          onMouseEnter={() => (autoScroll.current = false)}
+          onMouseLeave={() => (autoScroll.current = true)}
           sx={{
             display: 'grid',
             justifyContent: 'center',
