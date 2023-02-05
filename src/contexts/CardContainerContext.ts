@@ -1,4 +1,4 @@
-import { createContext, MutableRefObject } from 'react';
+import { createContext } from 'react';
 
 interface CardContainerContext {
   getCardZIndex: () => number;
