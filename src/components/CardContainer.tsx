@@ -1,45 +1,12 @@
 import { Box } from '@mui/material';
-import { ReactNode, useRef, useState } from 'react';
-import ArrowButton from './ArrowButton';
+import { ReactNode, useRef } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 
 interface CardContainerProps {
-  cards: ReactNode;
+  children: ReactNode;
 }
 
-function CardContainer({ cards }: CardContainerProps) {
-  const portalContainer = useRef<HTMLElement>();
-  const cardContainerRef = useRef<HTMLElement>();
-
-  const [cardScrollLeft, setCardScrollLeft] = useState<number>(0);
-  const scrollCardContainer = (
-    offset: number,
-    smooth: boolean = false
-  ): void => {
-    cardContainerRef.current?.scrollBy({
-      left: offset,
-      behavior: smooth ? 'smooth' : undefined,
-    });
-  };
-
-  const scrollCardContainerByChild = (offset: number): void => {
-    if (!cardContainerRef.current) return;
-    const childSize =
-      cardContainerRef.current.children[0]?.getBoundingClientRect().width + 16;
-    scrollCardContainer(offset * childSize, true);
-  };
-
-  const isCardContainerScrolledToEnd = (
-    direction: 'left' | 'right'
-  ): boolean => {
-    const container = cardContainerRef.current;
-    if (!container) return false;
-    if (direction === 'left') return container.scrollLeft === 0;
-    return (
-      container.scrollLeft === container.scrollWidth - container.offsetWidth
-    );
-  };
-
+function CardContainer({ children }: CardContainerProps) {
   const cardZIndex = useRef<number>(1);
   const getCardZIndex = (): number => {
     return cardZIndex.current++;
@@ -48,36 +15,32 @@ function CardContainer({ cards }: CardContainerProps) {
   return (
     <CardContainerContext.Provider
       value={{
-        portalContainer,
-        cardScrollLeft,
-        scrollCardContainer,
-        scrollCardContainerByChild,
-        isCardContainerScrolledToEnd,
         getCardZIndex,
       }}
     >
-      <Box className='card-container' position='relative'>
+      <Box
+        sx={{
+          overflowY: 'scroll',
+          height: '100%',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        }}
+      >
         <Box
-          ref={cardContainerRef}
-          onScroll={() => {
-            setCardScrollLeft(cardContainerRef.current?.scrollLeft ?? 0);
-          }}
-          sx={(theme) => ({
-            display: 'flex',
-            gap: 2,
-            overflowX: 'scroll',
-            py: 2,
-            px: theme.horizontalMargin,
-            '&::-webkit-scrollbar': {
-              display: 'none',
+          sx={{
+            display: 'grid',
+            justifyContent: 'center',
+            gridTemplateColumns: '350px 350px',
+            gap: 5,
+            '& > :nth-of-type(even)': {
+              position: 'relative',
+              top: 150,
             },
-          })}
+          }}
         >
-          {cards}
+          {children}
         </Box>
-        <ArrowButton direction='left' />
-        <ArrowButton direction='right' />
-        <Box ref={portalContainer} />
       </Box>
     </CardContainerContext.Provider>
   );

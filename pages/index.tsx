@@ -4,6 +4,7 @@ import Head from 'next/head';
 import ProjectsCards from '../src/components/indexCards/ProjectsCards';
 import ExtensionsCards from '../src/components/indexCards/ExtensionsCards';
 import AutoHotkeyCards from '../src/components/indexCards/AutoHotkeyCards';
+import CardContainer from '../src/components/CardContainer';
 
 const Home: NextPage = () => {
   return (
@@ -48,25 +49,11 @@ const Home: NextPage = () => {
             Niziołek
           </Typography>
         </Box>
-        <Box sx={{ overflowY: 'scroll', height: '100%' }}>
-          <Box
-            sx={{
-              display: 'grid',
-              justifyContent: 'center',
-              gridTemplateColumns: '350px 350px',
-              gap: 5,
-              '& > :nth-child(even)': {
-                backgroundColor: 'red',
-                position: 'relative',
-                top: '50%',
-              },
-            }}
-          >
-            <ProjectsCards />
-            <ExtensionsCards />
-            <AutoHotkeyCards />
-          </Box>
-        </Box>
+        <CardContainer>
+          <ProjectsCards />
+          <ExtensionsCards />
+          <AutoHotkeyCards />
+        </CardContainer>
       </Box>
     </>
   );
