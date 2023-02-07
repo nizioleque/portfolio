@@ -104,6 +104,7 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
             );
           } else {
             cardContainer.current.style.transform = '';
+            cardContainer.current.style.opacity = '1';
           }
         }
 
@@ -111,6 +112,7 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
           const easedValue =
             EASING_STEPS[Math.round(scaleProgress * EASING_STEPS_SIZE)];
           cardContainer.current.style.transform = `scale(${easedValue})`;
+          cardContainer.current.style.opacity = (easedValue + 0.1).toString();
         }
       }
 
