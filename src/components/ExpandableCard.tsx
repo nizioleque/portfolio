@@ -3,10 +3,17 @@ import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 import { transitionTime, transitionTimingFunction } from '../theme';
 import AnimateHeight, { Height } from 'react-animate-height';
+import BezierEasing from 'bezier-easing';
 
 const HEIGHT_MULTIPLIER = 0.7;
 const SCROLL_OFFSET = 325;
 const MIN_SCALE = 0;
+
+const EASING = BezierEasing(0, 0, 0.58, 1);
+const EASING_STEPS_SIZE = 200;
+const EASING_STEPS = new Array(EASING_STEPS_SIZE)
+  .fill(0)
+  .map((_, index) => EASING(index / EASING_STEPS_SIZE));
 
 export interface ExpandableCardProps {
   width?: number;
@@ -67,6 +74,7 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
     const f = () => {
       const rect = gridElement.current?.getBoundingClientRect();
       const currentTop = (rect?.top ?? 0) + SCROLL_OFFSET;
+
       if (
         rect &&
         cardContainer.current &&
@@ -74,13 +82,14 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
       ) {
         const height = rect.height;
         lastTop = currentTop;
+        let scaleProgress: number | null = null;
 
         if (currentTop >= -height && currentTop < height * HEIGHT_MULTIPLIER) {
           cardContainer.current.style.transformOrigin = 'bottom center';
-          cardContainer.current.style.transform = `scale(${Math.max(
+          scaleProgress = Math.max(
             MIN_SCALE,
             currentTop / (height * HEIGHT_MULTIPLIER)
-          )})`;
+          );
         } else {
           const currentBottom =
             document.body.clientHeight - rect.bottom + SCROLL_OFFSET;
@@ -89,13 +98,19 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
             currentBottom < height * HEIGHT_MULTIPLIER
           ) {
             cardContainer.current.style.transformOrigin = 'top center';
-            cardContainer.current.style.transform = `scale(${Math.max(
+            scaleProgress = Math.max(
               MIN_SCALE,
               currentBottom / (height * HEIGHT_MULTIPLIER)
-            )})`;
+            );
           } else {
             cardContainer.current.style.transform = '';
           }
+        }
+
+        if (scaleProgress) {
+          const easedValue =
+            EASING_STEPS[Math.round(scaleProgress * EASING_STEPS_SIZE)];
+          cardContainer.current.style.transform = `scale(${easedValue})`;
         }
       }
 
