@@ -1,8 +1,15 @@
 import { useRef, useEffect, useCallback } from 'react';
 
-const DRAW_RADIUS = 25;
-const BLUR_RADIUS = 60;
-const DRAW_OPACITY = 0.5;
+const DRAW_RADIUS = 20;
+const BLUR_RADIUS = 100;
+const DRAW_OPACITY = 1;
+const DRAW_LIGHTNESS = 65;
+const HUE_CHANGE_SPEED = 1 / 20;
+
+function getHue() {
+  const t = Date.now() * HUE_CHANGE_SPEED;
+  return t % 360;
+}
 
 function CanvasBackground() {
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
@@ -11,7 +18,7 @@ function CanvasBackground() {
     console.log('a');
     if (!ctx.current) return;
 
-    ctx.current.fillStyle = `rgb(0,255,0,${DRAW_OPACITY})`;
+    ctx.current.fillStyle = `hsl(${getHue()},100%,${DRAW_LIGHTNESS}%,${DRAW_OPACITY})`;
     ctx.current.beginPath();
     ctx.current.arc(event.clientX, event.clientY, DRAW_RADIUS, 0, 2 * Math.PI);
     ctx.current.fill();
