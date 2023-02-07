@@ -78,7 +78,7 @@ function CardContainer({ children }: CardContainerProps) {
               position: 'relative',
               top: 150,
             },
-            animation: `${infiniteScrollAnimation} 60s linear infinite`,
+            animation: `${infiniteScrollAnimation} 120s linear infinite`,
             '&:hover': {
               animationPlayState: 'paused',
             },
