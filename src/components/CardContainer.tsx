@@ -1,9 +1,15 @@
-import { Box } from '@mui/material';
-import { ReactNode, useRef, useEffect } from 'react';
+import { Box, keyframes } from '@mui/material';
+import { ReactNode, useRef, useEffect, useCallback } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 
-const CONTENT_REPETITIONS = 3;
-const SCROLL_DIVIDER = 15;
+const infiniteScrollAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-25%);
+  }
+`;
 
 interface CardContainerProps {
   children: ReactNode;
@@ -12,67 +18,36 @@ interface CardContainerProps {
 function CardContainer({ children }: CardContainerProps) {
   const scrollContainer = useRef<HTMLElement>();
   const scrollContent = useRef<HTMLElement>();
-  const autoScroll = useRef<boolean>(true);
 
   const cardZIndex = useRef<number>(1);
   const getCardZIndex = (): number => {
     return cardZIndex.current++;
   };
 
-  const handleScroll = () => {
+  // infinite scroll (user/auto)
+  const handleScroll = useCallback(() => {
     if (!scrollContent.current || !scrollContainer.current) return;
 
-    const contentHeight =
-      scrollContent.current.getBoundingClientRect().height /
-      CONTENT_REPETITIONS;
+    const contentHeight = scrollContent.current.offsetHeight / 4;
     const scrollTop = scrollContainer.current.scrollTop;
 
-    if (scrollTop > (CONTENT_REPETITIONS - 1) * contentHeight) {
+    if (scrollTop > 2 * contentHeight) {
       scrollContainer.current.scrollTo({
         top: contentHeight + (scrollTop % contentHeight),
       });
     } else if (scrollTop < contentHeight) {
       scrollContainer.current.scrollTo({
-        top:
-          (CONTENT_REPETITIONS - 2) * contentHeight +
-          (scrollTop % contentHeight),
+        top: contentHeight + (scrollTop % contentHeight),
       });
     }
-  };
-
-  useEffect(() => {
-    if (!scrollContent.current || !scrollContainer.current) return;
-    const contentHeight =
-      scrollContent.current.offsetHeight / CONTENT_REPETITIONS;
-    scrollContainer.current.scrollTo({ top: contentHeight + 1 });
   }, []);
 
+  // default scroll position
   useEffect(() => {
-    let handle: number | undefined;
-    let lastTimestamp = performance.now();
+    if (!scrollContent.current || !scrollContainer.current) return;
 
-    const scroll = (timestamp: DOMHighResTimeStamp) => {
-      if (autoScroll.current === false) {
-        lastTimestamp = timestamp;
-        handle = requestAnimationFrame(scroll);
-        return;
-      }
-
-      const timeDiff = timestamp - lastTimestamp;
-      if (timeDiff / SCROLL_DIVIDER >= 1) {
-        lastTimestamp = timestamp;
-        scrollContainer.current?.scrollBy({
-          top: 1,
-        });
-      }
-      handle = requestAnimationFrame(scroll);
-    };
-
-    handle = requestAnimationFrame(scroll);
-
-    return () => {
-      if (handle) cancelAnimationFrame(handle);
-    };
+    const contentHeight = scrollContent.current.offsetHeight / 4;
+    scrollContainer.current.scrollTo({ top: contentHeight + 1 });
   }, []);
 
   return (
@@ -94,8 +69,6 @@ function CardContainer({ children }: CardContainerProps) {
       >
         <Box
           ref={scrollContent}
-          onMouseEnter={() => (autoScroll.current = false)}
-          onMouseLeave={() => (autoScroll.current = true)}
           sx={{
             display: 'grid',
             justifyContent: 'center',
@@ -105,12 +78,15 @@ function CardContainer({ children }: CardContainerProps) {
               position: 'relative',
               top: 150,
             },
+            animation: `${infiniteScrollAnimation} 60s linear infinite`,
+            '&:hover': {
+              animationPlayState: 'paused',
+            },
           }}
         >
           {children}
-          {/* <Box sx={{ width: '100%', outline: '5px red solid' }} /> */}
           {children}
-          {/* <Box sx={{ width: '100%', outline: '5px lime solid' }} /> */}
+          {children}
           {children}
         </Box>
       </Box>
