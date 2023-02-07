@@ -4,8 +4,8 @@ import CardContainerContext from '../contexts/CardContainerContext';
 import { transitionTime, transitionTimingFunction } from '../theme';
 import AnimateHeight, { Height } from 'react-animate-height';
 
-const HEIGHT_MULTIPLIER = 1;
-const SCROLL_OFFSET = 250;
+const HEIGHT_MULTIPLIER = 0.7;
+const SCROLL_OFFSET = 325;
 const MIN_SCALE = 0;
 
 export interface ExpandableCardProps {
