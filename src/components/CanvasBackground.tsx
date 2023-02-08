@@ -24,15 +24,33 @@ function CanvasBackground() {
     ctx.current.fill();
   }, []);
 
+  const handleResize = useCallback(() => {
+    if (!ctx.current) return;
+    console.log(document.body.clientHeight, document.body.clientWidth);
+    const imageData = ctx.current.getImageData(
+      0,
+      0,
+      ctx.current.canvas.width,
+      ctx.current.canvas.height
+    );
+    ctx.current.canvas.width = document.body.clientWidth;
+    ctx.current.canvas.height = document.body.clientHeight;
+    ctx.current.putImageData(imageData, 0, 0);
+  }, []);
+
   useEffect(() => {
     if (!ctx.current) return;
-    ctx.current.canvas.height = document.body.clientHeight;
     ctx.current.canvas.width = document.body.clientWidth;
+    ctx.current.canvas.height = document.body.clientHeight;
 
     document.body.addEventListener('mousemove', handleMouseMove);
-    return () =>
+    window.addEventListener('resize', handleResize);
+
+    return () => {
       document.body.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [handleMouseMove, handleResize]);
 
   return (
     <canvas
