@@ -1,4 +1,4 @@
-import { Box, Card, CardProps, SxProps } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 import { transitionTime, transitionTimingFunction } from '../theme';
@@ -15,6 +15,15 @@ const EASING_STEPS = new Array(EASING_STEPS_SIZE)
   .fill(0)
   .map((_, index) => EASING(index / EASING_STEPS_SIZE));
 
+const Card = styled(Box)({
+  padding: 4 * 8,
+  paddingBottom: 0,
+  flexShrink: 0,
+
+  background: 'rgb(255, 255, 255, 0.3)',
+  borderRadius: 30,
+  border: '1px rgb(0, 0, 0, 0.15) solid',
+});
 export interface ExpandableCardProps {
   width?: number;
   content: ReactNode;
@@ -56,16 +65,6 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
 
   const [cardZIndex, setCardZIndex] = useState<number>(getCardZIndex());
   const updateCardZIndex = () => setCardZIndex(getCardZIndex());
-
-  const cardProps: CardProps = {
-    variant: 'outlined',
-  };
-
-  const cardStyle: SxProps = {
-    p: 4,
-    pb: 0,
-    flexShrink: 0,
-  };
 
   useEffect(() => {
     let handle: number | undefined;
@@ -128,8 +127,11 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
     <Box ref={gridElement} display='grid'>
       <Box
         sx={{
+          zIndex: cardZIndex,
+
           display: 'grid',
           position: 'relative',
+          willChange: 'transform, opacity',
         }}
         ref={cardContainer}
       >
@@ -140,7 +142,6 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
 
             height: placeholder.current?.offsetHeight,
             width: placeholder.current?.offsetWidth,
-            zIndex: cardZIndex,
 
             display: !isHovering ? 'none' : 'flex',
             flexDirection: 'column',
@@ -154,10 +155,12 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
             }}
             onMouseEnter={mouseEnter}
             onMouseLeave={mouseLeave}
-            {...cardProps}
             sx={{
-              ...cardStyle,
               minHeight: '100%',
+              transition: `background-color ${transitionTime}ms ${transitionTimingFunction}`,
+              '&:hover': {
+                backgroundColor: 'white',
+              },
             }}
           >
             {content}
@@ -178,12 +181,9 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
           onMouseEnter={mouseEnter}
           onClick={mouseEnter}
           ref={placeholder}
-          {...cardProps}
           sx={{
             gridColumn: 1,
             gridRow: 1,
-
-            ...cardStyle,
             visibility: isHovering ? 'hidden' : undefined,
           }}
         >
