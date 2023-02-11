@@ -1,5 +1,5 @@
-import { Box, keyframes } from '@mui/material';
-import { ReactNode, useRef, useEffect, useCallback } from 'react';
+import { Box, Button, keyframes } from '@mui/material';
+import { ReactNode, useRef, useEffect, useCallback, useState } from 'react';
 import CardContainerContext from '../contexts/CardContainerContext';
 
 const infiniteScrollAnimation = keyframes`
@@ -19,6 +19,9 @@ function CardContainer({ children }: CardContainerProps) {
   const scrollContainer = useRef<HTMLElement>();
   const scrollContent = useRef<HTMLElement>();
 
+  const [lastScrollTop, setLastScrollTop] = useState<number>(0);
+  const [logs, setLogs] = useState<string>('');
+
   const cardZIndex = useRef<number>(1);
   const getCardZIndex = (): number => {
     return cardZIndex.current++;
@@ -31,14 +34,35 @@ function CardContainer({ children }: CardContainerProps) {
     const contentHeight = scrollContent.current.offsetHeight / 4;
     const scrollTop = scrollContainer.current.scrollTop;
 
+    setLastScrollTop(scrollTop);
+    setLogs((old) => `current ${scrollTop}\n` + old);
+
     if (scrollTop > 2 * contentHeight) {
+      setLogs(
+        (old) =>
+          `up ${scrollTop}, new ${
+            contentHeight + (scrollTop % contentHeight)
+          }\n` + old
+      );
+
       scrollContainer.current.scrollTo({
         top: contentHeight + (scrollTop % contentHeight),
       });
+
+      setLogs((old) => `up FINISHED ${scrollTop}\n` + old);
     } else if (scrollTop < contentHeight) {
+      setLogs(
+        (old) =>
+          old +
+          `down ${scrollTop}, new ${
+            contentHeight + (scrollTop % contentHeight)
+          }\n`
+      );
+
       scrollContainer.current.scrollTo({
         top: contentHeight + (scrollTop % contentHeight),
       });
+      setLogs((old) => `down FINISHED ${scrollTop}\n` + old);
     }
   }, []);
 
@@ -66,7 +90,30 @@ function CardContainer({ children }: CardContainerProps) {
           // },
         }}
         onScroll={handleScroll}
+        onTouchMove={() => setLogs((old) => `onTouchMove\n` + old)}
+        onTouchStart={() => setLogs((old) => `onTouchStart\n` + old)}
+        onTouchEnd={() => setLogs((old) => `onTouchEnd\n` + old)}
+        onTouchCancel={() => setLogs((old) => `onTouchCancel\n` + old)}
       >
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            background: 'red',
+            minHeight: 50,
+            minWidth: 50,
+            whiteSpace: 'pre',
+            color: 'white',
+            zIndex: '1000000',
+          }}
+        >
+          <Button onClick={() => setLogs('')}> clear</Button>
+          <Box sx={{ fontWeight: 700 }}>
+            LAST TOP: {lastScrollTop.toFixed(2)}
+          </Box>
+          {logs}
+        </Box>
         <Box
           ref={scrollContent}
           sx={{
