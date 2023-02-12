@@ -1,6 +1,5 @@
 import { Box, keyframes } from '@mui/material';
 import { ReactNode, useRef, useEffect, useCallback } from 'react';
-import CardContainerContext from '../contexts/CardContainerContext';
 
 const infiniteScrollAnimation = keyframes`
   0% {
@@ -18,11 +17,6 @@ interface CardContainerProps {
 function CardContainer({ children }: CardContainerProps) {
   const scrollContainer = useRef<HTMLElement>();
   const scrollContent = useRef<HTMLElement>();
-
-  const cardZIndex = useRef<number>(1);
-  const getCardZIndex = (): number => {
-    return cardZIndex.current++;
-  };
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
@@ -51,46 +45,40 @@ function CardContainer({ children }: CardContainerProps) {
   }, []);
 
   return (
-    <CardContainerContext.Provider
-      value={{
-        getCardZIndex,
+    <Box
+      ref={scrollContainer}
+      sx={{
+        overflowY: 'scroll',
+        height: '100%',
+        // '&::-webkit-scrollbar': {
+        //   display: 'none',
+        // },
       }}
+      onScroll={handleScroll}
     >
       <Box
-        ref={scrollContainer}
+        ref={scrollContent}
         sx={{
-          overflowY: 'scroll',
-          height: '100%',
-          // '&::-webkit-scrollbar': {
-          //   display: 'none',
-          // },
+          display: 'grid',
+          justifyContent: 'center',
+          gridTemplateColumns: '300px 300px',
+          gap: 5,
+          '& > :nth-of-type(even)': {
+            position: 'relative',
+            top: 150,
+          },
+          animation: `${infiniteScrollAnimation} 30s linear infinite`,
+          '&:hover': {
+            animationPlayState: 'paused',
+          },
         }}
-        onScroll={handleScroll}
       >
-        <Box
-          ref={scrollContent}
-          sx={{
-            display: 'grid',
-            justifyContent: 'center',
-            gridTemplateColumns: '300px 300px',
-            gap: 5,
-            '& > :nth-of-type(even)': {
-              position: 'relative',
-              top: 150,
-            },
-            animation: `${infiniteScrollAnimation} 30s linear infinite`,
-            '&:hover': {
-              animationPlayState: 'paused',
-            },
-          }}
-        >
-          {children}
-          {children}
-          {children}
-          {children}
-        </Box>
+        {children}
+        {children}
+        {children}
+        {children}
       </Box>
-    </CardContainerContext.Provider>
+    </Box>
   );
 }
 

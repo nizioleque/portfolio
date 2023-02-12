@@ -1,8 +1,5 @@
 import { Box, styled } from '@mui/material';
-import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
-import CardContainerContext from '../contexts/CardContainerContext';
-import { transitionTime, transitionTimingFunction } from '../theme';
-import AnimateHeight, { Height } from 'react-animate-height';
+import { ReactNode, useEffect, useRef } from 'react';
 import BezierEasing from 'bezier-easing';
 
 const HEIGHT_MULTIPLIER = 0.7;
@@ -28,44 +25,12 @@ const Card = styled(Box)({
 export interface ExpandableCardProps {
   width?: number;
   content: ReactNode;
-  contentExpanded: ReactNode;
 }
 
-function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
-  const { getCardZIndex } = useContext(CardContainerContext);
-
+function ExpandableCard({ content }: ExpandableCardProps) {
   const gridElement = useRef<HTMLDivElement>(null);
   const cardContainer = useRef<HTMLDivElement>(null);
   const placeholder = useRef<HTMLDivElement>(null);
-
-  const [isHovering, setIsHovering] = useState<boolean>(false);
-  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
-  const [isHiding, setIsHiding] = useState<boolean>(false);
-
-  const mouseEnter = () => {
-    if (!isMouseOver) {
-      updateCardZIndex();
-      setIsHovering(true);
-      setIsMouseOver(true);
-      setIsHiding(false);
-    }
-  };
-  const mouseLeave = () => {
-    setIsMouseOver(false);
-    hide();
-  };
-  const hide = () => {
-    setIsHiding(true);
-  };
-  const animationEnd = (newHeight: Height) => {
-    if (newHeight === 0) {
-      setIsHiding(false);
-      setIsHovering(false);
-    }
-  };
-
-  const [cardZIndex, setCardZIndex] = useState<number>(getCardZIndex());
-  const updateCardZIndex = () => setCardZIndex(getCardZIndex());
 
   useEffect(() => {
     let handle: number | undefined;
@@ -128,64 +93,17 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
     <Box ref={gridElement} display='grid'>
       <Box
         sx={{
-          zIndex: cardZIndex,
-
           display: 'grid',
           position: 'relative',
           willChange: 'transform, opacity',
         }}
         ref={cardContainer}
       >
-        <Box
-          sx={{
-            gridColumn: 1,
-            gridRow: 1,
-
-            height: placeholder.current?.offsetHeight,
-            width: placeholder.current?.offsetWidth,
-
-            display: !isHovering ? 'none' : 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
-        >
-          <Card
-            onTouchMove={(event) => {
-              // TODO hide all expanded cards on scroll
-              mouseLeave();
-            }}
-            onMouseEnter={mouseEnter}
-            onMouseLeave={mouseLeave}
-            sx={{
-              minHeight: '100%',
-              transition: `background-color ${transitionTime}ms ${transitionTimingFunction}`,
-              '&:hover': {
-                backgroundColor: 'white',
-              },
-            }}
-          >
-            {content}
-
-            <AnimateHeight
-              duration={transitionTime}
-              easing={transitionTimingFunction}
-              height={isHovering && !isHiding ? 'auto' : 0}
-              animateOpacity
-              onHeightAnimationEnd={animationEnd}
-            >
-              <Box>{contentExpanded}</Box>
-              <Box height={32} />
-            </AnimateHeight>
-          </Card>
-        </Box>
         <Card
-          onMouseEnter={mouseEnter}
-          onClick={mouseEnter}
           ref={placeholder}
           sx={{
             gridColumn: 1,
             gridRow: 1,
-            visibility: isHovering ? 'hidden' : undefined,
             aspectRatio: '1 / 1',
           }}
         >

@@ -7,6 +7,7 @@ export type CardContentProps = Partial<ExpandableCardProps> & {
   icon?: StaticImageData;
   name: string;
   description?: ReactNode;
+  // TODO move
   descriptionExpanded?: ReactNode;
   children?: ReactNode;
 };
@@ -35,7 +36,12 @@ function CardContent({
             }}
           >
             {icon && (
-              <Image src={icon} height={IMAGE_SIZE} width={IMAGE_SIZE} />
+              <Image
+                alt={`${name} icon`}
+                src={icon}
+                height={IMAGE_SIZE}
+                width={IMAGE_SIZE}
+              />
             )}
             <Typography variant='h3' textAlign='center'>
               {name}
@@ -47,14 +53,6 @@ function CardContent({
                 <>{description}</>
               ))}
           </Box>
-        </>
-      }
-      contentExpanded={
-        <>
-          {descriptionExpanded && (
-            <Typography mt={2}>{descriptionExpanded}</Typography>
-          )}
-          {children && <Box mt={4}>{children}</Box>}
         </>
       }
       {...expandableCardProps}
