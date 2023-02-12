@@ -72,7 +72,7 @@ function CardContainer({ children }: CardContainerProps) {
           sx={{
             display: 'grid',
             justifyContent: 'center',
-            gridTemplateColumns: '350px 350px',
+            gridTemplateColumns: '300px 300px',
             gap: 5,
             '& > :nth-of-type(even)': {
               position: 'relative',

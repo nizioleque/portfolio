@@ -11,6 +11,8 @@ export type CardContentProps = Partial<ExpandableCardProps> & {
   children?: ReactNode;
 };
 
+const IMAGE_SIZE = 60;
+
 function CardContent({
   icon,
   name,
@@ -26,21 +28,25 @@ function CardContent({
           <Box
             sx={{
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              gap: 4,
-              mb: 2,
-              minHeight: 90,
+              gap: 2,
+              minHeight: IMAGE_SIZE,
             }}
           >
-            {icon && <Image src={icon} height={90} width={90} />}
-            <Typography variant='h3'>{name}</Typography>
+            {icon && (
+              <Image src={icon} height={IMAGE_SIZE} width={IMAGE_SIZE} />
+            )}
+            <Typography variant='h3' textAlign='center'>
+              {name}
+            </Typography>
+            {description &&
+              (typeof description === 'string' ? (
+                <Typography>{description}</Typography>
+              ) : (
+                <>{description}</>
+              ))}
           </Box>
-          {description &&
-            (typeof description === 'string' ? (
-              <Typography>{description}</Typography>
-            ) : (
-              <>{description}</>
-            ))}
         </>
       }
       contentExpanded={

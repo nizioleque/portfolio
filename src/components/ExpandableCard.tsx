@@ -24,6 +24,7 @@ const Card = styled(Box)({
   borderRadius: 30,
   border: '1px rgb(0, 0, 0, 0.15) solid',
 });
+
 export interface ExpandableCardProps {
   width?: number;
   content: ReactNode;
@@ -185,6 +186,7 @@ function ExpandableCard({ content, contentExpanded }: ExpandableCardProps) {
             gridColumn: 1,
             gridRow: 1,
             visibility: isHovering ? 'hidden' : undefined,
+            aspectRatio: '1 / 1',
           }}
         >
           {content}
