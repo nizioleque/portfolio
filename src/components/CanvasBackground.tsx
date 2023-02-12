@@ -11,6 +11,11 @@ function getHue() {
   return t % 360;
 }
 
+function setCanvasSize(ctx: CanvasRenderingContext2D, document: Document) {
+  ctx.canvas.width = document.body.clientWidth * window.devicePixelRatio;
+  ctx.canvas.height = document.body.clientHeight * window.devicePixelRatio;
+}
+
 function CanvasBackground() {
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
   const offscreenCtx = useRef<CanvasRenderingContext2D | null>(null);
@@ -24,9 +29,9 @@ function CanvasBackground() {
     offscreenCtx.current.fillStyle = `hsl(${getHue()},100%,${DRAW_LIGHTNESS}%,${DRAW_OPACITY})`;
     offscreenCtx.current.beginPath();
     offscreenCtx.current.arc(
-      event.clientX,
-      event.clientY,
-      DRAW_RADIUS,
+      event.clientX * window.devicePixelRatio,
+      event.clientY * window.devicePixelRatio,
+      DRAW_RADIUS * window.devicePixelRatio,
       0,
       2 * Math.PI
     );
@@ -61,11 +66,8 @@ function CanvasBackground() {
       ctx.current.canvas.height
     );
 
-    offscreenCtx.current.canvas.width = document.body.clientWidth;
-    offscreenCtx.current.canvas.height = document.body.clientHeight;
-
-    ctx.current.canvas.width = document.body.clientWidth;
-    ctx.current.canvas.height = document.body.clientHeight;
+    setCanvasSize(offscreenCtx.current, document);
+    setCanvasSize(ctx.current, document);
     ctx.current.filter = `blur(${BLUR_RADIUS}px)`;
 
     offscreenCtx.current.putImageData(imageData, 0, 0);
@@ -76,12 +78,11 @@ function CanvasBackground() {
     if (!ctx.current) return;
 
     const offscreenCanvas = document.createElement('canvas');
-    offscreenCanvas.width = document.body.clientWidth;
-    offscreenCanvas.height = document.body.clientHeight;
     offscreenCtx.current = offscreenCanvas.getContext('2d');
+    if (!offscreenCtx.current) return;
 
-    ctx.current.canvas.width = document.body.clientWidth;
-    ctx.current.canvas.height = document.body.clientHeight;
+    setCanvasSize(offscreenCtx.current, document);
+    setCanvasSize(ctx.current, document);
     ctx.current.filter = `blur(${BLUR_RADIUS}px)`;
 
     document.body.addEventListener('mousemove', handleMouseMove);
@@ -101,6 +102,10 @@ function CanvasBackground() {
       ref={(node) => {
         if (!node) return;
         ctx.current = node?.getContext('2d');
+      }}
+      style={{
+        width: '100vw',
+        height: '100vh',
       }}
     />
   );
