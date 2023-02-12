@@ -26,7 +26,7 @@ function ExtensionCard({
             height: chromeWebStoreButton.height,
           }}
         >
-          <Image src={chromeWebStoreButton} />
+          <Image alt='' src={chromeWebStoreButton} />
         </Box>
         <IconButton href={githubUrl} target='_blank'>
           <GitHub fontSize='large' />

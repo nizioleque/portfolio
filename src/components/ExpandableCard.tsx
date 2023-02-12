@@ -12,15 +12,41 @@ const EASING_STEPS = new Array(EASING_STEPS_SIZE)
   .fill(0)
   .map((_, index) => EASING(index / EASING_STEPS_SIZE));
 
-const Card = styled(Box)({
-  padding: 4 * 8,
-  paddingBottom: 0,
-  flexShrink: 0,
+const Card = styled(Box)(({ theme }) =>
+  theme.unstable_sx({
+    padding: 4,
+    paddingBottom: 0,
+    flexShrink: 0,
 
-  background: 'rgb(255, 255, 255, 0.3)',
-  borderRadius: 30,
-  border: '1px rgb(0, 0, 0, 0.15) solid',
-});
+    background: 'rgb(255, 255, 255, 0.3)',
+    borderRadius: 8,
+    border: '1px rgb(0, 0, 0, 0.15) solid',
+
+    position: 'relative',
+    overflow: 'hidden',
+    '--x': '10px',
+    '--y': '10px',
+
+    '&::before': {
+      content: '""',
+      zIndex: -1,
+      width: 0,
+      height: 0,
+      background: 'radial-gradient(white 0%, rgb(255,0,0,0) 75%)',
+      position: 'absolute',
+      left: 'var(--x)',
+      top: 'var(--y)',
+      transition: `height 120ms cubic-bezier(0.61, 1, 0.88, 1), width 120ms cubic-bezier(0.61, 1, 0.88, 1)`,
+      transform: 'translate(-50%, -50%)',
+    },
+
+    '&:hover::before': {
+      transition: `height 120ms cubic-bezier(0.12, 0, 0.39, 0), width 120ms cubic-bezier(0.12, 0, 0.39, 0)`,
+      width: 1000,
+      height: 1000,
+    },
+  })
+);
 
 export interface ExpandableCardProps {
   width?: number;
@@ -100,6 +126,15 @@ function ExpandableCard({ content }: ExpandableCardProps) {
         ref={cardContainer}
       >
         <Card
+          onMouseMove={(event) => {
+            const target = event.currentTarget as HTMLElement;
+
+            const x = event.clientX - target.getBoundingClientRect().left;
+            const y = event.clientY - target.getBoundingClientRect().top;
+
+            target.style.setProperty('--x', `${x}px`);
+            target.style.setProperty('--y', `${y}px`);
+          }}
           ref={placeholder}
           sx={{
             gridColumn: 1,
