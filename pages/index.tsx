@@ -5,7 +5,12 @@ import ProjectsCards from '../src/components/indexCards/ProjectsCards';
 import ExtensionsCards from '../src/components/indexCards/ExtensionsCards';
 import AutoHotkeyCards from '../src/components/indexCards/AutoHotkeyCards';
 import CardContainer from '../src/components/CardContainer';
-import CanvasBackground from '../src/components/CanvasBackground';
+import dynamic from 'next/dynamic';
+
+const CanvasBackground = dynamic(
+  () => import('../src/components/CanvasBackground'),
+  { ssr: false }
+);
 
 const Home: NextPage = () => {
   return (

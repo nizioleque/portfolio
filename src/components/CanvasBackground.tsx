@@ -6,6 +6,10 @@ const DRAW_OPACITY = 1;
 const DRAW_LIGHTNESS = 65;
 const HUE_CHANGE_SPEED = 1 / 20;
 
+const SUPPORTS_CANVAS_FILTER =
+  typeof document.createElement('canvas').getContext('2d')!.filter !==
+  'undefined';
+
 function getHue() {
   const t = Date.now() * HUE_CHANGE_SPEED;
   return t % 360;
@@ -14,6 +18,11 @@ function getHue() {
 function setCanvasSize(ctx: CanvasRenderingContext2D, document: Document) {
   ctx.canvas.width = document.body.clientWidth * window.devicePixelRatio;
   ctx.canvas.height = document.body.clientHeight * window.devicePixelRatio;
+}
+
+function setCanvasBlur(ctx: CanvasRenderingContext2D) {
+  if (SUPPORTS_CANVAS_FILTER) ctx.filter = `blur(${BLUR_RADIUS}px)`;
+  else ctx.canvas.style.filter = `blur(${BLUR_RADIUS}px)`;
 }
 
 function CanvasBackground() {
@@ -68,7 +77,7 @@ function CanvasBackground() {
 
     setCanvasSize(offscreenCtx.current, document);
     setCanvasSize(ctx.current, document);
-    ctx.current.filter = `blur(${BLUR_RADIUS}px)`;
+    setCanvasBlur(ctx.current);
 
     offscreenCtx.current.putImageData(imageData, 0, 0);
     ctx.current.drawImage(offscreenCtx.current.canvas, 0, 0);
@@ -83,7 +92,7 @@ function CanvasBackground() {
 
     setCanvasSize(offscreenCtx.current, document);
     setCanvasSize(ctx.current, document);
-    ctx.current.filter = `blur(${BLUR_RADIUS}px)`;
+    setCanvasBlur(ctx.current);
 
     document.body.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
