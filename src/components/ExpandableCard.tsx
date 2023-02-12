@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, MouseEvent } from 'react';
 import BezierEasing from 'bezier-easing';
 
 const HEIGHT_MULTIPLIER = 0.7;
@@ -11,6 +11,8 @@ const EASING_STEPS_SIZE = 200;
 const EASING_STEPS = new Array(EASING_STEPS_SIZE)
   .fill(0)
   .map((_, index) => EASING(index / EASING_STEPS_SIZE));
+
+const ROTATE_MULTIPLIER = 1 / 15;
 
 const Card = styled(Box)(({ theme }) =>
   theme.unstable_sx({
@@ -115,6 +117,34 @@ function ExpandableCard({ content }: ExpandableCardProps) {
     return () => cancelAnimationFrame(handle!);
   }, []);
 
+  const handleMouseMove = useCallback((event: MouseEvent<HTMLDivElement>) => {
+    if (!placeholder.current) return;
+
+    const target = event.currentTarget as HTMLElement;
+    const targetRect = target.getBoundingClientRect();
+
+    const x = event.clientX - targetRect.left;
+    const y = event.clientY - targetRect.top;
+    placeholder.current.style.setProperty('--x', `${x}px`);
+    placeholder.current.style.setProperty('--y', `${y}px`);
+
+    const rotateX = (y - targetRect.height / 2) * ROTATE_MULTIPLIER;
+    const rotateY = -(x - targetRect.width / 2) * ROTATE_MULTIPLIER;
+    placeholder.current.style.transition = 'none';
+    placeholder.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  }, []);
+
+  const handleMouseLeave = useCallback((event: MouseEvent<HTMLDivElement>) => {
+    if (!placeholder.current) return;
+    placeholder.current.style.transition = 'transform 200ms ease-out';
+    placeholder.current.style.transform = 'none';
+  }, []);
+
+  const handleTransitionEnd = useCallback(() => {
+    if (!placeholder.current) return;
+    placeholder.current.style.transition = '';
+  }, []);
+
   return (
     <Box ref={gridElement} display='grid'>
       <Box
@@ -124,17 +154,11 @@ function ExpandableCard({ content }: ExpandableCardProps) {
           willChange: 'transform, opacity',
         }}
         ref={cardContainer}
+        onTransitionEnd={handleTransitionEnd}
       >
         <Card
-          onMouseMove={(event) => {
-            const target = event.currentTarget as HTMLElement;
-
-            const x = event.clientX - target.getBoundingClientRect().left;
-            const y = event.clientY - target.getBoundingClientRect().top;
-
-            target.style.setProperty('--x', `${x}px`);
-            target.style.setProperty('--y', `${y}px`);
-          }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
           ref={placeholder}
           sx={{
             gridColumn: 1,
