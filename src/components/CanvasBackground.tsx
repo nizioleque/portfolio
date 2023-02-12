@@ -15,6 +15,9 @@ function CanvasBackground() {
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
   const offscreenCtx = useRef<CanvasRenderingContext2D | null>(null);
 
+  const redrawCanvas = useRef<boolean>(false);
+  const rafHandle = useRef<number | null>(null);
+
   const handleMouseMove = useCallback((event: MouseEvent) => {
     if (!ctx.current || !offscreenCtx.current) return;
 
@@ -29,19 +32,28 @@ function CanvasBackground() {
     );
     offscreenCtx.current.fill();
 
-    ctx.current.clearRect(
-      0,
-      0,
-      ctx.current.canvas.width,
-      ctx.current.canvas.height
-    );
-    ctx.current.drawImage(offscreenCtx.current.canvas, 0, 0);
+    redrawCanvas.current = true;
+  }, []);
+
+  const handleRedraw = useCallback(() => {
+    if (redrawCanvas.current && ctx.current && offscreenCtx.current) {
+      ctx.current.clearRect(
+        0,
+        0,
+        ctx.current.canvas.width,
+        ctx.current.canvas.height
+      );
+      ctx.current.drawImage(offscreenCtx.current.canvas, 0, 0);
+
+      redrawCanvas.current = false;
+    }
+
+    rafHandle.current = requestAnimationFrame(handleRedraw);
   }, []);
 
   const handleResize = useCallback(() => {
     if (!ctx.current || !offscreenCtx.current) return;
 
-    console.log(document.body.clientHeight, document.body.clientWidth);
     const imageData = offscreenCtx.current.getImageData(
       0,
       0,
@@ -75,11 +87,14 @@ function CanvasBackground() {
     document.body.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
 
+    rafHandle.current = requestAnimationFrame(handleRedraw);
+
     return () => {
       document.body.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      rafHandle.current && cancelAnimationFrame(rafHandle.current);
     };
-  }, [handleMouseMove, handleResize]);
+  }, [handleMouseMove, handleResize, handleRedraw]);
 
   return (
     <canvas
