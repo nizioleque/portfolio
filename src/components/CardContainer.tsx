@@ -1,15 +1,8 @@
-import { Box, keyframes } from '@mui/material';
+import { Box } from '@mui/material';
 import { ReactNode, useRef, useEffect, useCallback } from 'react';
+import { useInterval } from 'usehooks-ts';
 import CardContainerContext from '../contexts/CardContainerContext';
-
-const infiniteScrollAnimation = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-25%);
-  }
-`;
+import { animateScroll, Events } from 'react-scroll';
 
 interface CardContainerProps {
   children: ReactNode;
@@ -19,9 +12,16 @@ function CardContainer({ children }: CardContainerProps) {
   const scrollContainer = useRef<HTMLElement>(null);
   const scrollContent = useRef<HTMLElement>(null);
 
+  const isAutoScrolling = useRef<boolean>(false);
+
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
-    if (!scrollContent.current || !scrollContainer.current) return;
+    if (
+      !scrollContent.current ||
+      !scrollContainer.current ||
+      isAutoScrolling.current
+    )
+      return;
 
     const contentHeight = scrollContent.current.offsetHeight / 4;
     const scrollTop = scrollContainer.current.scrollTop;
@@ -45,6 +45,23 @@ function CardContainer({ children }: CardContainerProps) {
     scrollContainer.current.scrollTo({ top: contentHeight + 1 });
   }, []);
 
+  useInterval(() => {
+    animateScroll.scrollMore(340, {
+      duration: 1500,
+      smooth: 'easeInOutCubic',
+      containerId: 'scroll-container',
+    });
+  }, 4000);
+
+  Events.scrollEvent.register('begin', () => {
+    isAutoScrolling.current = true;
+  });
+
+  Events.scrollEvent.register('end', () => {
+    isAutoScrolling.current = false;
+    setTimeout(() => handleScroll(), 0);
+  });
+
   return (
     <CardContainerContext.Provider
       value={{
@@ -52,6 +69,7 @@ function CardContainer({ children }: CardContainerProps) {
       }}
     >
       <Box
+        id='scroll-container'
         ref={scrollContainer}
         sx={{
           overflowY: 'scroll',
@@ -72,10 +90,6 @@ function CardContainer({ children }: CardContainerProps) {
             '& > :nth-of-type(even)': {
               position: 'relative',
               top: 150,
-            },
-            // animation: `${infiniteScrollAnimation} 30s linear infinite`,
-            '&:hover': {
-              animationPlayState: 'paused',
             },
           }}
         >

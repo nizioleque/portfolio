@@ -3,7 +3,7 @@ import { useRef, useEffect, useCallback } from 'react';
 const DRAW_RADIUS = 20;
 const BLUR_RADIUS = 100;
 const DRAW_OPACITY = 1;
-const DRAW_LIGHTNESS = 65;
+const DRAW_LIGHTNESS = 50;
 const HUE_CHANGE_SPEED = 1 / 20;
 
 const SUPPORTS_CANVAS_FILTER =
