@@ -89,8 +89,7 @@ function CardContainer({ children }: CardContainerProps) {
             justifyContent: 'center',
             gridTemplateColumns: 'auto auto',
             gap: 5,
-            '& > :nth-of-type(even)': {
-              position: 'relative',
+            '& > :nth-of-type(even) .card-list-item': {
               top: 150,
             },
           }}

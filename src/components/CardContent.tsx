@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import ExpandableCard from './ExpandableCard';
+import ExpandableCard from './ExpandableCard/ExpandableCard';
 import Image, { StaticImageData } from 'next/image';
 
 export type CardContentProps = {
