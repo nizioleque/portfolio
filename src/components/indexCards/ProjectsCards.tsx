@@ -116,12 +116,8 @@ function ProjectsCards() {
           </IconButton>
         </Box>
       </CardContent>
-      <CardContent
-        name='Portfolio'
-        description={
-          <Typography sx={{ fontStyle: 'italic' }}>this.</Typography>
-        }
-      >
+      {/* TODO Add italics to 'this' */}
+      <CardContent name='Portfolio' description='this.'>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography>Code on GitHub</Typography>
           <IconButton

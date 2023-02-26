@@ -1,27 +1,20 @@
 import { Box, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
-import ExpandableCard, { ExpandableCardProps } from './ExpandableCard';
+import ExpandableCard from './ExpandableCard';
 import Image, { StaticImageData } from 'next/image';
 
-export type CardContentProps = Partial<ExpandableCardProps> & {
+export type CardContentProps = {
   icon?: StaticImageData;
   name: string;
-  description?: ReactNode;
-  // TODO move
+  description: string;
+  // TODO (re)move
   descriptionExpanded?: ReactNode;
   children?: ReactNode;
 };
 
 const IMAGE_SIZE = 60;
 
-function CardContent({
-  icon,
-  name,
-  description,
-  descriptionExpanded,
-  children,
-  ...expandableCardProps
-}: CardContentProps) {
+function CardContent({ icon, name, description }: CardContentProps) {
   return (
     <ExpandableCard
       content={
@@ -46,16 +39,10 @@ function CardContent({
             <Typography variant='h3' textAlign='center'>
               {name}
             </Typography>
-            {description &&
-              (typeof description === 'string' ? (
-                <Typography>{description}</Typography>
-              ) : (
-                <>{description}</>
-              ))}
+            <Typography>{description}</Typography>
           </Box>
         </>
       }
-      {...expandableCardProps}
     />
   );
 }

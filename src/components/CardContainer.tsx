@@ -45,6 +45,7 @@ function CardContainer({ children }: CardContainerProps) {
     scrollContainer.current.scrollTo({ top: contentHeight + 1 });
   }, []);
 
+  // scroll animation
   useInterval(() => {
     animateScroll.scrollMore(340, {
       duration: 1500,
@@ -74,6 +75,7 @@ function CardContainer({ children }: CardContainerProps) {
         sx={{
           overflowY: 'scroll',
           height: '100%',
+          // TODO apply on production
           // '&::-webkit-scrollbar': {
           //   display: 'none',
           // },
@@ -85,7 +87,7 @@ function CardContainer({ children }: CardContainerProps) {
           sx={{
             display: 'grid',
             justifyContent: 'center',
-            gridTemplateColumns: '300px 300px',
+            gridTemplateColumns: 'auto auto',
             gap: 5,
             '& > :nth-of-type(even)': {
               position: 'relative',
