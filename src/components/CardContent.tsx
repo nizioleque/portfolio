@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import React, { ReactNode } from 'react';
 import ExpandableCard from './ExpandableCard';
 import Image, { StaticImageData } from 'next/image';
 
@@ -7,9 +6,6 @@ export type CardContentProps = {
   icon?: StaticImageData;
   name: string;
   description: string;
-  // TODO (re)move
-  descriptionExpanded?: ReactNode;
-  children?: ReactNode;
 };
 
 const IMAGE_SIZE = 60;
