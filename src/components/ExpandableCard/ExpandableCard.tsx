@@ -39,11 +39,17 @@ function ExpandableCard({ content }: ExpandableCardProps) {
     [scrollYProgressTop, scrollYProgressBottom],
     ([latestTop, latestBottom]: number[]) => {
       if (!cardContainer.current) return 0;
+
+      cardContainer.current.classList.remove('transform-origin-top');
+      cardContainer.current.classList.remove('transform-origin-bottom');
+
+      if (latestTop === 1 && latestBottom === 0) return;
+
       if (latestTop < 1 - latestBottom) {
-        cardContainer.current.style.transformOrigin = 'bottom center';
+        cardContainer.current.classList.add('transform-origin-top');
         return latestTop;
       } else {
-        cardContainer.current.style.transformOrigin = 'top center';
+        cardContainer.current.classList.add('transform-origin-bottom');
         return 1 - latestBottom;
       }
     }
@@ -52,21 +58,26 @@ function ExpandableCard({ content }: ExpandableCardProps) {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   const [id, _] = useState<string>(generate());
-  console.log(id);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        '& .transform-origin-top': {
+          transformOrigin: 'bottom center !important',
+        },
+        '& .transform-origin-bottom': {
+          transformOrigin: 'top center !important',
+        },
+      }}
+    >
       <Card
-        sx={{
-          width: 300,
-          aspectRatio: '1 / 1',
-        }}
         onClick={() => setIsSelected(true)}
         ref={cardContainer}
         className='card-list-item'
         style={{
           scale: scrollYProgressCombined,
-          height: '100%',
+          width: 300,
+          aspectRatio: '1 / 1',
         }}
         onMouseMove={(event) => {
           const target = event.currentTarget as HTMLElement;
@@ -84,7 +95,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
       <AnimatePresence>
         {isSelected && (
           <>
-            <Overlay setIsSelected={setIsSelected} />
+            <Overlay setIsSelected={setIsSelected} key='overlay' />
             <Box
               sx={{
                 position: 'fixed',
@@ -109,6 +120,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
                 }}
                 component={motion.div}
                 layoutId={id}
+                key='modal'
               >
                 SELECTED
               </Box>
