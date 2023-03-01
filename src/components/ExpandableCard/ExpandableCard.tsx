@@ -22,7 +22,7 @@ export interface ExpandableCardProps {
 function ExpandableCard({ content }: ExpandableCardProps) {
   const cardContainer = useRef<HTMLDivElement>(null);
 
-  const { scrollContainer, blockScrollChange } =
+  const { scrollContainer, blockScrollChange, pauseAutoScroll } =
     useContext(CardContainerContext);
 
   const { scrollYProgress: scrollYProgressTop } = useScroll({
@@ -131,6 +131,10 @@ function ExpandableCard({ content }: ExpandableCardProps) {
             target.style.setProperty('--x', `${x}px`);
             target.style.setProperty('--y', `${y}px`);
           }}
+          onMouseEnter={() => (pauseAutoScroll.current = true)}
+          onMouseLeave={() =>
+            setTimeout(() => (pauseAutoScroll.current = false), 350)
+          }
           layoutId={id}
         >
           {content}

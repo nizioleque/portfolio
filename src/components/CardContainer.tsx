@@ -16,6 +16,7 @@ function CardContainer({ children }: CardContainerProps) {
 
   const isAutoScrolling = useRef<boolean>(false);
   const blockScrollChange = useRef<boolean>(false);
+  const pauseAutoScroll = useRef<boolean>(false);
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
@@ -51,11 +52,13 @@ function CardContainer({ children }: CardContainerProps) {
 
   // scroll animation
   useInterval(() => {
-    animateScroll.scrollMore(340, {
-      duration: 1500,
-      smooth: 'easeInOutQuad',
-      containerId: 'scroll-container',
-    });
+    if (pauseAutoScroll.current === false) {
+      animateScroll.scrollMore(340, {
+        duration: 1500,
+        smooth: 'easeInOutQuad',
+        containerId: 'scroll-container',
+      });
+    }
   }, 4000);
 
   const setScrollEndListener = useSetRecoilState(scrollEndState);
@@ -89,6 +92,7 @@ function CardContainer({ children }: CardContainerProps) {
       value={{
         scrollContainer,
         blockScrollChange,
+        pauseAutoScroll,
       }}
     >
       <Box
