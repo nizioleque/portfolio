@@ -69,10 +69,11 @@ function ExpandableCard({ content }: ExpandableCardProps) {
 
   useEffect(() => {
     if (shouldOpenModal) {
+      pauseAutoScroll.current = true;
       setIsSelected(true);
       setShouldOpenModal(false);
     }
-  }, [shouldOpenModal, setShouldOpenModal]);
+  }, [shouldOpenModal, setShouldOpenModal, pauseAutoScroll]);
 
   return (
     <Element name={id}>
@@ -113,6 +114,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
               return;
             }
 
+            pauseAutoScroll.current = true;
             setIsSelected(true);
           }}
           ref={cardContainer}
@@ -132,9 +134,9 @@ function ExpandableCard({ content }: ExpandableCardProps) {
             target.style.setProperty('--y', `${y}px`);
           }}
           onMouseEnter={() => (pauseAutoScroll.current = true)}
-          onMouseLeave={() =>
-            setTimeout(() => (pauseAutoScroll.current = false), 350)
-          }
+          onMouseLeave={() => {
+            if (isSelected === false) pauseAutoScroll.current = false;
+          }}
           layoutId={id}
         >
           {content}

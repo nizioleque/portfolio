@@ -22,10 +22,7 @@ function Overlay({ setIsSelected }: OverlayProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={(event) => {
-        event.stopPropagation();
-        setIsSelected(false);
-      }}
+      onClick={(event) => setIsSelected(false)}
     />
   );
 }
