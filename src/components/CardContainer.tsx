@@ -3,6 +3,8 @@ import { ReactNode, useRef, useEffect, useCallback } from 'react';
 import { useInterval } from 'usehooks-ts';
 import CardContainerContext from '../contexts/CardContainerContext';
 import { animateScroll, Events } from 'react-scroll';
+import { useSetRecoilState } from 'recoil';
+import scrollEndState, { ScrollEndStateStatus } from '../atoms/scrollEndState';
 
 interface CardContainerProps {
   children: ReactNode;
@@ -13,13 +15,15 @@ function CardContainer({ children }: CardContainerProps) {
   const scrollContent = useRef<HTMLElement>(null);
 
   const isAutoScrolling = useRef<boolean>(false);
+  const blockScrollChange = useRef<boolean>(false);
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
     if (
       !scrollContent.current ||
       !scrollContainer.current ||
-      isAutoScrolling.current
+      isAutoScrolling.current ||
+      blockScrollChange.current
     )
       return;
 
@@ -49,10 +53,12 @@ function CardContainer({ children }: CardContainerProps) {
   useInterval(() => {
     animateScroll.scrollMore(340, {
       duration: 1500,
-      smooth: 'easeInOutCubic',
+      smooth: 'easeInOutQuad',
       containerId: 'scroll-container',
     });
   }, 4000);
+
+  const setScrollEndListener = useSetRecoilState(scrollEndState);
 
   Events.scrollEvent.register('begin', () => {
     isAutoScrolling.current = true;
@@ -60,6 +66,21 @@ function CardContainer({ children }: CardContainerProps) {
 
   Events.scrollEvent.register('end', () => {
     isAutoScrolling.current = false;
+
+    setScrollEndListener((scrollEndListener) => {
+      if (
+        scrollEndListener === null ||
+        scrollEndListener.status !== ScrollEndStateStatus.Scrolling
+      )
+        return scrollEndListener;
+
+      blockScrollChange.current = true;
+      return {
+        id: scrollEndListener.id,
+        status: ScrollEndStateStatus.Done,
+      };
+    });
+
     setTimeout(() => handleScroll(), 0);
   });
 
@@ -67,6 +88,7 @@ function CardContainer({ children }: CardContainerProps) {
     <CardContainerContext.Provider
       value={{
         scrollContainer,
+        blockScrollChange,
       }}
     >
       <Box
