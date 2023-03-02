@@ -39,25 +39,44 @@ function ExpandableCard({ content }: ExpandableCardProps) {
     layoutEffect: false,
   });
 
+  const transformOrigin = useRef<'bottom' | 'center' | 'top'>('center');
+
   const scrollYProgressCombined = useTransform(
     [scrollYProgressTop, scrollYProgressBottom],
     ([latestTop, latestBottom]: number[]) => {
       if (!cardContainer.current) return 0;
 
-      cardContainer.current.classList.remove('transform-origin-top');
-      cardContainer.current.classList.remove('transform-origin-bottom');
-
-      if (latestTop === 1 && latestBottom === 0) return;
+      if (latestTop === 1 && latestBottom === 0) {
+        transformOrigin.current = 'center';
+        return 1;
+      }
 
       if (latestTop < 1 - latestBottom) {
-        cardContainer.current.classList.add('transform-origin-top');
+        transformOrigin.current = 'bottom';
         return latestTop;
       } else {
-        cardContainer.current.classList.add('transform-origin-bottom');
+        transformOrigin.current = 'top';
         return 1 - latestBottom;
       }
     }
   );
+
+  const originY = useTransform(scrollYProgressCombined, () => {
+    switch (transformOrigin.current) {
+      case 'top':
+        cardContainer.current?.classList.remove('transform-origin-bottom');
+        cardContainer.current?.classList.add('transform-origin-top');
+        return 0;
+      case 'center':
+        cardContainer.current?.classList.remove('transform-origin-top');
+        cardContainer.current?.classList.remove('transform-origin-bottom');
+        return 0.5;
+      case 'bottom':
+        cardContainer.current?.classList.remove('transform-origin-top');
+        cardContainer.current?.classList.add('transform-origin-bottom');
+        return 1;
+    }
+  });
 
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
@@ -77,32 +96,20 @@ function ExpandableCard({ content }: ExpandableCardProps) {
 
   return (
     <Element name={id}>
-      <Box
-        sx={{
-          '& .transform-origin-top': {
-            transformOrigin: 'bottom center !important',
-          },
-          '& .transform-origin-bottom': {
-            transformOrigin: 'top center !important',
-          },
-        }}
-      >
+      <Box>
         <Card
           onClick={() => {
             if (!cardContainer.current || !scrollContainer.current) return 0;
 
-            const classList = cardContainer.current.classList;
-            if (
-              classList.contains('transform-origin-top') ||
-              classList.contains('transform-origin-bottom')
-            ) {
+            if (transformOrigin.current !== 'center') {
               setShouldOpenModal(true);
 
               // TODO calculate exact vh value
               const padding = 50;
-              let offset = classList.contains('transform-origin-top')
-                ? -padding
-                : -document.documentElement.clientHeight + 300 + padding;
+              let offset =
+                transformOrigin.current === 'bottom'
+                  ? -padding
+                  : -document.documentElement.clientHeight + 300 + padding;
               offset += parseInt(getComputedStyle(cardContainer.current).top);
 
               scroller.scrollTo(id, {
@@ -121,6 +128,8 @@ function ExpandableCard({ content }: ExpandableCardProps) {
           className='card-list-item'
           style={{
             scale: scrollYProgressCombined,
+            originY,
+            originX: 0.5,
             width: 300,
             aspectRatio: '1 / 1',
           }}

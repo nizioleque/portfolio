@@ -36,6 +36,13 @@ const Card = styled(motion.div)(({ theme }) =>
       width: 1000,
       height: 1000,
     },
+
+    '&.transform-origin-top': {
+      transformOrigin: 'top center !important',
+    },
+    '&.transform-origin-bottom': {
+      transformOrigin: 'bottom center !important',
+    },
   })
 );
 
