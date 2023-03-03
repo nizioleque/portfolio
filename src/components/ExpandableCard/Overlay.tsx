@@ -1,12 +1,11 @@
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Dispatch, SetStateAction } from 'react';
 
 interface OverlayProps {
-  setIsSelected: Dispatch<SetStateAction<boolean>>;
+  closeModal: () => void;
 }
 
-function Overlay({ setIsSelected }: OverlayProps) {
+function Overlay({ closeModal }: OverlayProps) {
   return (
     <Box
       sx={{
@@ -22,7 +21,7 @@ function Overlay({ setIsSelected }: OverlayProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={(event) => setIsSelected(false)}
+      onClick={closeModal}
     />
   );
 }

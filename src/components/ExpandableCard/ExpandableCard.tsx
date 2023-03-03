@@ -13,6 +13,8 @@ import Overlay from './Overlay';
 import { Element, scroller } from 'react-scroll';
 import shouldOpenModalState from '../../atoms/shouldOpenModalState';
 import { useRecoilState } from 'recoil';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export interface ExpandableCardProps {
   width?: number;
@@ -20,7 +22,7 @@ export interface ExpandableCardProps {
 }
 
 function ExpandableCard({ content }: ExpandableCardProps) {
-  const cardContainer = useRef<HTMLDivElement>(null);
+  const cardContainer = useRef<HTMLAnchorElement>(null);
 
   const { scrollContainer, blockScrollChange, pauseAutoScroll } =
     useContext(CardContainerContext);
@@ -78,8 +80,14 @@ function ExpandableCard({ content }: ExpandableCardProps) {
     }
   });
 
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const router = useRouter();
+  const closeModal = () => {
+    setIsModalOpen(false);
+    router.push('/');
+  };
 
+  // TODO substitute with title
   const [id, _] = useState<string>(generate());
 
   const [shouldOpenModal, setShouldOpenModal] = useRecoilState(
@@ -89,7 +97,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
   useEffect(() => {
     if (shouldOpenModal) {
       pauseAutoScroll.current = true;
-      setIsSelected(true);
+      setIsModalOpen(true);
       setShouldOpenModal(false);
     }
   }, [shouldOpenModal, setShouldOpenModal, pauseAutoScroll]);
@@ -97,65 +105,67 @@ function ExpandableCard({ content }: ExpandableCardProps) {
   return (
     <Element name={id}>
       <Box>
-        <Card
-          onClick={() => {
-            if (!cardContainer.current || !scrollContainer.current) return 0;
+        <Link href={`/?projectId=${id}`} as={`/${id}`} passHref legacyBehavior>
+          <Card
+            onClick={() => {
+              if (!cardContainer.current) return;
 
-            if (transformOrigin.current !== 'center') {
-              setShouldOpenModal(true);
+              if (transformOrigin.current !== 'center') {
+                setShouldOpenModal(true);
 
-              // TODO calculate exact vh value
-              const padding = 50;
-              let offset =
-                transformOrigin.current === 'bottom'
-                  ? -padding
-                  : -document.documentElement.clientHeight + 300 + padding;
-              offset += parseInt(getComputedStyle(cardContainer.current).top);
+                // TODO calculate exact vh value
+                const padding = 50;
+                let offset =
+                  transformOrigin.current === 'bottom'
+                    ? -padding
+                    : -document.documentElement.clientHeight + 300 + padding;
+                offset += parseInt(getComputedStyle(cardContainer.current).top);
 
-              scroller.scrollTo(id, {
-                containerId: 'scroll-container',
-                smooth: 'easeInOutQuad',
-                duration: 250,
-                offset,
-              });
-              return;
-            }
+                scroller.scrollTo(id, {
+                  containerId: 'scroll-container',
+                  smooth: 'easeInOutQuad',
+                  duration: 250,
+                  offset,
+                });
+                return;
+              }
 
-            pauseAutoScroll.current = true;
-            setIsSelected(true);
-          }}
-          ref={cardContainer}
-          className='card-list-item'
-          style={{
-            scale: scrollYProgressCombined,
-            originY,
-            originX: 0.5,
-            width: 300,
-            aspectRatio: '1 / 1',
-          }}
-          onMouseMove={(event) => {
-            const target = event.currentTarget as HTMLElement;
+              pauseAutoScroll.current = true;
+              setIsModalOpen(true);
+            }}
+            ref={cardContainer}
+            className='card-list-item'
+            style={{
+              scale: scrollYProgressCombined,
+              originY,
+              originX: 0.5,
+              width: 300,
+              aspectRatio: '1 / 1',
+            }}
+            onMouseMove={(event) => {
+              const target = event.currentTarget as HTMLElement;
 
-            const x = event.clientX - target.getBoundingClientRect().left;
-            const y = event.clientY - target.getBoundingClientRect().top;
+              const x = event.clientX - target.getBoundingClientRect().left;
+              const y = event.clientY - target.getBoundingClientRect().top;
 
-            target.style.setProperty('--x', `${x}px`);
-            target.style.setProperty('--y', `${y}px`);
-          }}
-          onMouseEnter={() => (pauseAutoScroll.current = true)}
-          onMouseLeave={() => {
-            if (isSelected === false) pauseAutoScroll.current = false;
-          }}
-          layoutId={id}
-        >
-          {content}
-        </Card>
+              target.style.setProperty('--x', `${x}px`);
+              target.style.setProperty('--y', `${y}px`);
+            }}
+            onMouseEnter={() => (pauseAutoScroll.current = true)}
+            onMouseLeave={() => {
+              if (isModalOpen === false) pauseAutoScroll.current = false;
+            }}
+            layoutId={id}
+          >
+            {content}
+          </Card>
+        </Link>
         <AnimatePresence
           onExitComplete={() => (blockScrollChange.current = false)}
         >
-          {isSelected && (
+          {isModalOpen && (
             <>
-              <Overlay setIsSelected={setIsSelected} key='overlay' />
+              <Overlay closeModal={closeModal} key='overlay' />
               <Box
                 sx={{
                   position: 'fixed',

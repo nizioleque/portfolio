@@ -1,8 +1,9 @@
 import { styled } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const Card = styled(motion.div)(({ theme }) =>
+const Card = styled(motion.a)(({ theme }) =>
   theme.unstable_sx({
+    display: 'block',
     padding: 4,
 
     background: 'rgb(255, 255, 255, 0.3)',
