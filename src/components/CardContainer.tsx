@@ -5,6 +5,7 @@ import CardContainerContext from '../contexts/CardContainerContext';
 import { animateScroll, Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
 import scrollEndState, { ScrollEndStateStatus } from '../atoms/scrollEndState';
+import CardIterationCountContext from '../contexts/CardIterationCountContext';
 
 interface CardContainerProps {
   children: ReactNode;
@@ -120,10 +121,18 @@ function CardContainer({ children }: CardContainerProps) {
             },
           }}
         >
-          {children}
-          {children}
-          {children}
-          {children}
+          <CardIterationCountContext.Provider value={0}>
+            {children}
+          </CardIterationCountContext.Provider>
+          <CardIterationCountContext.Provider value={1}>
+            {children}
+          </CardIterationCountContext.Provider>
+          <CardIterationCountContext.Provider value={2}>
+            {children}
+          </CardIterationCountContext.Provider>
+          <CardIterationCountContext.Provider value={3}>
+            {children}
+          </CardIterationCountContext.Provider>
         </Box>
       </Box>
     </CardContainerContext.Provider>

@@ -13,6 +13,7 @@ const IMAGE_SIZE = 60;
 function CardContent({ icon, name, description }: CardContentProps) {
   return (
     <ExpandableCard
+      id={name.toLowerCase().replaceAll(' ', '-')}
       content={
         <>
           <Box

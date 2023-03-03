@@ -12,6 +12,8 @@ const cardContainerContextDefaultValue: CardContainerContext = {
   pauseAutoScroll: { current: false },
 };
 
-const CardContainerContext = createContext(cardContainerContextDefaultValue);
+const CardContainerContext = createContext<CardContainerContext>(
+  cardContainerContextDefaultValue
+);
 
 export default CardContainerContext;

@@ -1,5 +1,12 @@
 import { Box } from '@mui/material';
-import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import {
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   AnimatePresence,
   motion,
@@ -8,24 +15,26 @@ import {
 } from 'framer-motion';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import Card from './Card';
-import { generate } from 'randomstring';
 import Overlay from './Overlay';
 import { Element, scroller } from 'react-scroll';
 import shouldOpenModalState from '../../atoms/shouldOpenModalState';
 import { useRecoilState } from 'recoil';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import CardIterationCountContext from '../../contexts/CardIterationCountContext';
 
 export interface ExpandableCardProps {
-  width?: number;
   content: ReactNode;
+  id: string;
 }
 
-function ExpandableCard({ content }: ExpandableCardProps) {
-  const cardContainer = useRef<HTMLAnchorElement>(null);
-
+function ExpandableCard({ content, id }: ExpandableCardProps) {
   const { scrollContainer, blockScrollChange, pauseAutoScroll } =
     useContext(CardContainerContext);
+
+  const idIteration = useContext(CardIterationCountContext);
+
+  const cardContainer = useRef<HTMLAnchorElement>(null);
 
   const { scrollYProgress: scrollYProgressTop } = useScroll({
     container: scrollContainer,
@@ -87,11 +96,10 @@ function ExpandableCard({ content }: ExpandableCardProps) {
     router.push('/');
   };
 
-  // TODO substitute with title
-  const [id, _] = useState<string>(generate());
+  const uniqueId = useMemo(() => `${id}-${idIteration}`, [id, idIteration]);
 
   const [shouldOpenModal, setShouldOpenModal] = useRecoilState(
-    shouldOpenModalState(id)
+    shouldOpenModalState(uniqueId)
   );
 
   useEffect(() => {
@@ -103,9 +111,9 @@ function ExpandableCard({ content }: ExpandableCardProps) {
   }, [shouldOpenModal, setShouldOpenModal, pauseAutoScroll]);
 
   return (
-    <Element name={id}>
+    <Element name={uniqueId}>
       <Box>
-        <Link href={`/?projectId=${id}`} as={`/${id}`} passHref legacyBehavior>
+        <Link href={`/`} as={`/${id}`} passHref legacyBehavior>
           <Card
             onClick={() => {
               if (!cardContainer.current) return;
@@ -121,7 +129,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
                     : -document.documentElement.clientHeight + 300 + padding;
                 offset += parseInt(getComputedStyle(cardContainer.current).top);
 
-                scroller.scrollTo(id, {
+                scroller.scrollTo(uniqueId, {
                   containerId: 'scroll-container',
                   smooth: 'easeInOutQuad',
                   duration: 250,
@@ -155,7 +163,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
             onMouseLeave={() => {
               if (isModalOpen === false) pauseAutoScroll.current = false;
             }}
-            layoutId={id}
+            layoutId={uniqueId}
           >
             {content}
           </Card>
@@ -189,7 +197,7 @@ function ExpandableCard({ content }: ExpandableCardProps) {
                     pointerEvents: 'initial',
                   }}
                   component={motion.div}
-                  layoutId={id}
+                  layoutId={uniqueId}
                   key='modal'
                 >
                   SELECTED
