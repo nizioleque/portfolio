@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { ReactNode, useRef, useEffect, useCallback } from 'react';
+import { ReactNode, useRef, useEffect, useCallback, useState } from 'react';
 import { useInterval } from 'usehooks-ts';
 import CardContainerContext from '../contexts/CardContainerContext';
 import { animateScroll, Events } from 'react-scroll';
@@ -18,6 +18,10 @@ function CardContainer({ children }: CardContainerProps) {
   const isAutoScrolling = useRef<boolean>(false);
   const blockScrollChange = useRef<boolean>(false);
   const pauseAutoScroll = useRef<boolean>(false);
+
+  const [rendered, setRendered] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  useEffect(() => setRendered(true), []);
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
@@ -45,11 +49,17 @@ function CardContainer({ children }: CardContainerProps) {
 
   // default scroll position
   useEffect(() => {
-    if (!scrollContent.current || !scrollContainer.current) return;
+    if (
+      !scrollContent.current ||
+      !scrollContainer.current ||
+      rendered === false
+    )
+      return;
 
     const contentHeight = scrollContent.current.offsetHeight / 4;
     scrollContainer.current.scrollTo({ top: contentHeight + 1 });
-  }, []);
+    setScrolled(true);
+  }, [rendered]);
 
   // scroll animation
   useInterval(() => {
@@ -119,20 +129,26 @@ function CardContainer({ children }: CardContainerProps) {
             '& > :nth-of-type(even) .card-list-item': {
               top: 150,
             },
+            opacity: scrolled ? 1 : 0,
+            transition: 'opacity 50ms ease-in',
           }}
         >
           <CardIterationCountContext.Provider value={0}>
             {children}
           </CardIterationCountContext.Provider>
-          <CardIterationCountContext.Provider value={1}>
-            {children}
-          </CardIterationCountContext.Provider>
-          <CardIterationCountContext.Provider value={2}>
-            {children}
-          </CardIterationCountContext.Provider>
-          <CardIterationCountContext.Provider value={3}>
-            {children}
-          </CardIterationCountContext.Provider>
+          {rendered && (
+            <>
+              <CardIterationCountContext.Provider value={1}>
+                {children}
+              </CardIterationCountContext.Provider>
+              <CardIterationCountContext.Provider value={2}>
+                {children}
+              </CardIterationCountContext.Provider>
+              <CardIterationCountContext.Provider value={3}>
+                {children}
+              </CardIterationCountContext.Provider>
+            </>
+          )}
         </Box>
       </Box>
     </CardContainerContext.Provider>
