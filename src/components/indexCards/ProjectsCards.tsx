@@ -1,10 +1,7 @@
-import CardContent from '../CardContent';
-import nagasakiIcon from '../../assets/projectIcons/nagasakiIcon.png';
-
 function ProjectsCards() {
   return (
     <>
-      <CardContent
+      {/* <CardContent
         name='Splitsmart'
         description='Split expenses with friends, with ease. Work in progress.'
       />
@@ -21,8 +18,7 @@ function ProjectsCards() {
         name='Typing Challenge'
         description='How fast can you type? A simple web game created for my classes for Ukrainian refugees.'
       />
-      {/* TODO Add italics to 'this' */}
-      <CardContent name='Portfolio' description='this.' />
+      <CardContent name='Portfolio' description='this.' /> */}
     </>
   );
 }

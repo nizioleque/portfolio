@@ -1,9 +1,7 @@
-import CardContent from '../CardContent';
-
 function AutoHotkeyCards() {
   return (
     <>
-      <CardContent
+      {/* <CardContent
         name='MX Master Gesture AltTab'
         description="Stop wasting time reaching for your Alt and Tab keys! A new way to switch windows using the MX Master's gesture button."
       />
@@ -22,7 +20,7 @@ function AutoHotkeyCards() {
       <CardContent
         name='Music Hotkeys'
         description='Created for my old laptop with no media keys. Maps Play/Pause, Previous/Next track keys to Home/End/PgUp/PgDn'
-      />
+      /> */}
     </>
   );
 }

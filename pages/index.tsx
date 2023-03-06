@@ -1,18 +1,23 @@
 import { Box, Typography } from '@mui/material';
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import ProjectsCards from '../src/components/indexCards/ProjectsCards';
-import ExtensionsCards from '../src/components/indexCards/ExtensionsCards';
-import AutoHotkeyCards from '../src/components/indexCards/AutoHotkeyCards';
 import CardContainer from '../src/components/CardContainer';
 import dynamic from 'next/dynamic';
+import fs from 'fs';
+import path from 'path';
+import { ProjectMeta } from '../src/types';
+import CardContent from '../src/components/CardContent';
+
+interface HomeProps {
+  projects: ProjectMeta[];
+}
 
 const CanvasBackground = dynamic(
   () => import('../src/components/CanvasBackground'),
   { ssr: false }
 );
 
-const Home: NextPage = () => {
+const Home: NextPage<HomeProps> = ({ projects }) => {
   return (
     <>
       <Head>
@@ -28,17 +33,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <Box
-        sx={{
-          position: 'absolute',
-          zIndex: -1,
-          maxWidth: '100%',
-          maxHeight: '100%',
-          overflow: 'hidden',
-        }}
-      >
-        <CanvasBackground />
-      </Box>
+      <CanvasBackground />
       <Box
         sx={{
           display: 'grid',
@@ -67,13 +62,35 @@ const Home: NextPage = () => {
           </Typography>
         </Box>
         <CardContainer>
-          <ProjectsCards />
-          <ExtensionsCards />
-          <AutoHotkeyCards />
+          {projects.map((project) => (
+            <CardContent
+              key={project.id}
+              id={project.id}
+              name={project.name}
+              icon={project.icon}
+              description={project.description}
+            />
+          ))}
         </CardContainer>
       </Box>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const projectsDirectory = path.join(process.cwd(), 'pages', 'projects');
+  const filenames = await fs.promises.readdir(projectsDirectory);
+
+  const projects: ProjectMeta[] = await Promise.all(
+    filenames.map(async (filename) => {
+      const fileContents = (await import(`./projects/${filename}`)) as {
+        meta: ProjectMeta;
+      };
+      return fileContents.meta;
+    })
+  );
+
+  return { props: { projects } };
 };
 
 export default Home;

@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { useRef, useEffect, useCallback } from 'react';
 
 const DRAW_RADIUS = 20;
@@ -107,16 +108,26 @@ function CanvasBackground() {
   }, [handleMouseMove, handleResize, handleRedraw]);
 
   return (
-    <canvas
-      ref={(node) => {
-        if (!node) return;
-        ctx.current = node?.getContext('2d');
+    <Box
+      sx={{
+        position: 'absolute',
+        zIndex: -1,
+        maxWidth: '100%',
+        maxHeight: '100%',
+        overflow: 'hidden',
       }}
-      style={{
-        width: '100vw',
-        height: '100vh',
-      }}
-    />
+    >
+      <canvas
+        ref={(node) => {
+          if (!node) return;
+          ctx.current = node?.getContext('2d');
+        }}
+        style={{
+          width: '100vw',
+          height: '100vh',
+        }}
+      />
+    </Box>
   );
 }
 

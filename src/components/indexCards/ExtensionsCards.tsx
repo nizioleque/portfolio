@@ -1,13 +1,7 @@
-import mousePinchToZoomIcon from '../../assets/extensionIcons/mousePinchToZoomIcon.png';
-import ytCustomSpeedIcon from '../../assets/extensionIcons/ytCustomSpeedIcon.png';
-import ytDistractionKillerIcon from '../../assets/extensionIcons/ytDistractionKillerIcon.png';
-import searchShortcutIcon from '../../assets/extensionIcons/searchShortcutIcon.png';
-import CardContent from '../CardContent';
-
 function ExtensionsCards() {
   return (
     <>
-      <CardContent
+      {/* <CardContent
         icon={mousePinchToZoomIcon}
         name='Mouse Pinch-To-Zoom'
         description='Zoom in on a specific part of the website, like you would with a
@@ -27,7 +21,7 @@ function ExtensionsCards() {
         icon={searchShortcutIcon}
         name='Search Shortcut'
         description='Activate search boxes with a keyboard shortcut!'
-      />
+      /> */}
     </>
   );
 }

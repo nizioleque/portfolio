@@ -3,6 +3,7 @@ import ExpandableCard from './ExpandableCard/ExpandableCard';
 import Image, { StaticImageData } from 'next/image';
 
 export type CardContentProps = {
+  id: string;
   icon?: StaticImageData;
   name: string;
   description: string;
@@ -10,10 +11,10 @@ export type CardContentProps = {
 
 const IMAGE_SIZE = 60;
 
-function CardContent({ icon, name, description }: CardContentProps) {
+function CardContent({ id, icon, name, description }: CardContentProps) {
   return (
     <ExpandableCard
-      id={name.toLowerCase().replaceAll(' ', '-')}
+      id={id}
       content={
         <>
           <Box
