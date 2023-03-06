@@ -22,6 +22,7 @@ import { useRecoilState } from 'recoil';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import CardIterationCountContext from '../../contexts/CardIterationCountContext';
+import dynamicComponents from '../../dynamicComponents';
 
 export interface ExpandableCardProps {
   content: ReactNode;
@@ -109,6 +110,11 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
       setShouldOpenModal(false);
     }
   }, [shouldOpenModal, setShouldOpenModal, pauseAutoScroll]);
+
+  const DynamicContent =
+    id in dynamicComponents
+      ? dynamicComponents[id as keyof typeof dynamicComponents]
+      : null;
 
   return (
     <Element name={uniqueId}>
@@ -201,7 +207,11 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
                   key='modal'
                 >
                   SELECTED
-                  {content}
+                  {DynamicContent ? (
+                    <DynamicContent />
+                  ) : (
+                    <div>CONTENT NOT FOUND FOR {id}</div>
+                  )}
                 </Box>
               </Box>
             </>
