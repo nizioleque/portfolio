@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { Space_Mono } from 'next/font/google';
 
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
@@ -17,10 +18,16 @@ export const shadowWeak = '2px 2px 4px rgba(0, 0, 0, 0.6)';
 export const transitionTime = 300;
 export const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+});
+
 const themeBase = createTheme({
   typography: {
     allVariants: {
-      fontFamily: 'Space Mono',
+      fontFamily: spaceMono.style.fontFamily,
       textShadow: shadowWeak,
     },
   },
@@ -34,20 +41,12 @@ const themeBase = createTheme({
 
 export const mobileLayoutQuery = themeBase.breakpoints.down('desktop');
 
-// export const dynamicFontSize = (max: number) => ({
-//   fontSize: `clamp(${max * 0.91}rem, ${max * 1.346}vw, ${max}rem)`,
-//   [mobileLayoutQuery]: {
-//     fontSize: `${Math.max(0.8 * max, 0.95)}rem`,
-//   },
-// });
-
 export const theme = createTheme(themeBase, {
   typography: {
     h1: {
       textShadow: shadowStrong,
     },
     h3: {
-      // ...dynamicFontSize(1.5),
       fontSize: '1.3rem',
       fontWeight: 'bold',
       letterSpacing: -0.5,
