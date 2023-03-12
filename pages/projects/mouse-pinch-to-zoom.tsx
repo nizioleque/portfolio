@@ -5,10 +5,13 @@ import ProjectContent from '../../src/components/ProjectContent';
 
 export const meta: ProjectMeta = {
   id: 'mouse-pinch-to-zoom',
-  name: 'Mouse Pinch To Zoom',
+  name: 'Mouse Pinch-To-Zoom',
   icon,
   description:
     'Zoom in on a specific part of the website, like you would with a touchpad gesture!',
+  downloadUrl:
+    'https://chrome.google.com/webstore/detail/pffiadlahfhoniddbipeiiohjnlongfi',
+  codeUrl: 'https://github.com/nizioleque/mouse-pinch-to-zoom',
 };
 
 function MousePinchToZoom() {
@@ -16,6 +19,28 @@ function MousePinchToZoom() {
     <>
       <ProjectHeader meta={meta} />
       <ProjectContent>
+        <p>
+          Mouse Pinch-To-Zoom is a browser extension which allows you to achieve
+          touchpad or touchscreen zoom effect using a mouse.
+        </p>
+        <p>
+          Currently available on the Chrome Web Store with over 5,000 users and
+          a 4.7 ⭐ average rating.
+        </p>
+        <div>
+          The extension offers three activation modes:
+          <ul style={{ marginBottom: 0 }}>
+            <li>Zoom by turning the mouse wheel while holding the Alt key</li>
+            <li>
+              Zoom by turning the mouse wheel while holding the left or right
+              mouse button
+            </li>
+          </ul>
+        </div>
+        <p>
+          You can also customize the speed and smoothness. All the settings are
+          easily accessible by clicking on the extension logo.
+        </p>
       </ProjectContent>
     </>
   );
