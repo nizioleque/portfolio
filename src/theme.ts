@@ -31,6 +31,27 @@ const themeBase = createTheme({
       textShadow: shadowWeak,
     },
   },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+      },
+      styleOverrides: {
+        root: {
+          fontSize: '1rem',
+          borderRadius: 16,
+          fontWeight: 700,
+        },
+        contained: {
+          color: 'black',
+          backgroundColor: 'hsl(43deg 100% 50%)',
+          '&:hover': {
+            backgroundColor: 'hsl(43deg 100% 75%)',
+          },
+        },
+      },
+    },
+  },
   breakpoints: {
     values: {
       mobile: 0,

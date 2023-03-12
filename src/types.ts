@@ -5,4 +5,7 @@ export interface ProjectMeta {
   name: string;
   icon: StaticImageData;
   description: string;
+  runUrl?: string;
+  downloadUrl?: string;
+  codeUrl?: string;
 }
