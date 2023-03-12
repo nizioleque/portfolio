@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import CardContainer from '../src/components/CardContainer';
@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { ProjectMeta } from '../src/types';
 import CardContent from '../src/components/CardContent';
+import Logo from '../src/components/Logo';
 
 interface HomeProps {
   projects: ProjectMeta[];
@@ -48,19 +49,7 @@ const Home: NextPage<HomeProps> = ({ projects }) => {
             placeItems: 'center',
           }}
         >
-          <Typography
-            variant='h1'
-            sx={{
-              fontWeight: 'bold',
-              letterSpacing: -5,
-              fontStyle: 'italic',
-              color: 'hsl(43deg 100% 50%)',
-            }}
-          >
-            Norbert
-            <br />
-            Niziołek
-          </Typography>
+          <Logo />
         </Box>
         <CardContainer>
           {projects.map((project) => (

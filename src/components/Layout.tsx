@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { shadowWeak } from '../theme';
+import Logo from './Logo';
 
 interface LayoutProps {
   children: ReactNode;
@@ -23,32 +23,10 @@ function Layout({ children }: LayoutProps) {
           justifyContent: 'center',
           paddingY: 3,
           backgroundColor: 'hsl(272deg 46% 38% / 25%)',
-          color: 'hsl(43deg 100% 50%)',
         }}
       >
         <Link href='/' legacyBehavior passHref>
-          <Typography
-            variant='h1'
-            component='a'
-            sx={{
-              fontSize: '3rem',
-              fontWeight: 'bold',
-              letterSpacing: -2,
-              fontStyle: 'italic',
-              textShadow: shadowWeak,
-            }}
-          >
-            <Box
-              sx={{
-                color: 'hsl(282deg 100% 73% / 48%)',
-                marginLeft: -1,
-                marginBottom: -1,
-              }}
-            >
-              Norbert
-            </Box>
-            <Box sx={{}}>Niziołek</Box>
-          </Typography>
+          <Logo fontSize='3rem' />
         </Link>
       </Box>
       <Box
