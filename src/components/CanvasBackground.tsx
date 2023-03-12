@@ -102,7 +102,7 @@ function CanvasBackground() {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         zIndex: -1,
         maxWidth: '100%',
         maxHeight: '100%',

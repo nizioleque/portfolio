@@ -14,22 +14,16 @@ const CanvasBackground = dynamic(() => import('./CanvasBackground'), {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-      }}
-    >
+    <>
       <CanvasBackground />
       <Box
         component='header'
         sx={{
-          position: 'sticky',
           display: 'flex',
           justifyContent: 'center',
-          paddingY: 4,
-          backgroundColor: 'rgb(216,0,255,0.25)',
+          paddingY: 3,
+          backgroundColor: 'hsl(272deg 46% 38% / 25%)',
+          color: 'hsl(43deg 100% 50%)',
         }}
       >
         <Link href='/' legacyBehavior passHref>
@@ -44,7 +38,16 @@ function Layout({ children }: LayoutProps) {
               textShadow: shadowWeak,
             }}
           >
-            Norbert Niziołek
+            <Box
+              sx={{
+                color: 'hsl(282deg 100% 73% / 48%)',
+                marginLeft: -1,
+                marginBottom: -1,
+              }}
+            >
+              Norbert
+            </Box>
+            <Box sx={{}}>Niziołek</Box>
           </Typography>
         </Link>
       </Box>
@@ -53,17 +56,20 @@ function Layout({ children }: LayoutProps) {
         sx={{
           flex: 1,
           padding: 2,
-          backgroundColor: 'rgb(255,255,255,0.25)',
+          color: 'rgb(255 255 255 / 95%)',
+          paddingTop: 5,
 
           '& > *': {
-            // marginBottom: 2,
-            // borderRadius: 5,
+            width: '100%',
+            maxWidth: 800,
+            margin: '0 auto',
+            marginBottom: 4,
           },
         }}
       >
         {children}
       </Box>
-    </Box>
+    </>
   );
 }
 
