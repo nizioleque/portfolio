@@ -1,20 +1,12 @@
 import { Box } from '@mui/material';
 import { useRef, useEffect, useCallback } from 'react';
 
-const DRAW_RADIUS = 20;
+const DRAW_RADIUS = 80;
 const BLUR_RADIUS = 100;
-const DRAW_OPACITY = 1;
-const DRAW_LIGHTNESS = 50;
-const HUE_CHANGE_SPEED = 1 / 20;
 
 const SUPPORTS_CANVAS_FILTER =
   typeof document.createElement('canvas').getContext('2d')!.filter !==
   'undefined';
-
-function getHue() {
-  const t = Date.now() * HUE_CHANGE_SPEED;
-  return t % 360;
-}
 
 function setCanvasSize(ctx: CanvasRenderingContext2D, document: Document) {
   ctx.canvas.width = document.body.clientWidth * window.devicePixelRatio;
@@ -36,7 +28,7 @@ function CanvasBackground() {
   const handleMouseMove = useCallback((event: MouseEvent) => {
     if (!ctx.current || !offscreenCtx.current) return;
 
-    offscreenCtx.current.fillStyle = `hsl(${getHue()},100%,${DRAW_LIGHTNESS}%,${DRAW_OPACITY})`;
+    offscreenCtx.current.fillStyle = 'hsl(271deg 47% 17%)';
     offscreenCtx.current.beginPath();
     offscreenCtx.current.arc(
       event.clientX * window.devicePixelRatio,
@@ -125,6 +117,7 @@ function CanvasBackground() {
         style={{
           width: '100vw',
           height: '100vh',
+          backgroundColor: 'hsl(271deg 47% 10%)',
         }}
       />
     </Box>

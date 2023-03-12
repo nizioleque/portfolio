@@ -199,7 +199,8 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
                     width: '100%',
                     minHeight: 500,
                     borderRadius: 8,
-                    background: 'white',
+                    backgroundColor: 'hsl(271deg 47% 10%)',
+                    color: 'rgb(255 255 255 / 75%)',
                     pointerEvents: 'initial',
                   }}
                   component={motion.div}

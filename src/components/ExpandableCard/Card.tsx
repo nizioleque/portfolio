@@ -6,9 +6,10 @@ const Card = styled(motion.a)(({ theme }) =>
     display: 'block',
     padding: 4,
 
-    background: 'rgb(255, 255, 255, 0.3)',
+    background: 'hsl(272deg 46% 38% / 25%)',
+    color: 'hsl(43deg 100% 50%)',
+
     borderRadius: 8,
-    border: '1px rgb(0, 0, 0, 0.15) solid',
 
     position: 'relative',
 
@@ -24,7 +25,7 @@ const Card = styled(motion.a)(({ theme }) =>
       width: 0,
       height: 0,
       background:
-        'radial-gradient(rgb(255, 255, 255, 0.6) 0%, rgb(255, 255, 255, 0) 75%)',
+        'radial-gradient(hsl(43deg 100% 50% / 35%) 0%, hsl(43deg 100% 50% / 0) 75%)',
       position: 'absolute',
       left: 'var(--x)',
       top: 'var(--y)',

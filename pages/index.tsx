@@ -54,6 +54,7 @@ const Home: NextPage<HomeProps> = ({ projects }) => {
               fontWeight: 'bold',
               letterSpacing: -5,
               fontStyle: 'italic',
+              color: 'hsl(43deg 100% 50%)',
             }}
           >
             Norbert
