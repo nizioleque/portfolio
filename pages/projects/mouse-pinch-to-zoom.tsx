@@ -1,7 +1,7 @@
 import { ProjectMeta } from '../../src/types';
 import icon from '../../src/assets/icons/mouse-pinch-to-zoom.png';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import { Box } from '@mui/material';
+import ProjectContent from '../../src/components/ProjectContent';
 
 export const meta: ProjectMeta = {
   id: 'mouse-pinch-to-zoom',
@@ -15,10 +15,8 @@ function MousePinchToZoom() {
   return (
     <>
       <ProjectHeader meta={meta} />
-      <Box>
-        Download here:{' '}
-        <a href='google.com'>https://chreome web store/ mousepinchtozoom</a>
-      </Box>
+      <ProjectContent>
+      </ProjectContent>
     </>
   );
 }
