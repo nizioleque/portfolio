@@ -1,10 +1,9 @@
 import { Box } from '@mui/material';
-import { ReactNode, useRef, useEffect, useCallback, useState } from 'react';
-import { useInterval } from 'usehooks-ts';
-import CardContainerContext from '../contexts/CardContainerContext';
-import { animateScroll, Events } from 'react-scroll';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
 import scrollEndState, { ScrollEndStateStatus } from '../atoms/scrollEndState';
+import CardContainerContext from '../contexts/CardContainerContext';
 import CardIterationCountContext from '../contexts/CardIterationCountContext';
 
 interface CardContainerProps {
@@ -62,15 +61,15 @@ function CardContainer({ children }: CardContainerProps) {
   }, [rendered]);
 
   // scroll animation
-  useInterval(() => {
-    if (pauseAutoScroll.current === false) {
-      animateScroll.scrollMore(340, {
-        duration: 1500,
-        smooth: 'easeInOutQuad',
-        containerId: 'scroll-container',
-      });
-    }
-  }, 4000);
+  // useInterval(() => {
+  //   if (pauseAutoScroll.current === false) {
+  //     animateScroll.scrollMore(340, {
+  //       duration: 1500,
+  //       smooth: 'easeInOutQuad',
+  //       containerId: 'scroll-container',
+  //     });
+  //   }
+  // }, 4000);
 
   const setScrollEndListener = useSetRecoilState(scrollEndState);
 

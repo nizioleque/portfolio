@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { forwardRef, MouseEventHandler } from 'react';
+import { MouseEventHandler, forwardRef } from 'react';
 import { shadowWeak } from '../theme';
 
 interface LogoProps {
@@ -25,21 +25,23 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           textShadow: shadowWeak,
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             color: 'hsl(282deg 100% 73% / 48%)',
             marginBottom: '-0.5rem',
           }}
         >
-          Norbert
-        </Box>
+        </Box> */}
         <Box
           sx={{
-            color: 'hsl(43deg 100% 50%)',
-            position: 'relative',
-            left: '0.5rem',
+            // color: 'hsl(43deg 100% 50%)',
+            color: 'rgb(255 255 255 / 80%)',
+            // position: 'relative',
+            // left: '0.5rem',
           }}
         >
+          Norbert
+          <br />
           Niziołek
         </Box>
       </Typography>

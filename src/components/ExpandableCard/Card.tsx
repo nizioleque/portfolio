@@ -1,13 +1,14 @@
 import { styled } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const Card = styled(motion.a)(({ theme }) =>
-  theme.unstable_sx({
+const Card = styled(motion.a)(({ theme }) => {
+  const hue = (Math.random() * 360) << 0;
+  return theme.unstable_sx({
     display: 'block',
     padding: 4,
 
-    background: 'hsl(272deg 46% 38% / 25%)',
-    color: 'hsl(43deg 100% 50%)',
+    backgroundColor: `hsl(${hue}deg 32% 18%)`,
+    color: `hsl(${hue}deg 32% 86%)`,
 
     borderRadius: 8,
 
@@ -45,7 +46,7 @@ const Card = styled(motion.a)(({ theme }) =>
     '&.transform-origin-bottom': {
       transformOrigin: 'bottom center !important',
     },
-  })
-);
+  });
+});
 
 export default Card;

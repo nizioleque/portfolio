@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
-import type { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
-import CardContainer from '../src/components/CardContainer';
-import dynamic from 'next/dynamic';
 import fs from 'fs';
+import type { GetStaticProps, NextPage } from 'next';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import path from 'path';
-import { ProjectMeta } from '../src/types';
+import CardContainer from '../src/components/CardContainer';
 import CardContent from '../src/components/CardContent';
 import Logo from '../src/components/Logo';
+import { ProjectMeta } from '../src/types';
 
 interface HomeProps {
   projects: ProjectMeta[];
@@ -34,9 +34,10 @@ const Home: NextPage<HomeProps> = ({ projects }) => {
         />
       </Head>
 
-      <CanvasBackground />
+      {/* <CanvasBackground /> */}
       <Box
         sx={{
+          backgroundColor: '#141414',
           display: 'grid',
           gridTemplateColumns: 'auto auto',
           height: '100%',
