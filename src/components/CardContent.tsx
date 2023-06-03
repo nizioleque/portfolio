@@ -1,20 +1,18 @@
 import { Box, Typography } from '@mui/material';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import { ProjectMeta } from '../types';
 import ExpandableCard from './ExpandableCard/ExpandableCard';
 
 export type CardContentProps = {
-  id: string;
-  icon?: StaticImageData;
-  name: string;
-  description: string;
+  project: ProjectMeta;
 };
 
 const IMAGE_SIZE = 60;
 
-function CardContent({ id, icon, name, description }: CardContentProps) {
+function CardContent({ project }: CardContentProps) {
   return (
     <ExpandableCard
-      id={id}
+      id={project.id}
       content={
         <>
           <Box
@@ -26,19 +24,32 @@ function CardContent({ id, icon, name, description }: CardContentProps) {
               minHeight: IMAGE_SIZE,
             }}
           >
-            {icon && (
+            {project.icon && (
               <Image
-                alt={`${name} icon`}
-                src={icon}
+                alt={`${project.name} icon`}
+                src={project.icon}
                 height={IMAGE_SIZE}
                 width={IMAGE_SIZE}
                 style={{ objectFit: 'contain' }}
               />
             )}
-            <Typography variant='h3' textAlign='center'>
-              {name}
-            </Typography>
-            <Typography>{description}</Typography>
+            <Box>
+              <Typography variant='h3' textAlign='center'>
+                {project.name}
+              </Typography>
+              <Typography
+                variant='h6'
+                sx={{
+                  textAlign: 'center',
+                  // fontSize: '0.8rem',
+                  fontVariant: 'small-caps',
+                  // fontWeight: 100,
+                }}
+              >
+                {project.category.toLowerCase()}
+              </Typography>
+            </Box>
+            <Typography>{project.description}</Typography>
           </Box>
         </>
       }

@@ -1,11 +1,12 @@
 import icon from '../../src/assets/icons/youtube-distraction-killer.png';
 import ProjectContent from '../../src/components/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import { ProjectMeta } from '../../src/types';
+import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
   id: 'youtube-distraction-killer',
   name: 'YT Distraction Killer',
+  category: ProjectCategory.Extension,
   icon,
   description: "Remove distracting elements from YouTube's layout!",
   downloadUrl:

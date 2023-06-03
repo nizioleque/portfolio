@@ -54,13 +54,7 @@ const Home: NextPage<HomeProps> = ({ projects }) => {
         </Box>
         <CardContainer>
           {projects.map((project) => (
-            <CardContent
-              key={project.id}
-              id={project.id}
-              name={project.name}
-              icon={project.icon}
-              description={project.description}
-            />
+            <CardContent key={project.id} project={project} />
           ))}
         </CardContainer>
       </Box>

@@ -1,11 +1,12 @@
 import icon from '../../src/assets/icons/youtube-custom-speed.png';
 import ProjectContent from '../../src/components/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import { ProjectMeta } from '../../src/types';
+import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
   id: 'youtube-custom-speed',
   name: 'Youtube Custom Speed',
+  category: ProjectCategory.Extension,
   icon,
   description:
     'Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!',

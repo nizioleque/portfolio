@@ -1,11 +1,12 @@
 import icon from '../../src/assets/icons/splitsmart.png';
 import ProjectContent from '../../src/components/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import { ProjectMeta } from '../../src/types';
+import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
   id: 'splitsmart',
   name: 'Splitsmart',
+  category: ProjectCategory.Flutter,
   icon,
   description: 'Split expenses with friends, with ease.',
   downloadUrl: 'https://splitsmart.niziolek.dev',

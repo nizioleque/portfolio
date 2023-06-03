@@ -18,6 +18,7 @@ import {
 import { Element, scroller } from 'react-scroll';
 import { useRecoilState } from 'recoil';
 import shouldOpenModalState from '../../atoms/shouldOpenModalState';
+import { CardSize } from '../../constants';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import CardIterationCountContext from '../../contexts/CardIterationCountContext';
 import dynamicComponents from '../../dynamicComponents';
@@ -153,7 +154,7 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
               scale: scrollYProgressCombined,
               originY,
               originX: 0.5,
-              width: 300,
+              width: CardSize,
               aspectRatio: '1 / 1',
             }}
             onMouseMove={(event) => {

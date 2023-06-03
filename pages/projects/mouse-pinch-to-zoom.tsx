@@ -1,11 +1,12 @@
-import { ProjectMeta } from '../../src/types';
 import icon from '../../src/assets/icons/mouse-pinch-to-zoom.png';
-import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import ProjectContent from '../../src/components/ProjectContent';
+import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
+import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
   id: 'mouse-pinch-to-zoom',
   name: 'Mouse Pinch-To-Zoom',
+  category: ProjectCategory.Extension,
   icon,
   description:
     'Zoom in on a specific part of the website, like you would with a touchpad gesture!',
