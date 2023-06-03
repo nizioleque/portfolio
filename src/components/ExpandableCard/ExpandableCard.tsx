@@ -1,5 +1,13 @@
 import { Box } from '@mui/material';
 import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {
   ReactNode,
   useContext,
   useEffect,
@@ -7,22 +15,14 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
-import CardContainerContext from '../../contexts/CardContainerContext';
-import Card from './Card';
-import Overlay from './Overlay';
 import { Element, scroller } from 'react-scroll';
-import shouldOpenModalState from '../../atoms/shouldOpenModalState';
 import { useRecoilState } from 'recoil';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import shouldOpenModalState from '../../atoms/shouldOpenModalState';
+import CardContainerContext from '../../contexts/CardContainerContext';
 import CardIterationCountContext from '../../contexts/CardIterationCountContext';
 import dynamicComponents from '../../dynamicComponents';
+import Card from './Card';
+import Overlay from './Overlay';
 
 export interface ExpandableCardProps {
   content: ReactNode;
@@ -207,7 +207,6 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
                   layoutId={uniqueId}
                   key='modal'
                 >
-                  SELECTED
                   {DynamicContent ? (
                     <DynamicContent />
                   ) : (

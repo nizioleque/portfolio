@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import ExpandableCard from './ExpandableCard/ExpandableCard';
 import Image, { StaticImageData } from 'next/image';
+import ExpandableCard from './ExpandableCard/ExpandableCard';
 
 export type CardContentProps = {
   id: string;
@@ -32,6 +32,7 @@ function CardContent({ id, icon, name, description }: CardContentProps) {
                 src={icon}
                 height={IMAGE_SIZE}
                 width={IMAGE_SIZE}
+                style={{ objectFit: 'contain' }}
               />
             )}
             <Typography variant='h3' textAlign='center'>
