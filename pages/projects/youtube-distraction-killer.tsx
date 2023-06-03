@@ -7,6 +7,7 @@ export const meta: ProjectMeta = {
   id: 'youtube-distraction-killer',
   name: 'YT Distraction Killer',
   category: ProjectCategory.Extension,
+  hue: 0,
   icon,
   description: "Remove distracting elements from YouTube's layout!",
   downloadUrl:

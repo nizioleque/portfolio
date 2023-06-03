@@ -7,6 +7,7 @@ export const meta: ProjectMeta = {
   id: 'mouse-pinch-to-zoom',
   name: 'Mouse Pinch-To-Zoom',
   category: ProjectCategory.Extension,
+  hue: 216,
   icon,
   description:
     'Zoom in on a specific part of the website, like you would with a touchpad gesture!',

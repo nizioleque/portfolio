@@ -7,6 +7,7 @@ export const meta: ProjectMeta = {
   id: 'youtube-custom-speed',
   name: 'Youtube Custom Speed',
   category: ProjectCategory.Extension,
+  hue: 15,
   icon,
   description:
     'Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!',

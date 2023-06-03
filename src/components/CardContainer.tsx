@@ -124,7 +124,7 @@ function CardContainer({ children }: CardContainerProps) {
             display: 'grid',
             justifyContent: 'center',
             gridTemplateColumns: 'auto auto',
-            gap: 5,
+            gap: 6,
             '& > :nth-of-type(even) .card-list-item': {
               top: 150,
             },

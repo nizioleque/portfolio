@@ -12,6 +12,7 @@ const IMAGE_SIZE = 60;
 function CardContent({ project }: CardContentProps) {
   return (
     <ExpandableCard
+      hue={project.hue}
       id={project.id}
       content={
         <>

@@ -28,9 +28,10 @@ import Overlay from './Overlay';
 export interface ExpandableCardProps {
   content: ReactNode;
   id: string;
+  hue: number;
 }
 
-function ExpandableCard({ content, id }: ExpandableCardProps) {
+function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
   const { scrollContainer, blockScrollChange, pauseAutoScroll } =
     useContext(CardContainerContext);
 
@@ -122,6 +123,7 @@ function ExpandableCard({ content, id }: ExpandableCardProps) {
       <Box>
         <Link href={`/`} as={`/${id}`} passHref legacyBehavior>
           <Card
+            hue={hue}
             onClick={() => {
               if (!cardContainer.current) return;
 

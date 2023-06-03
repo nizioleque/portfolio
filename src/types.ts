@@ -11,6 +11,7 @@ export interface ProjectMeta {
   icon: StaticImageData;
   category: ProjectCategory;
   description: string;
+  hue: number;
   runUrl?: string;
   downloadUrl?: string;
   codeUrl?: string;

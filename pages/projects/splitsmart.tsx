@@ -7,6 +7,7 @@ export const meta: ProjectMeta = {
   id: 'splitsmart',
   name: 'Splitsmart',
   category: ProjectCategory.Flutter,
+  hue: 120,
   icon,
   description: 'Split expenses with friends, with ease.',
   downloadUrl: 'https://splitsmart.niziolek.dev',
