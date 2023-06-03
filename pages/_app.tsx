@@ -1,27 +1,47 @@
-import '../src/index.css';
-import type { AppProps } from 'next/app';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { RecoilEnv, RecoilRoot } from 'recoil';
+import HomeLayout from '../src/components/Layout/HomeLayout';
+import ProjectLayout from '../src/components/Layout/ProjectLayout';
+import '../src/index.css';
 import { theme } from '../src/theme';
-import { RecoilRoot, RecoilEnv } from 'recoil';
-import Layout from '../src/components/Layout';
-import React from 'react';
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const addLayout = router.pathname !== '/';
-  const LayoutComponent = addLayout ? Layout : React.Fragment;
+  let LayoutComponent;
+
+  if (router.pathname.startsWith('/projects')) {
+    LayoutComponent = ProjectLayout;
+  } else {
+    LayoutComponent = HomeLayout;
+  }
 
   return (
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <LayoutComponent>
-          <Component {...pageProps} />
-        </LayoutComponent>
-      </ThemeProvider>
-    </RecoilRoot>
+    <>
+      <Head>
+        <meta
+          name='description'
+          content="Norbert Niziołek's portfolio website"
+        />
+        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+        />
+      </Head>
+
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <LayoutComponent>
+            <Component {...pageProps} />
+          </LayoutComponent>
+        </ThemeProvider>
+      </RecoilRoot>
+    </>
   );
 }
 

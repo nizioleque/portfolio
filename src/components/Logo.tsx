@@ -33,12 +33,14 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
         >
         </Box> */}
         <Box
-          sx={{
-            // color: 'hsl(43deg 100% 50%)',
-            color: 'rgb(255 255 255 / 80%)',
-            // position: 'relative',
-            // left: '0.5rem',
-          }}
+          sx={
+            {
+              // color: 'hsl(43deg 100% 50%)',
+              // color: 'rgb(255 255 255 / 80%)',
+              // position: 'relative',
+              // left: '0.5rem',
+            }
+          }
         >
           Norbert
           <br />

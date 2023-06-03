@@ -1,18 +1,18 @@
 import { Box } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
-import Logo from './Logo';
+import { ReactNode } from 'react';
+import Logo from '../Logo';
 
-interface LayoutProps {
+interface ProjectLayoutProps {
   children: ReactNode;
 }
 
-const CanvasBackground = dynamic(() => import('./CanvasBackground'), {
+const CanvasBackground = dynamic(() => import('../CanvasBackground'), {
   ssr: false,
 });
 
-function Layout({ children }: LayoutProps) {
+function ProjectLayout({ children }: ProjectLayoutProps) {
   return (
     <>
       <CanvasBackground />
@@ -51,4 +51,4 @@ function Layout({ children }: LayoutProps) {
   );
 }
 
-export default Layout;
+export default ProjectLayout;

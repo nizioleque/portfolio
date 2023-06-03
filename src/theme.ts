@@ -25,6 +25,9 @@ const spaceMono = Space_Mono({
 });
 
 const themeBase = createTheme({
+  palette: {
+    mode: 'dark',
+  },
   typography: {
     allVariants: {
       fontFamily: spaceMono.style.fontFamily,
