@@ -12,7 +12,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
       sx={{
         backgroundColor: '#141414',
         display: 'grid',
-        gridTemplateColumns: 'auto auto',
+        gridTemplateColumns: '1fr 1fr',
         height: '100%',
         alignItems: 'center',
       }}

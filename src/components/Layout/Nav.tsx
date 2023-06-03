@@ -1,19 +1,34 @@
 import { Stack } from '@mui/material';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Logo from '../Logo';
+import NavButton from './NavButton';
+
+const links = [
+  { href: '/all-projects', label: 'All projects' },
+  { href: '/about', label: 'About' },
+  { href: '/playground', label: 'Playground' },
+  { href: '/contact', label: 'Contact' },
+];
 
 function Nav() {
-  return (
-    <Stack justifyContent='space-evenly' alignItems='center' height='100%'>
-      <Link href='/all-projects'>All projects</Link>
-      <Link href='/about'>About</Link>
+  const router = useRouter();
 
+  return (
+    <Stack alignItems='center' spacing={8}>
       <Link href='/' legacyBehavior passHref>
-        <Logo />
+        <Logo active={router.pathname === '/'} />
       </Link>
 
-      <Link href='/playground'>Playground</Link>
-      <Link href='/contact'>Contact</Link>
+      <Stack alignItems='center' spacing={4}>
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} legacyBehavior passHref>
+            <NavButton active={router.pathname === link.href}>
+              {link.label}
+            </NavButton>
+          </Link>
+        ))}
+      </Stack>
     </Stack>
   );
 }

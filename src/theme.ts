@@ -27,6 +27,9 @@ const spaceMono = Space_Mono({
 const themeBase = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: `hsl(72deg 100% 75%)`,
+    },
   },
   typography: {
     allVariants: {
@@ -64,6 +67,17 @@ const themeBase = createTheme({
 });
 
 export const mobileLayoutQuery = themeBase.breakpoints.down('desktop');
+
+const transitionDuration = 300;
+const transitionEasing = 'ease';
+
+export function transition(property: string | string[]): string {
+  if (Array.isArray(property)) {
+    const results = property.map((property) => transition(property));
+    return results.join(',');
+  }
+  return `${property} ${transitionEasing} ${transitionDuration}ms`;
+}
 
 export const theme = createTheme(themeBase, {
   typography: {
