@@ -10,8 +10,8 @@ const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
     display: 'block',
     padding: 4,
 
-    backgroundColor: `hsl(${hue}deg 32% 18%)`,
-    color: `hsl(${hue}deg 32% 86%)`,
+    backgroundColor: `hsl(${hue}deg 18% 12%)`,
+    color: `hsl(${hue}deg 50% 82%)`,
 
     borderRadius: 8,
 
