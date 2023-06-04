@@ -2,13 +2,13 @@ import { Box } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import Logo from '../Logo';
+import Logo from './Logo';
 
 interface ProjectLayoutProps {
   children: ReactNode;
 }
 
-const CanvasBackground = dynamic(() => import('../CanvasBackground'), {
+const CanvasBackground = dynamic(() => import('./CanvasBackground'), {
   ssr: false,
 });
 

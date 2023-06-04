@@ -2,10 +2,12 @@ import { Box } from '@mui/material';
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
-import scrollEndState, { ScrollEndStateStatus } from '../atoms/scrollEndState';
-import { CardSize } from '../constants';
-import CardContainerContext from '../contexts/CardContainerContext';
-import CardIterationCountContext from '../contexts/CardIterationCountContext';
+import scrollEndState, {
+  ScrollEndStateStatus,
+} from '../../atoms/scrollEndState';
+import { CardSize } from '../../constants';
+import CardContainerContext from '../../contexts/CardContainerContext';
+import CardIterationCountContext from '../../contexts/CardIterationCountContext';
 
 interface CardContainerProps {
   children: ReactNode;

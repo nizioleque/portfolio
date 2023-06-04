@@ -1,5 +1,5 @@
 import icon from '../../src/assets/icons/youtube-custom-speed.png';
-import ProjectContent from '../../src/components/ProjectContent';
+import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
 

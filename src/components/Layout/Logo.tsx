@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { MouseEventHandler, forwardRef } from 'react';
-import { shadowStrong, transition } from '../theme';
+import { shadowStrong, transition } from '../../theme';
 
 interface LogoProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>;

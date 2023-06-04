@@ -1,5 +1,6 @@
 function AutoHotkeyCards() {
   return (
+    // TODO remove whole directory
     <>
       {/* <CardContent
         name='MX Master Gesture AltTab'

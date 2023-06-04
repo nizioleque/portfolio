@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Logo from '../Logo';
+import Logo from './Logo';
 import NavButton from './NavButton';
 
 const links = [

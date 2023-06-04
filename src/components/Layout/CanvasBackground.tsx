@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { useRef, useEffect, useCallback } from 'react';
 
 // TODO fix white background flash on slow load
+// TODO use or remove!
 
 const DRAW_RADIUS = 80;
 const BLUR_RADIUS = 100;

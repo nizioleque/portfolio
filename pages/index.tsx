@@ -2,8 +2,8 @@ import fs from 'fs';
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import path from 'path';
-import CardContainer from '../src/components/CardContainer';
-import CardContent from '../src/components/CardContent';
+import CardContainer from '../src/components/Card/CardContainer';
+import CardContent from '../src/components/Card/CardContent';
 import { ProjectMeta } from '../src/types';
 
 interface HomeProps {
