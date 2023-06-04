@@ -28,7 +28,8 @@ const themeBase = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: `hsl(72deg 100% 75%)`,
+      main: `hsl(72deg 100% 60%)`,
+      light: `hsl(72deg 100% 75%)`,
     },
   },
   typography: {

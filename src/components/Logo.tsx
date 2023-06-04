@@ -28,7 +28,7 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           color: 'rgb(255 255 255 / 30%)',
           '& > span:nth-child(3)': {
             fontWeight: 'bold',
-            color: active ? 'primary.main' : 'text.primary',
+            color: active ? 'primary.light' : 'text.primary',
             '&:hover': { color: 'primary.main' },
             transition: transition('color'),
           },
