@@ -1,13 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import { CardImageSize } from '../../constants';
 import { ProjectMeta } from '../../types';
 import ExpandableCard from './ExpandableCard';
 
 export type CardContentProps = {
   project: ProjectMeta;
 };
-
-const IMAGE_SIZE = 94;
 
 function CardContent({ project }: CardContentProps) {
   return (
@@ -24,20 +23,25 @@ function CardContent({ project }: CardContentProps) {
               alignItems: 'center',
               justifyContent: 'space-evenly',
               gap: 2,
-              minHeight: IMAGE_SIZE,
+              minHeight: CardImageSize,
             }}
           >
             {project.icon && (
               <Image
                 alt={`${project.name} icon`}
                 src={project.icon}
-                height={IMAGE_SIZE}
-                width={IMAGE_SIZE}
+                height={CardImageSize}
+                width={CardImageSize}
                 style={{ objectFit: 'contain' }}
               />
             )}
             <Box>
-              <Typography variant='h3' textAlign='center' gutterBottom>
+              <Typography
+                variant='h3'
+                textAlign='center'
+                gutterBottom
+                sx={{ whiteSpace: 'pre-line' }}
+              >
                 {project.name}
               </Typography>
               <Typography

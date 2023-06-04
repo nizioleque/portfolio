@@ -5,7 +5,7 @@ import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
   id: 'mouse-pinch-to-zoom',
-  name: 'Mouse Pinch-To-Zoom',
+  name: 'Mouse\nPinch-To-Zoom',
   category: ProjectCategory.Extension,
   hue: 216,
   icon,
