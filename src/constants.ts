@@ -1,1 +1,1 @@
-export const CardSize = 325;
+export const CardSize = 270;

@@ -8,7 +8,7 @@ interface CardProps {
 const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
   theme.unstable_sx({
     display: 'block',
-    padding: 4,
+    padding: 3,
 
     backgroundColor: `hsl(${hue}deg 18% 12%)`,
     color: `hsl(${hue}deg 50% 82%)`,

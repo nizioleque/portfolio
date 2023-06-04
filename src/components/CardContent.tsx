@@ -7,7 +7,7 @@ export type CardContentProps = {
   project: ProjectMeta;
 };
 
-const IMAGE_SIZE = 60;
+const IMAGE_SIZE = 94;
 
 function CardContent({ project }: CardContentProps) {
   return (
@@ -18,9 +18,11 @@ function CardContent({ project }: CardContentProps) {
         <>
           <Box
             sx={{
+              height: '100%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              justifyContent: 'space-evenly',
               gap: 2,
               minHeight: IMAGE_SIZE,
             }}
@@ -35,22 +37,19 @@ function CardContent({ project }: CardContentProps) {
               />
             )}
             <Box>
-              <Typography variant='h3' textAlign='center'>
+              <Typography variant='h3' textAlign='center' gutterBottom>
                 {project.name}
               </Typography>
               <Typography
                 variant='h6'
                 sx={{
                   textAlign: 'center',
-                  // fontSize: '0.8rem',
                   fontVariant: 'small-caps',
-                  // fontWeight: 100,
                 }}
               >
                 {project.category.toLowerCase()}
               </Typography>
             </Box>
-            <Typography>{project.description}</Typography>
           </Box>
         </>
       }

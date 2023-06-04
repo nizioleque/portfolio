@@ -3,6 +3,7 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
 import scrollEndState, { ScrollEndStateStatus } from '../atoms/scrollEndState';
+import { CardSize } from '../constants';
 import CardContainerContext from '../contexts/CardContainerContext';
 import CardIterationCountContext from '../contexts/CardIterationCountContext';
 
@@ -126,7 +127,7 @@ function CardContainer({ children }: CardContainerProps) {
             gridTemplateColumns: 'auto auto',
             gap: 6,
             '& > :nth-of-type(even) .card-list-item': {
-              top: 150,
+              top: CardSize / 2,
             },
             opacity: scrolled ? 1 : 0,
             transition: 'opacity 50ms ease-in',
