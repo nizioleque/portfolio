@@ -1,16 +1,15 @@
-import fs from 'fs';
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import path from 'path';
 import CardContainer from '../src/components/Card/CardContainer';
 import CardContent from '../src/components/Card/CardContent';
+import { getProjectMeta } from '../src/serverUtils';
 import { ProjectMeta } from '../src/types';
 
 interface HomeProps {
   projects: ProjectMeta[];
 }
 
-const Home: NextPage<HomeProps> = ({ projects }) => {
+function Home({ projects }: HomeProps) {
   return (
     <>
       <Head>
@@ -24,21 +23,10 @@ const Home: NextPage<HomeProps> = ({ projects }) => {
       </CardContainer>
     </>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const projectsDirectory = path.join(process.cwd(), 'pages', 'projects');
-  const filenames = await fs.promises.readdir(projectsDirectory);
-
-  const projects: ProjectMeta[] = await Promise.all(
-    filenames.map(async (filename) => {
-      const fileContents = (await import(`./projects/${filename}`)) as {
-        meta: ProjectMeta;
-      };
-      return fileContents.meta;
-    })
-  );
-
+  const projects = await getProjectMeta();
   return { props: { projects } };
 };
 

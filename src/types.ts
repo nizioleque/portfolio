@@ -16,3 +16,5 @@ export interface ProjectMeta {
   downloadUrl?: string;
   codeUrl?: string;
 }
+
+export type GroupedProjects = Record<ProjectCategory, ProjectMeta[]>;

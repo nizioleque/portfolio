@@ -25,14 +25,14 @@ const NavButton = forwardRef<HTMLAnchorElement, NavButtonProps>(
           zIndex: 1,
 
           borderRadius: 0,
-          padding: '2px 4px',
+          padding: active ? '2px 6px' : '2px 4px',
           overflow: 'hidden',
 
           color: active ? 'black' : 'inherit',
           fontSize: '1.25rem',
           fontWeight: active ? 600 : 400,
 
-          transition: transition('color'),
+          transition: transition(['color', 'padding']),
 
           '&::after': {
             content: '""',
@@ -46,7 +46,7 @@ const NavButton = forwardRef<HTMLAnchorElement, NavButtonProps>(
 
             backgroundColor: 'primary.light',
 
-            transition: transition(['opacity', 'transform', 'height']),
+            transition: transition(['transform', 'height']),
             transform: active
               ? 'translate3d(0, 0, 0)'
               : 'translate3d(-101%, 0, 0)',
