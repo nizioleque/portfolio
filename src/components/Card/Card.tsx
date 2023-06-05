@@ -5,6 +5,10 @@ interface CardProps {
   hue: number;
 }
 
+const enterEasing = 'cubic-bezier(0.61, 1, 0.88, 1)';
+const leaveEasing = 'cubic-bezier(0.12, 0, 0.39, 0)';
+const duration = '120ms';
+
 const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
   theme.unstable_sx({
     display: 'block',
@@ -13,7 +17,7 @@ const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
     backgroundColor: `hsl(${hue}deg 18% 12%)`,
     color: `hsl(${hue}deg 50% 82%)`,
 
-    borderRadius: 8,
+    borderRadius: 10,
 
     position: 'relative',
 
@@ -25,22 +29,20 @@ const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
 
     '&::before': {
       content: '""',
-      zIndex: -1,
-      width: 0,
-      height: 0,
-      background:
-        'radial-gradient(hsl(43deg 100% 50% / 35%) 0%, hsl(43deg 100% 50% / 0) 75%)',
+      opacity: 0,
+      background: `radial-gradient(hsl(${hue} 30% 16% / 100%) 0%, hsl(${hue} 30% 16% / 0) 70%)`,
       position: 'absolute',
       left: 'var(--x)',
       top: 'var(--y)',
-      transition: `height 120ms cubic-bezier(0.61, 1, 0.88, 1), width 120ms cubic-bezier(0.61, 1, 0.88, 1)`,
+      transition: `opacity ${enterEasing} ${duration}`,
       transform: 'translate(-50%, -50%)',
+      width: 500,
+      height: 500,
     },
 
     '&:hover::before': {
-      transition: `height 120ms cubic-bezier(0.12, 0, 0.39, 0), width 120ms cubic-bezier(0.12, 0, 0.39, 0)`,
-      width: 1000,
-      height: 1000,
+      opacity: 1,
+      transition: `opacity ${leaveEasing} ${duration}`,
     },
 
     '&.transform-origin-top': {
