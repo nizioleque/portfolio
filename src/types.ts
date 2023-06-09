@@ -3,6 +3,7 @@ import { StaticImageData } from 'next/image';
 export enum ProjectCategory {
   Extension = 'Browser extension',
   Flutter = 'Flutter app',
+  React = 'React app',
 }
 
 export interface ProjectMeta {

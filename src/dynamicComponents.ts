@@ -11,6 +11,10 @@ const dynamicComponents = {
   'youtube-distraction-killer': dynamic(
     () => import('../pages/projects/youtube-distraction-killer')
   ),
+  mojewidelo: dynamic(() => import('../pages/projects/mojewidelo')),
+  'nagasaki-minesweeper': dynamic(
+    () => import('../pages/projects/nagasaki-minesweeper')
+  ),
 };
 
 export default dynamicComponents;
