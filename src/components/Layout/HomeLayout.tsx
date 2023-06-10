@@ -20,7 +20,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
       <Nav />
       <Box
         sx={{
-          overflowY: 'scroll',
+          overflowY: 'auto',
           height: '100%',
         }}
       >

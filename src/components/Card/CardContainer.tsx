@@ -112,12 +112,11 @@ function CardContainer({ children }: CardContainerProps) {
         id='scroll-container'
         ref={scrollContainer}
         sx={{
-          overflowY: 'scroll',
+          overflowY: 'auto',
           height: '100%',
-          // TODO apply on production
-          // '&::-webkit-scrollbar': {
-          //   display: 'none',
-          // },
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
         onScroll={handleScroll}
       >
