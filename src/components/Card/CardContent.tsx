@@ -24,8 +24,6 @@ function CardContent({ project }: CardContentProps) {
               justifyContent: 'space-evenly',
               gap: 2,
               minHeight: CardImageSize,
-              zIndex: 1,
-              position: 'relative',
             }}
           >
             {project.icon && (

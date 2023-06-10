@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import Link from 'next/link';
-import { MouseEvent, ReactNode, useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import { Element, scroller } from 'react-scroll';
 import { CardSize } from '../../constants';
 import CardContainerContext from '../../contexts/CardContainerContext';
@@ -56,16 +56,6 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
     setIsModalOpen(true);
   };
 
-  const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    const target = event.currentTarget as HTMLElement;
-
-    const x = event.clientX - target.getBoundingClientRect().left;
-    const y = event.clientY - target.getBoundingClientRect().top;
-
-    target.style.setProperty('--x', `${x}px`);
-    target.style.setProperty('--y', `${y}px`);
-  };
-
   const handleMouseEnter = () => {
     pauseAutoScroll.current = true;
   };
@@ -84,7 +74,6 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
             layoutId={uniqueId}
             ref={cardContainerRef}
             onClick={handleClick}
-            onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             style={{

@@ -1,4 +1,6 @@
+import { Stack } from '@mui/material';
 import { GetStaticProps } from 'next';
+import ProjectGroup from '../src/components/allProjects/ProjectGroup';
 import { getProjectMeta, groupProjects } from '../src/serverUtils';
 import { GroupedProjects } from '../src/types';
 
@@ -7,8 +9,13 @@ interface AllProjectsProps {
 }
 
 function AllProjects({ groupedProjects }: AllProjectsProps) {
-  console.log(groupedProjects);
-  return <div>AllProjects</div>;
+  return (
+    <Stack gap={5}>
+      {Object.entries(groupedProjects).map(([name, projects]) => (
+        <ProjectGroup key={name} name={name} projects={projects} />
+      ))}
+    </Stack>
+  );
 }
 
 export const getStaticProps: GetStaticProps<AllProjectsProps> = async () => {

@@ -1,57 +1,33 @@
-import { styled } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box } from '@mui/material';
+import { MouseEvent, ReactNode, forwardRef } from 'react';
+import CardBase, { CardBaseProps } from './CardBase';
 
-interface CardProps {
-  hue: number;
-}
+type CardProps = {
+  children: ReactNode;
+} & CardBaseProps;
 
-const enterEasing = 'cubic-bezier(0.61, 1, 0.88, 1)';
-const leaveEasing = 'cubic-bezier(0.12, 0, 0.39, 0)';
-const duration = '120ms';
+const Card = forwardRef<HTMLAnchorElement, CardProps>(
+  ({ children, ...props }, ref) => {
+    const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
+      const target = event.currentTarget as HTMLElement;
 
-const Card = styled(motion.a)<CardProps>(({ theme, hue }) =>
-  theme.unstable_sx({
-    display: 'block',
-    padding: 3,
+      const x = event.clientX - target.getBoundingClientRect().left;
+      const y = event.clientY - target.getBoundingClientRect().top;
 
-    backgroundColor: `hsl(${hue}deg 18% 12%)`,
-    color: `hsl(${hue}deg 50% 82%)`,
+      target.style.setProperty('--x', `${x}px`);
+      target.style.setProperty('--y', `${y}px`);
+    };
 
-    borderRadius: 10,
-
-    position: 'relative',
-
-    overflow: 'hidden',
-    '--x': '10px',
-    '--y': '10px',
-
-    cursor: 'pointer',
-
-    '&::before': {
-      content: '""',
-      opacity: 0,
-      background: `radial-gradient(hsl(${hue} 30% 16% / 100%) 0%, hsl(${hue} 30% 16% / 0) 70%)`,
-      position: 'absolute',
-      left: 'var(--x)',
-      top: 'var(--y)',
-      transition: `opacity ${enterEasing} ${duration}`,
-      transform: 'translate(-50%, -50%)',
-      width: 500,
-      height: 500,
-    },
-
-    '&:hover::before': {
-      opacity: 1,
-      transition: `opacity ${leaveEasing} ${duration}`,
-    },
-
-    '&.transform-origin-top': {
-      transformOrigin: 'top center !important',
-    },
-    '&.transform-origin-bottom': {
-      transformOrigin: 'bottom center !important',
-    },
-  })
+    return (
+      <CardBase {...props} onMouseMove={handleMouseMove} ref={ref}>
+        <Box sx={{ zIndex: 1, position: 'relative', height: '100%' }}>
+          {children}
+        </Box>
+      </CardBase>
+    );
+  }
 );
+
+Card.displayName = 'Card';
 
 export default Card;
