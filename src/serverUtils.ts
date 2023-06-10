@@ -18,10 +18,15 @@ export async function getProjectMeta(): Promise<ProjectMeta[]> {
   return projects;
 }
 
+export function sortByHue(projects: ProjectMeta[]): ProjectMeta[] {
+  return projects.sort((a, b) => a.hue - b.hue);
+}
+
 export function groupProjects(projects: ProjectMeta[]): GroupedProjects {
   const groupedProjects: GroupedProjects = {
     [ProjectCategory.Extension]: [],
     [ProjectCategory.Flutter]: [],
+    [ProjectCategory.React]: [],
   };
 
   for (const category of Object.values(ProjectCategory)) {

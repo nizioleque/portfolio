@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import CardContainer from '../src/components/Card/CardContainer';
 import CardContent from '../src/components/Card/CardContent';
-import { getProjectMeta } from '../src/serverUtils';
+import { getProjectMeta, sortByHue } from '../src/serverUtils';
 import { ProjectMeta } from '../src/types';
 
 interface HomeProps {
@@ -26,7 +26,8 @@ function Home({ projects }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const projects = await getProjectMeta();
+  let projects = await getProjectMeta();
+  projects = sortByHue(projects);
   return { props: { projects } };
 };
 
