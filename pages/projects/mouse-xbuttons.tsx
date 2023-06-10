@@ -13,6 +13,7 @@ export const meta: ProjectMeta = {
   downloadUrl:
     'https://github.com/nizioleque/AutoHotkey/blob/master/Mouse%20XButtons/Mouse%20XButtons.exe',
   codeUrl: 'https://github.com/nizioleque/AutoHotkey',
+  hideFromHomepage: true,
 };
 
 function MouseXButtons() {

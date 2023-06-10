@@ -13,6 +13,7 @@ export const meta: ProjectMeta = {
   downloadUrl:
     'https://github.com/nizioleque/AutoHotkey/blob/master/MX%20Master%20Gesture%20AltTab/MX%20Master%20Gesture%20AltTab.exe',
   codeUrl: 'https://github.com/nizioleque/AutoHotkey',
+  hideFromHomepage: true,
 };
 
 function MxMasterAltTab() {

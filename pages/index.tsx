@@ -27,6 +27,7 @@ function Home({ projects }: HomeProps) {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   let projects = await getProjectMeta();
+  projects = projects.filter((project) => !project.hideFromHomepage);
   projects = sortByHue(projects);
   return { props: { projects } };
 };

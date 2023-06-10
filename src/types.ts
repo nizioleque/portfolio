@@ -5,7 +5,7 @@ export enum ProjectCategory {
   Flutter = 'Flutter app',
   React = 'React app',
   Web = 'Web app',
-  Autohotkey = 'AutoHotkey script'
+  Autohotkey = 'AutoHotkey script',
 }
 
 export interface ProjectMeta {
@@ -18,6 +18,7 @@ export interface ProjectMeta {
   runUrl?: string;
   downloadUrl?: string;
   codeUrl?: string;
+  hideFromHomepage?: boolean;
 }
 
 export type GroupedProjects = Record<ProjectCategory, ProjectMeta[]>;
