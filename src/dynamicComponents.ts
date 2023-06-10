@@ -18,6 +18,9 @@ const dynamicComponents = {
   'pdf-search': dynamic(() => import('../pages/projects/pdf-search')),
   'portfolio-v1': dynamic(() => import('../pages/projects/portfolio-v1')),
   'search-shortcut': dynamic(() => import('../pages/projects/search-shortcut')),
+  'typing-challenge': dynamic(
+    () => import('../pages/projects/typing-challenge')
+  ),
 };
 
 export default dynamicComponents;

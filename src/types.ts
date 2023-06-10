@@ -4,6 +4,7 @@ export enum ProjectCategory {
   Extension = 'Browser extension',
   Flutter = 'Flutter app',
   React = 'React app',
+  Web = 'Web app',
 }
 
 export interface ProjectMeta {
