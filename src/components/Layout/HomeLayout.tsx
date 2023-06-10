@@ -18,7 +18,14 @@ function HomeLayout({ children }: HomeLayoutProps) {
       }}
     >
       <Nav />
-      {children}
+      <Box
+        sx={{
+          overflowY: 'scroll',
+          height: '100%',
+        }}
+      >
+        {children}
+      </Box>
     </Box>
   );
 }
