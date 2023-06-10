@@ -15,6 +15,9 @@ const dynamicComponents = {
   'nagasaki-minesweeper': dynamic(
     () => import('../pages/projects/nagasaki-minesweeper')
   ),
+  'pdf-search': dynamic(() => import('../pages/projects/pdf-search')),
+  'portfolio-v1': dynamic(() => import('../pages/projects/portfolio-v1')),
+  'search-shortcut': dynamic(() => import('../pages/projects/search-shortcut')),
 };
 
 export default dynamicComponents;
