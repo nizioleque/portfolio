@@ -5,6 +5,7 @@ export enum ProjectCategory {
   Flutter = 'Flutter app',
   React = 'React app',
   Web = 'Web app',
+  Autohotkey = 'AutoHotkey script'
 }
 
 export interface ProjectMeta {

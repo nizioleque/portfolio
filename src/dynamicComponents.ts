@@ -21,6 +21,13 @@ const dynamicComponents = {
   'typing-challenge': dynamic(
     () => import('../pages/projects/typing-challenge')
   ),
+  'mx-master-alt-tab': dynamic(
+    () => import('../pages/projects/mx-master-alt-tab')
+  ),
+  'mouse-xbuttons': dynamic(() => import('../pages/projects/mouse-xbuttons')),
+  'horizontal-scroll': dynamic(
+    () => import('../pages/projects/horizontal-scroll')
+  ),
 };
 
 export default dynamicComponents;

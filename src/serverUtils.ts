@@ -28,6 +28,7 @@ export function groupProjects(projects: ProjectMeta[]): GroupedProjects {
     [ProjectCategory.Flutter]: [],
     [ProjectCategory.React]: [],
     [ProjectCategory.Web]: [],
+    [ProjectCategory.Autohotkey]: [],
   };
 
   for (const category of Object.values(ProjectCategory)) {
