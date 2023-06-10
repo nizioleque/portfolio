@@ -11,7 +11,7 @@ interface AllProjectsProps {
 function AllProjects({ groupedProjects }: AllProjectsProps) {
   return (
     <Stack paddingY={5} height='100%'>
-      <Stack gap={5} marginY='auto'>
+      <Stack gap={5} margin='auto' maxWidth='100%'>
         {Object.entries(groupedProjects).map(([name, projects]) => (
           <ProjectGroup key={name} name={name} projects={projects} />
         ))}

@@ -1,4 +1,5 @@
 import { Stack, Typography } from '@mui/material';
+import { shadowStrong } from '../../theme';
 import { ProjectMeta } from '../../types';
 import ProjectTile from './ProjectTile';
 
@@ -9,9 +10,21 @@ interface ProjectGroupProps {
 
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   return (
-    <Stack gap={2}>
-      <Typography variant='h2' fontSize='1.75rem'>
-        {name}
+    <Stack gap={0}>
+      <Typography
+        variant='h6'
+        sx={{
+          fontSize: '1.35rem',
+          fontStyle: 'italic',
+          zIndex: 2,
+          marginLeft: 3,
+          textShadow: shadowStrong,
+          lineHeight: '25%',
+          color: 'text.secondary',
+          fontVariant: 'small-caps',
+        }}
+      >
+        {name.toLowerCase()}s
       </Typography>
       <Stack gap={2}>
         {projects.map((project) => (

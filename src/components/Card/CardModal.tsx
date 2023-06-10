@@ -37,7 +37,7 @@ function CardModal({
               right: 0,
               bottom: 0,
               left: 0,
-              zIndex: 2,
+              zIndex: 101,
               display: 'grid',
               placeItems: 'center',
               pointerEvents: 'none',

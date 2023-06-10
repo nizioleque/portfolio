@@ -15,7 +15,7 @@ function Overlay({ closeModal }: OverlayProps) {
         bottom: 0,
         right: 0,
         background: 'rgb(0,0,0,0.5)',
-        zIndex: 1,
+        zIndex: 100,
       }}
       component={motion.div}
       initial={{ opacity: 0 }}

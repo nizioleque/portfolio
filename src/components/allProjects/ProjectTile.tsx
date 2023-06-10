@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { TileImageSize } from '../../constants';
 import { ProjectMeta } from '../../types';
 import Card from '../Card/Card';
 import CardModal from '../Card/CardModal';
@@ -27,24 +28,21 @@ function ProjectTile({ project }: ProjectTileProps) {
     const handleRouteChange = (url: string) => {
       if (isModalOpen && url !== targetUrl) {
         setIsModalOpen(false);
-      } else if (
-        // !isModalOpen &&
-        url === targetUrl
-      ) {
-        // TODO handle forward navigation
+      } else if (!isModalOpen && url === targetUrl) {
+        setIsModalOpen(true);
       }
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
     return () => router.events.off('routeChangeStart', handleRouteChange);
-  }, [isModalOpen, router.events, targetUrl]);
+  }, [router, isModalOpen, targetUrl]);
 
   return (
     <Box>
       <Link href={'/all-projects'} as={targetUrl} passHref legacyBehavior>
         <Card
           hue={project.hue}
-          sx={{ maxWidth: 500, marginLeft: 6 }}
+          sx={{ paddingY: 2, borderRadius: 8 }}
           layoutId={project.id}
           onClick={() => setIsModalOpen(true)}
         >
@@ -58,11 +56,11 @@ function ProjectTile({ project }: ProjectTileProps) {
             <Image
               alt={`${project.name} icon`}
               src={project.icon}
-              height={40}
-              width={40}
+              height={TileImageSize}
+              width={TileImageSize}
               style={{ objectFit: 'contain' }}
             />
-            <Typography variant='h3' textAlign='center'>
+            <Typography variant='h6' marginRight={1}>
               {project.name}
             </Typography>
           </Stack>
