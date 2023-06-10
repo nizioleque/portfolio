@@ -21,13 +21,15 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
   const { cardContainerRef, originY, scrollYProgress, transformOrigin } =
     useCardScale();
 
+  const targetUrl = `/${id}`;
+
   const {
     isModalOpen,
     closeModal,
     uniqueId,
     setShouldOpenModal,
     setIsModalOpen,
-  } = useCardModal(id);
+  } = useCardModal(id, targetUrl);
 
   const handleClick = () => {
     if (!cardContainerRef.current) return;
@@ -67,7 +69,7 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
   return (
     <Element name={uniqueId}>
       <Box>
-        <Link href={`/`} as={`/${id}`} passHref legacyBehavior>
+        <Link href={`/`} as={targetUrl} passHref legacyBehavior>
           <Card
             className='card-list-item'
             hue={hue}

@@ -5,7 +5,7 @@ import shouldOpenModalState from '../atoms/shouldOpenModalState';
 import CardContainerContext from '../contexts/CardContainerContext';
 import CardIterationCountContext from '../contexts/CardIterationCountContext';
 
-export default function useCardModal(id: string) {
+export default function useCardModal(id: string, targetUrl: string) {
   const { pauseAutoScroll } = useContext(CardContainerContext);
   const iterationId = useContext(CardIterationCountContext);
 
@@ -26,9 +26,26 @@ export default function useCardModal(id: string) {
   }, [shouldOpenModal, setShouldOpenModal, pauseAutoScroll]);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (isModalOpen && url !== targetUrl) {
+        setIsModalOpen(false);
+      } else if (
+        // !isModalOpen &&
+        url === targetUrl
+      ) {
+        // TODO handle forward navigation
+      }
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => router.events.off('routeChangeStart', handleRouteChange);
+  }, [isModalOpen, router.events, targetUrl]);
+
   const closeModal = () => {
     setIsModalOpen(false);
-    router.push('/');
+    router.back();
   };
 
   return {

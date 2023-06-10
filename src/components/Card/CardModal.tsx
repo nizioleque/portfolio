@@ -8,11 +8,16 @@ import Overlay from './Overlay';
 interface CardModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
-  uniqueId: string;
+  uniqueId?: string;
   id: string;
 }
 
-function CardModal({ isModalOpen, closeModal, uniqueId, id }: CardModalProps) {
+function CardModal({
+  isModalOpen,
+  closeModal,
+  id,
+  uniqueId = id,
+}: CardModalProps) {
   const { blockScrollChange } = useContext(CardContainerContext);
 
   const DynamicContent =
