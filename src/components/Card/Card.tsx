@@ -20,7 +20,7 @@ const Card = forwardRef<HTMLAnchorElement, CardProps>(
 
     return (
       <CardBase {...props} onMouseMove={handleMouseMove} ref={ref}>
-        <Box sx={{ zIndex: 1, position: 'relative', height: '100%' }}>
+        <Box sx={{ zIndex: 0, position: 'relative', height: '100%' }}>
           {children}
         </Box>
       </CardBase>
