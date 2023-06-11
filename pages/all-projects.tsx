@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import { GetStaticProps } from 'next';
 import ProjectGroup from '../src/components/allProjects/ProjectGroup';
 import { getProjectMeta, groupProjects } from '../src/serverUtils';
@@ -10,12 +10,11 @@ interface AllProjectsProps {
 
 function AllProjects({ groupedProjects }: AllProjectsProps) {
   return (
-    <Stack paddingY={5} height='100%'>
-      <Stack gap={5} margin='auto' maxWidth='100%'>
+    <Stack paddingY='10vh' minHeight='100%'>
+      <Stack gap={6} margin='auto' maxWidth='100%'>
         {Object.entries(groupedProjects).map(([name, projects]) => (
           <ProjectGroup key={name} name={name} projects={projects} />
         ))}
-        <Box />
       </Stack>
     </Stack>
   );

@@ -10,7 +10,7 @@ interface ProjectGroupProps {
 
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   return (
-    <Stack gap={0}>
+    <Stack>
       <Typography
         variant='h6'
         sx={{
@@ -19,7 +19,6 @@ function ProjectGroup({ name, projects }: ProjectGroupProps) {
           zIndex: 2,
           marginLeft: 3,
           textShadow: shadowStrong,
-          lineHeight: '25%',
           color: 'text.secondary',
           fontVariant: 'small-caps',
         }}
