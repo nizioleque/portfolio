@@ -1,7 +1,7 @@
-import { ProjectMeta } from '../../types';
-import Image from 'next/image';
-import { Box, Button, Typography } from '@mui/material';
 import { Download, GitHub, Paid } from '@mui/icons-material';
+import { Box, Button, Typography } from '@mui/material';
+import { ProjectMeta } from '../../types';
+import Image from '../Image';
 
 interface ProjectHeaderProps {
   meta: ProjectMeta;

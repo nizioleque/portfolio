@@ -1,5 +1,4 @@
 import { Box, Stack, Typography } from '@mui/material';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { TileImageSize } from '../../constants';
 import { ProjectMeta } from '../../types';
 import Card from '../Card/Card';
 import CardModal from '../Card/CardModal';
+import Image from '../Image';
 
 interface ProjectTileProps {
   project: ProjectMeta;

@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
 import { CardImageSize } from '../../constants';
 import { ProjectMeta } from '../../types';
+import Image from '../Image';
 import ExpandableCard from './ExpandableCard';
 
 export type CardContentProps = {
