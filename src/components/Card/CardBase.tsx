@@ -46,11 +46,18 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(({ theme, hue }) =>
       transition: `opacity ${leaveEasing} ${duration}`,
     },
 
-    '&.transform-origin-top': {
-      transformOrigin: 'top center !important',
+    '&.transform-origin-top-odd': {
+      transformOrigin: 'top right !important',
     },
-    '&.transform-origin-bottom': {
-      transformOrigin: 'bottom center !important',
+    '&.transform-origin-top-even': {
+      transformOrigin: 'top left !important',
+    },
+
+    '&.transform-origin-bottom-odd': {
+      transformOrigin: 'bottom right !important',
+    },
+    '&.transform-origin-bottom-even': {
+      transformOrigin: 'bottom left !important',
     },
   })
 );

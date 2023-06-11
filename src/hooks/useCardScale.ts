@@ -7,6 +7,16 @@ export default function useCardScale() {
 
   const cardContainerRef = useRef<HTMLAnchorElement>(null);
 
+  const isEven =
+    cardContainerRef.current?.parentElement?.parentElement?.matches(
+      ':nth-of-type(even)'
+    );
+
+  const classSuffix = isEven ? 'even' : 'odd';
+
+  const topClass = `transform-origin-top-${classSuffix}`;
+  const bottomClass = `transform-origin-bottom-${classSuffix}`;
+
   const { scrollYProgress: scrollYProgressTop } = useScroll({
     container: scrollContainer,
     target: cardContainerRef,
@@ -46,16 +56,16 @@ export default function useCardScale() {
   const originY = useTransform(scrollYProgressCombined, () => {
     switch (transformOrigin.current) {
       case 'top':
-        cardContainerRef.current?.classList.remove('transform-origin-bottom');
-        cardContainerRef.current?.classList.add('transform-origin-top');
+        cardContainerRef.current?.classList.remove(bottomClass);
+        cardContainerRef.current?.classList.add(topClass);
         return 0;
       case 'center':
-        cardContainerRef.current?.classList.remove('transform-origin-top');
-        cardContainerRef.current?.classList.remove('transform-origin-bottom');
+        cardContainerRef.current?.classList.remove(topClass);
+        cardContainerRef.current?.classList.remove(bottomClass);
         return 0.5;
       case 'bottom':
-        cardContainerRef.current?.classList.remove('transform-origin-top');
-        cardContainerRef.current?.classList.add('transform-origin-bottom');
+        cardContainerRef.current?.classList.remove(topClass);
+        cardContainerRef.current?.classList.add(bottomClass);
         return 1;
     }
   });

@@ -66,6 +66,13 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
     if (isModalOpen === false) pauseAutoScroll.current = false;
   };
 
+  const aaa =
+    cardContainerRef.current?.parentElement?.parentElement?.matches(
+      ':nth-of-type(even)'
+    );
+
+  console.log(cardContainerRef.current, aaa);
+
   return (
     <Element name={uniqueId}>
       <Box>
@@ -82,6 +89,7 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
               scale: scrollYProgress,
               originY,
               originX: 0.5,
+              // originX: aaa ? 0 : 1,
               width: CardSize,
               aspectRatio: '1 / 1',
             }}
