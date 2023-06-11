@@ -44,7 +44,7 @@ const NavButton = forwardRef<HTMLAnchorElement, NavButtonProps>(
             width: '100%',
             height: active ? '100%' : 2,
 
-            backgroundColor: 'primary.light',
+            backgroundColor: active ? 'primary.main' : 'primary.light',
 
             transition: transition(['transform', 'height']),
             transform: active
