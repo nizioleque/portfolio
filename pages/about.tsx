@@ -1,14 +1,20 @@
+import { Avatar, Stack } from '@mui/material';
+import Image from 'next/image';
+import avatar from '../src/assets/avatar.jpg';
 import HomePageContent from '../src/components/Layout/HomePageContent';
+import ChatBubble from '../src/components/about/ChatBubble';
+
+export const AvatarSize = 128;
 
 function About() {
   return (
     <HomePageContent>
-      Veniam incididunt voluptate amet in ea nostrud mollit commodo
-      reprehenderit quis sint consectetur elit nulla. Consequat proident nisi
-      dolor reprehenderit nisi mollit voluptate in in qui. Dolor occaecat ex
-      nulla et. Id cupidatat sunt eu est enim quis do consequat ut. Labore
-      aliquip tempor qui reprehenderit consequat consectetur eiusmod quis. Id
-      mollit est id veniam ex quis laboris dolor fugiat.
+      <Stack direction='row' alignItems='center' gap={4}>
+        <Avatar sx={{ height: AvatarSize, width: AvatarSize }}>
+          <Image alt='Avatar' src={avatar} fill />
+        </Avatar>
+        <ChatBubble>Hi!</ChatBubble>
+      </Stack>
     </HomePageContent>
   );
 }

@@ -10,7 +10,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <Box
       sx={{
-        backgroundColor: '#141414',
+        backgroundColor: 'background.default',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         height: '100%',

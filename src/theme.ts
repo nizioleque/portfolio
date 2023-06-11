@@ -1,18 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import { Space_Mono } from 'next/font/google';
 
-declare module '@mui/material/styles' {
-  interface BreakpointOverrides {
-    xs: false;
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-    mobile: true;
-    desktop: true;
-  }
-}
-
 export const shadowStrong = '4px 4px 4px rgba(0, 0, 0, 0.6)';
 export const shadowWeak = '2px 2px 4px rgba(0, 0, 0, 0.6)';
 export const transitionTime = 300;
@@ -30,6 +18,10 @@ const themeBase = createTheme({
     primary: {
       main: `hsl(72deg 100% 60%)`,
       light: `hsl(72deg 100% 75%)`,
+    },
+    background: {
+      default: '#141414',
+      light: '#3a3a3a',
     },
   },
   typography: {
@@ -93,3 +85,19 @@ export const theme = createTheme(themeBase, {
     },
   },
 });
+
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    mobile: true;
+    desktop: true;
+  }
+
+  interface TypeBackground {
+    light: string;
+  }
+}
