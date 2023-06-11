@@ -1,5 +1,6 @@
 import { Stack } from '@mui/material';
 import { GetStaticProps } from 'next';
+import HomePageContent from '../src/components/Layout/HomePageContent';
 import ProjectGroup from '../src/components/allProjects/ProjectGroup';
 import { getProjectMeta, groupProjects } from '../src/serverUtils';
 import { GroupedProjects } from '../src/types';
@@ -10,13 +11,13 @@ interface AllProjectsProps {
 
 function AllProjects({ groupedProjects }: AllProjectsProps) {
   return (
-    <Stack paddingY='10vh' minHeight='100%'>
-      <Stack gap={6} margin='auto' maxWidth='100%'>
+    <HomePageContent>
+      <Stack gap={6}>
         {Object.entries(groupedProjects).map(([name, projects]) => (
           <ProjectGroup key={name} name={name} projects={projects} />
         ))}
       </Stack>
-    </Stack>
+    </HomePageContent>
   );
 }
 
