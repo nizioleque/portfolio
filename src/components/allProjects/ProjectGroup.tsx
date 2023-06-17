@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import { shadowStrong } from '../../theme';
 import { ProjectMeta } from '../../types';
+import HomePageChild from '../Layout/HomePageChild';
 import ProjectTile from './ProjectTile';
 
 interface ProjectGroupProps {
@@ -11,23 +12,27 @@ interface ProjectGroupProps {
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   return (
     <Stack>
-      <Typography
-        variant='h6'
-        sx={{
-          fontSize: '1.35rem',
-          fontStyle: 'italic',
-          zIndex: 2,
-          marginLeft: 3,
-          textShadow: shadowStrong,
-          color: 'text.secondary',
-          fontVariant: 'small-caps',
-        }}
-      >
-        {name.toLowerCase()}s
-      </Typography>
+      <HomePageChild>
+        <Typography
+          variant='h6'
+          sx={{
+            fontSize: '1.35rem',
+            fontStyle: 'italic',
+            zIndex: 2,
+            marginLeft: 3,
+            textShadow: shadowStrong,
+            color: 'text.secondary',
+            fontVariant: 'small-caps',
+          }}
+        >
+          {name.toLowerCase()}s
+        </Typography>
+      </HomePageChild>
       <Stack gap={2}>
         {projects.map((project) => (
-          <ProjectTile key={project.id} project={project} />
+          <HomePageChild key={project.id}>
+            <ProjectTile project={project} />
+          </HomePageChild>
         ))}
       </Stack>
     </Stack>
