@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ReactNode, useContext } from 'react';
 import { Element, scroller } from 'react-scroll';
@@ -69,26 +70,28 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
   return (
     <Element name={uniqueId}>
       <Box>
-        <Link href={`/`} as={targetUrl} passHref legacyBehavior>
-          <Card
-            className='card-list-item'
-            hue={hue}
-            layoutId={uniqueId}
-            ref={cardContainerRef}
-            onClick={handleClick}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              scale: scrollYProgress,
-              originY,
-              originX: 0.5,
-              width: CardSize,
-              aspectRatio: '1 / 1',
-            }}
-          >
-            {content}
-          </Card>
-        </Link>
+        <AnimatePresence>
+          <Link href={`/`} as={targetUrl} passHref legacyBehavior>
+            <Card
+              className='card-list-item'
+              hue={hue}
+              layoutId={uniqueId}
+              ref={cardContainerRef}
+              onClick={handleClick}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                scale: scrollYProgress,
+                originY,
+                originX: 0.5,
+                width: CardSize,
+                aspectRatio: '1 / 1',
+              }}
+            >
+              {content}
+            </Card>
+          </Link>
+        </AnimatePresence>
         <CardModal
           closeModal={closeModal}
           id={id}
