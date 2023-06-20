@@ -4,10 +4,46 @@ import { ReactNode, useState } from 'react';
 
 interface HomePageContentProps {
   children: ReactNode;
+  delayAnimate?: boolean;
+  noScrollContainer?: boolean;
 }
 
-function HomePageContent({ children }: HomePageContentProps) {
+function HomePageContent({
+  children,
+  delayAnimate = false,
+  noScrollContainer = false,
+}: HomePageContentProps) {
   const [count, setCount] = useState(0);
+
+  const containerProps = {
+    key: count,
+    margin: 'auto',
+    component: motion.div,
+    initial: ['down', 'enter'],
+    animate: delayAnimate ? ['down', 'enter'] : 'visible',
+    exit: ['down', 'leave'],
+    transition: {
+      staggerChildren: 0.04,
+    },
+  };
+
+  const content = noScrollContainer ? (
+    <Stack {...containerProps} height='100%'>
+      {children}
+    </Stack>
+  ) : (
+    <Stack
+      paddingY='10vh'
+      minHeight='100%'
+      sx={{
+        overflowY: 'hidden',
+      }}
+    >
+      <Stack {...containerProps} gap={10}>
+        {children}
+      </Stack>
+    </Stack>
+  );
 
   return (
     <>
@@ -17,28 +53,7 @@ function HomePageContent({ children }: HomePageContentProps) {
       >
         Refresh
       </button>
-      <Stack
-        paddingY='10vh'
-        minHeight='100%'
-        sx={{
-          overflowY: 'hidden',
-        }}
-      >
-        <Stack
-          key={count}
-          margin='auto'
-          component={motion.div}
-          initial={['down', 'enter']}
-          animate='visible'
-          exit={['down', 'leave']}
-          transition={{
-            staggerChildren: 0.04,
-          }}
-          gap={10}
-        >
-          {children}
-        </Stack>
-      </Stack>
+      {content}
     </>
   );
 }

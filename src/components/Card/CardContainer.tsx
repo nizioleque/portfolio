@@ -1,7 +1,15 @@
 import { Box } from '@mui/material';
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import { Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import scrollEndState, {
   ScrollEndStateStatus,
 } from '../../atoms/scrollEndState';
@@ -11,19 +19,21 @@ import CardIterationCountContext from '../../contexts/CardIterationCountContext'
 
 interface CardContainerProps {
   children: ReactNode;
+  onRender: () => void;
 }
 
-function CardContainer({ children }: CardContainerProps) {
-  const scrollContainer = useRef<HTMLElement>(null);
-  const scrollContent = useRef<HTMLElement>(null);
+function CardContainer(
+  { children, onRender }: CardContainerProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
+  const scrollContainer = useRef<HTMLElement | null>(null);
+  const scrollContent = useRef<HTMLElement | null>(null);
 
   const isAutoScrolling = useRef<boolean>(false);
   const blockScrollChange = useRef<boolean>(false);
   const pauseAutoScroll = useRef<boolean>(false);
 
   const [rendered, setRendered] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  useEffect(() => setRendered(true), []);
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
@@ -50,17 +60,24 @@ function CardContainer({ children }: CardContainerProps) {
   }, []);
 
   // default scroll position
-  useEffect(() => {
-    if (
-      !scrollContent.current ||
-      !scrollContainer.current ||
-      rendered === false
-    )
+  useIsomorphicLayoutEffect(() => {
+    if (!scrollContent.current || !scrollContainer.current) {
       return;
+    }
 
-    const contentHeight = scrollContent.current.offsetHeight / 4;
-    scrollContainer.current.scrollTo({ top: contentHeight + 1 });
-    setScrolled(true);
+    setRendered(true);
+  }, []);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!scrollContent.current || !scrollContainer.current) {
+      return;
+    }
+
+    if (rendered) {
+      const contentHeight = scrollContent.current.offsetHeight / 4;
+      scrollContainer.current.scrollTo({ top: contentHeight + 1 });
+      onRender();
+    }
   }, [rendered]);
 
   // scroll animation
@@ -110,7 +127,12 @@ function CardContainer({ children }: CardContainerProps) {
     >
       <Box
         id='scroll-container'
-        ref={scrollContainer}
+        ref={(node: HTMLDivElement) => {
+          if (typeof ref === 'function') ref(node);
+          else if (ref !== null) ref.current = node;
+
+          if (scrollContainer !== null) scrollContainer.current = node;
+        }}
         sx={{
           overflowY: 'auto',
           height: '100%',
@@ -130,7 +152,6 @@ function CardContainer({ children }: CardContainerProps) {
             '& > :nth-of-type(even) .card-list-item': {
               top: CardSize / 2,
             },
-            opacity: scrolled ? 1 : 0,
             transition: 'opacity 50ms ease-in',
           }}
         >
@@ -156,4 +177,4 @@ function CardContainer({ children }: CardContainerProps) {
   );
 }
 
-export default CardContainer;
+export default forwardRef(CardContainer);
