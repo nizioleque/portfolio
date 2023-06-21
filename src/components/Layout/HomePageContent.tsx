@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
-import { motion } from 'framer-motion';
-import { ReactNode, useState } from 'react';
+import { motion, stagger, useAnimate } from 'framer-motion';
+import { ReactNode, useEffect, useState } from 'react';
 
 interface HomePageContentProps {
   children: ReactNode;
@@ -15,16 +15,37 @@ function HomePageContent({
 }: HomePageContentProps) {
   const [count, setCount] = useState(0);
 
+  const [scope, animate] = useAnimate();
+
+  useEffect(() => {
+    if (!delayAnimate) {
+      const classInViewport = '.animation-child.in-viewport';
+      const classNotInViewport = '.animation-child:not(.in-viewport)';
+
+      if (scope.current?.querySelector(classInViewport)) {
+        animate(
+          classInViewport,
+          { y: 0, opacity: 1 },
+          {
+            delay: stagger(3 / 60),
+            type: 'keyframes',
+          }
+        );
+      }
+
+      if (scope.current?.querySelector(classNotInViewport)) {
+        animate(classNotInViewport, { y: 0, opacity: 1 }, { duration: 0 });
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [delayAnimate]);
+
   const containerProps = {
     key: count,
+    ref: scope,
     margin: 'auto',
     component: motion.div,
-    initial: ['down', 'enter'],
-    animate: delayAnimate ? ['down', 'enter'] : 'visible',
-    exit: ['down', 'leave'],
-    transition: {
-      staggerChildren: 0.04,
-    },
   };
 
   const content = noScrollContainer ? (

@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { Events } from 'react-scroll';
 import { useSetRecoilState } from 'recoil';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
+import { useEffectOnce, useIsomorphicLayoutEffect } from 'usehooks-ts';
 import scrollEndState, {
   ScrollEndStateStatus,
 } from '../../atoms/scrollEndState';
@@ -76,9 +76,12 @@ function CardContainer(
     if (rendered) {
       const contentHeight = scrollContent.current.offsetHeight / 4;
       scrollContainer.current.scrollTo({ top: contentHeight + 1 });
-      onRender();
     }
   }, [rendered]);
+
+  useEffectOnce(() => {
+    onRender();
+  });
 
   // scroll animation
   // useInterval(() => {
@@ -149,10 +152,9 @@ function CardContainer(
             justifyContent: 'center',
             gridTemplateColumns: 'auto auto',
             gap: 6,
-            '& > :nth-of-type(even) .card-list-item': {
+            '& > :nth-of-type(even) .animation-child-sized': {
               top: CardSize / 2,
             },
-            transition: 'opacity 50ms ease-in',
           }}
         >
           <CardIterationCountContext.Provider value={0}>

@@ -1,25 +1,36 @@
-import { Variants, motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { ReactNode, useRef } from 'react';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 
-const variants: Variants = {
-  down: { y: 250, opacity: 0 },
-  up: { y: -250, opacity: 0 },
-  //   enter: { transition: { ease: [0.0, 0, 0.2, 1] } },
-  //   leave: { transition: { ease: [0.4, 0, 1, 1] } },
-  visible: { y: 0, opacity: 1 },
-};
+const initialY = 250;
 
 interface HomePageChildProps {
   children: ReactNode;
 }
 
 function HomePageChild({ children }: HomePageChildProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    if (ref.current === null) return;
+
+    const element =
+      ref.current.querySelector('.animation-child-sized') ?? ref.current;
+
+    const r = element.getBoundingClientRect();
+    const isInViewport =
+      r.top >= initialY && r.bottom <= window.innerHeight + 2 * initialY;
+
+    const classList = ref.current.classList;
+    if (isInViewport) classList.add('in-viewport');
+    else classList.remove('in-viewport');
+  });
+
   return (
     <motion.div
-      variants={variants}
-      transition={{
-        duration: 0.3,
-      }}
+      ref={ref}
+      className={'animation-child'}
+      initial={{ y: initialY, opacity: 0 }}
     >
       {children}
     </motion.div>
