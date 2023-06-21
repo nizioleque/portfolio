@@ -1,6 +1,5 @@
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { RecoilEnv, RecoilRoot } from 'recoil';
@@ -38,9 +37,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <LayoutComponent>
-            <AnimatePresence mode='wait'>
-              <Component key={router.pathname} {...pageProps} />
-            </AnimatePresence>
+            <Component key={router.pathname} {...pageProps} />
           </LayoutComponent>
         </ThemeProvider>
       </RecoilRoot>
