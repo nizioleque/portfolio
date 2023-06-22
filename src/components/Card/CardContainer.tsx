@@ -152,7 +152,7 @@ function CardContainer(
             justifyContent: 'center',
             gridTemplateColumns: 'auto auto',
             gap: 6,
-            '& > :nth-of-type(even) .animation-child-sized': {
+            '& > :nth-of-type(even) .animation-child-positioned': {
               top: CardSize / 2,
             },
           }}

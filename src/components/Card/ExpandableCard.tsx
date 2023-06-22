@@ -73,7 +73,7 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
         <AnimatePresence>
           <Link href={`/`} as={targetUrl} passHref legacyBehavior>
             <Card
-              className='animation-child-sized'
+              className='animation-child-positioned'
               hue={hue}
               layoutId={uniqueId}
               ref={cardContainerRef}
