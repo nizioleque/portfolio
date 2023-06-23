@@ -8,7 +8,17 @@ import { animationInitialY } from '../constants';
 
 const classInViewport = '.animation-child.in-viewport';
 const classNotInViewport = '.animation-child:not(.in-viewport)';
-const staggerDuration = 3 / 60;
+const animationOptions = (
+  cause: 'enter' | 'exit',
+  direction: AnimationDirection
+) => ({
+  delay: stagger(cause === 'enter' ? 2 / 60 : 1 / 60, {
+    from: direction === AnimationDirection.Down ? 'first' : 'last',
+  }),
+  type: 'keyframes' as const,
+  duration: cause === 'enter' ? 18 / 60 : 12 / 60,
+  ease: cause === 'enter' ? ('backOut' as const) : ('easeIn' as const),
+});
 
 export default function useHomePageAnimation(delayAnimate: boolean) {
   const [isPresent, safeToRemove] = usePresence();
@@ -23,12 +33,7 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
         animate(
           classInViewport,
           { y: 0, opacity: 1 },
-          {
-            delay: stagger(staggerDuration, {
-              from: animationDirection ? 'first' : 'last',
-            }),
-            type: 'keyframes',
-          }
+          animationOptions('enter', animationDirection)
         );
       }
 
@@ -48,17 +53,13 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
         }
 
         if (scope.current?.querySelector(classInViewport)) {
-          const direction = animationDirection ? -1 : 1;
+          const direction =
+            animationDirection === AnimationDirection.Down ? -1 : 1;
 
           await animate(
             classInViewport,
             { y: direction * animationInitialY, opacity: 0 },
-            {
-              delay: stagger(staggerDuration, {
-                from: animationDirection ? 'first' : 'last',
-              }),
-              type: 'keyframes',
-            }
+            animationOptions('exit', animationDirection)
           );
         }
 
