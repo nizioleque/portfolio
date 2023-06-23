@@ -1,6 +1,12 @@
 import { Box } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
-import { ReactNode, useRef } from 'react';
+import { useRouter } from 'next/router';
+import { ReactNode, useEffect, useRef } from 'react';
+import { useSetRecoilState } from 'recoil';
+import animationDirectionState, {
+  AnimationDirection,
+} from '../../atoms/animationDirectionState';
+import { links } from '../../constants';
 import Nav from './Nav';
 
 interface HomeLayoutProps {
@@ -8,11 +14,32 @@ interface HomeLayoutProps {
 }
 
 function HomeLayout({ children }: HomeLayoutProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleExitComplete = () => {
-    ref.current?.scrollTo({ top: 0 });
+    scrollContainerRef.current?.scrollTo({ top: 0 });
   };
+
+  const router = useRouter();
+  const setAnimationDirection = useSetRecoilState(animationDirectionState);
+
+  const pageUrls = links.map((link) => link.href);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      const oldUrlIndex = pageUrls.indexOf(router.pathname);
+      const newUrlIndex = pageUrls.indexOf(url);
+
+      setAnimationDirection(
+        newUrlIndex > oldUrlIndex
+          ? AnimationDirection.Down
+          : AnimationDirection.Up
+      );
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => router.events.off('routeChangeStart', handleRouteChange);
+  }, [pageUrls, router, setAnimationDirection]);
 
   return (
     <Box
@@ -26,7 +53,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
     >
       <Nav />
       <Box
-        ref={ref}
+        ref={scrollContainerRef}
         sx={{
           overflowY: 'auto',
           height: '100%',
