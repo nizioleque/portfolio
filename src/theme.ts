@@ -16,8 +16,8 @@ const themeBase = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: `hsl(72deg 85% 65%)`,
-      light: `hsl(72deg 100% 75%)`,
+      main: 'hsl(72deg 85% 65%)',
+      light: 'hsl(72deg 100% 75%)',
     },
     background: {
       default: '#141414',
