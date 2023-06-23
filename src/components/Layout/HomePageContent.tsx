@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
 import { motion } from 'framer-motion';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import useHomePageAnimation from '../../hooks/useHomePageAnimation';
 
 interface HomePageContentProps {
@@ -14,18 +14,15 @@ function HomePageContent({
   delayAnimate = false,
   noScrollContainer = false,
 }: HomePageContentProps) {
-  const [count, setCount] = useState(0);
-
   const { scope } = useHomePageAnimation(delayAnimate);
 
   const containerProps = {
-    key: count,
     ref: scope,
     margin: 'auto',
     component: motion.div,
   };
 
-  const content = noScrollContainer ? (
+  return noScrollContainer ? (
     <Stack {...containerProps} height='100%'>
       {children}
     </Stack>
@@ -41,18 +38,6 @@ function HomePageContent({
         {children}
       </Stack>
     </Stack>
-  );
-
-  return (
-    <>
-      <button
-        onClick={() => setCount(count + 1)}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-      >
-        Refresh
-      </button>
-      {content}
-    </>
   );
 }
 
