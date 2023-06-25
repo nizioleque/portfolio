@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useContext } from 'react';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import dynamicComponents from '../../dynamicComponents';
+import { scrollbarStyles } from '../../theme';
 import Overlay from './Overlay';
 
 interface CardModalProps {
@@ -10,6 +11,7 @@ interface CardModalProps {
   closeModal: () => void;
   uniqueId?: string;
   id: string;
+  hue: number;
 }
 
 function CardModal({
@@ -17,6 +19,7 @@ function CardModal({
   closeModal,
   id,
   uniqueId = id,
+  hue,
 }: CardModalProps) {
   const { blockScrollChange } = useContext(CardContainerContext);
 
@@ -41,6 +44,7 @@ function CardModal({
               display: 'grid',
               placeItems: 'center',
               pointerEvents: 'none',
+              paddingY: 4,
             }}
           >
             <Box
@@ -51,10 +55,14 @@ function CardModal({
                 maxWidth: 500,
                 width: '100%',
                 minHeight: 500,
-                borderRadius: 8,
-                backgroundColor: 'hsl(271deg 47% 10%)',
-                color: 'rgb(255 255 255 / 75%)',
+                maxHeight: '100%',
+                borderRadius: 12,
+                padding: 4,
+                backgroundColor: `hsl(${hue}deg 24% 8%)`,
+                color: `hsl(${hue}deg 100% 96%)`,
                 pointerEvents: 'initial',
+                overflowY: 'auto',
+                ...scrollbarStyles,
               }}
             >
               {DynamicContent ? (

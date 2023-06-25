@@ -97,6 +97,7 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
           id={id}
           uniqueId={uniqueId}
           isModalOpen={isModalOpen}
+          hue={hue}
         />
       </Box>
     </Element>

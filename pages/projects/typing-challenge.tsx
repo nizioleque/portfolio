@@ -1,4 +1,5 @@
 import icon from '../../src/assets/icons/typing-challenge.png';
+import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
@@ -16,12 +17,12 @@ export const meta: ProjectMeta = {
 
 function TypingChallenge() {
   return (
-    <>
+    <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
         <p>TypingChallenge is a streaming service.</p>
       </ProjectContent>
-    </>
+    </ProjectLayout>
   );
 }
 

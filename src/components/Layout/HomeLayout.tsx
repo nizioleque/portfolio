@@ -7,6 +7,7 @@ import animationDirectionState, {
   AnimationDirection,
 } from '../../atoms/animationDirectionState';
 import { links } from '../../constants';
+import { scrollbarStyles } from '../../theme';
 import Nav from './Nav';
 
 interface HomeLayoutProps {
@@ -57,18 +58,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
         sx={{
           overflowY: 'auto',
           height: '100%',
-          '&::-webkit-scrollbar': {
-            width: 16,
-          },
-          '&::-webkit-scrollbar-thumb': {
-            borderRadius: '999px',
-            backgroundClip: 'padding-box',
-            backgroundColor: 'rgb(255 255 255 / 24%)',
-            border: '4px solid transparent',
-            '&:hover': {
-              backgroundColor: 'rgb(255 255 255 / 48%)',
-            },
-          },
+          ...scrollbarStyles,
         }}
       >
         <AnimatePresence mode='wait' onExitComplete={handleExitComplete}>

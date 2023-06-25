@@ -1,4 +1,5 @@
 import icon from '../../src/assets/icons/youtube-custom-speed.png';
+import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
@@ -18,7 +19,7 @@ export const meta: ProjectMeta = {
 
 function YoutubeCustomSpeed() {
   return (
-    <>
+    <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
         <p>
@@ -40,7 +41,7 @@ function YoutubeCustomSpeed() {
           Shift + .
         </p>
       </ProjectContent>
-    </>
+    </ProjectLayout>
   );
 }
 

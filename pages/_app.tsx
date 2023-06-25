@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import HomeLayout from '../src/components/Layout/HomeLayout';
-import ProjectLayout from '../src/components/Layout/ProjectLayout';
 import '../src/index.css';
 import { theme } from '../src/theme';
 
@@ -13,9 +12,7 @@ RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 function MyApp({ Component, pageProps, router }: AppProps) {
   let LayoutComponent;
 
-  if (router.pathname.startsWith('/projects')) {
-    LayoutComponent = ProjectLayout;
-  } else {
+  if (!router.pathname.startsWith('/projects')) {
     LayoutComponent = HomeLayout;
   }
 
@@ -36,9 +33,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <LayoutComponent>
+          {LayoutComponent !== undefined ? (
+            <LayoutComponent>
+              <Component key={router.pathname} {...pageProps} />
+            </LayoutComponent>
+          ) : (
             <Component key={router.pathname} {...pageProps} />
-          </LayoutComponent>
+          )}
         </ThemeProvider>
       </RecoilRoot>
     </>

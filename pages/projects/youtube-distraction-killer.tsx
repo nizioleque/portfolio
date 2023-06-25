@@ -1,4 +1,5 @@
 import icon from '../../src/assets/icons/youtube-distraction-killer.png';
+import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
@@ -17,7 +18,7 @@ export const meta: ProjectMeta = {
 
 function YtDistractionKiller() {
   return (
-    <>
+    <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
         <p>Remove distracting elements from YouTube&apos;s layout</p>
@@ -28,7 +29,7 @@ function YtDistractionKiller() {
         </p>
         <p>Easily choose what is hidden using the options menu!</p>
       </ProjectContent>
-    </>
+    </ProjectLayout>
   );
 }
 

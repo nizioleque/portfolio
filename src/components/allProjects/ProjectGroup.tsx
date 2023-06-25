@@ -11,7 +11,7 @@ interface ProjectGroupProps {
 
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   return (
-    <Stack>
+    <Stack gap={1}>
       <HomePageChild>
         <Typography
           variant='h6'

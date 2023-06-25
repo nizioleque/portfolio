@@ -1,4 +1,5 @@
 import icon from '../../src/assets/icons/ahk.png';
+import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
@@ -18,12 +19,12 @@ export const meta: ProjectMeta = {
 
 function MouseXButtons() {
   return (
-    <>
+    <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
         <p>MouseXButtons is a streaming service.</p>
       </ProjectContent>
-    </>
+    </ProjectLayout>
   );
 }
 

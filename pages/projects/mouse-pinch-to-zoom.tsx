@@ -1,4 +1,5 @@
 import icon from '../../src/assets/icons/mouse-pinch-to-zoom.png';
+import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
@@ -18,7 +19,7 @@ export const meta: ProjectMeta = {
 
 function MousePinchToZoom() {
   return (
-    <>
+    <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
         <p>
@@ -44,7 +45,7 @@ function MousePinchToZoom() {
           easily accessible by clicking on the extension logo.
         </p>
       </ProjectContent>
-    </>
+    </ProjectLayout>
   );
 }
 

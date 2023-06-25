@@ -1,15 +1,19 @@
-import { ProjectMeta } from '../../types';
-import Image from 'next/image';
-import { Box, Button, Typography } from '@mui/material';
 import { Download, GitHub, Paid } from '@mui/icons-material';
+import { Box, Button, Typography } from '@mui/material';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { ProjectMeta } from '../../types';
 
 interface ProjectHeaderProps {
   meta: ProjectMeta;
 }
 
-const IMAGE_SIZE = 100;
+const ImageSize = 108;
 
 function ProjectHeader({ meta }: ProjectHeaderProps) {
+  const { pathname } = useRouter();
+  const isCard = pathname === '/';
+
   return (
     <Box
       sx={{
@@ -22,14 +26,16 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
       <Image
         alt={`${meta.name} icon`}
         src={meta.icon}
-        height={IMAGE_SIZE}
-        width={IMAGE_SIZE}
+        height={ImageSize}
+        width={ImageSize}
+        style={{ objectFit: 'contain' }}
       />
       <Typography
         variant='h3'
         sx={{
+          textAlign: 'center',
           fontSize: '2.2rem',
-          color: 'hsl(43deg 100% 50%)',
+          color: `hsl(${meta.hue}deg 100% 82%)`,
         }}
       >
         {meta.name}
@@ -47,9 +53,17 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
           display: 'flex',
           flexWrap: 'wrap',
           width: '100%',
-          columnGap: 3,
+          columnGap: isCard ? 2 : 4,
           rowGap: 2,
+          marginY: 1,
           '& > *': { flex: 1, minWidth: 120, display: 'flex' },
+          '& .MuiButton-root': {
+            color: `hsl(${meta.hue}deg 100% 94%)`,
+            backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
+            '&:hover': {
+              backgroundColor: `hsl(${meta.hue}deg 50% 32%)`,
+            },
+          },
         }}
       >
         {meta.downloadUrl && (

@@ -70,6 +70,7 @@ function ProjectTile({ project }: ProjectTileProps) {
         closeModal={closeModal}
         id={project.id}
         isModalOpen={isModalOpen}
+        hue={project.hue}
       />
     </Box>
   );

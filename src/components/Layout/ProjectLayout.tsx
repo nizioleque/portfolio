@@ -1,28 +1,46 @@
-import { Box } from '@mui/material';
-import dynamic from 'next/dynamic';
+import {
+  Box,
+  CssBaseline,
+  Theme,
+  ThemeProvider,
+  createTheme,
+} from '@mui/material';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import Logo from './Logo';
 
 interface ProjectLayoutProps {
   children: ReactNode;
+  hue: number;
 }
 
-const CanvasBackground = dynamic(() => import('./CanvasBackground'), {
-  ssr: false,
-});
+function ProjectLayout({ children, hue }: ProjectLayoutProps) {
+  const { pathname } = useRouter();
 
-function ProjectLayout({ children }: ProjectLayoutProps) {
+  if (pathname === '/') return <Box>{children}</Box>;
+
+  const extendTheme = (theme: Theme) =>
+    createTheme({
+      ...theme,
+      palette: {
+        ...theme.palette,
+        background: {
+          default: `hsl(${hue}deg 16% 8%)`,
+        },
+      },
+    });
+
   return (
-    <>
-      <CanvasBackground />
+    <ThemeProvider theme={extendTheme}>
+      <CssBaseline enableColorScheme />
       <Box
         component='header'
         sx={{
           display: 'flex',
           justifyContent: 'center',
           paddingY: 3,
-          backgroundColor: 'hsl(272deg 46% 38% / 25%)',
+          backgroundColor: `hsl(${hue}deg 24% 14%)`,
         }}
       >
         <Link href='/' legacyBehavior passHref>
@@ -34,7 +52,7 @@ function ProjectLayout({ children }: ProjectLayoutProps) {
         sx={{
           flex: 1,
           padding: 2,
-          color: 'rgb(255 255 255 / 95%)',
+          color: `hsl(${hue}deg 100% 96%)`,
           paddingTop: 5,
 
           '& > *': {
@@ -47,7 +65,7 @@ function ProjectLayout({ children }: ProjectLayoutProps) {
       >
         {children}
       </Box>
-    </>
+    </ThemeProvider>
   );
 }
 
