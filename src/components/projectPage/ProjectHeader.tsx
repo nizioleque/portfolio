@@ -19,7 +19,7 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 3,
+        gap: 2,
         alignItems: 'center',
       }}
     >
@@ -33,6 +33,8 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
       <Typography
         variant='h3'
         sx={{
+          marginTop: 2,
+          marginBottom: 1,
           textAlign: 'center',
           fontSize: '2.2rem',
           color: `hsl(${meta.hue}deg 100% 82%)`,
@@ -55,7 +57,7 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
           width: '100%',
           columnGap: isCard ? 2 : 4,
           rowGap: 2,
-          marginY: 1,
+          marginY: 2,
           '& > *': { flex: 1, minWidth: 120, display: 'flex' },
           '& .MuiButton-root': {
             color: `hsl(${meta.hue}deg 100% 94%)`,
