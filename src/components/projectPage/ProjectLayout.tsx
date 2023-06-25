@@ -8,7 +8,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
-import Logo from './Logo';
+import Logo from '../Layout/Logo';
 
 interface ProjectLayoutProps {
   children: ReactNode;

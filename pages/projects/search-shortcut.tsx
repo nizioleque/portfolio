@@ -1,7 +1,7 @@
 import icon from '../../src/assets/icons/search-shortcut.png';
-import ProjectLayout from '../../src/components/Layout/ProjectLayout';
 import ProjectContent from '../../src/components/projectPage/ProjectContent';
 import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
+import ProjectLayout from '../../src/components/projectPage/ProjectLayout';
 import { ProjectCategory, ProjectMeta } from '../../src/types';
 
 export const meta: ProjectMeta = {
