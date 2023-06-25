@@ -18,7 +18,7 @@ interface ProjectLayoutProps {
 function ProjectLayout({ children, hue }: ProjectLayoutProps) {
   const { pathname } = useRouter();
 
-  if (pathname === '/') return <Box>{children}</Box>;
+  if (['/', '/all-projects'].includes(pathname)) return <Box>{children}</Box>;
 
   const extendTheme = (theme: Theme) =>
     createTheme({
