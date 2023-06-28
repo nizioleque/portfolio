@@ -8,5 +8,4 @@ export const links = [
   { href: '/all-projects', label: 'All projects' },
   { href: '/about', label: 'About' },
   { href: '/playground', label: 'Playground' },
-  { href: '/contact', label: 'Contact' },
 ];
