@@ -39,8 +39,8 @@ const themeBase = createTheme({
       light: '#3a3a3a',
     },
     text: {
-      accent: 'hsl(72deg, 100%, 72%)'
-    }
+      accent: 'hsl(72deg, 100%, 72%)',
+    },
   },
   typography: {
     allVariants: {
@@ -65,12 +65,11 @@ const themeBase = createTheme({
   breakpoints: {
     values: {
       mobile: 0,
-      desktop: 800,
+      tablet: 800,
+      desktop: 1360,
     },
   },
 });
-
-export const mobileLayoutQuery = themeBase.breakpoints.down('desktop');
 
 const transitionDuration = 300;
 const transitionEasing = 'ease';
@@ -105,6 +104,7 @@ declare module '@mui/material/styles' {
     lg: false;
     xl: false;
     mobile: true;
+    tablet: true;
     desktop: true;
   }
 

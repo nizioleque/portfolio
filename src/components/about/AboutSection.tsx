@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { ReactNode } from 'react';
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import HomePageChild from '../Layout/HomePageChild';
 
 interface AboutSectionProps {
@@ -8,15 +9,19 @@ interface AboutSectionProps {
 }
 
 function AboutSection({ children, large = false }: AboutSectionProps) {
+  const { isDesktop } = useResponsiveLayout();
+
+  let fontSize;
+
+  if (isDesktop) {
+    fontSize = large ? '2rem' : '1.25rem';
+  } else {
+    fontSize = large ? '1.6rem' : '1rem';
+  }
+
   return (
     <HomePageChild>
-      <Typography
-        sx={{
-          fontSize: large ? '2rem' : '1.25rem',
-        }}
-      >
-        {children}
-      </Typography>
+      <Typography sx={{ fontSize }}>{children}</Typography>
     </HomePageChild>
   );
 }

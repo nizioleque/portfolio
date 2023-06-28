@@ -7,6 +7,7 @@ import animationDirectionState, {
   AnimationDirection,
 } from '../../atoms/animationDirectionState';
 import { links } from '../../constants';
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import { scrollbarStyles } from '../../theme';
 import Nav from './Nav';
 
@@ -20,6 +21,8 @@ function HomeLayout({ children }: HomeLayoutProps) {
   const handleExitComplete = () => {
     scrollContainerRef.current?.scrollTo({ top: 0 });
   };
+
+  const { isDesktop } = useResponsiveLayout();
 
   const router = useRouter();
   const setAnimationDirection = useSetRecoilState(animationDirectionState);
@@ -47,7 +50,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
       sx={{
         backgroundColor: 'background.default',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: isDesktop ? '1fr 1fr' : 'auto 1fr',
         height: '100%',
         alignItems: 'center',
       }}

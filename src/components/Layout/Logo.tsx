@@ -25,6 +25,8 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           textShadow: shadowStrong,
           lineHeight: '45%',
 
+          transition: transition('font-size'),
+
           color: 'rgb(255 255 255 / 30%)',
           '& > span:nth-of-type(2)': {
             fontWeight: 'bold',
