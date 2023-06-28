@@ -12,7 +12,7 @@ const ImageSize = 108;
 
 function ProjectHeader({ meta }: ProjectHeaderProps) {
   const { pathname } = useRouter();
-  const isCard = ['/', '/all-projects'].includes(pathname);
+  const isCard = ['/', '/projects'].includes(pathname);
 
   return (
     <Box

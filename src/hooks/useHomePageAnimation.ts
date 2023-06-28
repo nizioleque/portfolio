@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import animationDirectionState, {
   AnimationDirection,
 } from '../atoms/animationDirectionState';
-import { animationInitialY } from '../constants';
+import { AnimationInitialY } from '../constants';
 
 const classInViewport = '.animation-child.in-viewport';
 const classNotInViewport = '.animation-child:not(.in-viewport)';
@@ -58,7 +58,7 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
 
           await animate(
             classInViewport,
-            { y: direction * animationInitialY, opacity: 0 },
+            { y: direction * AnimationInitialY, opacity: 0 },
             animationOptions('exit', animationDirection)
           );
         }
@@ -97,10 +97,10 @@ function addViewportClass(
   if (cause === 'enter') {
     isInViewport =
       direction === AnimationDirection.Down
-        ? r.bottom >= animationInitialY &&
-          r.top <= window.innerHeight + animationInitialY
-        : r.bottom >= -animationInitialY &&
-          r.top <= window.innerHeight - animationInitialY;
+        ? r.bottom >= AnimationInitialY &&
+          r.top <= window.innerHeight + AnimationInitialY
+        : r.bottom >= -AnimationInitialY &&
+          r.top <= window.innerHeight - AnimationInitialY;
   } else {
     isInViewport = r.bottom > 0 && r.top < window.innerHeight;
   }

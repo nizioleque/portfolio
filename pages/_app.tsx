@@ -12,7 +12,7 @@ RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 function MyApp({ Component, pageProps, router }: AppProps) {
   let LayoutComponent;
 
-  if (!router.pathname.startsWith('/projects')) {
+  if (!router.pathname.startsWith('/projects/')) {
     LayoutComponent = HomeLayout;
   }
 

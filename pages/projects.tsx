@@ -5,11 +5,11 @@ import ProjectGroup from '../src/components/allProjects/ProjectGroup';
 import { getProjectMeta, groupProjects } from '../src/serverUtils';
 import { GroupedProjects } from '../src/types';
 
-interface AllProjectsProps {
+interface ProjectsProps {
   groupedProjects: GroupedProjects;
 }
 
-function AllProjects({ groupedProjects }: AllProjectsProps) {
+function Projects({ groupedProjects }: ProjectsProps) {
   return (
     <HomePageContent>
       <Stack gap={6}>
@@ -21,10 +21,10 @@ function AllProjects({ groupedProjects }: AllProjectsProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<AllProjectsProps> = async () => {
+export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
   const projects = await getProjectMeta();
   const groupedProjects = groupProjects(projects);
   return { props: { groupedProjects } };
 };
 
-export default AllProjects;
+export default Projects;

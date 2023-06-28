@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 import animationDirectionState from '../../atoms/animationDirectionState';
-import { animationInitialY } from '../../constants';
+import { AnimationInitialY } from '../../constants';
 
 interface HomePageChildProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ function HomePageChild({ children }: HomePageChildProps) {
   return (
     <motion.div
       className='animation-child'
-      initial={{ y: direction * animationInitialY, opacity: 0 }}
+      initial={{ y: direction * AnimationInitialY, opacity: 0 }}
     >
       {children}
     </motion.div>

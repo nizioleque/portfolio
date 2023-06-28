@@ -39,7 +39,7 @@ function ProjectTile({ project }: ProjectTileProps) {
 
   return (
     <Box>
-      <Link href={'/all-projects'} as={targetUrl} passHref legacyBehavior>
+      <Link href={'/projects'} as={targetUrl} passHref legacyBehavior>
         <Card
           hue={project.hue}
           sx={{ paddingY: 2, borderRadius: 8 }}
