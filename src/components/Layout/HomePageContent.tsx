@@ -29,14 +29,13 @@ function HomePageContent({
   ) : (
     <Stack
       paddingY='10vh'
+      paddingX={4}
       minHeight='100%'
       sx={{
         overflowY: 'hidden',
       }}
     >
-      <Stack {...containerProps} gap={10}>
-        {children}
-      </Stack>
+      <Stack {...containerProps}>{children}</Stack>
     </Stack>
   );
 }
