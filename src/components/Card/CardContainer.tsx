@@ -13,9 +13,10 @@ import { useEffectOnce, useIsomorphicLayoutEffect } from 'usehooks-ts';
 import scrollEndState, {
   ScrollEndStateStatus,
 } from '../../atoms/scrollEndState';
-import { CardSize } from '../../constants';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import CardIterationCountContext from '../../contexts/CardIterationCountContext';
+import useCardSize from '../../hooks/useCardSize';
+import { responsiveSize } from '../../theme/responsiveSize';
 
 interface CardContainerProps {
   children: ReactNode;
@@ -34,6 +35,8 @@ function CardContainer(
   const pauseAutoScroll = useRef<boolean>(false);
 
   const [rendered, setRendered] = useState<boolean>(false);
+
+  const cardSize = useCardSize();
 
   // infinite scroll (user/auto)
   const handleScroll = useCallback(() => {
@@ -83,7 +86,7 @@ function CardContainer(
     onRender();
   });
 
-  // scroll animation
+  // scroll animation // TODO enable
   // useInterval(() => {
   //   if (pauseAutoScroll.current === false) {
   //     animateScroll.scrollMore(340, {
@@ -151,9 +154,9 @@ function CardContainer(
             display: 'grid',
             justifyContent: 'center',
             gridTemplateColumns: 'auto auto',
-            gap: 6,
+            ...responsiveSize(6, undefined, 'gap'),
             '& > :nth-of-type(even) .animation-child-positioned': {
-              top: CardSize / 2,
+              top: cardSize / 2,
             },
           }}
         >

@@ -3,10 +3,10 @@ import { AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ReactNode, useContext } from 'react';
 import { Element, scroller } from 'react-scroll';
-import { CardSize } from '../../constants';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import useCardModal from '../../hooks/useCardModal';
 import useCardScale from '../../hooks/useCardScale';
+import useCardSize from '../../hooks/useCardSize';
 import Card from './Card';
 import CardModal from './CardModal';
 
@@ -31,6 +31,8 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
     setShouldOpenModal,
     setIsModalOpen,
   } = useCardModal(id, targetUrl);
+
+  const cardSize = useCardSize();
 
   const handleClick = () => {
     if (!cardContainerRef.current) return;
@@ -84,7 +86,7 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
                 scale: scrollYProgress,
                 originY,
                 originX: 0.5,
-                width: CardSize,
+                width: cardSize,
                 aspectRatio: '1 / 1',
               }}
             >
