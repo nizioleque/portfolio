@@ -1,9 +1,12 @@
 import { GitHub } from '@mui/icons-material';
 import { Box } from '@mui/material';
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import HomePageChild from '../Layout/HomePageChild';
 import LinkButton from '../about/LinkButton';
 
 function GitHubTile() {
+  const { isDesktop } = useResponsiveLayout();
+
   return (
     <HomePageChild>
       <Box
@@ -12,7 +15,7 @@ function GitHubTile() {
           paddingX: 3,
           borderRadius: 8,
 
-          height: 77,
+          height: isDesktop ? 77 : 70.6,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

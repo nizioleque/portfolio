@@ -39,7 +39,7 @@ function ProjectLayout({ children, hue }: ProjectLayoutProps) {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          paddingY: 3,
+          paddingY: 2,
           backgroundColor: `hsl(${hue}deg 24% 14%)`,
         }}
       >

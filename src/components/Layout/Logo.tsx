@@ -28,12 +28,17 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           letterSpacing: -3,
           fontStyle: 'italic',
           textShadow: shadowStrong,
-          lineHeight: 0,
+          lineHeight: '100%',
 
           transition: transition('font-size'),
 
           color: 'rgb(255 255 255 / 30%)',
-          '& > span:nth-of-type(2)': {
+
+          '& > :nth-of-type(1)': {
+            marginBottom: '-12.5%',
+          },
+
+          '& > :nth-of-type(2)': {
             fontWeight: 'bold',
             color: active ? 'primary.light' : 'text.primary',
             '&:hover': { color: 'primary.main' },
@@ -41,9 +46,8 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           },
         }}
       >
-        <Box component='span'>Norbert</Box>
-        <br />
-        <Box component='span'>Niziołek</Box>
+        <Box>Norbert</Box>
+        <Box>Niziołek</Box>
       </Typography>
     );
   }
