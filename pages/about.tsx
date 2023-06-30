@@ -6,16 +6,17 @@ import Section from '../src/components/about/AboutSection';
 import Em from '../src/components/about/Emphasis';
 import Hi from '../src/components/about/Hi';
 import LinkButton from '../src/components/about/LinkButton';
+import { responsiveSize } from '../src/theme/responsiveSize';
 
 function About() {
   return (
     <HomePageContent>
       <Stack
-        gap={4}
         sx={{
           maxWidth: 700,
           alignItems: 'center',
           textAlign: 'justify',
+          ...responsiveSize(4, 0.7, 'gap'),
         }}
       >
         <Hi />

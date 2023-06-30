@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { ReactNode } from 'react';
+import { responsiveSize } from '../../theme/responsiveSize';
 
 interface LinkButtonProps {
   children: ReactNode;
@@ -16,9 +17,8 @@ function LinkButton({ children, icon, href }: LinkButtonProps) {
       variant='text'
       startIcon={icon}
       sx={{
-        borderWidth: '3px !important',
         textTransform: 'none',
-        fontSize: '1.25rem',
+        ...responsiveSize('1.25rem'),
         fontWeight: 400,
         color: 'text.primary',
         borderRadius: 20,
@@ -26,7 +26,8 @@ function LinkButton({ children, icon, href }: LinkButtonProps) {
         '& .MuiSvgIcon-root': {
           marginRight: 0.5,
           color: 'primary.main',
-          fontSize: '2rem !important',
+          ...responsiveSize('2rem', undefined, 'width'),
+          ...responsiveSize('2rem', undefined, 'height'),
         },
       }}
     >

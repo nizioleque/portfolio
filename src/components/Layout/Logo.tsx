@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { MouseEventHandler, forwardRef } from 'react';
 import { shadowStrong } from '../../theme/constants';
+import { responsiveSize } from '../../theme/responsiveSize';
 import { transition } from '../../theme/transitions';
 
 interface LogoProps {
@@ -12,6 +13,9 @@ interface LogoProps {
 
 const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
   ({ onClick, href, fontSize, active = false }, ref) => {
+    const fontSizeStyles =
+      fontSize !== undefined ? { fontSize } : responsiveSize('6rem', 0.6);
+
     return (
       <Typography
         variant='h1'
@@ -20,11 +24,11 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
         href={href}
         ref={ref}
         sx={{
-          fontSize,
+          ...fontSizeStyles,
           letterSpacing: -3,
           fontStyle: 'italic',
           textShadow: shadowStrong,
-          lineHeight: '45%',
+          lineHeight: 0,
 
           transition: transition('font-size'),
 

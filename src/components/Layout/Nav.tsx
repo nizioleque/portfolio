@@ -1,47 +1,38 @@
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { links } from '../../constants';
-import useResponsiveLayout from '../../hooks/useResponsiveLayout';
+import { responsiveSize } from '../../theme/responsiveSize';
 import Logo from './Logo';
 import NavButton from './NavButton';
 
 function Nav() {
   const router = useRouter();
 
-  const { isTablet } = useResponsiveLayout();
-
   return (
     <Stack
       sx={{
         alignItems: 'center',
-        gap: 8,
-        paddingX: 5,
+        ...responsiveSize(4, 0.65, 'gap'),
+        '& #logo-container': responsiveSize(2, undefined, 'marginBottom'),
+        paddingX: 3,
       }}
     >
-      <Link href='/' legacyBehavior passHref>
-        <Logo
-          active={router.pathname === '/'}
-          fontSize={isTablet ? '4rem' : undefined}
-        />
-      </Link>
+      <Box id='logo-container'>
+        <Link href='/' legacyBehavior passHref>
+          <Logo active={router.pathname === '/'} />
+        </Link>
+      </Box>
 
-      <Stack
-        sx={{
-          alignItems: 'center',
-          gap: 4,
-        }}
-      >
-        {links
-          .filter((link) => !link.hidden)
-          .map((link) => (
-            <Link key={link.href} href={link.href} legacyBehavior passHref>
-              <NavButton active={router.pathname === link.href}>
-                {link.label}
-              </NavButton>
-            </Link>
-          ))}
-      </Stack>
+      {links
+        .filter((link) => !link.hidden)
+        .map((link) => (
+          <Link key={link.href} href={link.href} legacyBehavior passHref>
+            <NavButton active={router.pathname === link.href}>
+              {link.label}
+            </NavButton>
+          </Link>
+        ))}
     </Stack>
   );
 }

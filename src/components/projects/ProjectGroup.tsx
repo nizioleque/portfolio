@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import { shadowStrong } from '../../theme/constants';
+import { responsiveSize } from '../../theme/responsiveSize';
 import { ProjectMeta } from '../../types';
 import HomePageChild from '../Layout/HomePageChild';
 import ProjectTile from './ProjectTile';
@@ -16,7 +17,7 @@ function ProjectGroup({ name, projects }: ProjectGroupProps) {
         <Typography
           variant='h6'
           sx={{
-            fontSize: '1.35rem',
+            ...responsiveSize('1.35rem'),
             fontStyle: 'italic',
             zIndex: 2,
             marginLeft: 3,
@@ -28,7 +29,7 @@ function ProjectGroup({ name, projects }: ProjectGroupProps) {
           {name.toLowerCase()}s
         </Typography>
       </HomePageChild>
-      <Stack gap={2}>
+      <Stack sx={responsiveSize(2, undefined, 'gap')}>
         {projects.map((project) => (
           <HomePageChild key={project.id}>
             <ProjectTile project={project} />

@@ -29,7 +29,7 @@ function HomePageContent({
   ) : (
     <Stack
       paddingY='10vh'
-      paddingX={4}
+      paddingX={2}
       minHeight='100%'
       sx={{
         overflowY: 'hidden',

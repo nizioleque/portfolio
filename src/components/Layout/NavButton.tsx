@@ -1,6 +1,7 @@
 import { EastRounded } from '@mui/icons-material';
 import { Stack } from '@mui/material';
 import { MouseEventHandler, forwardRef } from 'react';
+import { responsiveSize } from '../../theme/responsiveSize';
 import { transition } from '../../theme/transitions';
 
 interface NavButtonProps {
@@ -29,7 +30,7 @@ const NavButton = forwardRef<HTMLAnchorElement, NavButtonProps>(
           overflow: 'hidden',
 
           color: active ? 'black' : 'inherit',
-          fontSize: '1.25rem',
+          ...responsiveSize('1.25rem'),
           fontWeight: active ? 600 : 400,
 
           transition: transition(['color', 'padding']),

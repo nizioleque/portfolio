@@ -47,6 +47,7 @@ function CardContent({ project }: CardContentProps) {
               <Typography
                 variant='h6'
                 sx={{
+                  fontSize: '1.25rem',
                   textAlign: 'center',
                   fontVariant: 'small-caps',
                 }}

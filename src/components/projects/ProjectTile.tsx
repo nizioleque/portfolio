@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { TileImageSize } from '../../constants';
+import { responsiveSize } from '../../theme/responsiveSize';
 import { ProjectMeta } from '../../types';
 import Card from '../Card/Card';
 import CardModal from '../Card/CardModal';
@@ -42,25 +43,37 @@ function ProjectTile({ project }: ProjectTileProps) {
       <Link href={'/projects'} as={targetUrl} passHref legacyBehavior>
         <Card
           hue={project.hue}
-          sx={{ paddingY: 2, borderRadius: 8 }}
+          sx={{
+            ...responsiveSize(2, undefined, 'paddingY'),
+            borderRadius: 8,
+          }}
           layoutId={project.id}
           onClick={() => setIsModalOpen(true)}
         >
           <Stack
             sx={{
               flexDirection: 'row',
-              gap: 3,
+              ...responsiveSize(3, undefined, 'gap'),
               alignItems: 'center',
             }}
           >
-            <Image
+            <Box
+              component={Image}
               alt={`${project.name} icon`}
               src={project.icon}
-              height={TileImageSize}
-              width={TileImageSize}
-              style={{ objectFit: 'contain' }}
+              sx={{
+                ...responsiveSize(TileImageSize, undefined, 'height'),
+                ...responsiveSize(TileImageSize, undefined, 'width'),
+                objectFit: 'contain',
+              }}
             />
-            <Typography variant='h6' marginRight={1}>
+            <Typography
+              variant='h6'
+              sx={{
+                marginRight: 1,
+                ...responsiveSize('1.3rem'),
+              }}
+            >
               {project.name}
             </Typography>
           </Stack>
