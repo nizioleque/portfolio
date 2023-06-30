@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useContext } from 'react';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import dynamicComponents from '../../dynamicComponents';
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import { scrollbarStyles } from '../../theme/constants';
 import Overlay from './Overlay';
 
@@ -22,6 +23,7 @@ function CardModal({
   hue,
 }: CardModalProps) {
   const { blockScrollChange } = useContext(CardContainerContext);
+  const { isMobile } = useResponsiveLayout();
 
   const DynamicContent =
     id in dynamicComponents
@@ -57,7 +59,7 @@ function CardModal({
                 minHeight: 500,
                 maxHeight: '100%',
                 borderRadius: 12,
-                padding: 4,
+                padding: isMobile ? 3 : 4,
                 backgroundColor: `hsl(${hue}deg 24% 8%)`,
                 color: `hsl(${hue}deg 100% 96%)`,
                 pointerEvents: 'initial',

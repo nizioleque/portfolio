@@ -22,12 +22,14 @@ function HomeLayout({ children }: HomeLayoutProps) {
     scrollContainerRef.current?.scrollTo({ top: 0 });
   };
 
-  const { isDesktop } = useResponsiveLayout();
+  const { isMobile, mobileQuery, tabletQuery } = useResponsiveLayout();
 
   const router = useRouter();
   const setAnimationDirection = useSetRecoilState(animationDirectionState);
 
   const pageUrls = links.map((link) => link.href);
+
+  const isIndex = router.pathname === '/';
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -50,24 +52,32 @@ function HomeLayout({ children }: HomeLayoutProps) {
       sx={{
         backgroundColor: 'background.default',
         display: 'grid',
-        gridTemplateColumns: isDesktop ? '1fr 1fr' : 'auto 1fr',
+        gridTemplateColumns: '1fr 1fr',
+        [tabletQuery]: {
+          gridTemplateColumns: 'auto 1fr',
+        },
+        [mobileQuery]: {
+          gridTemplateColumns: '1fr',
+        },
         height: '100%',
         alignItems: 'center',
       }}
     >
       <Nav />
-      <Box
-        ref={scrollContainerRef}
-        sx={{
-          overflowY: 'auto',
-          height: '100%',
-          ...scrollbarStyles,
-        }}
-      >
-        <AnimatePresence mode='wait' onExitComplete={handleExitComplete}>
-          {children}
-        </AnimatePresence>
-      </Box>
+      {!(isMobile && isIndex) && (
+        <Box
+          ref={scrollContainerRef}
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            ...scrollbarStyles,
+          }}
+        >
+          <AnimatePresence mode='wait' onExitComplete={handleExitComplete}>
+            {children}
+          </AnimatePresence>
+        </Box>
+      )}
     </Box>
   );
 }

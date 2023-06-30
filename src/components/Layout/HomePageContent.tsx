@@ -2,6 +2,7 @@ import { Stack } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import useHomePageAnimation from '../../hooks/useHomePageAnimation';
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 
 interface HomePageContentProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ function HomePageContent({
   noScrollContainer = false,
 }: HomePageContentProps) {
   const { scope } = useHomePageAnimation(delayAnimate);
+  const { isMobile } = useResponsiveLayout();
 
   const containerProps = {
     ref: scope,
@@ -28,10 +30,10 @@ function HomePageContent({
     </Stack>
   ) : (
     <Stack
-      paddingY='10vh'
-      paddingX={2}
-      minHeight='100%'
       sx={{
+        paddingY: !isMobile ? '10vh' : 4,
+        paddingX: 2,
+        minHeight: '100%',
         overflowY: 'hidden',
       }}
     >
