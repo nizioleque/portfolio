@@ -8,7 +8,7 @@ import animationDirectionState, {
 } from '../../atoms/animationDirectionState';
 import { links } from '../../constants';
 import useResponsiveLayout from '../../hooks/useResponsiveLayout';
-import { scrollbarStyles } from '../../theme';
+import { scrollbarStyles } from '../../theme/constants';
 import Nav from './Nav';
 
 interface HomeLayoutProps {

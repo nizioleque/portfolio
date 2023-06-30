@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useContext } from 'react';
 import CardContainerContext from '../../contexts/CardContainerContext';
 import dynamicComponents from '../../dynamicComponents';
-import { scrollbarStyles } from '../../theme';
+import { scrollbarStyles } from '../../theme/constants';
 import Overlay from './Overlay';
 
 interface CardModalProps {

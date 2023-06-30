@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { shadowStrong } from '../../theme';
+import { shadowStrong } from '../../theme/constants';
 import { ProjectMeta } from '../../types';
 import HomePageChild from '../Layout/HomePageChild';
 import ProjectTile from './ProjectTile';

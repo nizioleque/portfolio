@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import HomeLayout from '../src/components/Layout/HomeLayout';
 import '../src/index.css';
-import { theme } from '../src/theme';
+import { theme } from '../src/theme/theme';
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
