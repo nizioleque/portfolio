@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { CardImageSize } from '../../constants';
+import { responsiveSize } from '../../theme/responsiveSize';
 import { ProjectMeta } from '../../types';
 import ExpandableCard from './ExpandableCard';
 
@@ -23,16 +24,18 @@ function CardContent({ project }: CardContentProps) {
               alignItems: 'center',
               justifyContent: 'space-evenly',
               gap: 2,
-              minHeight: CardImageSize,
             }}
           >
             {project.icon && (
-              <Image
+              <Box
+                component={Image}
                 alt={`${project.name} icon`}
                 src={project.icon}
-                height={CardImageSize}
-                width={CardImageSize}
-                style={{ objectFit: 'contain' }}
+                sx={{
+                  ...responsiveSize(CardImageSize, undefined, 'height'),
+                  ...responsiveSize(CardImageSize, undefined, 'width'),
+                  objectFit: 'contain',
+                }}
               />
             )}
             <Box>
@@ -40,14 +43,17 @@ function CardContent({ project }: CardContentProps) {
                 variant='h3'
                 textAlign='center'
                 gutterBottom
-                sx={{ whiteSpace: 'pre-line' }}
+                sx={{
+                  ...responsiveSize('1.3rem'),
+                  whiteSpace: 'pre-line',
+                }}
               >
                 {project.name}
               </Typography>
               <Typography
                 variant='h6'
                 sx={{
-                  fontSize: '1.25rem',
+                  ...responsiveSize('1.25rem'),
                   textAlign: 'center',
                   fontVariant: 'small-caps',
                 }}
