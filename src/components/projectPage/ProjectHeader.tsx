@@ -58,8 +58,10 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
           columnGap: isCard ? 2 : 4,
           rowGap: 2,
           marginY: 2,
-          '& > *': { flex: 1, minWidth: 120, display: 'flex' },
           '& .MuiButton-root': {
+            flex: 1,
+            minWidth: 120,
+            display: 'flex',
             color: `hsl(${meta.hue}deg 100% 94%)`,
             backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
             '&:hover': {
