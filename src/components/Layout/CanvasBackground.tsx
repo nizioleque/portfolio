@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { useRef, useEffect, useCallback } from 'react';
+import { Box, darken, useTheme } from '@mui/material';
+import { useCallback, useEffect, useRef } from 'react';
 
 // TODO fix white background flash on slow load
 // TODO use or remove!
@@ -28,22 +28,27 @@ function CanvasBackground() {
   const redrawCanvas = useRef<boolean>(false);
   const rafHandle = useRef<number | null>(null);
 
-  const handleMouseMove = useCallback((event: MouseEvent) => {
-    if (!ctx.current || !offscreenCtx.current) return;
+  const theme = useTheme();
 
-    offscreenCtx.current.fillStyle = 'hsl(271deg 47% 17%)';
-    offscreenCtx.current.beginPath();
-    offscreenCtx.current.arc(
-      event.clientX * window.devicePixelRatio,
-      event.clientY * window.devicePixelRatio,
-      DRAW_RADIUS * window.devicePixelRatio,
-      0,
-      2 * Math.PI
-    );
-    offscreenCtx.current.fill();
+  const handleMouseMove = useCallback(
+    (event: MouseEvent) => {
+      if (!ctx.current || !offscreenCtx.current) return;
 
-    redrawCanvas.current = true;
-  }, []);
+      offscreenCtx.current.fillStyle = darken(theme.palette.primary.main, 0.85);
+      offscreenCtx.current.beginPath();
+      offscreenCtx.current.arc(
+        event.clientX * window.devicePixelRatio,
+        event.clientY * window.devicePixelRatio,
+        DRAW_RADIUS * window.devicePixelRatio,
+        0,
+        2 * Math.PI
+      );
+      offscreenCtx.current.fill();
+
+      redrawCanvas.current = true;
+    },
+    [theme.palette.primary.main]
+  );
 
   const handleRedraw = useCallback(() => {
     if (redrawCanvas.current && ctx.current && offscreenCtx.current) {
@@ -120,7 +125,6 @@ function CanvasBackground() {
         style={{
           width: '100vw',
           height: '100vh',
-          backgroundColor: 'hsl(271deg 47% 10%)',
         }}
       />
     </Box>

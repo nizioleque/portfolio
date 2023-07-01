@@ -24,6 +24,7 @@ function GitHubTile() {
           border: '4px solid',
           borderColor: 'rgb(255 255 255 / 6%)',
           color: 'text.secondary',
+          backgroundColor: 'background.default',
         }}
       >
         More on{' '}
