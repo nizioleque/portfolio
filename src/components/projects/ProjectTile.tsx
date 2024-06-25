@@ -1,13 +1,13 @@
-import { Box, Stack, Typography } from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { TileImageSize } from '../../constants';
-import { responsiveSize } from '../../theme/responsiveSize';
-import { ProjectMeta } from '../../types';
-import Card from '../Card/Card';
-import CardModal from '../Card/CardModal';
+import { Box, Stack, Typography } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { TileImageSize } from "../../constants";
+import { responsiveSize } from "../../theme/responsiveSize";
+import { ProjectMeta } from "../../types";
+import Card from "../Card/Card";
+import CardModal from "../Card/CardModal";
 
 interface ProjectTileProps {
   project: ProjectMeta;
@@ -34,17 +34,17 @@ function ProjectTile({ project }: ProjectTileProps) {
       }
     };
 
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => router.events.off('routeChangeStart', handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router, isModalOpen, targetUrl]);
 
   return (
     <Box>
-      <Link href={'/projects'} as={targetUrl} passHref legacyBehavior>
+      <Link href={"/projects"} as={targetUrl} passHref legacyBehavior>
         <Card
           hue={project.hue}
           sx={{
-            ...responsiveSize(2, undefined, 'paddingY'),
+            ...responsiveSize(2, undefined, "paddingY"),
             borderRadius: 8,
           }}
           layoutId={project.id}
@@ -52,9 +52,9 @@ function ProjectTile({ project }: ProjectTileProps) {
         >
           <Stack
             sx={{
-              flexDirection: 'row',
-              ...responsiveSize(3, undefined, 'gap'),
-              alignItems: 'center',
+              flexDirection: "row",
+              ...responsiveSize(3, undefined, "gap"),
+              alignItems: "center",
             }}
           >
             <Box
@@ -62,16 +62,16 @@ function ProjectTile({ project }: ProjectTileProps) {
               alt={`${project.name} icon`}
               src={project.icon}
               sx={{
-                ...responsiveSize(TileImageSize, undefined, 'height'),
-                ...responsiveSize(TileImageSize, undefined, 'width'),
-                objectFit: 'contain',
+                ...responsiveSize(TileImageSize, undefined, "height"),
+                ...responsiveSize(TileImageSize, undefined, "width"),
+                objectFit: "contain",
               }}
             />
             <Typography
-              variant='h6'
+              variant="h6"
               sx={{
                 marginRight: 1,
-                ...responsiveSize('1.3rem'),
+                ...responsiveSize("1.3rem"),
               }}
             >
               {project.name}

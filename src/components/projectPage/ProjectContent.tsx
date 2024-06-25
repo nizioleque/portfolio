@@ -1,19 +1,19 @@
-import { Box } from '@mui/material';
-import { Ubuntu } from 'next/font/google';
-import { ReactNode } from 'react';
+import { Box } from "@mui/material";
+import { Ubuntu } from "next/font/google";
+import { ReactNode } from "react";
 
 interface ProjectContentProps {
   children: ReactNode;
 }
 
-const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400'] });
+const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["400"] });
 
 function ProjectContent({ children }: ProjectContentProps) {
   return (
     <Box
       className={ubuntu.className}
       sx={{
-        textAlign: 'justify',
+        textAlign: "justify",
       }}
     >
       {children}

@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useContext } from 'react';
-import CardContainerContext from '../../contexts/CardContainerContext';
-import dynamicComponents from '../../dynamicComponents';
-import useResponsiveLayout from '../../hooks/useResponsiveLayout';
-import { scrollbarStyles } from '../../theme/constants';
-import Overlay from './Overlay';
+import { Box } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
+import { useContext } from "react";
+import CardContainerContext from "../../contexts/CardContainerContext";
+import dynamicComponents from "../../dynamicComponents";
+import useResponsiveLayout from "../../hooks/useResponsiveLayout";
+import { scrollbarStyles } from "../../theme/constants";
+import Overlay from "./Overlay";
 
 interface CardModalProps {
   isModalOpen: boolean;
@@ -34,36 +34,36 @@ function CardModal({
     <AnimatePresence onExitComplete={() => (blockScrollChange.current = false)}>
       {isModalOpen && (
         <>
-          <Overlay key='overlay' closeModal={closeModal} />
+          <Overlay key="overlay" closeModal={closeModal} />
           <Box
             sx={{
-              position: 'fixed',
+              position: "fixed",
               top: 0,
               right: 0,
               bottom: 0,
               left: 0,
               zIndex: 101,
-              display: 'grid',
-              placeItems: 'center',
-              pointerEvents: 'none',
+              display: "grid",
+              placeItems: "center",
+              pointerEvents: "none",
               paddingY: 4,
             }}
           >
             <Box
-              key='modal'
+              key="modal"
               component={motion.div}
               layoutId={uniqueId}
               sx={{
                 maxWidth: 500,
-                width: '100%',
+                width: "100%",
                 minHeight: 500,
-                maxHeight: '100%',
+                maxHeight: "100%",
                 borderRadius: 12,
                 padding: isMobile ? 3 : 4,
                 backgroundColor: `hsl(${hue}deg 24% 8%)`,
                 color: `hsl(${hue}deg 100% 96%)`,
-                pointerEvents: 'initial',
-                overflowY: 'auto',
+                pointerEvents: "initial",
+                overflowY: "auto",
                 ...scrollbarStyles,
               }}
             >

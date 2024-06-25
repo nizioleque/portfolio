@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box } from "@mui/material";
+import { motion } from "framer-motion";
 
 interface OverlayProps {
   closeModal: () => void;
@@ -9,14 +9,14 @@ function Overlay({ closeModal }: OverlayProps) {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         left: 0,
         bottom: 0,
         right: 0,
-        background: 'rgb(0,0,0,0.5)',
+        background: "rgb(0,0,0,0.5)",
         zIndex: 100,
-        cursor: 'pointer',
+        cursor: "pointer",
       }}
       component={motion.div}
       initial={{ opacity: 0 }}

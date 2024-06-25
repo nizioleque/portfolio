@@ -1,13 +1,13 @@
-import { mobileLayoutQuery } from './themeBase';
+import { mobileLayoutQuery } from "./themeBase";
 
 export function responsiveSize(
   size: number | string,
   modifier: number = 0.8,
-  propertyName: string = 'fontSize'
+  propertyName: string = "fontSize"
 ) {
   let value, unit;
 
-  if (typeof size === 'string') {
+  if (typeof size === "string") {
     const match = size.match(/[a-z%]+/);
     value = parseFloat(size);
     unit = match?.[0];

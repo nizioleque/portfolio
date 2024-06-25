@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
-import { ReactNode } from 'react';
-import { responsiveSize } from '../../theme/responsiveSize';
-import HomePageChild from '../Layout/HomePageChild';
+import { Typography } from "@mui/material";
+import { ReactNode } from "react";
+import { responsiveSize } from "../../theme/responsiveSize";
+import HomePageChild from "../Layout/HomePageChild";
 
 interface AboutSectionProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface AboutSectionProps {
 }
 
 function AboutSection({ children, large = false }: AboutSectionProps) {
-  const fontSize = large ? '2rem' : '1.25rem';
+  const fontSize = large ? "2rem" : "1.25rem";
 
   return (
     <HomePageChild>

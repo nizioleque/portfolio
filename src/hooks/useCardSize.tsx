@@ -1,4 +1,4 @@
-import useResponsiveLayout from './useResponsiveLayout';
+import useResponsiveLayout from "./useResponsiveLayout";
 
 export default function useCardSize() {
   const { isDesktop } = useResponsiveLayout();

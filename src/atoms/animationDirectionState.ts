@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export enum AnimationDirection {
   Up,
@@ -6,7 +6,7 @@ export enum AnimationDirection {
 }
 
 const animationDirectionState = atom<AnimationDirection>({
-  key: 'animationDirectionState',
+  key: "animationDirectionState",
   default: AnimationDirection.Down,
 });
 

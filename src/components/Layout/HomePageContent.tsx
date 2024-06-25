@@ -1,8 +1,8 @@
-import { Stack } from '@mui/material';
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
-import useHomePageAnimation from '../../hooks/useHomePageAnimation';
-import useResponsiveLayout from '../../hooks/useResponsiveLayout';
+import { Stack } from "@mui/material";
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
+import useHomePageAnimation from "../../hooks/useHomePageAnimation";
+import useResponsiveLayout from "../../hooks/useResponsiveLayout";
 
 interface HomePageContentProps {
   children: ReactNode;
@@ -20,21 +20,21 @@ function HomePageContent({
 
   const containerProps = {
     ref: scope,
-    margin: 'auto',
+    margin: "auto",
     component: motion.div,
   };
 
   return noScrollContainer ? (
-    <Stack {...containerProps} height='100%'>
+    <Stack {...containerProps} height="100%">
       {children}
     </Stack>
   ) : (
     <Stack
       sx={{
-        paddingY: !isMobile ? '10vh' : 4,
+        paddingY: !isMobile ? "10vh" : 4,
         paddingX: 2,
-        minHeight: '100%',
-        overflowY: 'hidden',
+        minHeight: "100%",
+        overflowY: "hidden",
       }}
     >
       <Stack {...containerProps}>{children}</Stack>

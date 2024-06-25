@@ -1,9 +1,9 @@
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
-import { CardImageSize } from '../../constants';
-import { responsiveSize } from '../../theme/responsiveSize';
-import { ProjectMeta } from '../../types';
-import ExpandableCard from './ExpandableCard';
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
+import { CardImageSize } from "../../constants";
+import { responsiveSize } from "../../theme/responsiveSize";
+import { ProjectMeta } from "../../types";
+import ExpandableCard from "./ExpandableCard";
 
 export type CardContentProps = {
   project: ProjectMeta;
@@ -18,11 +18,11 @@ function CardContent({ project }: CardContentProps) {
         <>
           <Box
             sx={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'space-evenly',
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-evenly",
               gap: 2,
             }}
           >
@@ -32,30 +32,30 @@ function CardContent({ project }: CardContentProps) {
                 alt={`${project.name} icon`}
                 src={project.icon}
                 sx={{
-                  ...responsiveSize(CardImageSize, undefined, 'height'),
-                  ...responsiveSize(CardImageSize, undefined, 'width'),
-                  objectFit: 'contain',
+                  ...responsiveSize(CardImageSize, undefined, "height"),
+                  ...responsiveSize(CardImageSize, undefined, "width"),
+                  objectFit: "contain",
                 }}
               />
             )}
             <Box>
               <Typography
-                variant='h3'
-                textAlign='center'
+                variant="h3"
+                textAlign="center"
                 gutterBottom
                 sx={{
-                  ...responsiveSize('1.3rem'),
-                  whiteSpace: 'pre-line',
+                  ...responsiveSize("1.3rem"),
+                  whiteSpace: "pre-line",
                 }}
               >
                 {project.name}
               </Typography>
               <Typography
-                variant='h6'
+                variant="h6"
                 sx={{
-                  ...responsiveSize('1.25rem'),
-                  textAlign: 'center',
-                  fontVariant: 'small-caps',
+                  ...responsiveSize("1.25rem"),
+                  textAlign: "center",
+                  fontVariant: "small-caps",
                 }}
               >
                 {project.category.toLowerCase()}

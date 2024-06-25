@@ -1,12 +1,12 @@
-import type { GetStaticProps } from 'next';
-import Head from 'next/head';
-import { useState } from 'react';
-import CardContainer from '../src/components/Card/CardContainer';
-import CardContent from '../src/components/Card/CardContent';
-import HomePageChild from '../src/components/Layout/HomePageChild';
-import HomePageContent from '../src/components/Layout/HomePageContent';
-import { getProjectMeta, sortByHue } from '../src/serverUtils';
-import { ProjectMeta } from '../src/types';
+import type { GetStaticProps } from "next";
+import Head from "next/head";
+import { useState } from "react";
+import CardContainer from "../src/components/Card/CardContainer";
+import CardContent from "../src/components/Card/CardContent";
+import HomePageChild from "../src/components/Layout/HomePageChild";
+import HomePageContent from "../src/components/Layout/HomePageContent";
+import { getProjectMeta, sortByHue } from "../src/serverUtils";
+import { ProjectMeta } from "../src/types";
 
 interface HomeProps {
   projects: ProjectMeta[];

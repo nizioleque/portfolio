@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-import { MouseEvent, ReactNode, forwardRef } from 'react';
-import CardBase, { CardBaseProps } from './CardBase';
+import { Box } from "@mui/material";
+import { MouseEvent, ReactNode, forwardRef } from "react";
+import CardBase, { CardBaseProps } from "./CardBase";
 
 type CardProps = {
   children: ReactNode;
@@ -14,13 +14,13 @@ const Card = forwardRef<HTMLAnchorElement, CardProps>(
       const x = event.clientX - target.getBoundingClientRect().left;
       const y = event.clientY - target.getBoundingClientRect().top;
 
-      target.style.setProperty('--x', `${x}px`);
-      target.style.setProperty('--y', `${y}px`);
+      target.style.setProperty("--x", `${x}px`);
+      target.style.setProperty("--y", `${y}px`);
     };
 
     return (
       <CardBase {...props} onMouseMove={handleMouseMove} ref={ref}>
-        <Box sx={{ zIndex: 0, position: 'relative', height: '100%' }}>
+        <Box sx={{ zIndex: 0, position: "relative", height: "100%" }}>
           {children}
         </Box>
       </CardBase>
@@ -28,6 +28,6 @@ const Card = forwardRef<HTMLAnchorElement, CardProps>(
   }
 );
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 export default Card;

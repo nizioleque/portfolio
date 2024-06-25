@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box } from "@mui/material";
+import { ReactNode } from "react";
 
 interface EmpahsisProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ interface EmpahsisProps {
 
 function Emphasis({ children }: EmpahsisProps) {
   return (
-    <Box component='em' color='text.accent'>
+    <Box component="em" color="text.accent">
       {children}
     </Box>
   );

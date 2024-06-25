@@ -1,8 +1,8 @@
-import { GitHub } from '@mui/icons-material';
-import { Box } from '@mui/material';
-import useResponsiveLayout from '../../hooks/useResponsiveLayout';
-import HomePageChild from '../Layout/HomePageChild';
-import LinkButton from '../about/LinkButton';
+import { GitHub } from "@mui/icons-material";
+import { Box } from "@mui/material";
+import useResponsiveLayout from "../../hooks/useResponsiveLayout";
+import HomePageChild from "../Layout/HomePageChild";
+import LinkButton from "../about/LinkButton";
 
 function GitHubTile() {
   const { isDesktop } = useResponsiveLayout();
@@ -16,19 +16,19 @@ function GitHubTile() {
           borderRadius: 8,
 
           height: isDesktop ? 77 : 70.6,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           gap: 0.5,
 
-          border: '4px solid',
-          borderColor: 'rgb(255 255 255 / 6%)',
-          color: 'text.secondary',
-          backgroundColor: 'background.default',
+          border: "4px solid",
+          borderColor: "rgb(255 255 255 / 6%)",
+          color: "text.secondary",
+          backgroundColor: "background.default",
         }}
       >
-        More on{' '}
-        <LinkButton icon={<GitHub />} href='https://github.com/nizioleque'>
+        More on{" "}
+        <LinkButton icon={<GitHub />} href="https://github.com/nizioleque">
           GitHub
         </LinkButton>
       </Box>

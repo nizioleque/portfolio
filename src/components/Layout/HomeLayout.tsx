@@ -1,19 +1,19 @@
-import { Box } from '@mui/material';
-import { AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { ReactNode, useEffect, useRef } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Box } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { ReactNode, useEffect, useRef } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import animationDirectionState, {
   AnimationDirection,
-} from '../../atoms/animationDirectionState';
-import canvasBackgroundState from '../../atoms/canvasBackgroundState';
-import { links } from '../../constants';
-import useResponsiveLayout from '../../hooks/useResponsiveLayout';
-import { scrollbarStyles } from '../../theme/constants';
-import Nav from './Nav';
+} from "../../atoms/animationDirectionState";
+import canvasBackgroundState from "../../atoms/canvasBackgroundState";
+import { links } from "../../constants";
+import useResponsiveLayout from "../../hooks/useResponsiveLayout";
+import { scrollbarStyles } from "../../theme/constants";
+import Nav from "./Nav";
 
-const CanvasBackground = dynamic(() => import('./CanvasBackground'), {
+const CanvasBackground = dynamic(() => import("./CanvasBackground"), {
   ssr: false,
 });
 
@@ -35,7 +35,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
 
   const pageUrls = links.map((link) => link.href);
 
-  const isIndex = router.pathname === '/';
+  const isIndex = router.pathname === "/";
 
   const showCanvasBackground = useRecoilValue(canvasBackgroundState);
 
@@ -51,8 +51,8 @@ function HomeLayout({ children }: HomeLayoutProps) {
       );
     };
 
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => router.events.off('routeChangeStart', handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [pageUrls, router, setAnimationDirection]);
 
   return (
@@ -60,16 +60,16 @@ function HomeLayout({ children }: HomeLayoutProps) {
       {showCanvasBackground && <CanvasBackground />}
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
           [tabletQuery]: {
-            gridTemplateColumns: 'auto 1fr',
+            gridTemplateColumns: "auto 1fr",
           },
           [mobileQuery]: {
-            gridTemplateColumns: '1fr',
+            gridTemplateColumns: "1fr",
           },
-          height: '100%',
-          alignItems: 'center',
+          height: "100%",
+          alignItems: "center",
         }}
       >
         <Nav />
@@ -77,12 +77,12 @@ function HomeLayout({ children }: HomeLayoutProps) {
           <Box
             ref={scrollContainerRef}
             sx={{
-              overflowY: 'auto',
-              height: '100%',
+              overflowY: "auto",
+              height: "100%",
               ...scrollbarStyles,
             }}
           >
-            <AnimatePresence mode='wait' onExitComplete={handleExitComplete}>
+            <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
               {children}
             </AnimatePresence>
           </Box>

@@ -1,20 +1,20 @@
-import icon from '../../src/assets/icons/mouse-pinch-to-zoom.png';
-import ProjectContent from '../../src/components/projectPage/ProjectContent';
-import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import ProjectLayout from '../../src/components/projectPage/ProjectLayout';
-import { ProjectCategory, ProjectMeta } from '../../src/types';
+import icon from "../../src/assets/icons/mouse-pinch-to-zoom.png";
+import ProjectContent from "../../src/components/projectPage/ProjectContent";
+import ProjectHeader from "../../src/components/projectPage/ProjectHeader";
+import ProjectLayout from "../../src/components/projectPage/ProjectLayout";
+import { ProjectCategory, ProjectMeta } from "../../src/types";
 
 export const meta: ProjectMeta = {
-  id: 'mouse-pinch-to-zoom',
-  name: 'Mouse\nPinch-To-Zoom',
+  id: "mouse-pinch-to-zoom",
+  name: "Mouse\nPinch-To-Zoom",
   category: ProjectCategory.Extension,
   hue: 216,
   icon,
   description:
-    'Zoom in on a specific part of the website, like you would with a touchpad gesture!',
+    "Zoom in on a specific part of the website, like you would with a touchpad gesture!",
   downloadUrl:
-    'https://chrome.google.com/webstore/detail/pffiadlahfhoniddbipeiiohjnlongfi',
-  codeUrl: 'https://github.com/nizioleque/mouse-pinch-to-zoom',
+    "https://chrome.google.com/webstore/detail/pffiadlahfhoniddbipeiiohjnlongfi",
+  codeUrl: "https://github.com/nizioleque/mouse-pinch-to-zoom",
 };
 
 function MousePinchToZoom() {

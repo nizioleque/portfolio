@@ -1,7 +1,7 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 const canvasBackgroundState = atom<boolean>({
-  key: 'canvasBackgroundState',
+  key: "canvasBackgroundState",
   default: false,
 });
 

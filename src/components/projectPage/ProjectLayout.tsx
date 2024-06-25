@@ -4,11 +4,11 @@ import {
   Theme,
   ThemeProvider,
   createTheme,
-} from '@mui/material';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { ReactNode } from 'react';
-import Logo from '../Layout/Logo';
+} from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { ReactNode } from "react";
+import Logo from "../Layout/Logo";
 
 interface ProjectLayoutProps {
   children: ReactNode;
@@ -18,7 +18,7 @@ interface ProjectLayoutProps {
 function ProjectLayout({ children, hue }: ProjectLayoutProps) {
   const { pathname } = useRouter();
 
-  if (['/', '/projects'].includes(pathname)) return <Box>{children}</Box>;
+  if (["/", "/projects"].includes(pathname)) return <Box>{children}</Box>;
 
   const extendTheme = (theme: Theme) =>
     createTheme({
@@ -35,30 +35,30 @@ function ProjectLayout({ children, hue }: ProjectLayoutProps) {
     <ThemeProvider theme={extendTheme}>
       <CssBaseline enableColorScheme />
       <Box
-        component='header'
+        component="header"
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
+          display: "flex",
+          justifyContent: "center",
           paddingY: 2,
           backgroundColor: `hsl(${hue}deg 24% 14%)`,
         }}
       >
-        <Link href='/' legacyBehavior passHref>
-          <Logo fontSize='3rem' />
+        <Link href="/" legacyBehavior passHref>
+          <Logo fontSize="3rem" />
         </Link>
       </Box>
       <Box
-        component='main'
+        component="main"
         sx={{
           flex: 1,
           padding: 2,
           color: `hsl(${hue}deg 100% 96%)`,
           paddingTop: 5,
 
-          '& > *': {
-            width: '100%',
+          "& > *": {
+            width: "100%",
             maxWidth: 800,
-            margin: '0 auto',
+            margin: "0 auto",
             marginBottom: 4,
           },
         }}

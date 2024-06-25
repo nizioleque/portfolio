@@ -4,8 +4,8 @@ const nextConfig = {
   swcMinify: true,
   rewrites: async () => [
     {
-      source: '/:path*',
-      destination: '/projects/:path*',
+      source: "/:path*",
+      destination: "/projects/:path*",
     },
   ],
 };

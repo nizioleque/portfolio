@@ -1,11 +1,11 @@
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from "next/image";
 
 export enum ProjectCategory {
-  Extension = 'Browser extension',
-  Flutter = 'Flutter app',
-  React = 'React app',
-  Web = 'Web app',
-  Autohotkey = 'AutoHotkey script',
+  Extension = "Browser extension",
+  Flutter = "Flutter app",
+  React = "React app",
+  Web = "Web app",
+  Autohotkey = "AutoHotkey script",
 }
 
 export interface ProjectMeta {

@@ -1,20 +1,20 @@
-import icon from '../../src/assets/icons/youtube-custom-speed.png';
-import ProjectContent from '../../src/components/projectPage/ProjectContent';
-import ProjectHeader from '../../src/components/projectPage/ProjectHeader';
-import ProjectLayout from '../../src/components/projectPage/ProjectLayout';
-import { ProjectCategory, ProjectMeta } from '../../src/types';
+import icon from "../../src/assets/icons/youtube-custom-speed.png";
+import ProjectContent from "../../src/components/projectPage/ProjectContent";
+import ProjectHeader from "../../src/components/projectPage/ProjectHeader";
+import ProjectLayout from "../../src/components/projectPage/ProjectLayout";
+import { ProjectCategory, ProjectMeta } from "../../src/types";
 
 export const meta: ProjectMeta = {
-  id: 'youtube-custom-speed',
-  name: 'Youtube Custom Speed',
+  id: "youtube-custom-speed",
+  name: "Youtube Custom Speed",
   category: ProjectCategory.Extension,
   hue: 15,
   icon,
   description:
-    'Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!',
+    "Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!",
   downloadUrl:
-    'https://chrome.google.com/webstore/detail/youtube-custom-speed/kmfcinojnfabkpndlgomnfjllgeppegb',
-  codeUrl: 'https://github.com/nizioleque/youtube-custom-speed',
+    "https://chrome.google.com/webstore/detail/youtube-custom-speed/kmfcinojnfabkpndlgomnfjllgeppegb",
+  codeUrl: "https://github.com/nizioleque/youtube-custom-speed",
 };
 
 function YoutubeCustomSpeed() {

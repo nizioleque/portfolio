@@ -1,6 +1,6 @@
-import { Box, FormControlLabel, Switch } from '@mui/material';
-import { RecoilState, useRecoilState } from 'recoil';
-import HomePageChild from '../Layout/HomePageChild';
+import { Box, FormControlLabel, Switch } from "@mui/material";
+import { RecoilState, useRecoilState } from "recoil";
+import HomePageChild from "../Layout/HomePageChild";
 
 interface ExperimentProps {
   label: string;
@@ -15,7 +15,7 @@ function Experiment({ label, state }: ExperimentProps) {
       <Box
         sx={{
           background:
-            'linear-gradient(to right, rgb(0 0 0 / 70%) 67%, rgb(0 0 0 / 30%) 100%)',
+            "linear-gradient(to right, rgb(0 0 0 / 70%) 67%, rgb(0 0 0 / 30%) 100%)",
           borderRadius: 8,
           width: 300,
           padding: 1,
@@ -23,16 +23,16 @@ function Experiment({ label, state }: ExperimentProps) {
         }}
       >
         <FormControlLabel
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
           control={
             <Switch
-              sx={{ marginLeft: 'auto' }}
+              sx={{ marginLeft: "auto" }}
               checked={value}
               onChange={(event) => setValue(event.currentTarget.checked)}
             />
           }
           label={label}
-          labelPlacement='start'
+          labelPlacement="start"
         />
       </Box>
     </HomePageChild>

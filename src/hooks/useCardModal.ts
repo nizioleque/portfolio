@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import shouldOpenModalState from '../atoms/shouldOpenModalState';
-import CardContainerContext from '../contexts/CardContainerContext';
-import CardIterationCountContext from '../contexts/CardIterationCountContext';
+import { useRouter } from "next/router";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { useRecoilState } from "recoil";
+import shouldOpenModalState from "../atoms/shouldOpenModalState";
+import CardContainerContext from "../contexts/CardContainerContext";
+import CardIterationCountContext from "../contexts/CardIterationCountContext";
 
 export default function useCardModal(id: string, targetUrl: string) {
   const { pauseAutoScroll } = useContext(CardContainerContext);
@@ -39,8 +39,8 @@ export default function useCardModal(id: string, targetUrl: string) {
       }
     };
 
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => router.events.off('routeChangeStart', handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [isModalOpen, router.events, targetUrl]);
 
   const closeModal = () => {

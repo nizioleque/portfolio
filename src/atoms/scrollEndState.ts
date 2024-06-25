@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export enum ScrollEndStateStatus {
   Scrolling,
@@ -11,7 +11,7 @@ interface ScrollEndState {
 }
 
 const scrollEndState = atom<ScrollEndState | null>({
-  key: 'scrollEndState',
+  key: "scrollEndState",
   default: null,
 });
 

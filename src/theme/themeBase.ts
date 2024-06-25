@@ -1,26 +1,26 @@
-import { createTheme } from '@mui/system';
-import { Space_Mono } from 'next/font/google';
-import { shadowStrong, shadowWeak } from './constants';
+import { createTheme } from "@mui/system";
+import { Space_Mono } from "next/font/google";
+import { shadowStrong, shadowWeak } from "./constants";
 
 const spaceMono = Space_Mono({
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
 });
 
 export const themeBase = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: 'hsl(72deg, 85%, 65%)',
-      light: 'hsl(72deg, 100%, 75%)',
+      main: "hsl(72deg, 85%, 65%)",
+      light: "hsl(72deg, 100%, 75%)",
     },
     background: {
-      default: '#141414',
-      light: '#3a3a3a',
+      default: "#141414",
+      light: "#3a3a3a",
     },
     text: {
-      accent: 'hsl(72deg, 100%, 72%)',
+      accent: "hsl(72deg, 100%, 72%)",
     },
   },
   typography: {
@@ -35,8 +35,8 @@ export const themeBase = createTheme({
       textShadow: shadowStrong,
     },
     h3: {
-      fontSize: '1.3rem', // TODO remove
-      fontWeight: 'bold',
+      fontSize: "1.3rem", // TODO remove
+      fontWeight: "bold",
       letterSpacing: -0.5,
       textShadow: shadowStrong,
     },
@@ -44,11 +44,11 @@ export const themeBase = createTheme({
   components: {
     MuiButton: {
       defaultProps: {
-        variant: 'contained',
+        variant: "contained",
       },
       styleOverrides: {
         root: {
-          fontSize: '1rem',
+          fontSize: "1rem",
           borderRadius: 16,
           fontWeight: 700,
         },
@@ -64,10 +64,10 @@ export const themeBase = createTheme({
   },
 });
 
-export const mobileLayoutQuery = themeBase.breakpoints.down('desktop');
-export const desktopLayoutQuery = themeBase.breakpoints.up('desktop');
+export const mobileLayoutQuery = themeBase.breakpoints.down("desktop");
+export const desktopLayoutQuery = themeBase.breakpoints.up("desktop");
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xs: false;
     sm: false;

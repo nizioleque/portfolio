@@ -1,5 +1,5 @@
-import { Box, darken, useTheme } from '@mui/material';
-import { useCallback, useEffect, useRef } from 'react';
+import { Box, darken, useTheme } from "@mui/material";
+import { useCallback, useEffect, useRef } from "react";
 
 // TODO fix white background flash on slow load
 // TODO use or remove!
@@ -8,8 +8,8 @@ const DRAW_RADIUS = 80;
 const BLUR_RADIUS = 100;
 
 const SUPPORTS_CANVAS_FILTER =
-  typeof document.createElement('canvas').getContext('2d')!.filter !==
-  'undefined';
+  typeof document.createElement("canvas").getContext("2d")!.filter !==
+  "undefined";
 
 function setCanvasSize(ctx: CanvasRenderingContext2D, document: Document) {
   ctx.canvas.width = document.body.clientWidth * window.devicePixelRatio;
@@ -87,22 +87,22 @@ function CanvasBackground() {
   useEffect(() => {
     if (!ctx.current) return;
 
-    const offscreenCanvas = document.createElement('canvas');
-    offscreenCtx.current = offscreenCanvas.getContext('2d');
+    const offscreenCanvas = document.createElement("canvas");
+    offscreenCtx.current = offscreenCanvas.getContext("2d");
     if (!offscreenCtx.current) return;
 
     setCanvasSize(offscreenCtx.current, document);
     setCanvasSize(ctx.current, document);
     setCanvasBlur(ctx.current);
 
-    document.body.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
+    document.body.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
 
     rafHandle.current = requestAnimationFrame(handleRedraw);
 
     return () => {
-      document.body.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
+      document.body.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
       rafHandle.current && cancelAnimationFrame(rafHandle.current);
     };
   }, [handleMouseMove, handleResize, handleRedraw]);
@@ -110,21 +110,21 @@ function CanvasBackground() {
   return (
     <Box
       sx={{
-        position: 'fixed',
+        position: "fixed",
         zIndex: -1,
-        maxWidth: '100%',
-        maxHeight: '100%',
-        overflow: 'hidden',
+        maxWidth: "100%",
+        maxHeight: "100%",
+        overflow: "hidden",
       }}
     >
       <canvas
         ref={(node) => {
           if (!node) return;
-          ctx.current = node?.getContext('2d');
+          ctx.current = node?.getContext("2d");
         }}
         style={{
-          width: '100vw',
-          height: '100vh',
+          width: "100vw",
+          height: "100vh",
         }}
       />
     </Box>

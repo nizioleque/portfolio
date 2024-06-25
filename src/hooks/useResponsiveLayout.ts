@@ -1,15 +1,15 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export default function useResponsiveLayout() {
   const theme = useTheme();
 
-  const mobileQuery = theme.breakpoints.down('tablet');
+  const mobileQuery = theme.breakpoints.down("tablet");
   const isMobile = useMediaQuery(mobileQuery);
 
-  const tabletQuery = theme.breakpoints.down('desktop');
+  const tabletQuery = theme.breakpoints.down("desktop");
   const isTablet = useMediaQuery(tabletQuery);
 
-  const desktopQuery = theme.breakpoints.up('desktop');
+  const desktopQuery = theme.breakpoints.up("desktop");
   const isDesktop = useMediaQuery(desktopQuery);
 
   return {

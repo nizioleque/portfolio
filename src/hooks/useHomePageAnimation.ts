@@ -1,23 +1,23 @@
-import { stagger, useAnimate, usePresence } from 'framer-motion';
-import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { stagger, useAnimate, usePresence } from "framer-motion";
+import { useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import animationDirectionState, {
   AnimationDirection,
-} from '../atoms/animationDirectionState';
-import { AnimationInitialY } from '../constants';
+} from "../atoms/animationDirectionState";
+import { AnimationInitialY } from "../constants";
 
-const classInViewport = '.animation-child.in-viewport';
-const classNotInViewport = '.animation-child:not(.in-viewport)';
+const classInViewport = ".animation-child.in-viewport";
+const classNotInViewport = ".animation-child:not(.in-viewport)";
 const animationOptions = (
-  cause: 'enter' | 'exit',
+  cause: "enter" | "exit",
   direction: AnimationDirection
 ) => ({
-  delay: stagger(cause === 'enter' ? 2 / 60 : 1 / 60, {
-    from: direction === AnimationDirection.Down ? 'first' : 'last',
+  delay: stagger(cause === "enter" ? 2 / 60 : 1 / 60, {
+    from: direction === AnimationDirection.Down ? "first" : "last",
   }),
-  type: 'keyframes' as const,
-  duration: cause === 'enter' ? 18 / 60 : 12 / 60,
-  ease: cause === 'enter' ? ('backOut' as const) : ('easeIn' as const),
+  type: "keyframes" as const,
+  duration: cause === "enter" ? 18 / 60 : 12 / 60,
+  ease: cause === "enter" ? ("backOut" as const) : ("easeIn" as const),
 });
 
 export default function useHomePageAnimation(delayAnimate: boolean) {
@@ -27,13 +27,13 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
 
   useEffect(() => {
     if (!delayAnimate) {
-      prepareElements('enter', animationDirection);
+      prepareElements("enter", animationDirection);
 
       if (scope.current?.querySelector(classInViewport)) {
         animate(
           classInViewport,
           { y: 0, opacity: 1 },
-          animationOptions('enter', animationDirection)
+          animationOptions("enter", animationDirection)
         );
       }
 
@@ -46,7 +46,7 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
   useEffect(() => {
     if (!isPresent) {
       const exitAnimation = async () => {
-        prepareElements('exit', animationDirection);
+        prepareElements("exit", animationDirection);
 
         if (scope.current?.querySelector(classNotInViewport)) {
           animate(classNotInViewport, { y: 0, opacity: 0 }, { duration: 0.01 });
@@ -59,7 +59,7 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
           await animate(
             classInViewport,
             { y: direction * AnimationInitialY, opacity: 0 },
-            animationOptions('exit', animationDirection)
+            animationOptions("exit", animationDirection)
           );
         }
 
@@ -74,10 +74,10 @@ export default function useHomePageAnimation(delayAnimate: boolean) {
 }
 
 function prepareElements(
-  cause: 'enter' | 'exit',
+  cause: "enter" | "exit",
   direction: AnimationDirection
 ) {
-  const elements = Array.from(document.querySelectorAll('.animation-child'));
+  const elements = Array.from(document.querySelectorAll(".animation-child"));
   for (const element of elements) {
     addViewportClass(element, cause, direction);
   }
@@ -85,16 +85,16 @@ function prepareElements(
 
 function addViewportClass(
   element: Element,
-  cause: 'enter' | 'exit',
+  cause: "enter" | "exit",
   direction: AnimationDirection
 ) {
   const visibleElement =
-    element.querySelector('.animation-child-positioned') ?? element;
+    element.querySelector(".animation-child-positioned") ?? element;
 
   const r = visibleElement.getBoundingClientRect();
   let isInViewport = false;
 
-  if (cause === 'enter') {
+  if (cause === "enter") {
     isInViewport =
       direction === AnimationDirection.Down
         ? r.bottom >= AnimationInitialY &&
@@ -105,6 +105,6 @@ function addViewportClass(
     isInViewport = r.bottom > 0 && r.top < window.innerHeight;
   }
 
-  if (isInViewport) element.classList.add('in-viewport');
-  else element.classList.remove('in-viewport');
+  if (isInViewport) element.classList.add("in-viewport");
+  else element.classList.remove("in-viewport");
 }

@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 import {
   ForwardedRef,
   ReactNode,
@@ -6,17 +6,17 @@ import {
   useCallback,
   useRef,
   useState,
-} from 'react';
-import { Events } from 'react-scroll';
-import { useSetRecoilState } from 'recoil';
-import { useEffectOnce, useIsomorphicLayoutEffect } from 'usehooks-ts';
+} from "react";
+import { Events } from "react-scroll";
+import { useSetRecoilState } from "recoil";
+import { useEffectOnce, useIsomorphicLayoutEffect } from "usehooks-ts";
 import scrollEndState, {
   ScrollEndStateStatus,
-} from '../../atoms/scrollEndState';
-import CardContainerContext from '../../contexts/CardContainerContext';
-import CardIterationCountContext from '../../contexts/CardIterationCountContext';
-import useCardSize from '../../hooks/useCardSize';
-import { responsiveSize } from '../../theme/responsiveSize';
+} from "../../atoms/scrollEndState";
+import CardContainerContext from "../../contexts/CardContainerContext";
+import CardIterationCountContext from "../../contexts/CardIterationCountContext";
+import useCardSize from "../../hooks/useCardSize";
+import { responsiveSize } from "../../theme/responsiveSize";
 
 interface CardContainerProps {
   children: ReactNode;
@@ -99,11 +99,11 @@ function CardContainer(
 
   const setScrollEndListener = useSetRecoilState(scrollEndState);
 
-  Events.scrollEvent.register('begin', () => {
+  Events.scrollEvent.register("begin", () => {
     isAutoScrolling.current = true;
   });
 
-  Events.scrollEvent.register('end', () => {
+  Events.scrollEvent.register("end", () => {
     isAutoScrolling.current = false;
 
     setScrollEndListener((scrollEndListener) => {
@@ -132,18 +132,18 @@ function CardContainer(
       }}
     >
       <Box
-        id='scroll-container'
+        id="scroll-container"
         ref={(node: HTMLDivElement) => {
-          if (typeof ref === 'function') ref(node);
+          if (typeof ref === "function") ref(node);
           else if (ref !== null) ref.current = node;
 
           if (scrollContainer !== null) scrollContainer.current = node;
         }}
         sx={{
-          overflowY: 'auto',
-          height: '100%',
-          '&::-webkit-scrollbar': {
-            display: 'none',
+          overflowY: "auto",
+          height: "100%",
+          "&::-webkit-scrollbar": {
+            display: "none",
           },
         }}
         onScroll={handleScroll}
@@ -151,11 +151,11 @@ function CardContainer(
         <Box
           ref={scrollContent}
           sx={{
-            display: 'grid',
-            justifyContent: 'center',
-            gridTemplateColumns: 'auto auto',
-            ...responsiveSize(6, undefined, 'gap'),
-            '& > :nth-of-type(even) .animation-child-positioned': {
+            display: "grid",
+            justifyContent: "center",
+            gridTemplateColumns: "auto auto",
+            ...responsiveSize(6, undefined, "gap"),
+            "& > :nth-of-type(even) .animation-child-positioned": {
               top: cardSize / 2,
             },
           }}

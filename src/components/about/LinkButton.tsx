@@ -1,6 +1,6 @@
-import { Button } from '@mui/material';
-import { ReactNode } from 'react';
-import { responsiveSize } from '../../theme/responsiveSize';
+import { Button } from "@mui/material";
+import { ReactNode } from "react";
+import { responsiveSize } from "../../theme/responsiveSize";
 
 interface LinkButtonProps {
   children: ReactNode;
@@ -11,23 +11,23 @@ interface LinkButtonProps {
 function LinkButton({ children, icon, href }: LinkButtonProps) {
   return (
     <Button
-      component='a'
+      component="a"
       href={href}
-      target='_blank'
-      variant='text'
+      target="_blank"
+      variant="text"
       startIcon={icon}
       sx={{
-        textTransform: 'none',
-        ...responsiveSize('1.25rem'),
+        textTransform: "none",
+        ...responsiveSize("1.25rem"),
         fontWeight: 400,
-        color: 'text.primary',
+        color: "text.primary",
         borderRadius: 20,
         paddingX: 2,
-        '& .MuiSvgIcon-root': {
+        "& .MuiSvgIcon-root": {
           marginRight: 0.5,
-          color: 'primary.main',
-          ...responsiveSize('2rem', undefined, 'width'),
-          ...responsiveSize('2rem', undefined, 'height'),
+          color: "primary.main",
+          ...responsiveSize("2rem", undefined, "width"),
+          ...responsiveSize("2rem", undefined, "height"),
         },
       }}
     >

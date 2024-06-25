@@ -1,8 +1,8 @@
-import { Download, GitHub, Paid } from '@mui/icons-material';
-import { Box, Button, Typography } from '@mui/material';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { ProjectMeta } from '../../types';
+import { Download, GitHub, Paid } from "@mui/icons-material";
+import { Box, Button, Typography } from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { ProjectMeta } from "../../types";
 
 interface ProjectHeaderProps {
   meta: ProjectMeta;
@@ -12,15 +12,15 @@ const ImageSize = 108;
 
 function ProjectHeader({ meta }: ProjectHeaderProps) {
   const { pathname } = useRouter();
-  const isCard = ['/', '/projects'].includes(pathname);
+  const isCard = ["/", "/projects"].includes(pathname);
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 2,
-        alignItems: 'center',
+        alignItems: "center",
       }}
     >
       <Image
@@ -28,15 +28,15 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
         src={meta.icon}
         height={ImageSize}
         width={ImageSize}
-        style={{ objectFit: 'contain' }}
+        style={{ objectFit: "contain" }}
       />
       <Typography
-        variant='h3'
+        variant="h3"
         sx={{
           marginTop: 2,
           marginBottom: 1,
-          textAlign: 'center',
-          fontSize: '2.2rem',
+          textAlign: "center",
+          fontSize: "2.2rem",
           color: `hsl(${meta.hue}deg 100% 82%)`,
         }}
       >
@@ -44,7 +44,7 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
       </Typography>
       <Typography
         sx={{
-          fontSize: '1.2rem',
+          fontSize: "1.2rem",
           fontWeight: 700,
         }}
       >
@@ -52,19 +52,19 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
       </Typography>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          width: '100%',
+          display: "flex",
+          flexWrap: "wrap",
+          width: "100%",
           columnGap: isCard ? 2 : 4,
           rowGap: 2,
           marginY: 2,
-          '& .MuiButton-root': {
+          "& .MuiButton-root": {
             flex: 1,
             minWidth: 120,
-            display: 'flex',
+            display: "flex",
             color: `hsl(${meta.hue}deg 100% 94%)`,
             backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: `hsl(${meta.hue}deg 50% 32%)`,
             },
           },
@@ -73,20 +73,20 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
         {meta.downloadUrl && (
           <Button
             href={meta.downloadUrl}
-            target='_blank'
+            target="_blank"
             startIcon={<Download />}
           >
             Download
           </Button>
         )}
         {meta.codeUrl && (
-          <Button href={meta.codeUrl} target='_blank' startIcon={<GitHub />}>
+          <Button href={meta.codeUrl} target="_blank" startIcon={<GitHub />}>
             Code
           </Button>
         )}
         <Button
-          href='https://www.buymeacoffee.com/nizioleque'
-          target='_blank'
+          href="https://www.buymeacoffee.com/nizioleque"
+          target="_blank"
           startIcon={<Paid />}
         >
           Support

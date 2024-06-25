@@ -1,8 +1,8 @@
-import { selectorFamily } from 'recoil';
-import scrollEndState, { ScrollEndStateStatus } from './scrollEndState';
+import { selectorFamily } from "recoil";
+import scrollEndState, { ScrollEndStateStatus } from "./scrollEndState";
 
 const shouldOpenModalState = selectorFamily({
-  key: 'shouldOpenModalState',
+  key: "shouldOpenModalState",
 
   get:
     (id: string) =>
