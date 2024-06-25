@@ -13,6 +13,7 @@ export const meta: ProjectMeta = {
   description: "Portfolio – version 1",
   downloadUrl: "https://v1.niziolek.dev/",
   codeUrl: "https://github.com/nizioleque/portfolio/tree/v1",
+  priority: 10,
 };
 
 function PortfolioV1() {

@@ -15,6 +15,7 @@ export const meta: ProjectMeta = {
   downloadUrl:
     "https://chrome.google.com/webstore/detail/youtube-custom-speed/kmfcinojnfabkpndlgomnfjllgeppegb",
   codeUrl: "https://github.com/nizioleque/youtube-custom-speed",
+  priority: 9,
 };
 
 function YoutubeCustomSpeed() {

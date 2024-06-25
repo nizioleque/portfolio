@@ -30,7 +30,9 @@ export function sortByHue(projects: ProjectMeta[]): ProjectMeta[] {
 export function groupProjects(projects: ProjectMeta[]): ProjectGroup[] {
   const groups = Object.values(ProjectCategory).map((category) => ({
     category,
-    projects: projects.filter((project) => project.category === category),
+    projects: projects
+      .filter((project) => project.category === category)
+      .toSorted((a, b) => (b.priority ?? 0) - (a.priority ?? 0)),
   }));
 
   return groups.toSorted(

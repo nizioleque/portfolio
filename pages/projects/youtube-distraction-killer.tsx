@@ -14,6 +14,7 @@ export const meta: ProjectMeta = {
   downloadUrl:
     "https://chrome.google.com/webstore/detail/youtube-distraction-kille/pahjidceabkifggkmokpmlmhoaiflaeh",
   codeUrl: "https://github.com/nizioleque/youtube-distraction-killer",
+  priority: 8,
 };
 
 function YtDistractionKiller() {

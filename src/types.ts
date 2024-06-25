@@ -32,6 +32,7 @@ export interface ProjectMeta {
   downloadUrl?: string;
   codeUrl?: string;
   hideFromHomepage?: boolean;
+  priority?: number;
 }
 
 export interface ProjectGroup {

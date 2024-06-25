@@ -15,6 +15,7 @@ export const meta: ProjectMeta = {
   downloadUrl:
     "https://chrome.google.com/webstore/detail/pffiadlahfhoniddbipeiiohjnlongfi",
   codeUrl: "https://github.com/nizioleque/mouse-pinch-to-zoom",
+  priority: 10,
 };
 
 function MousePinchToZoom() {
