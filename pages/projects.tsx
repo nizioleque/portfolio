@@ -1,11 +1,11 @@
+import HomePageContent from "@/components/Layout/HomePageContent";
+import GitHubTile from "@/components/projects/GitHubTile";
+import ProjectGroup from "@/components/projects/ProjectGroup";
+import { getProjectMeta, groupProjects } from "@/serverUtils";
+import { responsiveSize } from "@/theme/responsiveSize";
+import { GroupedProjects } from "@/types";
 import { Stack } from "@mui/material";
 import { GetStaticProps } from "next";
-import HomePageContent from "../src/components/Layout/HomePageContent";
-import GitHubTile from "../src/components/projects/GitHubTile";
-import ProjectGroup from "../src/components/projects/ProjectGroup";
-import { getProjectMeta, groupProjects } from "../src/serverUtils";
-import { responsiveSize } from "../src/theme/responsiveSize";
-import { GroupedProjects } from "../src/types";
 
 interface ProjectsProps {
   groupedProjects: GroupedProjects;

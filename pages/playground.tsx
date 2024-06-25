@@ -1,7 +1,7 @@
+import canvasBackgroundState from "@/atoms/canvasBackgroundState";
+import HomePageContent from "@/components/Layout/HomePageContent";
+import Experiment from "@/components/playground/Experiment";
 import { Stack } from "@mui/material";
-import HomePageContent from "../src/components/Layout/HomePageContent";
-import Experiment from "../src/components/playground/Experiment";
-import canvasBackgroundState from "../src/atoms/canvasBackgroundState";
 
 function Playground() {
   return (

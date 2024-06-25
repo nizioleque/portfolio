@@ -1,11 +1,11 @@
+import HomeLayout from "@/components/Layout/HomeLayout";
+import "@/index.css";
+import { theme } from "@/theme/theme";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { RecoilEnv, RecoilRoot } from "recoil";
-import HomeLayout from "../src/components/Layout/HomeLayout";
-import "../src/index.css";
-import { theme } from "../src/theme/theme";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 

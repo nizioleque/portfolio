@@ -1,12 +1,12 @@
+import HomePageChild from "@/components/Layout/HomePageChild";
+import HomePageContent from "@/components/Layout/HomePageContent";
+import Section from "@/components/about/AboutSection";
+import Em from "@/components/about/Emphasis";
+import Hi from "@/components/about/Hi";
+import LinkButton from "@/components/about/LinkButton";
+import { responsiveSize } from "@/theme/responsiveSize";
 import { Instagram, MailOutline, Telegram } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
-import HomePageChild from "../src/components/Layout/HomePageChild";
-import HomePageContent from "../src/components/Layout/HomePageContent";
-import Section from "../src/components/about/AboutSection";
-import Em from "../src/components/about/Emphasis";
-import Hi from "../src/components/about/Hi";
-import LinkButton from "../src/components/about/LinkButton";
-import { responsiveSize } from "../src/theme/responsiveSize";
 
 function About() {
   return (

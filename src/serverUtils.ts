@@ -1,6 +1,6 @@
+import { GroupedProjects, ProjectCategory, ProjectMeta } from "@/types";
 import fs from "fs";
 import path from "path";
-import { GroupedProjects, ProjectCategory, ProjectMeta } from "../src/types";
 
 export async function getProjectMeta(): Promise<ProjectMeta[]> {
   const projectsDirectory = path.join(process.cwd(), "pages", "projects");
