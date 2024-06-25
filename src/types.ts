@@ -8,6 +8,19 @@ export enum ProjectCategory {
   Autohotkey = "AutoHotkey script",
 }
 
+export interface ProjectCategoryDetails {
+  name: string;
+  priority?: number;
+}
+
+export const ProjectPriority: Record<ProjectCategory, number> = {
+  [ProjectCategory.Extension]: 10,
+  [ProjectCategory.Flutter]: 7,
+  [ProjectCategory.React]: 9,
+  [ProjectCategory.Web]: 8,
+  [ProjectCategory.Autohotkey]: 6,
+};
+
 export interface ProjectMeta {
   id: string;
   name: string;
@@ -21,4 +34,7 @@ export interface ProjectMeta {
   hideFromHomepage?: boolean;
 }
 
-export type GroupedProjects = Record<ProjectCategory, ProjectMeta[]>;
+export interface ProjectGroup {
+  category: ProjectCategory;
+  projects: ProjectMeta[];
+}

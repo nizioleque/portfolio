@@ -1,4 +1,9 @@
-import { GroupedProjects, ProjectCategory, ProjectMeta } from "@/types";
+import {
+  ProjectCategory,
+  ProjectGroup,
+  ProjectMeta,
+  ProjectPriority,
+} from "@/types";
 import fs from "fs";
 import path from "path";
 
@@ -22,20 +27,13 @@ export function sortByHue(projects: ProjectMeta[]): ProjectMeta[] {
   return projects.sort((a, b) => a.hue - b.hue);
 }
 
-export function groupProjects(projects: ProjectMeta[]): GroupedProjects {
-  const groupedProjects: GroupedProjects = {
-    [ProjectCategory.Extension]: [],
-    [ProjectCategory.Flutter]: [],
-    [ProjectCategory.React]: [],
-    [ProjectCategory.Web]: [],
-    [ProjectCategory.Autohotkey]: [],
-  };
+export function groupProjects(projects: ProjectMeta[]): ProjectGroup[] {
+  const groups = Object.values(ProjectCategory).map((category) => ({
+    category,
+    projects: projects.filter((project) => project.category === category),
+  }));
 
-  for (const category of Object.values(ProjectCategory)) {
-    groupedProjects[category] = projects.filter(
-      (project) => project.category === category
-    );
-  }
-
-  return groupedProjects;
+  return groups.toSorted(
+    (a, b) => ProjectPriority[b.category] - ProjectPriority[a.category]
+  );
 }

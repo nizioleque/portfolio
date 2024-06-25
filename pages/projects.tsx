@@ -3,12 +3,12 @@ import GitHubTile from "@/components/projects/GitHubTile";
 import ProjectGroup from "@/components/projects/ProjectGroup";
 import { getProjectMeta, groupProjects } from "@/serverUtils";
 import { responsiveSize } from "@/theme/responsiveSize";
-import { GroupedProjects } from "@/types";
+import { ProjectGroup as ProjectGroupType } from "@/types";
 import { Stack } from "@mui/material";
 import { GetStaticProps } from "next";
 
 interface ProjectsProps {
-  groupedProjects: GroupedProjects;
+  groupedProjects: ProjectGroupType[];
 }
 
 function Projects({ groupedProjects }: ProjectsProps) {
@@ -16,8 +16,8 @@ function Projects({ groupedProjects }: ProjectsProps) {
     <HomePageContent>
       <Stack sx={responsiveSize(6, undefined, "gap")}>
         <GitHubTile />
-        {Object.entries(groupedProjects).map(([name, projects]) => (
-          <ProjectGroup key={name} name={name} projects={projects} />
+        {groupedProjects.map(({ category, projects }) => (
+          <ProjectGroup key={category} name={category} projects={projects} />
         ))}
       </Stack>
     </HomePageContent>
