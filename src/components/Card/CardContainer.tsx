@@ -23,6 +23,8 @@ interface CardContainerProps {
   onRender: () => void;
 }
 
+const Repetitions = 5;
+
 function CardContainer(
   { children, onRender }: CardContainerProps,
   ref: ForwardedRef<HTMLDivElement>
@@ -48,16 +50,16 @@ function CardContainer(
     )
       return;
 
-    const contentHeight = scrollContent.current.offsetHeight / 4;
+    const contentHeight = scrollContent.current.offsetHeight / Repetitions;
     const scrollTop = scrollContainer.current.scrollTop;
 
-    if (scrollTop > 2 * contentHeight) {
+    if (scrollTop > 3 * contentHeight) {
       scrollContainer.current.scrollTo({
         top: contentHeight + (scrollTop % contentHeight),
       });
     } else if (scrollTop < contentHeight) {
       scrollContainer.current.scrollTo({
-        top: contentHeight + (scrollTop % contentHeight),
+        top: 2 * contentHeight + (scrollTop % contentHeight),
       });
     }
   }, []);
@@ -77,7 +79,7 @@ function CardContainer(
     }
 
     if (rendered) {
-      const contentHeight = scrollContent.current.offsetHeight / 4;
+      const contentHeight = scrollContent.current.offsetHeight / Repetitions;
       scrollContainer.current.scrollTo({ top: contentHeight + 1 });
     }
   }, [rendered]);
@@ -163,19 +165,12 @@ function CardContainer(
           <CardIterationCountContext.Provider value={0}>
             {children}
           </CardIterationCountContext.Provider>
-          {rendered && (
-            <>
-              <CardIterationCountContext.Provider value={1}>
+          {rendered &&
+            Array.from({ length: Repetitions - 1 }).map((_, index) => (
+              <CardIterationCountContext.Provider key={index} value={index + 1}>
                 {children}
               </CardIterationCountContext.Provider>
-              <CardIterationCountContext.Provider value={2}>
-                {children}
-              </CardIterationCountContext.Provider>
-              <CardIterationCountContext.Provider value={3}>
-                {children}
-              </CardIterationCountContext.Provider>
-            </>
-          )}
+            ))}
         </Box>
       </Box>
     </CardContainerContext.Provider>
