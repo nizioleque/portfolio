@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+import { useRef } from "react";
 import { shadowStrong } from "../../theme/constants";
 import { responsiveSize } from "../../theme/responsiveSize";
 import { CategoryLabels, ProjectCategory, ProjectMeta } from "../../types";
@@ -12,6 +13,8 @@ interface ProjectGroupProps {
 
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   const categoryLabel = CategoryLabels[name];
+
+  const zIndex = useRef<number>(1);
 
   return (
     <Stack gap={1}>
@@ -34,7 +37,7 @@ function ProjectGroup({ name, projects }: ProjectGroupProps) {
       <Stack sx={responsiveSize(2, undefined, "gap")}>
         {projects.map((project) => (
           <HomePageChild key={project.id}>
-            <ProjectTile project={project} />
+            <ProjectTile project={project} zIndex={zIndex} />
           </HomePageChild>
         ))}
       </Stack>

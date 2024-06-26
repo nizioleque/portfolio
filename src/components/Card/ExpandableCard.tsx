@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ReactNode, useContext } from "react";
+import { MutableRefObject, ReactNode, useContext } from "react";
 import { Element, scroller } from "react-scroll";
 import CardContainerContext from "../../contexts/CardContainerContext";
 import useCardModal from "../../hooks/useCardModal";
@@ -14,9 +14,10 @@ export interface ExpandableCardProps {
   content: ReactNode;
   id: string;
   hue: number;
+  zIndex: MutableRefObject<number>;
 }
 
-function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
+function ExpandableCard({ content, id, hue, zIndex }: ExpandableCardProps) {
   const { pauseAutoScroll } = useContext(CardContainerContext);
 
   const { cardContainerRef, originY, scrollYProgress, transformOrigin } =
@@ -36,6 +37,9 @@ function ExpandableCard({ content, id, hue }: ExpandableCardProps) {
 
   const handleClick = () => {
     if (!cardContainerRef.current) return;
+
+    // make sure the card is on top during animation
+    cardContainerRef.current.style.zIndex = (zIndex.current++).toString();
 
     if (transformOrigin.current !== "center") {
       setShouldOpenModal(true);

@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { MutableRefObject } from "react";
 import { CardImageSize } from "../../constants";
 import { responsiveSize } from "../../theme/responsiveSize";
 import { ProjectMeta } from "../../types";
@@ -7,13 +8,15 @@ import ExpandableCard from "./ExpandableCard";
 
 export type CardContentProps = {
   project: ProjectMeta;
+  zIndex: MutableRefObject<number>;
 };
 
-function CardContent({ project }: CardContentProps) {
+function CardContent({ project, zIndex }: CardContentProps) {
   return (
     <ExpandableCard
       hue={project.hue}
       id={project.id}
+      zIndex={zIndex}
       content={
         <Box
           sx={{

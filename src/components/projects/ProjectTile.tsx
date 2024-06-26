@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { TileImageSize } from "../../constants";
 import { responsiveSize } from "../../theme/responsiveSize";
 import { ProjectMeta } from "../../types";
@@ -11,12 +11,15 @@ import CardModal from "../Card/CardModal";
 
 interface ProjectTileProps {
   project: ProjectMeta;
+  zIndex: MutableRefObject<number>;
 }
 
-function ProjectTile({ project }: ProjectTileProps) {
+function ProjectTile({ project, zIndex }: ProjectTileProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const cardRef = useRef<HTMLAnchorElement>(null);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -38,17 +41,25 @@ function ProjectTile({ project }: ProjectTileProps) {
     return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router, isModalOpen, targetUrl]);
 
+  const handleClick = () => {
+    // make sure the card is on top during animation
+    cardRef.current!.style.zIndex = (zIndex.current++).toString();
+
+    setIsModalOpen(true);
+  };
+
   return (
     <Box>
       <Link href={"/projects"} as={targetUrl} passHref legacyBehavior>
         <Card
+          ref={cardRef}
           hue={project.hue}
           sx={{
             ...responsiveSize(2, undefined, "paddingY"),
             borderRadius: 8,
           }}
           layoutId={project.id}
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleClick}
         >
           <Stack
             sx={{

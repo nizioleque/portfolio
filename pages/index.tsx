@@ -5,7 +5,7 @@ import HomePageContent from "@/components/Layout/HomePageContent";
 import { getProjectMeta, sortByHue } from "@/serverUtils";
 import { ProjectMeta } from "@/types";
 import type { GetStaticProps } from "next";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface HomeProps {
   projects: ProjectMeta[];
@@ -13,13 +13,14 @@ interface HomeProps {
 
 function Home({ projects }: HomeProps) {
   const [delayAnimate, setDelayAnimate] = useState<boolean>(true);
+  const zIndex = useRef<number>(1);
 
   return (
     <HomePageContent delayAnimate={delayAnimate} noScrollContainer>
       <CardContainer onRender={() => setDelayAnimate(false)}>
         {projects.map((project) => (
           <HomePageChild key={project.id}>
-            <CardContent project={project} />
+            <CardContent project={project} zIndex={zIndex} />
           </HomePageChild>
         ))}
       </CardContainer>
