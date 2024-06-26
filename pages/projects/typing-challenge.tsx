@@ -13,7 +13,7 @@ export const meta: ProjectMeta = {
   hue: 60,
   icon,
   description: "Simple typing challenge game",
-  downloadUrl: "https://nizioleque.github.io/typing-challenge/",
+  visitUrl: "https://nizioleque.github.io/typing-challenge/",
   codeUrl: "https://github.com/nizioleque/typing-challenge",
 };
 

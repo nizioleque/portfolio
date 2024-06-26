@@ -12,7 +12,7 @@ export const meta: ProjectMeta = {
   icon,
   description:
     "Zoom in on a specific part of the website, like you would with a touchpad gesture!",
-  downloadUrl:
+  installUrl:
     "https://chrome.google.com/webstore/detail/pffiadlahfhoniddbipeiiohjnlongfi",
   codeUrl: "https://github.com/nizioleque/mouse-pinch-to-zoom",
   priority: 10,

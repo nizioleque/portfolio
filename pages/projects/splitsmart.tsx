@@ -12,7 +12,7 @@ export const meta: ProjectMeta = {
   hue: 120,
   icon,
   description: "Split expenses with friends, with ease.",
-  downloadUrl: "https://splitsmart.niziolek.dev",
+  visitUrl: "https://splitsmart.niziolek.dev",
   codeUrl: "https://github.com/nizioleque/splitsmart",
   priority: 10,
 };

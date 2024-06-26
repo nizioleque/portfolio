@@ -14,8 +14,6 @@ export const meta: ProjectMeta = {
   hue: 223,
   icon,
   description: "Search inside your PDFs",
-  // TODO update SSL certificate?
-  downloadUrl: "https://pdf-search.niziolek.dev/",
   codeUrl: "https://github.com/nizioleque/pdf-search",
 };
 

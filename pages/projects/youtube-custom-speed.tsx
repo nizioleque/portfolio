@@ -15,7 +15,7 @@ export const meta: ProjectMeta = {
   icon,
   description:
     "Change the speed of Youtube videos to whatever you like, with customizable presets and keyboard shortcuts!",
-  downloadUrl:
+  installUrl:
     "https://chrome.google.com/webstore/detail/youtube-custom-speed/kmfcinojnfabkpndlgomnfjllgeppegb",
   codeUrl: "https://github.com/nizioleque/youtube-custom-speed",
   priority: 9,

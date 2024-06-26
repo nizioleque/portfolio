@@ -12,7 +12,7 @@ export const meta: ProjectMeta = {
   hue: 199,
   icon,
   description: "Just another Minesweeper clone",
-  downloadUrl: "https://spicy-nachos.github.io/nagasaki/",
+  visitUrl: "https://spicy-nachos.github.io/nagasaki/",
   codeUrl: "https://github.com/spicy-nachos/nagasaki",
 };
 

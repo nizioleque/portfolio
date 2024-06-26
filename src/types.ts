@@ -33,7 +33,8 @@ export interface ProjectMeta {
   category: ProjectCategory;
   description: string;
   hue: number;
-  runUrl?: string;
+  visitUrl?: string;
+  installUrl?: string;
   downloadUrl?: string;
   codeUrl?: string;
   hideFromHomepage?: boolean;

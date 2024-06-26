@@ -13,8 +13,7 @@ export const meta: ProjectMeta = {
   hue: 271,
   icon,
   description: "this – but version 1",
-  // TODO change to visit
-  downloadUrl: "https://v1.niziolek.dev/",
+  visitUrl: "https://v1.niziolek.dev/",
   codeUrl: "https://github.com/nizioleque/portfolio/tree/v1",
   priority: 10,
 };

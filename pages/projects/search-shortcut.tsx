@@ -11,7 +11,7 @@ export const meta: ProjectMeta = {
   hue: 205,
   icon,
   description: "Activate search boxes with a keyboard shortcut!",
-  downloadUrl:
+  installUrl:
     "https://chrome.google.com/webstore/detail/search-shortcut/nnnejpimaidlnnhnfnkjanmkjigdamgm",
   codeUrl: "https://github.com/nizioleque/search-shortcut",
 };

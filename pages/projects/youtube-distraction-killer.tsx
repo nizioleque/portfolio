@@ -14,7 +14,7 @@ export const meta: ProjectMeta = {
   hue: 0,
   icon,
   description: "Remove distracting elements from YouTube's layout!",
-  downloadUrl:
+  installUrl:
     "https://chrome.google.com/webstore/detail/youtube-distraction-kille/pahjidceabkifggkmokpmlmhoaiflaeh",
   codeUrl: "https://github.com/nizioleque/youtube-distraction-killer",
   priority: 8,

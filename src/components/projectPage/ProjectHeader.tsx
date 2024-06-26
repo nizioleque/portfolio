@@ -1,4 +1,4 @@
-import { Download, GitHub, Paid } from "@mui/icons-material";
+import { Download, GitHub, Language, Paid } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
@@ -77,6 +77,24 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
             },
           }}
         >
+          {meta.visitUrl && (
+            <Button
+              href={meta.visitUrl}
+              target="_blank"
+              startIcon={<Language />}
+            >
+              Visit
+            </Button>
+          )}
+          {meta.installUrl && (
+            <Button
+              href={meta.installUrl}
+              target="_blank"
+              startIcon={<Download />}
+            >
+              Install
+            </Button>
+          )}
           {meta.downloadUrl && (
             <Button
               href={meta.downloadUrl}
