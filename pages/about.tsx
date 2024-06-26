@@ -21,29 +21,40 @@ function About() {
       >
         <Hi />
         <Section large>
-          I&apos;m <Em>Norbert Niziołek</Em>,
+          I&apos;m <Em>Norbert Kosma Niziołek</Em>,
         </Section>
         <Section>
-          a front-end developer based in Warsaw, Poland. I am passionate about
-          designing <Em>beautiful interfaces</Em> which enable{" "}
-          <Em>great user experiences</Em>.
+          a frontend developer based in Warsaw, Poland, soon moving to Madrid,
+          Spain. I am passionate about designing <Em>beautiful interfaces</Em>{" "}
+          which enable <Em>great user experiences</Em>.
         </Section>
         <Section>
-          Over many years of experience with Web and mobile technologies I have
-          created numerous helpful <Em>browser extensions</Em>,{" "}
-          <Em>React apps</Em> and <Em>Flutter apps</Em>.
+          Over many years of experience I have created numerous helpful{" "}
+          <Em>browser extensions</Em>, <Em>Web apps</Em> and{" "}
+          <Em>mobile apps</Em>.
         </Section>
         <Section>
-          I also enjoy <Em>full stack development</Em> – I have worked with
-          various back-end frameworks including <Em>Spring</Em> in Java,{" "}
-          <Em>ASP.NET</Em> in C# and <Em>FastAPI</Em> in Python.
+          I have experience with <Em>React</Em>, <Em>Next.js</Em> (including the{" "}
+          <Em>App Router</Em>), and various popular libraries, including{" "}
+          <Em>MUI</Em>, <Em>Tailwind CSS</Em>, <Em>Tanstack Query</Em> and{" "}
+          <Em>Framer Motion</Em>. For mobile apps, I&apos;ve worked with{" "}
+          <Em>Flutter</Em>.
+        </Section>
+        <Section>
+          I love writing beautiful, <Em>clean and maintainable code</Em> and I
+          am determined to <Em>solve any problem</Em> that comes my way.
+        </Section>
+        <Section>
+          I also enjoy <Em>full stack</Em> development – I have worked with
+          various backend frameworks including <Em>Spring Boot</Em> in Java and{" "}
+          <Em>FastAPI</Em> in Python.
         </Section>
         <Section large>
-          I would love to <Em>work with you</Em>!
+          I am currently <Em>looking for a job</Em>!
         </Section>
         <Section>
-          Let&apos;s get in touch and together{" "}
-          <Em>we&apos;ll make your idea come to life</Em>.
+          Don&apos;t hesitate to <Em>reach out to me</Em> if you think I would
+          be a good fit for your team!
         </Section>
         <Box alignSelf="start">
           <HomePageChild>
