@@ -4,9 +4,15 @@ export enum ProjectCategory {
   Extension = "Browser extension",
   Flutter = "Flutter app",
   React = "React app",
-  Web = "Web app",
   Autohotkey = "AutoHotkey script",
 }
+
+export const CategoryLabels: Record<ProjectCategory, string> = {
+  [ProjectCategory.Extension]: "Browser extensions",
+  [ProjectCategory.Flutter]: "Flutter apps",
+  [ProjectCategory.React]: "React, Next.js & JavaScript apps",
+  [ProjectCategory.Autohotkey]: "AutoHotkey script",
+};
 
 export interface ProjectCategoryDetails {
   name: string;
@@ -17,7 +23,6 @@ export const ProjectPriority: Record<ProjectCategory, number> = {
   [ProjectCategory.Extension]: 10,
   [ProjectCategory.Flutter]: 7,
   [ProjectCategory.React]: 9,
-  [ProjectCategory.Web]: 8,
   [ProjectCategory.Autohotkey]: 6,
 };
 
@@ -33,6 +38,7 @@ export interface ProjectMeta {
   codeUrl?: string;
   hideFromHomepage?: boolean;
   priority?: number;
+  cardLabel?: string;
 }
 
 export interface ProjectGroup {

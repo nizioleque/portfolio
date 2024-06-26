@@ -8,7 +8,8 @@ import { ProjectCategory, ProjectMeta } from "@/types";
 export const meta: ProjectMeta = {
   id: "typing-challenge",
   name: "Typing Challenge",
-  category: ProjectCategory.Web,
+  category: ProjectCategory.React,
+  cardLabel: "JavaScript app",
   hue: 60,
   icon,
   description: "Simple typing challenge game",

@@ -9,6 +9,7 @@ export const meta: ProjectMeta = {
   id: "portfolio-v1",
   name: "Portfolio V1",
   category: ProjectCategory.React,
+  cardLabel: "Next.js app",
   hue: 271,
   icon,
   description: "this – but version 1",

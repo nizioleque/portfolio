@@ -1,16 +1,18 @@
 import { Stack, Typography } from "@mui/material";
 import { shadowStrong } from "../../theme/constants";
 import { responsiveSize } from "../../theme/responsiveSize";
-import { ProjectMeta } from "../../types";
+import { CategoryLabels, ProjectCategory, ProjectMeta } from "../../types";
 import HomePageChild from "../Layout/HomePageChild";
 import ProjectTile from "./ProjectTile";
 
 interface ProjectGroupProps {
-  name: string;
+  name: ProjectCategory;
   projects: ProjectMeta[];
 }
 
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
+  const categoryLabel = CategoryLabels[name];
+
   return (
     <Stack gap={1}>
       <HomePageChild>
@@ -26,7 +28,7 @@ function ProjectGroup({ name, projects }: ProjectGroupProps) {
             fontVariant: "small-caps",
           }}
         >
-          {name.toLowerCase()}s
+          {categoryLabel.toLowerCase()}
         </Typography>
       </HomePageChild>
       <Stack sx={responsiveSize(2, undefined, "gap")}>

@@ -58,7 +58,7 @@ function CardContent({ project }: CardContentProps) {
                   fontVariant: "small-caps",
                 }}
               >
-                {project.category.toLowerCase()}
+                {(project.cardLabel ?? project.category).toLowerCase()}
               </Typography>
             </Box>
           </Box>
