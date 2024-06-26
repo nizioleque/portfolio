@@ -112,9 +112,9 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
                 minWidth: 120,
                 display: "flex",
                 color: `hsl(${meta.hue}deg 100% 94%)`,
-                backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
+                backgroundColor: `hsl(${meta.hue}deg 50% 28%)`,
                 "&:hover": {
-                  backgroundColor: `hsl(${meta.hue}deg 50% 32%)`,
+                  backgroundColor: `hsl(${meta.hue}deg 70% 34%)`,
                 },
               },
             }}

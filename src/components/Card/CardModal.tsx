@@ -62,7 +62,7 @@ function CardModal({
                 maxHeight: "100%",
                 borderRadius: 12,
                 padding: isMobile ? 3 : 4,
-                backgroundColor: `hsl(${hue}deg 24% 8%)`,
+                backgroundColor: `hsl(${hue}deg 24% 9%)`,
                 color: `hsl(${hue}deg 100% 96%)`,
                 pointerEvents: "initial",
                 overflowY: "auto",

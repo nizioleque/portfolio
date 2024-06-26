@@ -16,8 +16,8 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(({ theme, hue }) =>
     display: "block",
     padding: 3,
 
-    backgroundColor: `hsl(${hue}deg 18% 12%)`,
-    color: `hsl(${hue}deg 50% 82%)`,
+    backgroundColor: `hsl(${hue}deg 22% 13%)`,
+    color: `hsl(${hue}deg 50% 80%)`,
 
     borderRadius: 10,
 
@@ -32,7 +32,7 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(({ theme, hue }) =>
     "&::before": {
       content: '""',
       opacity: 0,
-      background: `radial-gradient(hsl(${hue} 30% 16% / 100%) 0%, hsl(${hue} 30% 16% / 0) 70%)`,
+      background: `radial-gradient(hsl(${hue} 30% 18% / 100%) 0%, hsl(${hue} 30% 18% / 0) 60%)`,
       position: "absolute",
       left: "var(--x)",
       top: "var(--y)",
