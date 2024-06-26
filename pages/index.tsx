@@ -5,7 +5,6 @@ import HomePageContent from "@/components/Layout/HomePageContent";
 import { getProjectMeta, sortByHue } from "@/serverUtils";
 import { ProjectMeta } from "@/types";
 import type { GetStaticProps } from "next";
-import Head from "next/head";
 import { useState } from "react";
 
 interface HomeProps {
@@ -16,21 +15,15 @@ function Home({ projects }: HomeProps) {
   const [delayAnimate, setDelayAnimate] = useState<boolean>(true);
 
   return (
-    <>
-      <Head>
-        <title>NORBERT NIZIOŁEK</title>
-      </Head>
-
-      <HomePageContent delayAnimate={delayAnimate} noScrollContainer>
-        <CardContainer onRender={() => setDelayAnimate(false)}>
-          {projects.map((project) => (
-            <HomePageChild key={project.id}>
-              <CardContent project={project} />
-            </HomePageChild>
-          ))}
-        </CardContainer>
-      </HomePageContent>
-    </>
+    <HomePageContent delayAnimate={delayAnimate} noScrollContainer>
+      <CardContainer onRender={() => setDelayAnimate(false)}>
+        {projects.map((project) => (
+          <HomePageChild key={project.id}>
+            <CardContent project={project} />
+          </HomePageChild>
+        ))}
+      </CardContainer>
+    </HomePageContent>
   );
 }
 
