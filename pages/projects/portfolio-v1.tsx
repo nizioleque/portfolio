@@ -16,6 +16,7 @@ export const meta: ProjectMeta = {
   visitUrl: "https://v1.niziolek.dev/",
   codeUrl: "https://github.com/nizioleque/portfolio/tree/v1",
   priority: 10,
+  hideSupport: true,
 };
 
 function PortfolioV1() {

@@ -43,6 +43,7 @@ export interface ProjectMeta {
   hideFromHomepage?: boolean;
   priority?: number;
   cardLabel?: string;
+  hideSupport?: boolean;
 }
 
 export interface ProjectGroup {

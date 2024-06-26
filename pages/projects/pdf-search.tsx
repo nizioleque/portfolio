@@ -15,6 +15,7 @@ export const meta: ProjectMeta = {
   icon,
   description: "Search inside your PDFs",
   codeUrl: "https://github.com/nizioleque/pdf-search",
+  hideSupport: true,
 };
 
 function PdfSearch() {

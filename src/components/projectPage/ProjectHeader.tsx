@@ -17,6 +17,46 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
 
   const title = `${meta.name} by NORBERT NIZIOŁEK`;
 
+  const buttons = (
+    <>
+      {meta.visitUrl && (
+        <Button href={meta.visitUrl} target="_blank" startIcon={<Language />}>
+          Visit
+        </Button>
+      )}
+      {meta.installUrl && (
+        <Button href={meta.installUrl} target="_blank" startIcon={<Download />}>
+          Install
+        </Button>
+      )}
+      {meta.downloadUrl && (
+        <Button
+          href={meta.downloadUrl}
+          target="_blank"
+          startIcon={<Download />}
+        >
+          Download
+        </Button>
+      )}
+      {meta.codeUrl && (
+        <Button href={meta.codeUrl} target="_blank" startIcon={<GitHub />}>
+          Code
+        </Button>
+      )}
+      {!meta.hideSupport && (
+        <Button
+          href="https://www.buymeacoffee.com/nizioleque"
+          target="_blank"
+          startIcon={<Paid />}
+        >
+          Support
+        </Button>
+      )}
+    </>
+  );
+
+  const hasButtons = buttons.props.children.filter(Boolean).length > 0;
+
   return (
     <>
       <Head>
@@ -58,66 +98,30 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
         >
           {meta.description}
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            width: "100%",
-            columnGap: isCard ? 2 : 4,
-            rowGap: 2,
-            marginY: 2,
-            "& .MuiButton-root": {
-              flex: 1,
-              minWidth: 120,
+        {hasButtons && (
+          <Box
+            sx={{
               display: "flex",
-              color: `hsl(${meta.hue}deg 100% 94%)`,
-              backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
-              "&:hover": {
-                backgroundColor: `hsl(${meta.hue}deg 50% 32%)`,
+              flexWrap: "wrap",
+              width: "100%",
+              columnGap: isCard ? 2 : 4,
+              rowGap: 2,
+              marginY: 2,
+              "& .MuiButton-root": {
+                flex: 1,
+                minWidth: 120,
+                display: "flex",
+                color: `hsl(${meta.hue}deg 100% 94%)`,
+                backgroundColor: `hsl(${meta.hue}deg 50% 26%)`,
+                "&:hover": {
+                  backgroundColor: `hsl(${meta.hue}deg 50% 32%)`,
+                },
               },
-            },
-          }}
-        >
-          {meta.visitUrl && (
-            <Button
-              href={meta.visitUrl}
-              target="_blank"
-              startIcon={<Language />}
-            >
-              Visit
-            </Button>
-          )}
-          {meta.installUrl && (
-            <Button
-              href={meta.installUrl}
-              target="_blank"
-              startIcon={<Download />}
-            >
-              Install
-            </Button>
-          )}
-          {meta.downloadUrl && (
-            <Button
-              href={meta.downloadUrl}
-              target="_blank"
-              startIcon={<Download />}
-            >
-              Download
-            </Button>
-          )}
-          {meta.codeUrl && (
-            <Button href={meta.codeUrl} target="_blank" startIcon={<GitHub />}>
-              Code
-            </Button>
-          )}
-          <Button
-            href="https://www.buymeacoffee.com/nizioleque"
-            target="_blank"
-            startIcon={<Paid />}
+            }}
           >
-            Support
-          </Button>
-        </Box>
+            {buttons}
+          </Box>
+        )}
       </Box>
     </>
   );

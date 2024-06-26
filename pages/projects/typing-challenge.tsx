@@ -15,6 +15,7 @@ export const meta: ProjectMeta = {
   description: "Simple typing challenge game",
   visitUrl: "https://nizioleque.github.io/typing-challenge/",
   codeUrl: "https://github.com/nizioleque/typing-challenge",
+  hideSupport: true,
 };
 
 function TypingChallenge() {
