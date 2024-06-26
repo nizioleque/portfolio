@@ -10,9 +10,9 @@ export const meta: ProjectMeta = {
   category: ProjectCategory.Autohotkey,
   hue: 199,
   icon,
-  description: "Ahk",
+  description: "Superpowers for your MX Master!",
   downloadUrl:
-    "https://github.com/nizioleque/AutoHotkey/blob/master/MX%20Master%20Gesture%20AltTab/MX%20Master%20Gesture%20AltTab.exe",
+    "https://github.com/nizioleque/AutoHotkey/raw/master/MX%20Master%20Gesture%20AltTab/MX%20Master%20Gesture%20AltTab.exe",
   codeUrl: "https://github.com/nizioleque/AutoHotkey",
   hideFromHomepage: true,
 };
@@ -22,7 +22,11 @@ function MxMasterAltTab() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>MxMasterAltTab is a streaming service.</p>
+        <p>
+          MX Master Gesture AltTab is an AutoHotkey script for the Logitech MX
+          Master users. It gives your mouse superpowers – you can use the
+          gesture button for quick and easy window switching.
+        </p>
       </ProjectContent>
     </ProjectLayout>
   );

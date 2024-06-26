@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import icon from "@/assets/icons/youtube-custom-speed.png";
 import ProjectContent from "@/components/projectPage/ProjectContent";
 import ProjectHeader from "@/components/projectPage/ProjectHeader";
@@ -28,8 +30,8 @@ function YoutubeCustomSpeed() {
           change YouTube playback rate to a custom value.
         </p>
         <p>
-          Currently available on the Chrome Web Store with over 3,500 users and
-          a 4.96 ⭐ average rating.
+          Currently available on the Chrome Web Store with over 10,000 users and
+          a 4.7 ⭐ average rating. Also available for Firefox.
         </p>
         <p>
           Youtube Custom Speed lets you play any Youtube video at any speed you
@@ -41,6 +43,14 @@ function YoutubeCustomSpeed() {
           cooperates with the default Youtube keyboard shortcuts - Shift + , and
           Shift + .
         </p>
+        <img
+          src="https://lh3.googleusercontent.com/KE7vjemtrFWIQVKzdiMS1hksQCiwdJ9LTpyxL5V4rjzLu56t7tBc6rokA1TKbcrBB_weWCuFBUjITT2xR845j9zGzoc=s1280-w1280-h800"
+          alt="YouTube Custom Speed UI screenshot"
+        />
+        <img
+          src="https://lh3.googleusercontent.com/3KKuOYQMew4-Wacns1N2Ox3KYYU6oUNw4N9JIRcaInPbGHoc3_sqeYXhEW1LlG-EYk7pt65jwEgKRXV1UJNDleJEXA=s1280-w1280-h800"
+          alt="YouTube Custom Speed settings screenshot"
+        />
       </ProjectContent>
     </ProjectLayout>
   );

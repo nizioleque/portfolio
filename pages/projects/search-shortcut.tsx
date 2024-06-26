@@ -21,7 +21,14 @@ function SearchShortcut() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>SearchShortcut is a streaming service.</p>
+        <p>
+          Save time by instantly going to the search box on any site, without
+          reaching for your mouse, scrolling or clicking.
+        </p>
+        <p>
+          Use Alt + S to activate. This shortcut can be easily customized
+          through the extension options.
+        </p>
       </ProjectContent>
     </ProjectLayout>
   );

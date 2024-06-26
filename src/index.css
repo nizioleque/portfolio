@@ -23,3 +23,8 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+.project-content :is(video, img) {
+  width: 100%;
+  height: auto;
+}

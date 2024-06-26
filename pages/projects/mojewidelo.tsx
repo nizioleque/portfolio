@@ -10,8 +10,7 @@ export const meta: ProjectMeta = {
   category: ProjectCategory.React,
   hue: 33,
   icon,
-  description: "Streaming service",
-  downloadUrl: "https://mojewidelo.pl",
+  description: "Just another YouTube clone",
   codeUrl: "https://github.com/IO2-2023-JB/team_10_frontend",
 };
 
@@ -20,7 +19,19 @@ function MojeWidelo() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>MojeWidelo is a streaming service.</p>
+        <p>
+          MojeWideło is a streaming service created as a university project.
+        </p>
+        <p>
+          My first experience with Vite, Tanstack Query and reviewing the code
+          of less experienced colleagues. It showed me why bundle size matters
+          and all of that React Suspense and dynamic import stuff.
+        </p>
+        <p>
+          Uses a backend created with ASP.NET in C# – I also had a chance to
+          learn some of that.
+        </p>
+        <p>Currently not deployed because it costs money.</p>
       </ProjectContent>
     </ProjectLayout>
   );

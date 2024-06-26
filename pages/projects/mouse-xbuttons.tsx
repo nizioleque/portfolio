@@ -10,9 +10,9 @@ export const meta: ProjectMeta = {
   category: ProjectCategory.Autohotkey,
   hue: 199,
   icon,
-  description: "Ahk",
+  description: "Superpowers for your mouse!",
   downloadUrl:
-    "https://github.com/nizioleque/AutoHotkey/blob/master/Mouse%20XButtons/Mouse%20XButtons.exe",
+    "https://github.com/nizioleque/AutoHotkey/raw/master/Mouse%20XButtons/Mouse%20XButtons.exe",
   codeUrl: "https://github.com/nizioleque/AutoHotkey",
   hideFromHomepage: true,
 };
@@ -22,7 +22,11 @@ function MouseXButtons() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>MouseXButtons is a streaming service.</p>
+        <p>
+          MouseXButtons is an AutoHotkey script which gives your mouse
+          superpowers. Use the back and forward side buttons on your mouse to
+          switch windows or browser tabs.
+        </p>
       </ProjectContent>
     </ProjectLayout>
   );

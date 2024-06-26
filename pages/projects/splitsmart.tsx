@@ -21,7 +21,22 @@ function Splitsmart() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>Splitsmart is a Flutter app.</p>
+        <p>
+          Splitsmart is a Flutter mobile app with a backend created with
+          FastAPI, my favorite backend framework for Python.
+        </p>
+        <p>
+          It&apos;s meant for splitting bills, just like Splitwise, but it has a
+          great interface for splitting items from long store receipts.
+        </p>
+        <p>
+          And the best part – OCR receipt scanning 🤩 with a fine-tuned
+          Tesseract model.
+        </p>
+        <p>
+          Almost production ready, release coming <i>soon</i>™️. You can check
+          the web version right now.
+        </p>
       </ProjectContent>
     </ProjectLayout>
   );

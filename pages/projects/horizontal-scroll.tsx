@@ -10,9 +10,9 @@ export const meta: ProjectMeta = {
   category: ProjectCategory.Autohotkey,
   hue: 199,
   icon,
-  description: "Ahk",
+  description: "This should be a Windows feature",
   downloadUrl:
-    "https://github.com/nizioleque/AutoHotkey/blob/master/Horizontal%20Scroll/Horizontal%20Scroll.exe",
+    "https://github.com/nizioleque/AutoHotkey/raw/master/Horizontal%20Scroll/Horizontal%20Scroll.exe",
   codeUrl: "https://github.com/nizioleque/AutoHotkey",
   hideFromHomepage: true,
 };
@@ -22,7 +22,11 @@ function HorizontalScroll() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>HorizontalScroll is a streaming service.</p>
+        <p>
+          HorizontalScroll is a simple AutoHotkey script which lets you scroll
+          horizontally with Shift + Scroll. Very useful for OneNote, which
+          doesn&apos;t have this functionality by default, for some reason.
+        </p>
       </ProjectContent>
     </ProjectLayout>
   );

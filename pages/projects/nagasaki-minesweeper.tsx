@@ -10,7 +10,7 @@ export const meta: ProjectMeta = {
   category: ProjectCategory.Flutter,
   hue: 199,
   icon,
-  description: "Game",
+  description: "Just another Minesweeper clone",
   downloadUrl: "https://spicy-nachos.github.io/nagasaki/",
   codeUrl: "https://github.com/spicy-nachos/nagasaki",
 };
@@ -20,7 +20,11 @@ function NagasakiMinesweeper() {
     <ProjectLayout hue={meta.hue}>
       <ProjectHeader meta={meta} />
       <ProjectContent>
-        <p>NagasakiMinesweeper is a game.</p>
+        <p>
+          Nagasaki Minesweeper is Minesweeper, but in Flutter. My first Flutter
+          project, a great learning experience.
+        </p>
+        <p>You can play it now! Hosted for free 🤑 with GitHub Pages.</p>
       </ProjectContent>
     </ProjectLayout>
   );

@@ -28,13 +28,15 @@ function MousePinchToZoom() {
           touchpad or touchscreen zoom effect using a mouse.
         </p>
         <p>
-          Currently available on the Chrome Web Store with over 5,000 users and
-          a 4.7 ⭐ average rating.
+          Currently available on the Chrome Web Store with over 10,000 users and
+          a 4.8 ⭐ average from 150 ratings. Also available for Firefox.
         </p>
         <div>
-          The extension offers three activation modes:
+          The extension offers four activation modes:
           <ul style={{ marginBottom: 0 }}>
-            <li>Zoom by turning the mouse wheel while holding the Alt key</li>
+            <li>
+              Zoom by turning the mouse wheel while holding the Alt or Ctrl key
+            </li>
             <li>
               Zoom by turning the mouse wheel while holding the left or right
               mouse button
@@ -45,6 +47,10 @@ function MousePinchToZoom() {
           You can also customize the speed and smoothness. All the settings are
           easily accessible by clicking on the extension logo.
         </p>
+        <video
+          src="https://user-images.githubusercontent.com/92390086/168915530-35dbd0d9-104e-417d-9d7e-2bfcdafd5893.mp4"
+          controls
+        />
       </ProjectContent>
     </ProjectLayout>
   );

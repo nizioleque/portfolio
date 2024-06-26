@@ -11,7 +11,7 @@ const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["400"] });
 function ProjectContent({ children }: ProjectContentProps) {
   return (
     <Box
-      className={ubuntu.className}
+      className={`${ubuntu.className} project-content`}
       sx={{
         textAlign: "justify",
       }}
