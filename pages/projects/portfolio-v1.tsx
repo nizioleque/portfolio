@@ -2,8 +2,8 @@ import icon from "@/assets/icons/portfolio-v1.ico";
 import ProjectContent from "@/components/projectPage/ProjectContent";
 import ProjectHeader from "@/components/projectPage/ProjectHeader";
 import ProjectLayout from "@/components/projectPage/ProjectLayout";
+import Screenshot from "@/components/projects/Screenshot";
 import { ProjectCategory, ProjectMeta } from "@/types";
-import Image from "next/image";
 
 export const meta: ProjectMeta = {
   id: "portfolio-v1",
@@ -31,21 +31,8 @@ function PortfolioV1() {
           My first experience with Next.js. Cool animations, hover effects,
           responsiveness. I learned a lot from this project.
         </p>
-        <Image
-          src="/screenshots/portfolio-v1-1.png"
-          alt="Homepage screenshot"
-          // TODO update width/height depending on the image and location
-          width={800}
-          height={571}
-          quality={90}
-        />
-        <Image
-          src="/screenshots/portfolio-v1-2.png"
-          alt="Homepage screenshot"
-          width={800}
-          height={571}
-          quality={90}
-        />
+        <Screenshot filename="portfolio-v1-1" aspectRatio={1.4} />
+        <Screenshot filename="portfolio-v1-2" aspectRatio={1.4} />
       </ProjectContent>
     </ProjectLayout>
   );

@@ -2,6 +2,7 @@ import icon from "@/assets/icons/typing-challenge.png";
 import ProjectContent from "@/components/projectPage/ProjectContent";
 import ProjectHeader from "@/components/projectPage/ProjectHeader";
 import ProjectLayout from "@/components/projectPage/ProjectLayout";
+import Screenshot from "@/components/projects/Screenshot";
 import { ProjectCategory, ProjectMeta } from "@/types";
 
 export const meta: ProjectMeta = {
@@ -33,6 +34,8 @@ function TypingChallenge() {
           smiles on their faces in the most difficult time of their life. I also
           enjoyed practicing Ukrainian, what a beautiful language!
         </p>
+        <Screenshot filename="typing-challenge-1" aspectRatio={1.4} />
+        <Screenshot filename="typing-challenge-2" aspectRatio={1.4} />
       </ProjectContent>
     </ProjectLayout>
   );

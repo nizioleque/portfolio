@@ -4,6 +4,7 @@ import icon from "@/assets/icons/youtube-custom-speed.png";
 import ProjectContent from "@/components/projectPage/ProjectContent";
 import ProjectHeader from "@/components/projectPage/ProjectHeader";
 import ProjectLayout from "@/components/projectPage/ProjectLayout";
+import Screenshot from "@/components/projects/Screenshot";
 import { ProjectCategory, ProjectMeta } from "@/types";
 
 export const meta: ProjectMeta = {
@@ -43,14 +44,8 @@ function YoutubeCustomSpeed() {
           cooperates with the default Youtube keyboard shortcuts - Shift + , and
           Shift + .
         </p>
-        <img
-          src="https://lh3.googleusercontent.com/KE7vjemtrFWIQVKzdiMS1hksQCiwdJ9LTpyxL5V4rjzLu56t7tBc6rokA1TKbcrBB_weWCuFBUjITT2xR845j9zGzoc=s1280-w1280-h800"
-          alt="YouTube Custom Speed UI screenshot"
-        />
-        <img
-          src="https://lh3.googleusercontent.com/3KKuOYQMew4-Wacns1N2Ox3KYYU6oUNw4N9JIRcaInPbGHoc3_sqeYXhEW1LlG-EYk7pt65jwEgKRXV1UJNDleJEXA=s1280-w1280-h800"
-          alt="YouTube Custom Speed settings screenshot"
-        />
+        <Screenshot filename="youtube-custom-speed-1" aspectRatio={1.6} />
+        <Screenshot filename="youtube-custom-speed-2" aspectRatio={1.6} />
       </ProjectContent>
     </ProjectLayout>
   );

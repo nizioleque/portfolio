@@ -2,6 +2,7 @@ import icon from "@/assets/icons/nagasaki-minesweeper.png";
 import ProjectContent from "@/components/projectPage/ProjectContent";
 import ProjectHeader from "@/components/projectPage/ProjectHeader";
 import ProjectLayout from "@/components/projectPage/ProjectLayout";
+import Screenshot from "@/components/projects/Screenshot";
 import { ProjectCategory, ProjectMeta } from "@/types";
 
 export const meta: ProjectMeta = {
@@ -25,6 +26,8 @@ function NagasakiMinesweeper() {
           project, a great learning experience.
         </p>
         <p>You can play it now! Hosted for free 🤑 with GitHub Pages.</p>
+        <Screenshot filename="nagasaki-minesweeper-1" aspectRatio={1.4} />
+        <Screenshot filename="nagasaki-minesweeper-2" aspectRatio={1.4} />
       </ProjectContent>
     </ProjectLayout>
   );
