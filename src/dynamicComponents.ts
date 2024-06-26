@@ -28,6 +28,9 @@ const dynamicComponents = {
   "horizontal-scroll": dynamic(
     () => import("../pages/projects/horizontal-scroll")
   ),
+  "extension-template": dynamic(
+    () => import("../pages/projects/extension-template")
+  ),
 };
 
 export default dynamicComponents;

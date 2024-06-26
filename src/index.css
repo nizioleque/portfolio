@@ -24,7 +24,15 @@ a {
   text-decoration: inherit;
 }
 
-.project-content :is(video, img) {
-  width: 100%;
-  height: auto;
+.project-content {
+  video,
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  ul,
+  ol {
+    margin-top: 8px;
+  }
 }
