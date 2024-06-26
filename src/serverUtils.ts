@@ -32,10 +32,10 @@ export function groupProjects(projects: ProjectMeta[]): ProjectGroup[] {
     category,
     projects: projects
       .filter((project) => project.category === category)
-      .toSorted((a, b) => (b.priority ?? 0) - (a.priority ?? 0)),
+      .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)),
   }));
 
-  return groups.toSorted(
+  return groups.sort(
     (a, b) => ProjectPriority[b.category] - ProjectPriority[a.category]
   );
 }
