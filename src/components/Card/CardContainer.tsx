@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import {
   ForwardedRef,
-  ReactNode,
   forwardRef,
+  ReactNode,
   useCallback,
   useRef,
   useState,
@@ -142,6 +142,7 @@ function CardContainer(
           scrollContainer.current = node;
         }}
         sx={{
+          position: "relative",
           overflowY: "auto",
           height: "100%",
           "&::-webkit-scrollbar": {
