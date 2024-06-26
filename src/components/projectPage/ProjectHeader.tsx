@@ -53,6 +53,7 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
           sx={{
             fontSize: "1.2rem",
             fontWeight: 700,
+            textAlign: "center",
           }}
         >
           {meta.description}

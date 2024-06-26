@@ -5,6 +5,7 @@ export enum ProjectCategory {
   Flutter = "Flutter app",
   React = "React app",
   Autohotkey = "AutoHotkey script",
+  VsCodeExtension = "VS Code extension",
 }
 
 export const CategoryLabels: Record<ProjectCategory, string> = {
@@ -12,6 +13,7 @@ export const CategoryLabels: Record<ProjectCategory, string> = {
   [ProjectCategory.Flutter]: "Flutter apps",
   [ProjectCategory.React]: "React, Next.js & JavaScript apps",
   [ProjectCategory.Autohotkey]: "AutoHotkey script",
+  [ProjectCategory.VsCodeExtension]: "VS Code extensions",
 };
 
 export interface ProjectCategoryDetails {
@@ -21,8 +23,9 @@ export interface ProjectCategoryDetails {
 
 export const ProjectPriority: Record<ProjectCategory, number> = {
   [ProjectCategory.Extension]: 10,
-  [ProjectCategory.Flutter]: 7,
   [ProjectCategory.React]: 9,
+  [ProjectCategory.Flutter]: 7,
+  [ProjectCategory.VsCodeExtension]: 6.5,
   [ProjectCategory.Autohotkey]: 6,
 };
 

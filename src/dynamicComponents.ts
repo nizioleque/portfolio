@@ -31,6 +31,8 @@ const dynamicComponents = {
   "hh-extension-template": dynamic(
     () => import("../pages/projects/hh-extension-template")
   ),
+  "react-props-sync": dynamic(
+    () => import("../pages/projects/react-props-sync")
   ),
 };
 
