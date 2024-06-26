@@ -1,9 +1,9 @@
-import HomePageChild from "@/components/Layout/HomePageChild";
-import HomePageContent from "@/components/Layout/HomePageContent";
 import Section from "@/components/about/AboutSection";
 import Em from "@/components/about/Emphasis";
 import Hi from "@/components/about/Hi";
 import LinkButton from "@/components/about/LinkButton";
+import HomePageChild from "@/components/Layout/HomePageChild";
+import HomePageContent from "@/components/Layout/HomePageContent";
 import { responsiveSize } from "@/theme/responsiveSize";
 import { Instagram, MailOutline, Telegram } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
@@ -25,13 +25,13 @@ function About() {
         </Section>
         <Section>
           a frontend developer based in Warsaw, Poland, soon moving to Madrid,
-          Spain. I am passionate about designing <Em>beautiful interfaces</Em>{" "}
-          which enable <Em>great user experiences</Em>.
+          Spain. I am passionate about <Em>beautiful interfaces</Em> which
+          enable <Em>great user experiences</Em>.
         </Section>
         <Section>
           Over many years of experience I have created numerous helpful{" "}
-          <Em>browser extensions</Em>, <Em>Web apps</Em> and{" "}
-          <Em>mobile apps</Em>.
+          <Em>browser extensions</Em>, <Em>Web apps</Em>, <Em>mobile apps</Em>{" "}
+          and more.
         </Section>
         <Section>
           I have experience with <Em>React</Em>, <Em>Next.js</Em> (including the{" "}
@@ -48,6 +48,10 @@ function About() {
           I also enjoy <Em>full stack</Em> development – I have worked with
           various backend frameworks including <Em>Spring Boot</Em> in Java and{" "}
           <Em>FastAPI</Em> in Python.
+        </Section>
+        <Section>
+          Whenever I have some time to get up from my desk, I usually ride my
+          bike, go for a run or study languages.
         </Section>
         <Section large>
           I am currently <Em>looking for a job</Em>!
