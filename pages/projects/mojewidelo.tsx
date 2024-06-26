@@ -11,7 +11,6 @@ export const meta: ProjectMeta = {
   hue: 33,
   icon,
   description: "Just another YouTube clone",
-  codeUrl: "https://github.com/IO2-2023-JB/team_10_frontend",
 };
 
 function MojeWidelo() {
