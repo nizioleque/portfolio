@@ -35,7 +35,7 @@ function Splitsmart() {
         </p>
         <p>
           Almost production ready, release coming <i>soon</i>™️. You can check
-          the web version right now.
+          the web version out right now.
         </p>
       </ProjectContent>
     </ProjectLayout>
