@@ -6,9 +6,10 @@ interface CardBaseCustomProps {
   hue: number;
 }
 
-const enterEasing = "cubic-bezier(0.61, 1, 0.88, 1)";
-const leaveEasing = "cubic-bezier(0.12, 0, 0.39, 0)";
-const duration = "120ms";
+const EnterEasing = "cubic-bezier(0.61, 1, 0.88, 1)";
+const LeaveEasing = "cubic-bezier(0.12, 0, 0.39, 0)";
+const Duration = "120ms";
+const GlowSize = 700;
 
 const CardBase = styled(motion.a)<CardBaseCustomProps>(({ theme, hue }) =>
   theme.unstable_sx({
@@ -35,15 +36,15 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(({ theme, hue }) =>
       position: "absolute",
       left: "var(--x)",
       top: "var(--y)",
-      transition: `opacity ${enterEasing} ${duration}`,
+      transition: `opacity ${EnterEasing} ${Duration}`,
       transform: "translate(-50%, -50%)",
-      width: 500,
-      height: 500,
+      width: GlowSize,
+      height: GlowSize,
     },
 
     "&:hover::before": {
       opacity: 1,
-      transition: `opacity ${leaveEasing} ${duration}`,
+      transition: `opacity ${LeaveEasing} ${Duration}`,
     },
 
     "&.transform-origin-top": {

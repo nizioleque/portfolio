@@ -15,6 +15,8 @@ interface CardModalProps {
   hue: number;
 }
 
+const ModalSize = 700;
+
 function CardModal({
   isModalOpen,
   closeModal,
@@ -54,9 +56,9 @@ function CardModal({
               component={motion.div}
               layoutId={uniqueId}
               sx={{
-                maxWidth: 500,
+                maxWidth: ModalSize,
                 width: "100%",
-                minHeight: 500,
+                minHeight: ModalSize,
                 maxHeight: "100%",
                 borderRadius: 12,
                 padding: isMobile ? 3 : 4,
