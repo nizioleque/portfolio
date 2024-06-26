@@ -15,10 +15,12 @@ function ProjectHeader({ meta }: ProjectHeaderProps) {
   const { pathname } = useRouter();
   const isCard = ["/", "/projects"].includes(pathname);
 
+  const title = `${meta.name} by NORBERT NIZIOŁEK`;
+
   return (
     <>
       <Head>
-        <title>{meta.name} by NORBERT NIZIOŁEK</title>
+        <title>{title}</title>
       </Head>
       <Box
         sx={{
