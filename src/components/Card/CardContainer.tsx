@@ -139,7 +139,7 @@ function CardContainer(
           if (typeof ref === "function") ref(node);
           else if (ref !== null) ref.current = node;
 
-          if (scrollContainer !== null) scrollContainer.current = node;
+          scrollContainer.current = node;
         }}
         sx={{
           overflowY: "auto",

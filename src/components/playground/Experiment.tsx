@@ -9,7 +9,7 @@ interface ExperimentProps {
 
 function Experiment({ label, state }: ExperimentProps) {
   const [value, setValue] = useRecoilState(state);
-  console.log(value);
+
   return (
     <HomePageChild>
       <Box
