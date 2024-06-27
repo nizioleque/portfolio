@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { MouseEventHandler, forwardRef } from "react";
+import { forwardRef, MouseEventHandler } from "react";
 import { shadowStrong } from "../../theme/constants";
 import { responsiveSize } from "../../theme/responsiveSize";
 import { transition } from "../../theme/transitions";

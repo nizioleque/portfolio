@@ -15,6 +15,9 @@ export const themeBase = createTheme({
       main: "hsl(72deg, 85%, 65%)",
       light: "hsl(72deg, 100%, 75%)",
     },
+    secondary: {
+      main: "hsl(338deg, 80%, 50%)",
+    },
     background: {
       default: "#141414",
       light: "#3a3a3a",

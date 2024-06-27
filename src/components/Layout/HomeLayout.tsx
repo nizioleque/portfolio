@@ -7,11 +7,11 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import animationDirectionState, {
   AnimationDirection,
 } from "../../atoms/animationDirectionState";
-import canvasBackgroundState from "../../atoms/canvasBackgroundState";
+import { canvasBackgroundState } from "../../atoms/experiments";
 import { links } from "../../constants";
 import useResponsiveLayout from "../../hooks/useResponsiveLayout";
 import { scrollbarStyles } from "../../theme/constants";
-import Nav from "./Nav";
+import Nav from "./nav/Nav";
 
 const CanvasBackground = dynamic(() => import("./CanvasBackground"), {
   ssr: false,

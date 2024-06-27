@@ -1,10 +1,11 @@
 import { Box, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { links } from "../../constants";
-import useResponsiveLayout from "../../hooks/useResponsiveLayout";
-import { responsiveSize } from "../../theme/responsiveSize";
-import Logo from "./Logo";
+import { links } from "../../../constants";
+import useResponsiveLayout from "../../../hooks/useResponsiveLayout";
+import { responsiveSize } from "../../../theme/responsiveSize";
+import Logo from "../Logo";
+import HireMe from "./HireMe";
 import NavButton from "./NavButton";
 
 function Nav() {
@@ -26,7 +27,8 @@ function Nav() {
         paddingY: isMini ? 1 : null,
       }}
     >
-      <Box id="logo-container">
+      <Box id="logo-container" sx={{ position: "relative" }}>
+        <HireMe />
         <Link href="/" legacyBehavior passHref>
           <Logo active={router.pathname === "/"} />
         </Link>

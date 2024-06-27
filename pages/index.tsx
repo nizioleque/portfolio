@@ -13,6 +13,8 @@ interface HomeProps {
 
 function Home({ projects }: HomeProps) {
   const [delayAnimate, setDelayAnimate] = useState<boolean>(true);
+
+  // TODO fix incorrect z-order on first open
   const zIndex = useRef<number>(2);
 
   return (

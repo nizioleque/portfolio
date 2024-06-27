@@ -1,8 +1,8 @@
 import { EastRounded } from "@mui/icons-material";
 import { Stack } from "@mui/material";
-import { MouseEventHandler, forwardRef } from "react";
-import { responsiveSize } from "../../theme/responsiveSize";
-import { transition } from "../../theme/transitions";
+import { forwardRef, MouseEventHandler } from "react";
+import { responsiveSize } from "../../../theme/responsiveSize";
+import { transition } from "../../../theme/transitions";
 
 interface NavButtonProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>;

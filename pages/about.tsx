@@ -54,11 +54,11 @@ function About() {
           bike, go for a run or study languages.
         </Section>
         <Section large>
-          I am currently <Em>looking for a job</Em>!
+          I am currently <Em color="secondary.main">looking for a job</Em>!
         </Section>
         <Section>
-          Don&apos;t hesitate to <Em>reach out to me</Em> if you think I would
-          be a good fit for your team!
+          Don&apos;t hesitate to <Em color="secondary.main">reach out to me</Em>{" "}
+          if you think I would be a good fit for your team!
         </Section>
         <Box alignSelf="start">
           <HomePageChild>

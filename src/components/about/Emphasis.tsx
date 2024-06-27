@@ -3,11 +3,12 @@ import { ReactNode } from "react";
 
 interface EmpahsisProps {
   children: ReactNode;
+  color?: string;
 }
 
-function Emphasis({ children }: EmpahsisProps) {
+function Emphasis({ children, color = "text.accent" }: EmpahsisProps) {
   return (
-    <Box component="em" color="text.accent">
+    <Box component="em" color={color}>
       {children}
     </Box>
   );
