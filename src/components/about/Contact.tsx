@@ -1,10 +1,10 @@
 import LinkButton from "@/components/about/LinkButton";
 import useResponsiveLayout from "@/hooks/useResponsiveLayout";
 import {
+  Email,
   GitHub,
   Instagram,
   LinkedIn,
-  MailOutline,
   Telegram,
   WhatsApp,
 } from "@mui/icons-material";
@@ -20,7 +20,7 @@ function Contact({ mini = false }: ContactProps) {
   return (
     <Box
       sx={{
-        gap: mini ? 1.5 : 2,
+        gap: mini ? 1 : 2,
         display: "flex",
         justifyContent: mini ? "flex-end" : "center",
         marginY: mini ? 0 : -2,
@@ -31,7 +31,7 @@ function Contact({ mini = false }: ContactProps) {
     >
       <LinkButton
         edge={mini ? "start" : undefined}
-        icon={<MailOutline />}
+        icon={<Email />}
         href="mailto:norbert@niziolek.dev"
         mini={mini}
       />

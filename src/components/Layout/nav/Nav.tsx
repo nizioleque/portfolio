@@ -27,13 +27,19 @@ function Nav() {
         paddingY: isMini ? 1 : null,
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Box id="logo-container" sx={{ position: "relative" }}>
-          <Link href="/" legacyBehavior passHref>
-            <Logo active={router.pathname === "/"} />
-          </Link>
-          {!isMini && <Contact mini />}
-        </Box>
+      <Box
+        id="logo-container"
+        sx={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          gap: 0.5,
+        }}
+      >
+        <Link href="/" legacyBehavior passHref>
+          <Logo active={router.pathname === "/"} />
+        </Link>
+        {!isMini && <Contact mini />}
       </Box>
       {!isMini &&
         links
