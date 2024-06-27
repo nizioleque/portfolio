@@ -29,8 +29,8 @@ function PortfolioV1() {
           one? Check it out and let me know.
         </p>
         <p>
-          My first experience with Next.js. Cool animations, hover effects,
-          responsiveness. I learned a lot from this project.
+          My first serious experience with Next.js. Cool animations, advanced
+          CSS, typography, responsive UI – I learned a lot from this project.
         </p>
         <Screenshot filename="portfolio-v1-1" aspectRatio={1.4} />
         <Screenshot filename="portfolio-v1-2" aspectRatio={1.4} />
