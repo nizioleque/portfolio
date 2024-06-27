@@ -13,7 +13,7 @@ interface HomeProps {
 
 function Home({ projects }: HomeProps) {
   const [delayAnimate, setDelayAnimate] = useState<boolean>(true);
-  const zIndex = useRef<number>(1);
+  const zIndex = useRef<number>(2);
 
   return (
     <HomePageContent delayAnimate={delayAnimate} noScrollContainer>

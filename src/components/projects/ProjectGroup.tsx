@@ -14,7 +14,7 @@ interface ProjectGroupProps {
 function ProjectGroup({ name, projects }: ProjectGroupProps) {
   const categoryLabel = CategoryLabels[name];
 
-  const zIndex = useRef<number>(1);
+  const zIndex = useRef<number>(2);
 
   return (
     <Stack gap={1}>
