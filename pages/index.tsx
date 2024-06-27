@@ -1,5 +1,6 @@
 import CardContainer from "@/components/Card/CardContainer";
 import CardContent from "@/components/Card/CardContent";
+import HireMeCard from "@/components/Card/HireMeCard";
 import HomePageChild from "@/components/Layout/HomePageChild";
 import HomePageContent from "@/components/Layout/HomePageContent";
 import { getProjectMeta, sortByHue } from "@/serverUtils";
@@ -20,6 +21,7 @@ function Home({ projects }: HomeProps) {
   return (
     <HomePageContent delayAnimate={delayAnimate} noScrollContainer>
       <CardContainer onRender={() => setDelayAnimate(false)}>
+        <HireMeCard />
         {projects.map((project) => (
           <HomePageChild key={project.id}>
             <CardContent project={project} zIndex={zIndex} />
