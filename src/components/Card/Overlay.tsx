@@ -1,11 +1,14 @@
 import { Box, Portal } from "@mui/material";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface OverlayProps {
   closeModal: () => void;
 }
 
 function Overlay({ closeModal }: OverlayProps) {
+  const [isClosing, setIsClosing] = useState<boolean>(false);
+
   return (
     <Portal>
       <Box
@@ -18,12 +21,16 @@ function Overlay({ closeModal }: OverlayProps) {
           background: "rgb(0,0,0,0.5)",
           zIndex: 100,
           cursor: "pointer",
+          pointerEvents: isClosing ? "none" : "auto",
         }}
         component={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={closeModal}
+        onClick={() => {
+          setIsClosing(true);
+          closeModal();
+        }}
       />
     </Portal>
   );
