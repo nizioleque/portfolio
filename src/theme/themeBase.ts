@@ -24,7 +24,7 @@ export const themeBase = createTheme({
     },
     text: {
       accent: "hsl(72deg, 100%, 72%)",
-      accentSecondary: "hsl(338deg, 100%, 68%)",
+      accentSecondary: "hsl(338deg, 100%, 72%)",
     },
   },
   typography: {

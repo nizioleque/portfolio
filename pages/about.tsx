@@ -57,10 +57,37 @@ function About() {
           I am currently <Em color="text.accentSecondary">looking for a job</Em>
           !
         </Section>
-        <Section>
-          Don&apos;t hesitate to{" "}
-          <Em color="text.accentSecondary">reach out to me</Em> if you think I
-          would be a good fit for your team!
+        <Section id="hire-me">
+          Check out my{" "}
+          <Em
+            color="text.accentSecondary"
+            sx={{
+              textDecoration: "underline",
+              textUnderlineOffset: 4,
+            }}
+          >
+            <a target="_blank" href="/cv.pdf">
+              CV
+            </a>
+          </Em>{" "}
+          and don&apos;t hesitate to{" "}
+          <Em
+            color="text.accentSecondary"
+            sx={{
+              textDecoration: "underline",
+              textUnderlineOffset: 4,
+            }}
+          >
+            <a
+              target="_blank"
+              href="mailto: norbert@niziolek.dev
+     ?subject=Saw your portfolio!
+     &body=Hi Norbert,%0D%0A%0D%0AI just saw your portfolio and I'm interested in working with you! Let's talk!%0D%0A"
+            >
+              reach out to me
+            </a>
+          </Em>{" "}
+          if you think I would be a good fit for your team!
         </Section>
         <Box alignSelf="start">
           <HomePageChild>

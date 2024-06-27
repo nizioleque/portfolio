@@ -6,14 +6,17 @@ import HomePageChild from "../Layout/HomePageChild";
 interface AboutSectionProps {
   children: ReactNode;
   large?: boolean;
+  id?: string;
 }
 
-function AboutSection({ children, large = false }: AboutSectionProps) {
+function AboutSection({ children, id, large }: AboutSectionProps) {
   const fontSize = large ? "2rem" : "1.25rem";
 
   return (
     <HomePageChild>
-      <Typography sx={responsiveSize(fontSize)}>{children}</Typography>
+      <Typography id={id} sx={responsiveSize(fontSize)}>
+        {children}
+      </Typography>
     </HomePageChild>
   );
 }
