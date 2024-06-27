@@ -92,6 +92,7 @@ function ExpandableCard({ content, id, hue, zIndex }: ExpandableCardProps) {
                 originX: 0.5,
                 width: cardSize,
                 aspectRatio: "1 / 1",
+                zIndex: 1,
               }}
             >
               {content}

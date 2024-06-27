@@ -57,6 +57,7 @@ function ProjectTile({ project, zIndex }: ProjectTileProps) {
           sx={{
             ...responsiveSize(2, undefined, "paddingY"),
             borderRadius: 8,
+            zIndex: 1,
           }}
           layoutId={project.id}
           onClick={handleClick}
