@@ -1,11 +1,16 @@
 import { hireMe } from "@/atoms/experiments";
 import useCardScale from "@/hooks/useCardScale";
+import useCardSize from "@/hooks/useCardSize";
+import { shadowWeak } from "@/theme/constants";
+import { responsiveSize } from "@/theme/responsiveSize";
+import { Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import HomePageChild from "../Layout/HomePageChild";
 import Card from "./Card";
 
 function HireMeCard() {
   const { cardContainerRef, originY, scrollYProgress } = useCardScale();
+  const cardWidth = useCardSize();
 
   const isVisible = useRecoilValue(hireMe);
   if (!isVisible) return null;
@@ -24,34 +29,46 @@ function HireMeCard() {
           originX: 0.5,
           aspectRatio: "1 / 1",
           zIndex: 1,
-          paddingTop: 0,
+          maxWidth: cardWidth,
         }}
         bright
       >
-        {Array.from({ length: 10 }).map((_, index) => {
-          const mainIndex = 4;
-          const distFromMain = Math.abs(index - mainIndex);
-          const opacity = 0.85 - distFromMain * 0.15;
-
-          return (
-            <h2
-              key={index}
-              style={{
-                fontSize: "1.65rem",
-                color: index === mainIndex ? `hsl(${hue} 100% 95%)` : "inherit",
-                fontWeight: index === mainIndex ? 700 : "inherit",
-                opacity: index === mainIndex ? 1 : opacity,
-                letterSpacing: -1,
-                margin: "-8px 0",
-                position: "relative",
-                top: -16,
-                fontStyle: "italic",
-              }}
-            >
-              Hire me!
-            </h2>
-          );
-        })}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "100%",
+            gap: 12,
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              ...responsiveSize("1rem"),
+              color: `hsl(${hue} 100% 95%)`,
+              letterSpacing: +1,
+              textShadow: shadowWeak,
+              lineHeight: 1.3,
+            }}
+          >
+            I&apos;m looking for
+            <br />
+            job opportunities
+          </Typography>
+          <Typography
+            variant="h2"
+            sx={{
+              ...responsiveSize("1.65rem"),
+              color: `hsl(${hue} 100% 95%)`,
+              letterSpacing: -1,
+              fontStyle: "italic",
+              fontWeight: 700,
+            }}
+          >
+            Hire me!
+          </Typography>
+        </div>
       </Card>
     </HomePageChild>
   );
