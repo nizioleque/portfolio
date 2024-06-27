@@ -21,12 +21,18 @@ function Home({ projects }: HomeProps) {
   return (
     <HomePageContent delayAnimate={delayAnimate} noScrollContainer>
       <CardContainer onRender={() => setDelayAnimate(false)}>
-        <HireMeCard />
-        {projects.map((project) => (
-          <HomePageChild key={project.id}>
-            <CardContent project={project} zIndex={zIndex} />
-          </HomePageChild>
-        ))}
+        {projects.map((_, index, projects) => {
+          if (index === 3) return <HireMeCard key="hire-me" />;
+
+          const projectIndex = index > 3 ? index - 1 : index;
+          const project = projects[projectIndex];
+
+          return (
+            <HomePageChild key={project.id}>
+              <CardContent project={project} zIndex={zIndex} />
+            </HomePageChild>
+          );
+        })}
       </CardContainer>
     </HomePageContent>
   );

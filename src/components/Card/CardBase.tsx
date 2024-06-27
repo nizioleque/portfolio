@@ -19,7 +19,7 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(
       padding: 3,
 
       backgroundColor: bright
-        ? `hsl(${hue}deg 80% 50%)`
+        ? `hsl(${hue}deg 90% 40%)`
         : `hsl(${hue}deg 22% 13%)`,
       color: bright ? `hsl(${hue}deg 100% 10%)` : `hsl(${hue}deg 50% 80%)`,
 
