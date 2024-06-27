@@ -16,7 +16,6 @@ const CardBase = styled(motion.a)<CardBaseCustomProps>(
   ({ theme, hue, bright = false }) =>
     theme.unstable_sx({
       display: "block",
-      padding: 3,
 
       backgroundColor: bright
         ? `hsl(${hue}deg 90% 40%)`

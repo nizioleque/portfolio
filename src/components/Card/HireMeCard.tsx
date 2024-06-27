@@ -29,9 +29,13 @@ function HireMeCard() {
             scale: scrollYProgress,
             originY,
             originX: 0.5,
+          }}
+          sx={{
             aspectRatio: "1 / 1",
             zIndex: 1,
             maxWidth: cardWidth,
+            display: "flex",
+            justifyContent: "center",
           }}
           bright
         >

@@ -24,8 +24,9 @@ function CardContent({ project, zIndex }: CardContentProps) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-evenly",
-            gap: 2,
+            paddingX: 2,
+            justifyContent: "center",
+            gap: 1,
           }}
         >
           {project.icon && (
@@ -44,10 +45,10 @@ function CardContent({ project, zIndex }: CardContentProps) {
             <Typography
               variant="h3"
               textAlign="center"
-              gutterBottom
               sx={{
                 ...responsiveSize("1.3rem"),
                 whiteSpace: "pre-line",
+                marginBottom: 0.5,
               }}
             >
               {project.name}
