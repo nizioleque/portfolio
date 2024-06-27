@@ -6,5 +6,5 @@ export const links = [
   { href: "/", label: "Homepage", hidden: true },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: "/playground", label: "Playground" },
+  // { href: "/playground", label: "Playground" },
 ];
