@@ -1,8 +1,8 @@
+import { responsiveSize } from "@/theme/responsiveSize";
 import { GitHub } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import useResponsiveLayout from "../../hooks/useResponsiveLayout";
 import HomePageChild from "../Layout/HomePageChild";
-import LinkButton from "../about/LinkButton";
 
 function GitHubTile() {
   const { isDesktop } = useResponsiveLayout();
@@ -28,9 +28,29 @@ function GitHubTile() {
         }}
       >
         More on{" "}
-        <LinkButton icon={<GitHub />} href="https://github.com/nizioleque">
+        <Button
+          component="a"
+          href="https://github.com/nizioleque"
+          target="_blank"
+          variant="text"
+          startIcon={<GitHub />}
+          sx={{
+            textTransform: "none",
+            ...responsiveSize("1.25rem"),
+            fontWeight: 400,
+            color: "text.primary",
+            borderRadius: 20,
+            paddingX: 2,
+            "& .MuiSvgIcon-root": {
+              marginRight: 0.5,
+              color: "primary.main",
+              ...responsiveSize("2rem", undefined, "width"),
+              ...responsiveSize("2rem", undefined, "height"),
+            },
+          }}
+        >
           GitHub
-        </LinkButton>
+        </Button>
       </Box>
     </HomePageChild>
   );

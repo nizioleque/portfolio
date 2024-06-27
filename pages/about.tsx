@@ -1,12 +1,11 @@
 import Section from "@/components/about/AboutSection";
+import Contact from "@/components/about/Contact";
 import Em from "@/components/about/Emphasis";
 import Hi from "@/components/about/Hi";
-import LinkButton from "@/components/about/LinkButton";
 import HomePageChild from "@/components/Layout/HomePageChild";
 import HomePageContent from "@/components/Layout/HomePageContent";
 import { responsiveSize } from "@/theme/responsiveSize";
-import { Instagram, MailOutline, Telegram } from "@mui/icons-material";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 function About() {
   return (
@@ -58,7 +57,7 @@ function About() {
           !
         </Section>
         <Section id="hire-me">
-          Check out my{" "}
+          Learn more about my professional experience in my{" "}
           <Em
             color="text.accentSecondary"
             sx={{
@@ -89,37 +88,9 @@ function About() {
           </Em>{" "}
           if you think I would be a good fit for your team!
         </Section>
-        <Box alignSelf="start">
-          <HomePageChild>
-            <Box
-              sx={{
-                gap: 1,
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <LinkButton
-                icon={<MailOutline />}
-                href="mailto:norbert@niziolek.dev"
-              >
-                norbert@niziolek.dev
-              </LinkButton>
-              <LinkButton
-                icon={<Telegram />}
-                href="https://t.me/don_rododendron"
-              >
-                don_rododendron
-              </LinkButton>
-              <LinkButton
-                icon={<Instagram />}
-                href="https://instagram.com/nizioleque"
-              >
-                nizioleque
-              </LinkButton>
-            </Box>
-          </HomePageChild>
-        </Box>
+        <HomePageChild>
+          <Contact />
+        </HomePageChild>
       </Stack>
     </HomePageContent>
   );
