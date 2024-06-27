@@ -14,6 +14,7 @@ export const meta: ProjectMeta = {
   installUrl:
     "https://chrome.google.com/webstore/detail/search-shortcut/nnnejpimaidlnnhnfnkjanmkjigdamgm",
   codeUrl: "https://github.com/nizioleque/search-shortcut",
+  hideFromHomepage: true,
 };
 
 function SearchShortcut() {

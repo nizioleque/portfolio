@@ -12,6 +12,7 @@ export const meta: ProjectMeta = {
   icon,
   description: "Just another YouTube clone",
   hideSupport: true,
+  hideFromHomepage: true,
 };
 
 function MojeWidelo() {
