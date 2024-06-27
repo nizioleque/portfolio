@@ -5,7 +5,6 @@ import { links } from "../../../constants";
 import useResponsiveLayout from "../../../hooks/useResponsiveLayout";
 import { responsiveSize } from "../../../theme/responsiveSize";
 import Logo from "../Logo";
-import HireMe from "./HireMe";
 import NavButton from "./NavButton";
 
 function Nav() {
@@ -28,7 +27,6 @@ function Nav() {
       }}
     >
       <Box id="logo-container" sx={{ position: "relative" }}>
-        <HireMe />
         <Link href="/" legacyBehavior passHref>
           <Logo active={router.pathname === "/"} />
         </Link>
