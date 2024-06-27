@@ -12,7 +12,7 @@ export const CategoryLabels: Record<ProjectCategory, string> = {
   [ProjectCategory.Extension]: "Browser extensions",
   [ProjectCategory.Flutter]: "Flutter apps",
   [ProjectCategory.React]: "React, Next.js & JavaScript apps",
-  [ProjectCategory.Autohotkey]: "AutoHotkey script",
+  [ProjectCategory.Autohotkey]: "AutoHotkey scripts",
   [ProjectCategory.VsCodeExtension]: "VS Code extensions",
 };
 
