@@ -42,8 +42,9 @@ function ProjectTile({ project, zIndex }: ProjectTileProps) {
   }, [router, isModalOpen, targetUrl]);
 
   const handleClick = () => {
-    // make sure the card is on top during animation
+    // make sure the card is on top during animation + force reflow
     cardRef.current!.style.zIndex = (zIndex.current++).toString();
+    cardRef.current!.getBoundingClientRect();
 
     setIsModalOpen(true);
   };

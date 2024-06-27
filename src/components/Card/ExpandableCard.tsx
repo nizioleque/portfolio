@@ -38,8 +38,9 @@ function ExpandableCard({ content, id, hue, zIndex }: ExpandableCardProps) {
   const handleClick = () => {
     if (!cardContainerRef.current) return;
 
-    // make sure the card is on top during animation
+    // make sure the card is on top during animation + force reflow
     cardContainerRef.current.style.zIndex = (zIndex.current++).toString();
+    cardContainerRef.current.getBoundingClientRect();
 
     if (transformOrigin.current !== "center") {
       setShouldOpenModal(true);
