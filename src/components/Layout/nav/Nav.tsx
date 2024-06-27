@@ -1,3 +1,4 @@
+import Contact from "@/components/about/Contact";
 import { Box, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -26,10 +27,13 @@ function Nav() {
         paddingY: isMini ? 1 : null,
       }}
     >
-      <Box id="logo-container" sx={{ position: "relative" }}>
-        <Link href="/" legacyBehavior passHref>
-          <Logo active={router.pathname === "/"} />
-        </Link>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box id="logo-container" sx={{ position: "relative" }}>
+          <Link href="/" legacyBehavior passHref>
+            <Logo active={router.pathname === "/"} />
+          </Link>
+          {!isMini && <Contact mini />}
+        </Box>
       </Box>
       {!isMini &&
         links

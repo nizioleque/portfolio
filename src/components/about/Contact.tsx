@@ -10,32 +10,60 @@ import {
 } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-function Contact() {
+interface ContactProps {
+  mini?: boolean;
+}
+
+function Contact({ mini = false }: ContactProps) {
   const { mobileQuery } = useResponsiveLayout();
 
   return (
     <Box
       sx={{
-        gap: 2,
+        gap: mini ? 1.5 : 2,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: mini ? "flex-end" : "center",
+        marginY: mini ? 0 : -2,
         [mobileQuery]: {
           gap: 0,
         },
       }}
     >
-      <LinkButton icon={<MailOutline />} href="mailto:norbert@niziolek.dev" />
-      <LinkButton icon={<GitHub />} href="https://github.com/nizioleque" />
-      <LinkButton icon={<Telegram />} href="https://t.me/don_rododendron" />
-      <LinkButton icon={<WhatsApp />} href="https://wa.me/48887877975" />
       <LinkButton
-        icon={<Instagram />}
-        href="https://instagram.com/nizioleque"
+        edge={mini ? "start" : undefined}
+        icon={<MailOutline />}
+        href="mailto:norbert@niziolek.dev"
+        mini={mini}
+      />
+      <LinkButton
+        icon={<GitHub sx={{ transform: "scale(0.85)" }} />}
+        href="https://github.com/nizioleque"
+        mini={mini}
       />
       <LinkButton
         icon={<LinkedIn />}
         href="https://www.linkedin.com/in/norbert-nizio%C5%82ek-927304286/"
+        mini={mini}
       />
+      {!mini && (
+        <>
+          <LinkButton
+            icon={<Telegram />}
+            href="https://t.me/don_rododendron"
+            mini={mini}
+          />
+          <LinkButton
+            icon={<WhatsApp />}
+            href="https://wa.me/48887877975"
+            mini={mini}
+          />
+          <LinkButton
+            icon={<Instagram />}
+            href="https://instagram.com/nizioleque"
+            mini={mini}
+          />
+        </>
+      )}
     </Box>
   );
 }

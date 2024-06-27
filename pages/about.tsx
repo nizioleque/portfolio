@@ -22,6 +22,9 @@ function About() {
         <Section large>
           I&apos;m <Em>Norbert Kosma Niziołek</Em>,
         </Section>
+        <HomePageChild>
+          <Contact />
+        </HomePageChild>
         <Section>
           a frontend developer based in Warsaw, Poland, soon moving to Madrid,
           Spain. I am passionate about <Em>beautiful interfaces</Em> which
@@ -88,9 +91,6 @@ function About() {
           </Em>{" "}
           if you think I would be a good fit for your team!
         </Section>
-        <HomePageChild>
-          <Contact />
-        </HomePageChild>
       </Stack>
     </HomePageContent>
   );
