@@ -31,18 +31,16 @@ function MousePinchToZoom() {
           Currently available on the Chrome Web Store with over 10,000 users and
           a 4.8 ⭐ average from 150 ratings. Also available for Firefox.
         </p>
-        <div>
-          The extension offers four activation modes:
-          <ul style={{ marginBottom: 0 }}>
-            <li>
-              Zoom by turning the mouse wheel while holding the Alt or Ctrl key
-            </li>
-            <li>
-              Zoom by turning the mouse wheel while holding the left or right
-              mouse button
-            </li>
-          </ul>
-        </div>
+        <p>The extension offers four activation modes:</p>
+        <ul style={{ marginBottom: 0 }}>
+          <li>
+            Zoom by turning the mouse wheel while holding the Alt or Ctrl key
+          </li>
+          <li>
+            Zoom by turning the mouse wheel while holding the left or right
+            mouse button
+          </li>
+        </ul>
         <p>
           You can also customize the speed and smoothness. All the settings are
           easily accessible by clicking on the extension logo.
