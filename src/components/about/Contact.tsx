@@ -42,7 +42,7 @@ function Contact({ mini = false }: ContactProps) {
       />
       <LinkButton
         icon={<LinkedIn />}
-        href="https://www.linkedin.com/in/norbert-nizio%C5%82ek-927304286/"
+        href="https://www.linkedin.com/in/norbert-niziolek"
         mini={mini}
       />
       {!mini && (
