@@ -1,5 +1,4 @@
 import HomePageContent from "@/components/Layout/HomePageContent";
-import GitHubTile from "@/components/projects/GitHubTile";
 import ProjectGroup from "@/components/projects/ProjectGroup";
 import { getProjectMeta, groupProjects } from "@/serverUtils";
 import { responsiveSize } from "@/theme/responsiveSize";
@@ -15,7 +14,6 @@ function Projects({ groupedProjects }: ProjectsProps) {
   return (
     <HomePageContent>
       <Stack sx={responsiveSize(6, undefined, "gap")}>
-        <GitHubTile />
         {groupedProjects.map(({ category, projects }) => (
           <ProjectGroup key={category} name={category} projects={projects} />
         ))}
