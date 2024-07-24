@@ -40,8 +40,9 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
 
           "& > :nth-of-type(2)": {
             fontWeight: "bold",
-            color: active ? "primary.light" : "text.primary",
-            "&:hover": { color: "primary.main" },
+            color: "primary.main",
+            // color: active ? "primary.light" : "text.primary",
+            // "&:hover": { color: "primary.main" },
             transition: transition("color"),
           },
         }}
