@@ -1,19 +1,18 @@
-import Contact from "@/components/about/Contact";
-import { Box, Stack } from "@mui/material";
+import { shadowWeak } from "@/theme/constants";
+import { Box, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { links } from "../../../constants";
 import useResponsiveLayout from "../../../hooks/useResponsiveLayout";
 import { responsiveSize } from "../../../theme/responsiveSize";
 import Logo from "../Logo";
-import NavButton from "./NavButton";
 
 function Nav() {
   const router = useRouter();
   const isIndex = router.pathname === "/";
   const { isMobile } = useResponsiveLayout();
 
-  const isMini = isMobile && !isIndex;
+  // const isMini = isMobile && !isIndex;
+  const isMini = false;
 
   return (
     <Stack
@@ -25,6 +24,7 @@ function Nav() {
           : null,
         paddingX: 3,
         paddingY: isMini ? 1 : null,
+        transform: "scale(0.7)",
       }}
     >
       <Box
@@ -39,18 +39,27 @@ function Nav() {
         <Link href="/" legacyBehavior passHref>
           <Logo active={router.pathname === "/"} />
         </Link>
-        {!isMini && <Contact mini />}
+        <Typography
+          variant="h3"
+          textAlign="right"
+          marginTop={1}
+          sx={{
+            fontSize: "1.7rem",
+            position: "relative",
+            right: 8,
+            fontWeight: 400,
+
+            // letterSpacing: 0,
+            // fontStyle: "italic",
+
+            // LIGHT MODE
+            textShadow: shadowWeak,
+            color: "#0d1117",
+          }}
+        >
+          frontend developer
+        </Typography>
       </Box>
-      {!isMini &&
-        links
-          .filter((link) => !link.hidden)
-          .map((link) => (
-            <Link key={link.href} href={link.href} legacyBehavior passHref>
-              <NavButton active={router.pathname === link.href}>
-                {link.label}
-              </NavButton>
-            </Link>
-          ))}
     </Stack>
   );
 }

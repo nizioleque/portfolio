@@ -19,7 +19,8 @@ export const themeBase = createTheme({
       main: "hsl(338deg, 80%, 50%)",
     },
     background: {
-      default: "#141414",
+      // default: "#0d1117",
+      default: "#ffffff", // LIGHT MODE
       light: "#3a3a3a",
     },
     text: {
