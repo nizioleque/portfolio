@@ -26,9 +26,9 @@ function About() {
           <Contact />
         </HomePageChild>
         <Section>
-          a frontend developer based in Warsaw, Poland, soon moving to Madrid,
-          Spain. I am passionate about <Em>beautiful interfaces</Em> which
-          enable <Em>great user experiences</Em>.
+          a frontend developer based in Warsaw, Poland (now enjoying the weather
+          in Madrid, Spain). I am passionate about <Em>beautiful interfaces</Em>{" "}
+          which enable <Em>great user experiences</Em>.
         </Section>
         <Section>
           Over many years of experience I have created numerous helpful{" "}
