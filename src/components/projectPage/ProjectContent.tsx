@@ -6,7 +6,10 @@ interface ProjectContentProps {
   children: ReactNode;
 }
 
-const karla = Karla({ subsets: ["latin"], weight: ["400"] });
+const karla = Karla({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 function ProjectContent({ children }: ProjectContentProps) {
   return (

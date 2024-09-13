@@ -25,7 +25,7 @@ function ExtensionTemplate() {
           One of my greatest achievements and learning experiences. Modern, easy
           to use and extremely powerful browser extension template. The best.
         </p>
-        <p>Best features:</p>
+        <h4>Best features</h4>
         <ul>
           <li>
             Use any NPM module and rebuild in the blink of an eye (literally)
