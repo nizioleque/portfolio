@@ -2,7 +2,7 @@ import { createTheme } from "@mui/system";
 import { Space_Mono } from "next/font/google";
 import { shadowStrong, shadowWeak } from "./constants";
 
-const spaceMono = Space_Mono({
+export const spaceMono = Space_Mono({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],

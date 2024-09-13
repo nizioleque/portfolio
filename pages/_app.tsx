@@ -1,6 +1,7 @@
 import HomeLayout from "@/components/Layout/HomeLayout";
 import "@/index.css";
 import { theme } from "@/theme/theme";
+import { spaceMono } from "@/theme/themeBase";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
@@ -18,6 +19,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
   return (
     <>
+      <style jsx global>{`
+        code,
+        pre {
+          font-family: ${spaceMono.style.fontFamily};
+        }
+      `}</style>
+
       <Head>
         <meta
           name="description"
