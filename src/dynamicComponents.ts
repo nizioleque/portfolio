@@ -35,6 +35,7 @@ const dynamicComponents = {
   "react-props-sync": dynamic(
     () => import("../pages/projects/react-props-sync")
   ),
+  quiz: dynamic(() => import("../pages/projects/quiz")),
 };
 
 export default dynamicComponents;
