@@ -31,7 +31,7 @@ function YoutubeCustomSpeed() {
           change YouTube playback rate to a custom value.
         </p>
         <p>
-          Currently available on the Chrome Web Store with over 10,000 users and
+          Currently available on the Chrome Web Store with over 13,000 users and
           a 4.7 ⭐ average rating. Also available for Firefox.
         </p>
         <p>
