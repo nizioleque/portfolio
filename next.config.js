@@ -8,6 +8,13 @@ const nextConfig = {
       destination: "/projects/:path*",
     },
   ],
+  redirects: async () => [
+    {
+      source: "/cv",
+      destination: "/CV Norbert Niziołek.pdf",
+      permanent: true,
+    },
+  ],
 };
 
 module.exports = nextConfig;
