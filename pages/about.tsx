@@ -68,7 +68,10 @@ function About() {
               textUnderlineOffset: 4,
             }}
           >
-            <a target="_blank" href="/cv.pdf">
+            <a
+              target="_blank"
+              href={`/${encodeURIComponent("CV Norbert Niziołek.pdf")}`}
+            >
               CV
             </a>
           </Em>{" "}
