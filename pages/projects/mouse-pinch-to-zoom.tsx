@@ -28,7 +28,7 @@ function MousePinchToZoom() {
           touchpad or touchscreen zoom effect using a mouse.
         </p>
         <p>
-          Currently available on the Chrome Web Store with over 10,000 users and
+          Currently available on the Chrome Web Store with over 11,200 users and
           a 4.8 ⭐ average from 150 ratings. Also available for Firefox.
         </p>
         <p>The extension offers four activation modes:</p>
