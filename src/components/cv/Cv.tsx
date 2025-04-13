@@ -14,7 +14,7 @@ function Cv() {
           size: 210mm 297mm;
         }
       `}</style>
-      <div className="flex h-[297mm] w-[210mm] bg-white font-[Aptos]">
+      <div className="flex h-[297mm] w-[210mm] flex-col font-[Aptos]">
         <Infobar />
         <MainContent />
       </div>

@@ -10,19 +10,16 @@ import ContactTile from "./ContactTile";
 
 function Infobar() {
   return (
-    <div className="bg-cv-700 flex shrink-0 flex-col justify-between p-6 text-white shadow-2xl">
+    <div className="bg-cv-700 shadow-cv-700/10 flex shrink-0 items-center gap-6 px-6 py-4 text-white shadow-lg">
       <div className="flex flex-col gap-1">
-        <h1 className="text-shadow-950/15 text-[30px]/none font-normal text-shadow-lg">
-          Norbert Kosma
+        <h1 className="text-shadow-950/15 text-[32px]/none font-normal text-shadow-lg">
+          Norbert Kosma <span className="font-extrabold">Niziołek</span>
         </h1>
-        <h1 className="text-shadow-950/15 text-[36px]/none font-black text-shadow-lg">
-          Niziołek
-        </h1>
-        <div className="leading-none font-light italic">
+        <div className="relative left-[217px] leading-none font-light italic">
           [neez-<strong>yo</strong>-weck]
         </div>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="ms-auto flex flex-col gap-1">
         <ContactTile
           icon={<EmailOutlined />}
           label="norbert@niziolek.dev"
@@ -35,27 +32,27 @@ function Infobar() {
         />
         <ContactTile icon={<PlaceOutlined />} label="Warsaw, Poland" />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <ContactTile
-          size="small"
+          // size="small"
           icon={<Language />}
           label="niziolek.dev"
           href="https://niziolek.dev"
         />
         <ContactTile
-          size="small"
+          // size="small"
           icon={<GitHub />}
           label="nizioleque"
           href="https://github.com/nizioleque"
         />
         <ContactTile
-          size="small"
+          // size="small"
           icon={<LinkedIn />}
           label="norbert-niziolek"
           href="https://www.linkedin.com/in/norbert-niziolek/"
         />
       </div>
-      <div>
+      {/* <div>
         <h3 className="mb-1 text-lg font-bold">Skills</h3>
         <ul className="ms-4 flex list-disc flex-col gap-1">
           <li>
@@ -98,7 +95,7 @@ function Infobar() {
           <li>Spanish, Ukrainian – B1</li>
           <li>German – A2</li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }
