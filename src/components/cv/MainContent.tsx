@@ -1,5 +1,7 @@
+import cognityLogo from "@/assets/cv/cognity.webp";
 import herohuntLogo from "@/assets/cv/herohunt.png";
 import miniLogo from "@/assets/cv/mini.png";
+import omegaLogo from "@/assets/cv/omega.jpg";
 import samsungLogo from "@/assets/cv/samsung.jpg";
 import mousePinchLogo from "@/assets/icons/mouse-pinch-to-zoom.png";
 import splitsmartLogo from "@/assets/icons/splitsmart.png";
@@ -14,6 +16,67 @@ function MainContent() {
     <div className="flex w-full flex-col justify-between p-6">
       <MainSection title="Experience">
         <Experience
+          title="Senior Full Stack Developer"
+          company="O-mega"
+          startDate="September 2024"
+          endDate="Now"
+          logo={omegaLogo}
+          description={[
+            <>
+              <strong>Sole technical owner</strong> of the product; responsible
+              for end-to-end development and architecture in a fast-paced AI
+              startup
+            </>,
+            <>
+              Rebuilt the frontend from vanilla JS to{" "}
+              <strong>React (Next.js App Router)</strong>, modernized styling,
+              and introduced modular design
+            </>,
+            <>
+              Refactored a monolithic <strong>FastAPI</strong> backend: added
+              type safety, restructured the codebase into modules
+            </>,
+            <>
+              Improved <strong>MongoDB</strong> queries for performance,
+              minimizing unnecessary data fetches and roundtrips
+            </>,
+            <>
+              Used <strong>Cursor AI</strong> to accelerate development while
+              maintaining full control and code quality
+            </>,
+            <>
+              Built <strong>AI-driven</strong> features including LLM prompt
+              tuning, structured response parsing, and browser automation
+            </>,
+          ]}
+        />
+        <Experience
+          title="Senior Front-end Developer"
+          company="The Cognity"
+          startDate="October 2024"
+          endDate="Now"
+          logo={cognityLogo}
+          description={[
+            <>
+              <strong>Main frontend developer</strong> for an e-learning
+              platform supporting users on the autism spectrum
+            </>,
+            <>
+              Contributed to a major UX-focused redesign, transforming the user
+              experience from an open library to a guided lesson path
+            </>,
+            <>
+              Worked within a large legacy codebase, implementing new features
+              and improving usability without disrupting existing flows
+            </>,
+            <>
+              Made backend changes in <strong>ASP.NET</strong> (
+              <strong>C#</strong>) to support new frontend functionality and
+              improve API responses when needed
+            </>,
+          ]}
+        />
+        <Experience
           title="Senior Front-end Developer"
           company="HeroHunt.ai"
           startDate="August 2023"
@@ -21,32 +84,24 @@ function MainContent() {
           logo={herohuntLogo}
           description={[
             <>
-              Created a <strong>web application</strong> for AI-assisted
-              recruitment with state-of-the-art tools including{" "}
-              <strong>Next.js</strong>, <strong>Tailwind CSS</strong> and{" "}
-              <strong>Tanstack Query</strong>
+              <strong>Sole frontend developer</strong>, responsible for building
+              a web app and a browser extension from scratch using{" "}
+              <strong>Next.js (App Router)</strong>, <strong>React</strong>, and{" "}
+              <strong>Tailwind CSS</strong>
             </>,
             <>
-              Created a <strong>browser extension</strong> using{" "}
-              <strong>React</strong>, including a custom build process with{" "}
-              <strong>Webpack</strong> and integration with third party websites
+              Built a browser extension with a custom <strong>Webpack</strong>
+              -based build system and deep integration with third-party websites
             </>,
             <>
-              Led the development of the front-end projects and made critical{" "}
-              <strong>architectural decisions</strong>
+              Used <strong>React Server Components</strong> and advanced
+              preloading strategies (with <strong>RSC</strong> +{" "}
+              <strong>Tanstack Query</strong>) to reduce bundle size, avoid
+              loading waterfalls and improve UX
             </>,
             <>
-              Collaborated closely with back-end developers to ensure efficient
-              and secure data exchange
-            </>,
-            <>
-              Proactively supported the leadership and design teams to achieve{" "}
-              <strong>high-quality system design</strong> and{" "}
-              <strong>user experience</strong>
-            </>,
-            <>
-              Released an <strong>open-source</strong> browser extension
-              template
+              Suggested and implemented backend <strong>REST API</strong> design
+              improvements to reduce overfetching
             </>,
           ]}
         />
@@ -58,21 +113,23 @@ function MainContent() {
           logo={samsungLogo}
           description={[
             <>
-              Created a front-end application for managing cloud infrastructure
-              using <strong>TypeScript</strong>, <strong>React</strong> and{" "}
-              <strong>MUI</strong>
+              <strong>Independently</strong> built a front-end application for
+              managing cloud infrastructure using <strong>TypeScript</strong>,{" "}
+              <strong>React</strong> and <strong>MUI</strong>
             </>,
             <>
-              Developed a back-end application in <strong>Spring Boot</strong>{" "}
-              and <strong>Java</strong>
+              Developed a back-end application in <strong>Java</strong> with{" "}
+              <strong>Spring Boot</strong>
             </>,
             <>
               Maintained code for <strong>NLP</strong> tasks as part of the
               Bixby assistant team
             </>,
             <>
-              Created an <strong>Electron</strong> app for automating internal
-              release processes
+              Created an <strong>Electron</strong> desktop app to automate
+              internal release processes, with a <strong>React</strong> frontend
+              and <strong>Node.js</strong> backend that integrated with multiple
+              APIs and CLI tools
             </>,
           ]}
         />

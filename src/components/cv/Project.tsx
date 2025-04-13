@@ -21,18 +21,18 @@ function Project({
 }: ProjectProps) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="block">
-      <div className="flex gap-4">
+      <div className="flex items-start gap-4">
         <Image
           src={logo}
           alt={title}
-          width={48}
-          height={48}
+          width={40}
+          height={40}
           className="object-contain"
           unoptimized
         />
         <div className="flex flex-col">
           <h3 className="text-lg font-bold">{title}</h3>
-          <div className="text-cv-500">
+          <div className="">
             {type}
 
             {users && (
@@ -48,7 +48,7 @@ function Project({
               </>
             )}
           </div>
-          <p className="text-cv-500">{description}</p>
+          <p className="">{description}</p>
         </div>
       </div>
     </a>

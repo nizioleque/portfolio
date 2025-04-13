@@ -12,10 +12,10 @@ function Infobar() {
   return (
     <div className="bg-cv-700 flex shrink-0 flex-col justify-between p-6 text-white shadow-2xl">
       <div className="flex flex-col gap-1">
-        <h1 className="text-shadow-950/15 text-[32px] leading-none font-normal text-shadow-lg">
+        <h1 className="text-shadow-950/15 text-[30px]/none font-normal text-shadow-lg">
           Norbert Kosma
         </h1>
-        <h1 className="text-shadow-950/15 text-[38px] leading-none font-black text-shadow-lg">
+        <h1 className="text-shadow-950/15 text-[36px]/none font-black text-shadow-lg">
           Niziołek
         </h1>
         <div className="leading-none font-light italic">
@@ -76,7 +76,7 @@ function Infobar() {
             Backend
             <ul className="ms-4 list-disc">
               <li>Python – FastAPI</li>
-              <li>Java – Sprint Boot</li>
+              <li>Java – Spring Boot</li>
               <li>Firebase</li>
             </ul>
           </li>
