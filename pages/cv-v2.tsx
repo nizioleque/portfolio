@@ -26,7 +26,7 @@ function CvV2() {
           sx={{
             "@media screen": {
               transformOrigin: "top",
-              scale: 1.203,
+              // scale: 1.203,
             },
           }}
         >

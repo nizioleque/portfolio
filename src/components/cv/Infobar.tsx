@@ -10,7 +10,7 @@ import ContactTile from "./ContactTile";
 
 function Infobar() {
   return (
-    <div className="bg-cv-700 flex flex-col justify-between p-6 text-white shadow-2xl">
+    <div className="bg-cv-700 flex shrink-0 flex-col justify-between p-6 text-white shadow-2xl">
       <div className="flex flex-col gap-1">
         <h1 className="text-shadow-950/15 text-[32px] leading-none font-normal text-shadow-lg">
           Norbert Kosma
@@ -55,7 +55,7 @@ function Infobar() {
           href="https://www.linkedin.com/in/norbert-niziolek/"
         />
       </div>
-      <div className="text-sm/5.5">
+      <div>
         <h3 className="mb-1 text-lg font-bold">Skills</h3>
         <ul className="ms-4 flex list-disc flex-col gap-1">
           <li>
@@ -85,7 +85,7 @@ function Infobar() {
           <li>UI/UX Design</li>
         </ul>
       </div>
-      <div className="text-sm/5.5">
+      <div>
         <h3 className="mb-1 text-lg font-bold">Languages</h3>
         <ul className="ms-4 flex list-disc flex-col gap-1">
           <li>Polish – native</li>
