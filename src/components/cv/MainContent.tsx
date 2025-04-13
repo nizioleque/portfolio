@@ -174,26 +174,20 @@ function MainContent() {
       </MainSection>
       <MainSection title="Education">
         <Education
-          title="Data Science"
-          institution="Warsaw University of Technology"
-          startDate="2024"
-          endDate="NOW"
-          area="Master of Science"
-          faculty="Faculty of Mathematics and Information Science"
-          info={{}}
-          logo={miniLogo}
-        />
-        <Education
-          title="Computer Science and Information Systems"
+          area="Computer Science and Information Systems"
           institution="Warsaw University of Technology"
           startDate="2020"
           endDate="2024"
-          area="Bachelor of Science in Engineering – with honors"
+          title="Bachelor of Science in Engineering – with honors"
           faculty="Faculty of Mathematics and Information Science"
-          info={{
-            Grade: "4.75 (on a scale of 2-5)",
-          }}
-          logo={miniLogo}
+        />
+        <Education
+          area="Data Science"
+          institution="Warsaw University of Technology"
+          startDate="2024"
+          endDate="2025"
+          title="Master of Science"
+          faculty="Faculty of Mathematics and Information Science"
         />
       </MainSection>
     </div>
