@@ -1,38 +1,4 @@
-:root {
-  color-scheme: dark;
-}
-
-* {
-  font-variant-ligatures: none;
-}
-
-html {
-  height: 100%;
-  user-select: none;
-}
-
-body {
-  height: 100%;
-}
-
-#__next {
-  height: 100%;
-}
-
 a {
   color: inherit;
   text-decoration: inherit;
-}
-
-.project-content {
-  video,
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  ul,
-  ol {
-    margin-top: -8px;
-  }
 }

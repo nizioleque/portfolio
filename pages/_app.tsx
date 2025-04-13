@@ -1,31 +1,17 @@
-import HomeLayout from "@/components/Layout/HomeLayout";
+import RootLayout from "@/components/Layout/RootLayout";
 import "@/index.css";
-import { theme } from "@/theme/theme";
-import { spaceMono } from "@/theme/themeBase";
-import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { RecoilEnv, RecoilRoot } from "recoil";
+import { RecoilEnv } from "recoil";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  let LayoutComponent;
-
-  if (!router.pathname.startsWith("/projects/")) {
-    LayoutComponent = HomeLayout;
-  }
+  const isCvPage = router.pathname === "/cv-v2";
+  const Layout = isCvPage ? undefined : RootLayout;
 
   return (
     <>
-      <style jsx global>{`
-        code,
-        pre {
-          font-family: ${spaceMono.style.fontFamily};
-        }
-      `}</style>
-
       <Head>
         <meta
           name="description"
@@ -38,19 +24,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         />
         <title>NORBERT NIZIOŁEK</title>
       </Head>
-
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {LayoutComponent !== undefined ? (
-            <LayoutComponent>
-              <Component key={router.pathname} {...pageProps} />
-            </LayoutComponent>
-          ) : (
-            <Component key={router.pathname} {...pageProps} />
-          )}
-        </ThemeProvider>
-      </RecoilRoot>
+      {Layout !== undefined ? (
+        <Layout router={router}>
+          <Component key={router.pathname} {...pageProps} />
+        </Layout>
+      ) : (
+        <Component key={router.pathname} {...pageProps} />
+      )}
     </>
   );
 }
