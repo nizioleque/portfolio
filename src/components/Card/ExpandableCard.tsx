@@ -75,6 +75,8 @@ function ExpandableCard({ content, id, hue, zIndex }: ExpandableCardProps) {
   };
 
   return (
+    // TODO: fix types?
+    // @ts-ignore
     <Element name={uniqueId}>
       <Box>
         <AnimatePresence>
