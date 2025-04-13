@@ -15,7 +15,7 @@ function Infobar() {
         <h1 className="text-shadow-950/15 text-[32px]/none font-normal text-shadow-lg">
           Norbert Kosma <span className="font-extrabold">Niziołek</span>
         </h1>
-        <div className="relative left-[217px] leading-none font-light italic">
+        <div className="relative left-[223px] leading-none font-light italic">
           [neez-<strong>yo</strong>-weck]
         </div>
       </div>
