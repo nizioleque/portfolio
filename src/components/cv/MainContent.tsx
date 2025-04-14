@@ -159,7 +159,7 @@ function MainContent() {
         />
         <Project
           title="Developolis"
-          type="Web application"
+          type="Fullstack application"
           description="Corporate training, gamified"
           logo={developolisLogo}
           techStack={["Next.js", "AdonisJS (Node.js)", "PostgreSQL"]}
@@ -168,10 +168,10 @@ function MainContent() {
         />
         <Project
           title="Splitsmart"
-          type="Mobile application"
+          type="Fullstack application"
           description="Split bills with friends using OCR receipt scanning"
           logo={splitsmartLogo}
-          techStack={["Flutter", "FastAPI", "MongoDB"]}
+          techStack={["Flutter", "FastAPI (Python)", "MongoDB"]}
           year="2024"
         />
       </MainSection>
