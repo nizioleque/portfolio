@@ -178,8 +178,8 @@ function MainContent() {
       <MainSection title="Skills">
         <div className="col-span-2 flex flex-col gap-1 text-justify leading-5.5">
           <p>
-            <span className="text-cv-700 me-3 text-lg font-medium">
-              Frontend
+            <span className="text-cv-700 me-2 text-lg font-medium">
+              Frontend{" "}
             </span>
             HTML, CSS, JavaScript, TypeScript, React, Next.js (Pages Router, App
             Router), React Server Components (RSC), Tailwind CSS, MUI (Material
@@ -187,25 +187,27 @@ function MainContent() {
             Playwright, Cypress, Prettier, ESLint, Electron, Flutter
           </p>
           <p>
-            <span className="text-cv-700 me-3 text-lg font-medium">
-              Backend
+            <span className="text-cv-700 me-2 text-lg font-medium">
+              Backend{" "}
             </span>
             Node.js, AdonisJS, Python, Flask, FastAPI, Pydantic, Beanie (ODM),
             SQLAlchemy (ORM), Poetry, uv, Ruff, Java, Spring Boot, Firebase, C#,
             ASP.NET, SQL (Microsoft SQL Server, PostgreSQL, SQLite), MongoDB
           </p>
           <p>
-            <span className="text-cv-700 me-3 text-lg font-medium">DevOps</span>
+            <span className="text-cv-700 me-2 text-lg font-medium">
+              DevOps{" "}
+            </span>
             Microsoft Azure, Google Cloud Platform (GCP), Docker, CI/CD, GitHub
             Actions, Jenkins, Render, Vercel
           </p>
           <p>
-            <span className="text-cv-700 me-3 text-lg font-medium">Other</span>
+            <span className="text-cv-700 me-2 text-lg font-medium">Other </span>
             Git, OpenAPI, UI/UX Design, Figma, Cursor AI, Browser Use
           </p>
           <p>
-            <span className="text-cv-700 me-3 text-lg font-medium">
-              Languages
+            <span className="text-cv-700 me-2 text-lg font-medium">
+              Languages{" "}
             </span>
             Polish native, English C2 (CAE certificate), Spanish C1, Italian B2,
             Russian B2, Ukrainian B2, German A2
