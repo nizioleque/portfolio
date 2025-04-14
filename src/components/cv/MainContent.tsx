@@ -14,7 +14,7 @@ import Project from "./Project";
 
 function MainContent() {
   return (
-    <div className="flex w-full flex-col justify-between p-6">
+    <div className="flex w-full flex-col justify-between gap-3 px-6 py-4">
       <MainSection title="Experience">
         <Experience
           title="Senior Full Stack Developer"
