@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import { Lato } from "next/font/google";
+import { Source_Sans_3 } from "next/font/google";
 import Infobar from "./Infobar";
 import MainContent from "./MainContent";
 
-const lato = Lato({
+const sourceSans3 = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 function Cv() {
@@ -23,8 +23,8 @@ function Cv() {
       `}</style>
       <div
         className={clsx(
-          "flex h-[297mm] w-[210mm] flex-col bg-white",
-          lato.className,
+          "text-cv-900 flex h-[297mm] w-[210mm] flex-col bg-white",
+          sourceSans3.className,
         )}
       >
         <Infobar />
