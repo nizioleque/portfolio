@@ -23,7 +23,7 @@ function Cv() {
       `}</style>
       <div
         className={clsx(
-          "text-cv-900 flex h-[297mm] w-[210mm] flex-col bg-white",
+          "text-cv-950 flex h-[297mm] w-[210mm] flex-col bg-white",
           sourceSans3.className,
         )}
       >

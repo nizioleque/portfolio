@@ -10,7 +10,7 @@ import ContactTile from "./ContactTile";
 
 function Infobar() {
   return (
-    <div className="bg-cv-700 shadow-cv-700/10 flex shrink-0 items-center gap-6 px-6 py-4 text-white shadow-lg">
+    <div className="bg-cv-700 shadow-cv-700/20 text-cv-50 flex shrink-0 items-center gap-10 px-6 py-4 shadow-md">
       <div className="flex flex-col gap-1">
         <h1 className="text-shadow-950/15 text-[32px]/none font-normal text-shadow-lg">
           Norbert Kosma <span className="font-extrabold">Niziołek</span>

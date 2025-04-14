@@ -10,7 +10,7 @@ function MainSection({ title, subtitle, children }: MainSectionProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <h2 className="text-cv-700 text-xl font-medium uppercase">{title}</h2>
+        <h2 className="text-cv-700 text-xl font-semibold uppercase">{title}</h2>
         {subtitle && (
           <div className="text-cv-700 text-sm italic underline">{subtitle}</div>
         )}

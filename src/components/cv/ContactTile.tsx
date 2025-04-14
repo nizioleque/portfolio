@@ -8,16 +8,12 @@ interface ContactTileProps {
 
 function ContactTile({ icon, label, href }: ContactTileProps) {
   return (
-    <div className="flex items-center gap-3 [&_svg]:size-5!">
-      {icon}
-      {href ? (
-        <a href={href} target="_blank">
-          {label}
-        </a>
-      ) : (
-        label
-      )}
-    </div>
+    <a href={href} target="_blank">
+      <div className="flex items-center gap-3 [&_svg]:size-5!">
+        {icon}
+        {label}
+      </div>
+    </a>
   );
 }
 

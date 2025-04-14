@@ -38,7 +38,7 @@ function Experience({
         {description.map((item, index) => (
           <li
             key={index}
-            className="list-disc text-justify leading-5.5 [&>strong]:font-semibold"
+            className="list-disc text-justify leading-6 [&>strong]:font-semibold"
           >
             {item}
           </li>

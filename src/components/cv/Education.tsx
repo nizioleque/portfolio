@@ -20,9 +20,8 @@ function Education({
       <div className="flex flex-col">
         <h3 className="text-lg font-bold">{institution}</h3>
         <h4 className="font-semibold">{title}</h4>
-        <p className="">
-          {area}, {faculty}
-        </p>
+        <span className="leading-5.5">{area}</span>
+        <span className="leading-5.5">{faculty}</span>
       </div>
       <div className="text-cv-600 absolute right-0 text-sm uppercase">
         {startDate} – {endDate}
