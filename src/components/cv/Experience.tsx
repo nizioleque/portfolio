@@ -28,7 +28,7 @@ function Experience({
           <div className="flex items-baseline">
             <h3 className="text-lg/none font-bold">{company}</h3>
             <div className="text-cv-600 ms-auto text-sm/none uppercase">
-              {startDate} - {endDate}
+              {startDate} – {endDate}
             </div>
           </div>
           <p className="text-base/none">{title}</p>

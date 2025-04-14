@@ -1,8 +1,7 @@
 import cognityLogo from "@/assets/cv/cognity.webp";
 import developolisLogo from "@/assets/cv/developolis.png";
 import herohuntLogo from "@/assets/cv/herohunt.png";
-import miniLogo from "@/assets/cv/mini.png";
-import omegaLogo from "@/assets/cv/omega.jpg";
+import omegaLogo from "@/assets/cv/omega.png";
 import samsungLogo from "@/assets/cv/samsung.jpg";
 import mousePinchLogo from "@/assets/icons/mouse-pinch-to-zoom.png";
 import splitsmartLogo from "@/assets/icons/splitsmart.png";
@@ -14,7 +13,7 @@ import Project from "./Project";
 
 function MainContent() {
   return (
-    <div className="flex w-full flex-col justify-between gap-3 px-6 py-4">
+    <div className="flex w-full flex-1 flex-col justify-between gap-4 p-6">
       <MainSection title="Experience">
         <Experience
           title="Senior Full Stack Developer"
@@ -24,35 +23,32 @@ function MainContent() {
           logo={omegaLogo}
           description={[
             <>
-              <strong>Sole technical owner</strong> of the product; responsible
-              for end-to-end development and architecture in a fast-paced AI
-              startup
+              <strong>Sole engineer</strong> in an AI agent startup, responsible
+              for end-to-end development and architecture
             </>,
             <>
-              Rebuilt the frontend from vanilla JS to{" "}
-              <strong>React (Next.js App Router)</strong>, modernized styling,
-              and introduced modular design
+              Developing <strong>Next.js (App Router)</strong> and{" "}
+              <strong>FastAPI</strong> applications
             </>,
             <>
-              Refactored a monolithic <strong>FastAPI</strong> backend: added
-              type safety, restructured the codebase into modules
+              Completely rebuilt a vanilla JS frontend, modernized styling,
+              introduced <strong>modular design</strong> and improved{" "}
+              <strong>maintainability</strong>
             </>,
             <>
-              Improved <strong>MongoDB</strong> queries for performance,
-              minimizing unnecessary data fetches and roundtrips
-            </>,
-            <>
-              Used <strong>Cursor AI</strong> to accelerate development while
-              maintaining full control and code quality
+              Refactored an existing backend application with{" "}
+              <strong>type safety</strong>, restructured the codebase and
+              deployed it with <strong>Render</strong>
             </>,
             <>
               Built <strong>AI-driven</strong> features including LLM prompt
-              tuning, structured response parsing, and browser automation
+              tuning, structured response parsing, and{" "}
+              <strong>browser automation</strong>
             </>,
           ]}
         />
         <Experience
-          title="Senior Front-end Developer"
+          title="Senior Full Stack Developer"
           company="The Cognity"
           startDate="October 2024"
           endDate="Now"
@@ -63,45 +59,43 @@ function MainContent() {
               platform supporting users on the autism spectrum
             </>,
             <>
-              Contributed to a major UX-focused redesign, transforming the user
-              experience from an open library to a guided lesson path
+              Developing a <strong>C# (ASP.NET)</strong> backend to support new
+              frontend functionality and improve API responses
             </>,
             <>
-              Worked within a large legacy codebase, implementing new features
-              and improving usability without disrupting existing flows
+              Refactored a legacy <strong>Pages Router</strong> frontend
+              application into <strong>Next.js (App Router)</strong> and fixed
+              styling inconsistencies
             </>,
             <>
-              Made backend changes in <strong>ASP.NET</strong> (
-              <strong>C#</strong>) to support new frontend functionality and
-              improve API responses when needed
+              Worked with <strong>GitHub Actions</strong>,{" "}
+              <strong>Docker</strong> and <strong>Azure</strong> to improve
+              build times and ensure proper resource caching
             </>,
           ]}
         />
         <Experience
-          title="Senior Front-end Developer"
+          title="Senior Frontend Developer"
           company="HeroHunt.ai"
           startDate="August 2023"
           endDate="June 2024"
           logo={herohuntLogo}
           description={[
             <>
-              <strong>Sole frontend developer</strong>, responsible for building
-              a web app and a browser extension from scratch using{" "}
-              <strong>Next.js (App Router)</strong>, <strong>React</strong>, and{" "}
-              <strong>Tailwind CSS</strong>
+              <strong>Sole frontend developer </strong> in an AI recruitment
+              startup
             </>,
             <>
-              Built a browser extension with a custom <strong>Webpack</strong>
-              -based build system and deep integration with third-party websites
+              Built a web app and a browser extension from scratch using{" "}
+              <strong>Next.js (App Router)</strong>, <strong>React</strong>,{" "}
+              <strong>Tailwind CSS</strong>, <strong>Tanstack Query</strong>
             </>,
             <>
-              Used <strong>React Server Components</strong> and advanced
-              preloading strategies (with <strong>RSC</strong> +{" "}
-              <strong>Tanstack Query</strong>) to reduce bundle size, avoid
-              loading waterfalls and improve UX
+              Leveraged <strong>React Server Components</strong> and prefetching
+              strategies to reduce bundle size and improve loading times
             </>,
             <>
-              Suggested and implemented backend <strong>REST API</strong> design
+              Suggested <strong>REST API </strong>
               improvements to reduce overfetching
             </>,
           ]}
@@ -114,28 +108,35 @@ function MainContent() {
           logo={samsungLogo}
           description={[
             <>
-              <strong>Independently</strong> built a front-end application for
+              <strong>Independently</strong> built a frontend application for
               managing cloud infrastructure using <strong>TypeScript</strong>,{" "}
-              <strong>React</strong> and <strong>MUI</strong>
+              <strong>React</strong>, <strong>MUI</strong>,{" "}
+              <strong>RTK Query</strong>
             </>,
             <>
-              Developed a back-end application in <strong>Java</strong> with{" "}
-              <strong>Spring Boot</strong>
+              Developed a back-end application in{" "}
+              <strong>Java (Spring Boot)</strong>
             </>,
             <>
-              Maintained code for <strong>NLP</strong> tasks as part of the
-              Bixby assistant team
+              Maintained <strong>NLP</strong> code in the Bixby voice assistant
+              team
             </>,
             <>
               Created an <strong>Electron</strong> desktop app to automate
-              internal release processes, with a <strong>React</strong> frontend
-              and <strong>Node.js</strong> backend that integrated with multiple
-              APIs and CLI tools
+              internal release processes, integrated with <strong>Git</strong>,{" "}
+              <strong>GitHub</strong>, <strong>Jenkins</strong> API and CLI
             </>,
           ]}
         />
       </MainSection>
-      <MainSection title="Projects">
+      <MainSection
+        title="Projects"
+        subtitle={
+          <a href="https://github.com/nizioleque" target="_blank">
+            (more on GitHub)
+          </a>
+        }
+      >
         <Project
           title="Mouse Pinch-To-Zoom"
           type="Browser extension"
@@ -163,6 +164,7 @@ function MainContent() {
           logo={developolisLogo}
           techStack={["Next.js", "AdonisJS (Node.js)", "PostgreSQL"]}
           year="2025"
+          href="https://developolis.pl"
         />
         <Project
           title="Splitsmart"
@@ -172,6 +174,40 @@ function MainContent() {
           techStack={["Flutter", "FastAPI", "MongoDB"]}
           year="2024"
         />
+      </MainSection>
+      <MainSection title="Skills">
+        <div className="col-span-2 flex flex-col gap-3 text-justify leading-5.5">
+          <div className="flex flex-col gap-1 [&_strong]:font-semibold">
+            <span className="text-cv-700 text-lg">Tech stack </span>
+            <p>
+              <strong>Frontend: </strong> HTML, CSS, JavaScript, TypeScript,
+              React, Next.js (Pages Router, App Router), React Server Components
+              (RSC), Tailwind CSS, MUI (Material UI), Framer Motion, Tanstack
+              Query (React Query), Redux, Webpack, Playwright, Cypress,
+              Prettier, ESLint, Electron, Flutter
+            </p>
+            <p>
+              <strong>Backend: </strong>
+              Node.js, AdonisJS, Python, Flask, FastAPI, Pydantic, Beanie (ODM),
+              SQLAlchemy (ORM), Poetry, uv, Ruff, Java, Spring Boot, Firebase,
+              C#, ASP.NET, SQL (Microsoft SQL Server, PostgreSQL, SQLite),
+              MongoDB
+            </p>
+            <p>
+              <strong>DevOps: </strong>
+              Microsoft Azure, Google Cloud Platform (GCP), Docker, CI/CD,
+              GitHub Actions, Jenkins, Render, Vercel
+            </p>
+            <p>
+              <strong>Other: </strong>
+              Git, OpenAPI, UI/UX Design, Figma, Cursor AI, Browser Use
+            </p>
+          </div>
+          <p>
+            <span className="text-cv-700 text-lg">Languages: </span>
+            Polish native, English C2 (CAE certificate), Spanish C1, Italian B2,
+            Russian B2, Ukrainian B2, German A2
+          </p>
         </div>
       </MainSection>
       <MainSection title="Education">
