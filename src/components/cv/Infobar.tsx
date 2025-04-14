@@ -1,10 +1,10 @@
 import {
   EmailOutlined,
   GitHub,
-  Language,
   LinkedIn,
   PhoneOutlined,
   PlaceOutlined,
+  Public,
 } from "@mui/icons-material";
 import ContactTile from "./ContactTile";
 
@@ -35,7 +35,7 @@ function Infobar() {
       <div className="flex flex-col gap-1">
         <ContactTile
           // size="small"
-          icon={<Language />}
+          icon={<Public />}
           label="niziolek.dev"
           href="https://niziolek.dev"
         />

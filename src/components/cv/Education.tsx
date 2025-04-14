@@ -18,13 +18,15 @@ function Education({
   return (
     <div className="relative flex flex-1 flex-col">
       <div className="flex flex-col">
-        <h3 className="text-lg font-bold">{institution}</h3>
+        <div className="flex items-baseline">
+          <h3 className="text-lg font-bold">{institution}</h3>
+          <div className="text-cv-600 ms-auto text-sm uppercase">
+            {startDate} – {endDate}
+          </div>
+        </div>
         <h4 className="font-semibold">{title}</h4>
         <span className="leading-5.5">{area}</span>
         <span className="leading-5.5">{faculty}</span>
-      </div>
-      <div className="text-cv-600 absolute right-0 text-sm uppercase">
-        {startDate} – {endDate}
       </div>
     </div>
   );

@@ -23,27 +23,23 @@ function MainContent() {
           logo={omegaLogo}
           description={[
             <>
-              <strong>Sole engineer</strong> in an AI agent startup, responsible
-              for end-to-end development and architecture
+              <strong>Leading all engineering efforts</strong> in an AI agent
+              startup, overseeing full-stack architecture and development
             </>,
             <>
-              Developing <strong>Next.js (App Router)</strong> and{" "}
-              <strong>FastAPI</strong> applications
+              Rebuilding vanilla JS frontend into a modular{" "}
+              <strong>Next.js (App Router)</strong> app, improving
+              maintainability for faster development
             </>,
             <>
-              Completely rebuilt a vanilla JS frontend, modernized styling,
-              introduced <strong>modular design</strong> and improved{" "}
-              <strong>maintainability</strong>
+              Refactoring an existing <strong>FastAPI</strong> backend
+              application with <strong>type safety</strong>, restructured the
+              codebase and deployed it with <strong>Render</strong>
             </>,
             <>
-              Refactored an existing backend application with{" "}
-              <strong>type safety</strong>, restructured the codebase and
-              deployed it with <strong>Render</strong>
-            </>,
-            <>
-              Built <strong>AI-driven</strong> features including LLM prompt
-              tuning, structured response parsing, and{" "}
-              <strong>browser automation</strong>
+              Building <strong>AI-driven</strong> features like LLM prompt
+              tuning and <strong>browser automation</strong> to power agent
+              workflows
             </>,
           ]}
         />
@@ -55,22 +51,22 @@ function MainContent() {
           logo={cognityLogo}
           description={[
             <>
-              <strong>Main frontend developer</strong> for an e-learning
-              platform supporting users on the autism spectrum
+              <strong>Main frontend developer</strong> for an international
+              e-learning platform supporting users on the autism spectrum
             </>,
             <>
               Developing a <strong>C# (ASP.NET)</strong> backend to support new
               frontend functionality and improve API responses
             </>,
             <>
-              Refactored a legacy <strong>Pages Router</strong> frontend
-              application into <strong>Next.js (App Router)</strong> and fixed
-              styling inconsistencies
+              Modernized legacy frontend by migrating from{" "}
+              <strong>Pages Router</strong> to <strong>App Router</strong>,
+              resolving styling and performance issues
             </>,
             <>
-              Worked with <strong>GitHub Actions</strong>,{" "}
-              <strong>Docker</strong> and <strong>Azure</strong> to improve
-              build times and ensure proper resource caching
+              Improved build times and ensured proper resource caching with{" "}
+              <strong>GitHub Actions</strong>, <strong>Docker</strong> and{" "}
+              <strong>Azure</strong>
             </>,
           ]}
         />
@@ -82,7 +78,7 @@ function MainContent() {
           logo={herohuntLogo}
           description={[
             <>
-              <strong>Sole frontend developer </strong> in an AI recruitment
+              <strong>Main frontend developer </strong> in an AI recruitment
               startup
             </>,
             <>
@@ -91,12 +87,12 @@ function MainContent() {
               <strong>Tailwind CSS</strong>, <strong>Tanstack Query</strong>
             </>,
             <>
-              Leveraged <strong>React Server Components</strong> and prefetching
-              strategies to reduce bundle size and improve loading times
+              Introduced <strong>React Server Components</strong> and
+              prefetching strategies to reduce bundle size and improve loading
+              times
             </>,
             <>
-              Suggested <strong>REST API </strong>
-              improvements to reduce overfetching
+              Minimized overfetching with <strong>REST API</strong> improvements
             </>,
           ]}
         />
@@ -132,9 +128,17 @@ function MainContent() {
       <MainSection
         title="Projects"
         subtitle={
-          <a href="https://github.com/nizioleque" target="_blank">
-            (more on GitHub)
-          </a>
+          <span>
+            (more on{" "}
+            <a
+              href="https://niziolek.dev"
+              target="_blank"
+              className="underline"
+            >
+              niziolek.dev
+            </a>
+            )
+          </span>
         }
       >
         <Project
@@ -172,7 +176,7 @@ function MainContent() {
           description="Split bills with friends using OCR receipt scanning"
           logo={splitsmartLogo}
           techStack={["Flutter", "FastAPI (Python)", "MongoDB"]}
-          year="2024"
+          year="2023"
         />
       </MainSection>
       <MainSection title="Skills">

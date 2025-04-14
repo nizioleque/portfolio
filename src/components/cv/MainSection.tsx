@@ -15,9 +15,7 @@ function MainSection({ title, subtitle, children }: MainSectionProps) {
             {title}
           </h2>
           {subtitle && (
-            <div className="text-cv-800 text-sm italic underline">
-              {subtitle}
-            </div>
+            <div className="text-cv-800 text-sm italic">{subtitle}</div>
           )}
         </div>
         <div className="border-cv-800/50 -me-6 flex flex-1 items-center gap-2 rounded-l-full border-t-2" />
