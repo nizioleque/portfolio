@@ -1,4 +1,5 @@
 import cognityLogo from "@/assets/cv/cognity.webp";
+import developolisLogo from "@/assets/cv/developolis.png";
 import herohuntLogo from "@/assets/cv/herohunt.png";
 import miniLogo from "@/assets/cv/mini.png";
 import omegaLogo from "@/assets/cv/omega.jpg";
@@ -138,7 +139,7 @@ function MainContent() {
         <Project
           title="Mouse Pinch-To-Zoom"
           type="Browser extension"
-          users={11200}
+          users={12600}
           rating={4.8}
           description="Emulating touchpad pinch-to-zoom with a mouse wheel"
           logo={mousePinchLogo}
@@ -147,18 +148,25 @@ function MainContent() {
         <Project
           title="YouTube Custom Speed"
           type="Browser extension"
-          users={15900}
+          users={22600}
           rating={4.7}
-          description="Easy and customizable way to adjust YouTube playback speed"
+          description="Easy way to customize YouTube playback speed"
           logo={youtubeSpeedLogo}
           href="https://github.com/nizioleque/youtube-custom-speed"
         />
         <Project
+          title="Developolis"
+          type="Web application"
+          description="Corporate training, gamified"
+          logo={developolisLogo}
+          techStack={["Next.js", "AdonisJS (Node.js)", "PostgreSQL"]}
+        />
+        <Project
           title="Splitsmart"
           type="Mobile application"
-          description="Split bills with friends easily using OCR receipt scanning"
+          description="Split bills with friends using OCR receipt scanning"
           logo={splitsmartLogo}
-          href="https://github.com/nizioleque/splitsmart"
+          techStack={["Flutter", "FastAPI", "MongoDB"]}
         />
         <div className="text-cv-500 mt-2">
           + more on{" "}

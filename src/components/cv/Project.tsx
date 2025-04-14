@@ -6,8 +6,9 @@ interface ProjectProps {
   users?: number;
   rating?: number;
   description: string;
-  href: string;
+  href?: string;
   logo: StaticImageData;
+  techStack?: string[];
 }
 
 function Project({
@@ -18,10 +19,11 @@ function Project({
   description,
   href,
   logo,
+  techStack,
 }: ProjectProps) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="block">
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         <Image
           src={logo}
           alt={title}
@@ -31,22 +33,29 @@ function Project({
           unoptimized
         />
         <div className="flex flex-col">
-          <h3 className="text-lg font-bold">{title}</h3>
+          <h3 className="text-lg/6 font-bold">{title}</h3>
           <div className="">
             {type}
-
-            {users && (
-              <>
-                {" · "}
-                {users.toLocaleString("en-US")} users
-              </>
-            )}
-            {rating && (
-              <>
-                {" · "}
-                {rating}/5 rating
-              </>
-            )}
+            <span className="text-cv-600 text-sm">
+              {techStack && (
+                <>
+                  {" · "}
+                  {techStack.join(", ")}
+                </>
+              )}
+              {users && (
+                <>
+                  {" · "}
+                  {users.toLocaleString("en-US")} users
+                </>
+              )}
+              {rating && (
+                <>
+                  {" · "}
+                  {rating}/5 rating
+                </>
+              )}
+            </span>
           </div>
           <p className="">{description}</p>
         </div>
