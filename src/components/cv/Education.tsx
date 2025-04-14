@@ -24,7 +24,7 @@ function Education({
           {area}, {faculty}
         </p>
       </div>
-      <div className="text-cv-500 absolute right-0 text-sm uppercase">
+      <div className="text-cv-600 absolute right-0 text-sm uppercase">
         {startDate} – {endDate}
       </div>
     </div>
