@@ -144,6 +144,7 @@ function MainContent() {
           description="Emulating touchpad pinch-to-zoom with a mouse wheel"
           logo={mousePinchLogo}
           href="https://github.com/nizioleque/mouse-pinch-to-zoom"
+          year="2021"
         />
         <Project
           title="YouTube Custom Speed"
@@ -153,6 +154,7 @@ function MainContent() {
           description="Easy way to customize YouTube playback speed"
           logo={youtubeSpeedLogo}
           href="https://github.com/nizioleque/youtube-custom-speed"
+          year="2021"
         />
         <Project
           title="Developolis"
@@ -160,6 +162,7 @@ function MainContent() {
           description="Corporate training, gamified"
           logo={developolisLogo}
           techStack={["Next.js", "AdonisJS (Node.js)", "PostgreSQL"]}
+          year="2025"
         />
         <Project
           title="Splitsmart"
@@ -167,17 +170,8 @@ function MainContent() {
           description="Split bills with friends using OCR receipt scanning"
           logo={splitsmartLogo}
           techStack={["Flutter", "FastAPI", "MongoDB"]}
+          year="2024"
         />
-        <div className="text-cv-500 mt-2">
-          + more on{" "}
-          <a
-            href="https://github.com/nizioleque"
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github.com/nizioleque
-          </a>
         </div>
       </MainSection>
       <MainSection title="Education">
